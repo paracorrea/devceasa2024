@@ -52,7 +52,9 @@ public class DevSecurityConfig {
 								.loginPage("/showMyLoginPage") // need controller
 								.loginProcessingUrl("/authenticateTheUser") // no need a controller
 								.permitAll()
-						  );		
+						  )
+						  .logout(logout -> logout.permitAll()
+						 );		
 		
 		
 		return http.build();
