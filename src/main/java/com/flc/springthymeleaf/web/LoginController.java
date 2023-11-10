@@ -12,4 +12,12 @@ public class LoginController {
 		return "plain-login";
 	}
 	
+	
+	@GetMapping("/access_denied") // Security configuration 
+	public String showAccessDenied() {
+		
+		return "access_denied";
+	}
+	
+	
 }

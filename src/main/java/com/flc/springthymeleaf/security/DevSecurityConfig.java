@@ -45,6 +45,9 @@ public class DevSecurityConfig {
 		http.authorizeHttpRequests(configurer -> 
 		
 				configurer
+						.requestMatchers("/").hasRole("EMPLOYEE")
+						.requestMatchers("/grupos/**").hasRole("MANAGER")
+						.requestMatchers("/subgrupos/**").hasRole("ADMIN")
 						.anyRequest().authenticated()
 						)
 				.formLogin(form -> 
@@ -54,7 +57,10 @@ public class DevSecurityConfig {
 								.permitAll()
 						  )
 						  .logout(logout -> logout.permitAll()
-						 );		
+						 )
+						  .exceptionHandling(configurer ->
+								configurer.accessDeniedPage("/access_denied")
+						);		
 		
 		
 		return http.build();
