@@ -47,7 +47,7 @@ public class DevSecurityConfig {
 				configurer
 						.requestMatchers("/").hasRole("EMPLOYEE")
 						.requestMatchers("/grupos/cadastrar").hasRole("MANAGER")
-						.requestMatchers("/subgrupos/**").hasRole("MANAGER")
+						.requestMatchers("/subgrupos/cadastrar").hasRole("MANAGER")
 						.anyRequest().authenticated()
 						)
 				.formLogin(form -> 

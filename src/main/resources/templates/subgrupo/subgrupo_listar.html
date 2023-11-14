@@ -23,43 +23,6 @@
 			<div th:replace="~{alert}"></div>
 
 		</div>
-		
-		
-		<form
-				th:action="${subgrupo.id==null} ? @{/subgrupos/salvar} : @{/subgrupos/editar}"
-				th:object="${subgrupo}" method="POST">
-
-				<div th:replace="~{validacao :: validacao}"></div>
-
-
-				
-				<div class="form-group col-md-3 gravar">
-					
-					<h6>Cadastro de Subgrupo </h6>
-					<input type="text" class="form-control" id="nome" 
-							placeholder="Nome Subgrupo" autofocus="autofocus" th:field="*{nome}" />
-
-				</div>
-				
-				<div class="form-group col-md-3 gravar">
-	                 <select id="grupo" class="form-select" th:field="*{grupo}">
-						
-						
-	                 	<option value="">Selecione o grupo</option>
-	                 	<option th:each="gr : ${grupos}" 
-	                    	  th:value="${gr.id}" 
-	                          th:text="${gr.nome}">Administração</option>
-	                  </select>
-	            </div>
-	            
-	            <div class="gravar" "form-group col-md-3">    
-				<input type="hidden" id="id" th:field="*{id}" />
-				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 12pt">Gravar</button>
-				<br></br>
-	            </div>
-			</form>
-		
-		
 		<table class="table">
 				
 				<thead>
@@ -98,7 +61,5 @@
 		
 	</section>
 
-
 </body>
-
 </html>
