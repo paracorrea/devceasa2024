@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-	<title>Bootstrap Example</title>
+	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+	<title>Sistema DEVCEASA</title>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -14,7 +15,123 @@
 
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
-	<h3>Produto cadastro</h3>
+	<section class="layout-content" >
+		<div class="container-fluid">
+			
+			<div class="form-group row">
+
+			<div class="col-sm-5">
+					
+					
+					<div th:replace="~{alert}"></div>
+					
+						<form th:object="${produto}" th:action="@{/produtos/nomes}" method="get">
+							<input type="text" name="search" id="search" th:value="${search}" />
+							<input type="submit" value="Pesquisar um produto" />
+						</form>
+					</div>
+					
+					<div class="col-sm-5">
+
+						<a th:href="@{/produtos/formcadastro}" class="btn btn-primary btn-sm mb-1"> Novo Produto </a>
+					</div>
+			</div>
+
+				
+				<h5>Lista de Produtos</h5>
+
+
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th><a th:href="@{'/produtos/page/' +${currentPage} 
+									+ '?sortField=id&sortDir=' 
+									+ ${reverseSortDir}}">Id</a></th>
+						<th><a th:href="@{'/produtos/page/' +${currentPage} 
+									+ '?sortField=nome&sortDir=' 
+									+ ${reverseSortDir}}">Produtos</a>
+						</th>
+						<th>Subgrupo</th>
+						<th>Acões</th>
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="produto : ${produtos}">
+						<td th:text="${produto.id}"  class="fonte-table"></td>
+						<td th:text="${produto.nome}" class="fonte-table" ></td>
+						<td th:text="${produto.subgrupo.nome}" class="fonte-table" ></td>
+
+						<td><a type="button" class="edit" title="Editar"
+								th:href="@{/produtos/editar/{id} (id=${produto.id}) }">
+								<i class="bi bi-pencil-square"></i>
+							
+							</a> 
+							
+							<a type="button" class="delete" title="Excluir" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }">
+							<i class="bi bi-trash3"></i>
+							
+							</a> 
+
+							<!-- eSCONDENDO O EXCLUIR <a type="button" class="delete" title="Excluir"
+														th:href="@{/ceasadev/produtos/excluir/{id} (id=${produto.id}) }">
+														<i class="bi bi-trash3"></i>	-->
+
+							<a class="look" th:href="@{/propriedades/produtos/{id} (id=${produto.id})}">
+								<i class="bi bi-eye-fill" title="Propriedades"></i>
+							</a>
+					<tr th:each="s : ${propriedades}">
+						<td th:text="${s.id}"></td>
+						<td th:text="${s.nome}"></td>
+
+					</tr>
+
+				</tbody>
+			</table>
+
+			<div th:if="${totalPages > 1}">
+				<div class="pagination justify-content-center">
+					<div class="page-item disabled">Total Itens: [[${totalItems}]]</div>
+
+					<div class="col-sm-1">
+						<a th:if="${currentPage > 1} " class="page-item"
+							th:href="@{'/produtos/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Anterior</a>
+						<span th:unless="${currentPage > 1}">Anterior</span>
+					</div>
+
+					<div class="col-sm-2">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a th:if="${currentPage != i}"
+								th:href="@{'/produtos/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+							<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+							&nbsp;
+						</span>
+					</div>
+
+
+					<div class="col-sm-1">
+						<a th:if="${currentPage < totalPages}"
+							th:href="@{'/produtos/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Próximo</a>
+						<span th:unless="${currentPage < totalPages}">Próximo</span>
+					</div>
+
+					<div class="col-sm-1">
+						<a th:if="${currentPage < totalPages}"
+							th:href="@{'/produtos/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Último</a>
+						<span th:unless="${currentPage < totalPages}">Último</span>
+
+						<br></br>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+	
+				
 	
 	<a class="inicio" th:href="@{/}">INICIO</a>
 

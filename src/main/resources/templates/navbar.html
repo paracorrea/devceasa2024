@@ -46,15 +46,25 @@
                 </ul>
             </li>
             
-             <li class="nav-item">
-              <a class="nav-link" href="/produtos/cadastrar">Produto</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/propriedades/cadastrar">Propriedade</a>
+           <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Produto
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" th:href="@{/produtos/listar}">Listagem</a></li>
+                </ul>
             </li>
             
-             
-            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Propriedade
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" th:href="@{/propriedades/listar}">Listagem</a></li>
+                </ul>
+            </li>                    
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cotação
