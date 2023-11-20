@@ -157,7 +157,7 @@ public class ProdutoController {
 		List<Produto> listSubgrupos = produtoService.findAll();
 		model.addAttribute("produtos",listSubgrupos);
 		
-		return "/produto/produto_listar";
+		return "/produto/produto_listagem";
 	
 
 	}

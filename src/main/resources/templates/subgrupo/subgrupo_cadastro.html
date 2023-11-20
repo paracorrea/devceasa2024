@@ -16,13 +16,13 @@
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
 
-	<section class="layout-content">
+	
 		
-		<div class="container-fluid">
+		<div class="container">
 
 			<div th:replace="~{alert}"></div>
 
-		</div>
+		
 		
 		
 		<form
@@ -35,7 +35,8 @@
 				
 				<div class="form-group col-md-3 gravar">
 					
-					<h6>Cadastro de Subgrupo </h6>
+					<br>
+					<p >Cadastro de Subgrupo </p>
 					<input type="text" class="form-control" id="nome" 
 							placeholder="Nome Subgrupo" autofocus="autofocus" th:field="*{nome}" />
 
@@ -54,14 +55,14 @@
 	            
 	            <div class="gravar" "form-group col-md-3">    
 				<input type="hidden" id="id" th:field="*{id}" />
-				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 12pt">Gravar</button>
+				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 0pt">Gravar</button>
 				<br></br>
 	            </div>
 			</form>
 		
 		
-		<table class="table">
-				
+		<table class="table table-bordered">
+				<a class="inicio" th:href="@{/}">Início</a>
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -93,10 +94,10 @@
 	                </tr>
 			</table>
 		
-	
+		</div>
 	<div th:replace="~{modal :: modal}"></div>	
 		
-	</section>
+	
 
 
 </body>

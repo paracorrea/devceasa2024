@@ -56,5 +56,27 @@ text-align: center;
  
   padding-top: 5px;
 }
+
+.meu-hr {
+	font-size: 12px;
+  	display: flex;
+  	align-items: center;
+  	color: rgb(0, 128, 0);
+}
+.meu-hr hr {
+  flex:1;
+  border-color: rgb(0, 128, 0); 
+  margin-left: .5em;
+}
 	  
-    
+ .cad {
+	 
+	 
+	 font-size: 12px;
+	 border: #E34724;
+	 margin-bottom: 2px;
+ }
+ .linha {
+	 padding: 0%;
+	 
+ }

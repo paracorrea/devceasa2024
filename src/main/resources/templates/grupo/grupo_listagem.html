@@ -16,14 +16,19 @@
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
 
-	
-
-
-	<section class="layout-content" >
-	<div class="container-fluid">
+	<div class="container">
 		
-		<table class="table">
+		<table class="table table-bordered">
 				
+				
+				<br>
+				<div class="meu-hr">
+					
+					<p>Listagem de grupos </p><hr>
+				</div>
+				
+				<a class="inicio" th:href="@{/}">Início</a>
+
 				<thead>
 					<tr>
 						<th>ID</th>

@@ -16,14 +16,12 @@
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
 
-	<section class="layout-content">
-		
-		<div class="container-fluid">
+		<div class="container">
 
 			<div th:replace="~{alert}"></div>
 
-		</div>
-		<table class="table">
+		
+		<table class="table table-bordered">
 				
 				<thead>
 					<tr>
@@ -55,11 +53,11 @@
 	                </td>
 	                </tr>
 			</table>
-		
+		</div>
 	
 	<div th:replace="~{modal :: modal}"></div>	
 		
-	</section>
+	
 
 </body>
 </html>
