@@ -15,10 +15,15 @@
 
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
+		<div class="container">
 
+			<div th:replace="~{alert}"></div>
+
+		<br>
 		
-		<div><h5>Lista de produtos por subgrupo</h5></div>
+		<div class="meu-hr">Lista de produtos por subgrupo<hr></div>
 		
+		<a class="inicio" th:href="@{/}">Início</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>

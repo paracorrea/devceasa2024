@@ -22,9 +22,10 @@
 
 			<div class="col-sm-5">
 					
-					
+					<br>
+					<div class="meu-hr"> Cadastro de Produto </p><hr></div>
 					<div th:replace="~{alert}"></div>
-						<br>
+					
 						<form th:object="${produto}" th:action="@{/produtos/nomes}" method="get">
 							<input type="text" name="search" id="search" th:value="${search}" />
 							<input type="submit" value="Pesquisar um produto" />
@@ -36,9 +37,9 @@
 						<a th:href="@{/produtos/formcadastro}" class="btn btn-primary btn-sm mb-1"> Novo Produto </a>
 					</div>
 			</div>
-			<hr>
+			
 				
-				<h5>Lista de Produtos</h5>
+				<div class="meu-hr">Lista de Produtos</div>
 
 
 
