@@ -56,7 +56,7 @@ public class PropriedadeController {
 		List<Propriedade> lista = propriedadeService.findAll();
 		model.addAttribute("propriedades", lista);		
 		model.addAttribute("unidades", unidades);
-		return "/propriedade/propriedade_cadastro";
+		return "propriedade/propriedade_cadastro";
 	}
 	
 	@PostMapping("/propriedades/salvar")
@@ -64,7 +64,7 @@ public class PropriedadeController {
 		
 		
 		if (result.hasErrors()) {
-			return "/propriedade/propriedade_cadastro";
+			return "propriedade/propriedade_cadastro";
 		}
 		
 		propriedadeService.insert(propriedade);
@@ -77,13 +77,13 @@ public class PropriedadeController {
 	public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
 		model.addAttribute("unidades", unidades);
 		model.addAttribute("propriedade", propriedadeService.findById(id));
-		return "/propriedade/propriedade_cadastro";
+		return "propriedade/propriedade_cadastro";
 	}
 	
 	@PostMapping("/propriedades/editar") 
 	public String editar (@Valid Propriedade propriedade, BindingResult result, RedirectAttributes attr) {
 		if (result.hasErrors()) {
-			return "/propriedade/pripriedade_cadastro";
+			return "propriedade/pripriedade_cadastro";
 		}
 		
 		propriedadeService.update(propriedade);
@@ -110,7 +110,7 @@ public class PropriedadeController {
 		List<Propriedade> list = propriedadeService.findAll();
 		model.addAttribute("propriedades",list);
 		
-		return "/propriedade/propriedade_listar";
+		return "propriedade/propriedade_listar";
 	
 
 	}
@@ -121,7 +121,7 @@ public class PropriedadeController {
 		
 		List<Propriedade> obj = propriedadeService.findPropriedadePorProduto(id);
 		model.addAttribute("propriedades", obj);
-		return "/propriedade/propriedade_listar";	}
+		return "propriedade/propriedade_listar";	}
 	
 
 }

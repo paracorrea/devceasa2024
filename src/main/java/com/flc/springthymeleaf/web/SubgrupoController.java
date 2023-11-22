@@ -79,21 +79,21 @@ public class SubgrupoController {
 		List<Subgrupo> listSubgrupos = subgrupoService.findAll();
 		model.addAttribute("subgrupos",listSubgrupos);
 		
-		return "/subgrupo/subgrupo_listar";
+		return "subgrupo/subgrupo_listar";
 	}
 	
 	
 	@GetMapping("/subgrupos/editar/{id}")
 	public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
 		model.addAttribute("subgrupo", subgrupoService.findById(id));
-		return "/subgrupo/subgrupo_cadastro";
+		return "subgrupo/subgrupo_cadastro";
 	}
 	
 	@PostMapping("/subgrupos/editar")
 	public String editar(@Valid Subgrupo subgrupo, BindingResult result,RedirectAttributes attr) {
 		
 		if (result.hasErrors()) {
-			return "/subgrupo/subgrupo_cadastro";
+			return "subgrupo/subgrupo_cadastro";
 		}
 		
 		subgrupoService.update(subgrupo);
@@ -135,7 +135,7 @@ public class SubgrupoController {
 		
 		List<Subgrupo> obj = subgrupoService.findGrupoSubgrupo(id);
 		model.addAttribute("subgrupos", obj);
-		return "/subgrupo/subgrupo_listar";	
+		return "subgrupo/subgrupo_listar";	
 	}
 	
 	

@@ -71,7 +71,7 @@ public class ProdutoController {
 			model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 			
 			model.addAttribute("produtos", listProdutos);
-			return "/produto/produto_cadastro";
+			return "produto/produto_cadastro";
 		}
 	
 	
@@ -88,14 +88,14 @@ public class ProdutoController {
 	public String formularioCadastrar(Produto produto , Model model) {
 		List<Produto> lista = produtoService.findAll();
 		model.addAttribute("produtos", lista);
-		return "/produto/produto_form";
+		return "produto/produto_form";
 	}
 	
 	@GetMapping("/produtos/editar/{id}")
 	public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
 
 		model.addAttribute("produto", produtoService.findById(id));
-		return "/produto/produto_editar";
+		return "produto/produto_editar";
 
 	}
 	
@@ -104,7 +104,7 @@ public class ProdutoController {
 	public String editar (@Valid Produto produto,BindingResult result, RedirectAttributes attr) {
 
 		if (result.hasErrors()) {
-			return "/produto/produto_form";
+			return "produto/produto_form";
 		}
 		
 		
@@ -120,7 +120,7 @@ public class ProdutoController {
 		
 
 		if (result.hasErrors()) {
-			return "/produto/produto_form";
+			return "produto/produto_form";
 		}
 		
 		
@@ -157,7 +157,7 @@ public class ProdutoController {
 		List<Produto> listSubgrupos = produtoService.findAll();
 		model.addAttribute("produtos",listSubgrupos);
 		
-		return "/produto/produto_listagem";
+		return "produto/produto_listagem";
 	
 
 	}
@@ -167,7 +167,7 @@ public class ProdutoController {
 		
 		List<Produto> obj = produtoService.findProdutoBySubgrupo(id);
 		model.addAttribute("search", obj);
-		return "/produto/produto_listar";	}
+		return "produto/produto_listar";	}
 
 	
 	@GetMapping("/produtos/nomes")
@@ -176,7 +176,7 @@ public class ProdutoController {
 		String nome = search.toUpperCase();
 		List<Produto> obj = produtoService.findByNome(nome);
 		model.addAttribute("search", obj);
-		return "/produto/produto_listar";
+		return "produto/produto_listar";
 		}
 }
 	

@@ -18,17 +18,16 @@
 
 		<div class="container">
 
-			<div th:replace="~{alert}"></div>
-
-		<br>
+		<table class="table table-bordered">
+				
+				<br>
 				<div class="meu-hr">
-					
 					<p>Listagem de subgrupos </p><hr>
 				</div>
 		
+				<a class="inicio" th:href="@{/}">Início</a>
 		
-		<table class="table table-bordered">
-				
+		
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -61,9 +60,5 @@
 			</table>
 		</div>
 	
-	<div th:replace="~{modal :: modal}"></div>	
-		
-	
-
 </body>
 </html>
