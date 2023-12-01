@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -64,6 +65,10 @@ public class Propriedade  implements Serializable {
 	@JsonIgnore
 	@NotNull(message="Campo não pode ser nullo")
 	private Produto produto;
+	
+	@OneToOne(mappedBy = "propriedade")
+	private Cotacao cotacao;
+	
 	
 	public Propriedade() {
 		
@@ -176,6 +181,16 @@ public class Propriedade  implements Serializable {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+
+	public Cotacao getCotacao() {
+		return cotacao;
+	}
+
+
+	public void setCotacao(Cotacao cotacao) {
+		this.cotacao = cotacao;
 	}
 
 

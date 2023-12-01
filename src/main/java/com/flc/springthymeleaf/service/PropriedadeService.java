@@ -68,9 +68,11 @@ public class PropriedadeService {
 			return listPropriedades;
 		}
 
-
-		//public List<Propriedade> findByDados(String pVariedade, String pSubvariedade, String pClassificacao, Integer produto, Integer sGrupo) {
-			// TODO Auto-generated method stub
-		//	return propRepo.findAllDados(pVariedade, pSubvariedade, pClassificacao, produto, sGrupo);
-		//}
+		
+		@Transactional(readOnly=true)
+		public List<Propriedade> findPropriedadePorCotacao() {
+			
+			List<Propriedade> listPropriedades = propRepo.findPropriedadePorCotacao();
+			return listPropriedades;
+		}
 }

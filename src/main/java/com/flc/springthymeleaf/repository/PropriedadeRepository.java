@@ -16,5 +16,10 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	@Query("SELECT s FROM Propriedade s JOIN FETCH  s.produto g WHERE g.id = ?1")
 	List<Propriedade> findPropriedadePorProduto(Integer id);
 
+	@Query("SELECT s FROM Propriedade s WHERE s.status = true")
+	List<Propriedade> findPropriedadePorCotacao();
+
+	
+			
 
 }
