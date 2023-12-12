@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.flc.springthymeleaf.domain.Produto;
+import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.CotacaoService;
 import com.flc.springthymeleaf.service.PropriedadeService;
@@ -37,6 +39,13 @@ public class CotacaoController {
 		return propriedadeService.findPropriedadePorCotacao();
 	}
 	
+	@GetMapping("/cotacoes/cadastrar")
+	public String cadastrar(Cotacao cotacao, Model model) {
+		
+		List<Cotacao> lista = cotacaoService.findAll();
+		model.addAttribute("cotacoes", lista);		
+		return "cotacao/cotacao_cadastro";
+	}
 	
 	
 	

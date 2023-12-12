@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+	<title>Sistema DEVCEASA</title>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
+
+
+
+	<div class="container">
+
+
+		<br>
+		<div class="meu-hr">
+
+			<p>Cotação de produtos </p>
+
+		</div>
+
+		<div th:replace="~{alert}"></div>
+
+		<form th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}" th:object="${cotacao}"
+			method="POST">
+
+			<div th:replace="~{validacao :: validacao}"></div>
+
+			<div class="form-row">
+				<div class="form-group col-md-8">
+					<label for="propriedade">Produto/Propriedade</label>
+					<select id="propriedade" class="form-control" th:field="*{propriedade}" required>
+						<option value="">Selecione...</option>
+						<option th:each="p : ${cotados}" th:value="${p.id}"
+							th:text="${p.produto.nome} + '  - ' + ${p.variedade}  + '  - ' + ${p.subvariedade} + '  - ' + ${p.classificacao} ">
+						</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="dataDaCotacao">Data da Cotação</label>
+					<input type="date" class="form-control" id="dataDaCotacao" autofocus="autofocus"
+						th:field="*{dataDaCotacao}" placeholder="DataDaCotacao"
+						th:classappend="${#fields.hasErrors('dataDaCotacao')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{dataDaCotacao}"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col ">
+					<label for="valor1">Valor cotado(1)</label>
+					<input type="text" class="form-control" id="valor1" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor1}" th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{valor1}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="valor2">Valor cotado(2)</label>
+					<input type="text" class="form-control" id="valor2" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor2}" th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valor2}"></span>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="row">
+
+				<div class="col">
+					<label for="valor3">Valor cotado(3)</label>
+					<input type="text" class="form-control" id="valor3" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor3}" th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{valor3}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="valor4">Valor cotado(4)</label>
+					<input type="text" class="form-control" id="valor4" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor4}" th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valor4}"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col">
+					<label for="valor5">Valor cotado(5)</label>
+					<input type="text" class="form-control" id="valor5" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor5}" th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{valor5}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="valor6">Valor cotado(6)</label>
+					<input type="text" class="form-control" id="valor6" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor6}" th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valor6}"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col">
+					<label for="valor7">Valor cotado(7)</label>
+					<input type="text" class="form-control" id="valor7" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor7}" th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{valor7}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="valor8">Valor cotado(8)</label>
+					<input type="text" class="form-control" id="valor8" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor8}" th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valor8}"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="valor9">Valor cotado(9)</label>
+					<input type="text" class="form-control" id="valor9" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor9}" th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{valor9}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="valor10">Valor cotado(10)</label>
+					<input type="text" class="form-control" id="valor10" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor10}" th:classappend="${#fields.hasErrors('valor10')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valor10}"></span>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+		</form>
+
+
+
+	</div>
+
+</body>
+
+</html>

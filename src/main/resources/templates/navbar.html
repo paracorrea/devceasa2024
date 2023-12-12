@@ -70,7 +70,7 @@
                 Cotação
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Cotar</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/cadastrar}">Cotar</a></li>
                 <li><a class="dropdown-item" href="#">Relatório</a></li>
                 <li><a class="dropdown-item" href="#">Consultar</a></li>
               </ul>
