@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.CotacaoService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 import com.flc.springthymeleaf.web.validator.CotacaoValidator;
+
+import enums.FatorSazonal;
 
 
 
@@ -37,6 +40,12 @@ public class CotacaoController {
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		return propriedadeService.findPropriedadePorCotacao();
+	}
+	
+	@ModelAttribute("fatores")
+	public FatorSazonal[] getFatores() {
+		return FatorSazonal.values();
+
 	}
 	
 	@GetMapping("/cotacoes/cadastrar")

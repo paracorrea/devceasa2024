@@ -166,18 +166,113 @@
 				</div>
 			</div>
 
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="fatorSazonal">Fator Sazonal</label>
+					<select id="fatorSazonal" class="form-control" th:field="*{fatorSazonal}"
+						th:classappend="${#fields.hasErrors('fatorSazonal')} ? 'is-invalid'">
+						<option value="">Selecione...</option>
+						<option th:each="fator : ${fatores}" th:value="${fator}" th:text="${fator.descricao}">Normal
+						</option>
+					</select>
+					<div class="invalid-feedback">
+						<span th:errors="*{fatorSazonal}"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<label for="precoMinimo">Preco Minimo</label>
+					<input type="text" class="form-control" id="precoMinimo" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{precoMinimo}" th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
+
+					<div class="invalid-feedback">
+						<span th:errors="*{precoMinimo}"></span>
+					</div>
+				</div>
+				<div class="col">
+					<label for="precoMedio">Preco Médio</label>
+					<input type="text" class="form-control" id="precoMedio" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{precoMedio}" th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{precoMedio}"></span>
+					</div>
+				</div>
+				
+				<div class="col">
+					<label for="precoMaximo">Preco Máximo)</label>
+					<input type="text" class="form-control" id="precoMaximo" data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{precoMaximo}" th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{precoMaximo}"></span>
+					</div>
+				</div>
+				
+				<div class="col">
+					<br>
+					<button type="button" class="btn btn-primary" onclick="calcularValores()">Calcular Valores</button>
+				</div>	
+			</div>
 
 
-
-
-
-
-		</form>
 
 
 
 	</div>
 
+
+
+
+
+	</form>
+
+
+
+	</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function calcularValores() {
+        var valores = [];
+        for (var i = 1; i <= 10; i++) {
+            var valor = document.getElementById('valor' + i).value;
+            if (valor !== '') {
+                valores.push(parseFloat(valor.replace(',', '.'))); // Converte para número
+            }
+        }
+
+        var precoMinimo = Math.min.apply(null, valores);
+        var precoMaximo = Math.max.apply(null, valores);
+        var precoMedio = valores.reduce(function (acc, val) {
+            return acc + val;
+        }, 0) / valores.length;
+        
+        var fatorSazonalidade = document.getElementById('fatorSazonal').value;
+          // Aplicar o fator de sazonalidade ao preço médio
+        switch (fatorSazonalidade) {
+            case 'MUITOBAIXO':
+                precoMedio *= 0.9; // Redução de 10%
+                break;
+            case 'BAIXO':
+                precoMedio *= 0.95; // Redução de 5%
+                break;
+            case 'NORMAL':
+                // Sem alteração
+                break;
+            case 'ALTO':
+                precoMedio *= 1.05; // Aumento de 5%
+                break;
+            case 'MUITOALTO':
+                precoMedio *= 1.10; // Aumento de 10%
+                break;
+        }
+
+        document.getElementById('precoMinimo').value = precoMinimo.toFixed(2);
+        document.getElementById('precoMaximo').value = precoMaximo.toFixed(2);
+        document.getElementById('precoMedio').value = precoMedio.toFixed(2);
+    }
+    /*]]>*/
+</script>
 </body>
 
 </html>

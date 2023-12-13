@@ -4,14 +4,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import enums.FatorSazonal;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -109,7 +114,8 @@ public class Cotacao implements Serializable {
 	private BigDecimal precoMedio;
 	
 	@Column(name="fator_sazonal")
-	private Integer fatorSazonal;
+	@Enumerated(EnumType.STRING)
+	private FatorSazonal fatorSazonal;
 
 	
 	@OneToOne(cascade= {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,
@@ -304,12 +310,12 @@ public class Cotacao implements Serializable {
 	}
 
 
-	public Integer getFatorSazonal() {
+	public FatorSazonal getFatorSazonal() {
 		return fatorSazonal;
 	}
 
 
-	public void setFatorSazonal(Integer fatorSazonal) {
+	public void  setFatorSazonal(FatorSazonal fatorSazonal) {
 		this.fatorSazonal = fatorSazonal;
 	}
 
