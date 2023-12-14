@@ -23,6 +23,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
@@ -39,63 +40,67 @@ public class Cotacao implements Serializable {
 	
 	//@PastOrPresent(message = "{PastOrPresent.funcionario.dataEntrada}")
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "data_cotacao", nullable = false, columnDefinition = "DATE")
+	@Column(name = "data_cotacao", columnDefinition = "DATE")
+	@NotNull(message="Campo não pode ser nullo")
 	private LocalDate dataDaCotacao;
 	
-	@NotNull
+	
 	private String users; 
 	
-	@Column(name="valores")
-	private String[] valores;
+	
 	
 	@Column(name="valor1")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
+	@NotNull(message="Campo não pode ser nullo")
+	@DecimalMax(value = "9999.999", message = "The decimal value can not be more than 9999999999.999")
 	private BigDecimal valor1;
 	
 	@Column(name="valor2")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
+	@NotNull(message="Campo não pode ser nullo")
 	private BigDecimal valor2;
 	
 	
 	@Column(name="valor3")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
+	@NotNull(message="Campo não pode ser nullo")
 	private BigDecimal valor3;
 	
 	@Column(name="valor4")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor4;
 	
 	@Column(name="valor5")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor5;
 	
 	@Column(name="valor6")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor6;
 	
 	@Column(name="valor7")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor7;
 	
 	@Column(name="valor8")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor8;
 	
 	@Column(name="valor9")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor9;
 	
 	@Column(name="valor10")
-	@PositiveOrZero
+	//@PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	private BigDecimal valor10;
 	
@@ -104,13 +109,16 @@ public class Cotacao implements Serializable {
 	//private Integer quantCotado;
 	
 	@Column(name="preco_minimo")
+	@NotNull(message="Aplicar cálculo antes de salvar")
 	private BigDecimal precoMinimo;
 	
 	@Column(name="preco_maximo")
+	@NotNull(message="Aplicar cálculo antes de salvar")
 	private BigDecimal precoMaximo;
 	
 	
 	@Column(name="preco_medio")
+	@NotNull(message="Aplicar cálculo antes de salvar")
 	private BigDecimal precoMedio;
 	
 	@Column(name="fator_sazonal")
@@ -121,7 +129,7 @@ public class Cotacao implements Serializable {
 	@OneToOne(cascade= {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,
 				CascadeType.REFRESH})
 	@JoinColumn(name = "propriedade_id")
-	@NotNull(message="Campo não pode ser nullo")
+	//@NotNull(message="Campo não pode ser nullo")
 	private Propriedade propriedade;
 
 
@@ -170,14 +178,7 @@ public class Cotacao implements Serializable {
 	}
 
 
-	public String[] getValores() {
-		return valores;
-	}
 
-
-	public void setValores(String[] valores) {
-		this.valores = valores;
-	}
 
 
 	public BigDecimal getValor1() {
