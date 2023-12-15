@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.flc.springthymeleaf.domain.Cotacao;
-
 import com.flc.springthymeleaf.repository.CotacaoRepository;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
 

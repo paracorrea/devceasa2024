@@ -1,7 +1,9 @@
 package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -66,8 +69,8 @@ public class Propriedade  implements Serializable {
 	@NotNull(message="Campo não pode ser nullo")
 	private Produto produto;
 	
-	@OneToOne(mappedBy = "propriedade")
-	private Cotacao cotacao;
+	@OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL )
+	private List<Cotacao> cotacoes = new ArrayList<>();
 	
 	
 	public Propriedade() {
@@ -89,7 +92,11 @@ public class Propriedade  implements Serializable {
 		this.produto = produto;
 	}
 
-
+	public List<Cotacao> getCotacoes() {
+		List<Cotacao> listaSegura = Collections.unmodifiableList(this.cotacoes);
+		return listaSegura;
+	} 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -184,13 +191,11 @@ public class Propriedade  implements Serializable {
 	}
 
 
-	public Cotacao getCotacao() {
-		return cotacao;
-	}
+	
 
 
-	public void setCotacao(Cotacao cotacao) {
-		this.cotacao = cotacao;
+	public void setCotacao(List<Cotacao> cotacoes) {
+		this.cotacoes = cotacoes;
 	}
 
 
