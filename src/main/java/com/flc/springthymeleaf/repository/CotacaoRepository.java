@@ -1,6 +1,10 @@
 package com.flc.springthymeleaf.repository;
 
+import java.time.LocalDate;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.flc.springthymeleaf.domain.Cotacao;
 
@@ -10,7 +14,11 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 	// mostrar os itens desta lista para o form
 
 	
-
+	 @Query("SELECT COUNT(c) > 0 FROM Cotacao c " +
+	           "WHERE c.propriedade.id = :propriedadeId " +
+	           "AND c.dataCotacao = :dataCotacao")
+	    boolean existsByPropriedadeAndDataCotacao(@Param("propriedadeId") Integer propriedadeId,
+	                                             @Param("dataCotacao") LocalDate dataCotacao);
 
 
 

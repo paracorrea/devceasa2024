@@ -24,6 +24,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -42,7 +44,7 @@ public class Cotacao implements Serializable {
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_cotacao", columnDefinition = "DATE")
 	@NotNull(message = "Campo não pode ser nullo")
-	private LocalDate data_cotacao;
+	private LocalDate dataCotacao;
 
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -56,19 +58,22 @@ public class Cotacao implements Serializable {
 	// @PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@NotNull(message = "Campo não pode ser nullo")
-	@DecimalMax(value = "9999.999", message = "The decimal value can not be more than 9999999999.999")
+	@Digits(integer = 10, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
 	private BigDecimal valor1;
+	
 
 	@Column(name = "valor2")
 	// @PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@NotNull(message = "Campo não pode ser nullo")
+	@DecimalMin(value = "0.0", inclusive = false, message = "O valor deve ser maior ou igual a 0")
 	private BigDecimal valor2;
 
 	@Column(name = "valor3")
 	// @PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@NotNull(message = "Campo não pode ser nullo")
+	@DecimalMin(value = "0.0", inclusive = false, message = "O valor deve ser maior ou igual a 0")
 	private BigDecimal valor3;
 
 	@Column(name = "valor4")
@@ -136,12 +141,12 @@ public class Cotacao implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDate getDataDaCotacao() {
-		return data_cotacao;
+	public LocalDate getDataCotacao() {
+		return dataCotacao;
 	}
 
-	public void setDataDaCotacao(LocalDate dataDaCotacao) {
-		this.data_cotacao = dataDaCotacao;
+	public void setDataCotacao(LocalDate dataCotacao) {
+		this.dataCotacao = dataCotacao;
 	}
 
 	public String getUsers() {

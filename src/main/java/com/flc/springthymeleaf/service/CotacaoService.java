@@ -50,5 +50,13 @@ public class CotacaoService {
 				cotacaoRepo.deleteById(id);
 			
 		}
+
+
+		public boolean existeCotacaoComMesmaDataECategoria(Cotacao cotacao) {
+			
+			 return cotacaoRepo.existsByPropriedadeAndDataCotacao(
+			            cotacao.getPropriedade().getId(),
+			            cotacao.getDataCotacao());
+		}
 		
 }
