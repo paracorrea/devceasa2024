@@ -15,7 +15,7 @@
     <div th:if="${#fields.hasAnyErrors()}" th:fragment="validacao">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <div th:each="error : ${#fields.detailedErrors()}">
-                <i class="oi oi-warning">Oi teste</i>
+                <i class="oi oi-warning"></i>
                 <span th:text="${error.message}"></span>
             </div>
             <!-- Corrige o botão de fechar para Bootstrap 5 -->

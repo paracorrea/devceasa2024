@@ -55,11 +55,12 @@
 
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<label for="dataCotacao">Data da Cotação</label> <input
-						type="date" class="form-control" id="dataCotacao"
-						autofocus="autofocus" th:field="*{dataCotacao}"
-						placeholder="DataCotacao"
-						th:classappend="${#fields.hasErrors('dataCotacao')} ? 'is-invalid'" />
+					<label for="dataCotacao">Data da Cotação</label> 
+					
+					<input type="date" class="form-control" id="dataCotacao"
+						autofocus="autofocus" th:field="*{dataCotacao}" value="${dataAtual}"
+						 />
+						
 					<div class="invalid-feedback">
 						<span th:errors="*{dataCotacao}"></span>
 					</div>
@@ -78,6 +79,7 @@
 						<span th:errors="*{valor1}"></span>
 					</div>
 				</div>
+				
 				<div class="col">
 					<label for="valor2">Valor cotado(2)</label> <input type="text"
 						class="form-control" id="valor2" data-mask-reverse="true"
@@ -106,7 +108,7 @@
 				</div>
 				<div class="col">
 					<label for="valor4">Valor cotado(4)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor4"
+						class="form-control" id="valor4"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor4}"
 						th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
@@ -120,7 +122,7 @@
 
 				<div class="col">
 					<label for="valor5">Valor cotado(5)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor5"
+						class="form-control" id="valor5"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor5}"
 						th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
 
@@ -130,7 +132,7 @@
 				</div>
 				<div class="col">
 					<label for="valor6">Valor cotado(6)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor6"
+						class="form-control" id="valor6"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor6}"
 						th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
@@ -144,7 +146,7 @@
 
 				<div class="col">
 					<label for="valor7">Valor cotado(7)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor7"
+						class="form-control" id="valor7"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor7}"
 						th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
 
@@ -154,7 +156,7 @@
 				</div>
 				<div class="col">
 					<label for="valor8">Valor cotado(8)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor8"
+						class="form-control" id="valor8"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor8}"
 						th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
@@ -165,7 +167,7 @@
 			<div class="row">
 				<div class="col">
 					<label for="valor9">Valor cotado(9)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor9"
+						 class="form-control" id="valor9"
 						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor9}"
 						th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
 
@@ -175,7 +177,7 @@
 				</div>
 				<div class="col">
 					<label for="valor10">Valor cotado(10)</label> <input type="text"
-						pattern="\d*" class="form-control" id="valor10"
+						 class="form-control" id="valor10"
 						data-mask="#.##0,00" data-mask-reverse="true"
 						th:field="*{valor10}"
 						th:classappend="${#fields.hasErrors('valor10')} ? 'is-invalid'" />
@@ -251,15 +253,6 @@
 
 
 	</div>
-
-
-
-
-
-
-
-
-
 
 
 	<script th:inline="javascript">

@@ -1,13 +1,16 @@
 package com.flc.springthymeleaf.web;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +22,7 @@ import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.CotacaoService;
 import com.flc.springthymeleaf.service.PropriedadeService;
+import com.flc.springthymeleaf.service.exceptions.DataIntegrityException;
 import com.flc.springthymeleaf.web.validator.CotacaoValidator;
 
 import enums.FatorSazonal;
@@ -56,17 +60,41 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/cadastrar")
 	public String cadastrar(Cotacao cotacao, Model model) {
 		
+		LocalDate dataAtual = LocalDate.now();
+		
 		List<Cotacao> lista = cotacaoService.findAll();
+		
+		model.addAttribute("dataAtual", dataAtual);
 		model.addAttribute("cotacoes", lista);		
 		return "cotacao/cotacao_cadastro";
 	}
 	
 	
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<String> handleDataIntegrityException(DataIntegrityException ex) {
+	    return ResponseEntity.badRequest().body(ex.getMessage());
+	}
 	@PostMapping("/cotacoes/salvar")
-	public String salvar(@Valid Cotacao cotacao, BindingResult result, RedirectAttributes attr ) {
+	public String salvar(@Valid @ModelAttribute Cotacao cotacao, Model model,BindingResult result, RedirectAttributes attr ) {
 		
-		
+		 LocalDate dataAtual = LocalDate.now();
+		 
+		 
+
+	        // Exibe a data no terminal
+	        System.out.println("Data Atual: " + dataAtual);
+		 
+		 if (!cotacao.getDataCotacao().equals(dataAtual)) {
+			
+			 result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve ser a data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
+	        }
+		 
+		 
+		 
 		if (result.hasErrors()) {
+			
+			
+			
 			return "cotacao/cotacao_cadastro";
 		}
 		
