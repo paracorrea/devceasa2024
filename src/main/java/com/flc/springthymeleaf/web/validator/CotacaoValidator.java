@@ -1,15 +1,11 @@
 package com.flc.springthymeleaf.web.validator;
 
-import java.time.LocalDate;
-
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.service.CotacaoService;
-import com.flc.springthymeleaf.service.exceptions.DataIntegrityException;
 
 public class CotacaoValidator implements Validator {
 
@@ -35,10 +31,12 @@ public class CotacaoValidator implements Validator {
 		 Cotacao cotacao = (Cotacao) object;
 
 		
-		 
-	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMinimo", "field.required", "O campo Preço Mínimo é obrigatório.");
-	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMaximo", "field.required", "O campo Preço Máximo é obrigatório.");
-	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMedio", "field.required", "O campo Preço Médio é obrigatório.");
+		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valor1", "field.required", "O campo Valor1 é obrigatório.");
+		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valor2", "field.required", "O campo Valor2 é obrigatório.");
+		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "valor3", "field.required", "O campo Valor3 é obrigatório.");
+	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMinimo", "field.required", "O campo Preço Mínimo é obrigatório.");
+	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMaximo", "field.required", "O campo Preço Máximo é obrigatório.");
+	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoMedio", "field.required", "O campo Preço Médio é obrigatório.");
 
 	      
 	        
@@ -46,15 +44,6 @@ public class CotacaoValidator implements Validator {
 	            errors.rejectValue("precoMaximo", "precoMaximo.invalid", "O Preço Máximo deve ser maior ou igual ao Preço Mínimo.");
 	        }
 		
-	        if (cotacao.getDataCotacao() != null && cotacao.getPropriedade() != null &&
-	                cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
-	            errors.rejectValue("dataCotacao", "error.cotacao", "Já existe uma cotação para a mesma propriedade na mesma data.");
-	        }
-	       
-	        if (cotacao.getDataCotacao() != null && cotacao.getPropriedade() != null &&
-	        	    cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
-	        	    throw new DataIntegrityException("Já existe uma cotação para a mesma propriedade na mesma data.");
-	        	}
 	}
 }
 	

@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,13 @@ public class CotacaoService {
 			 return cotacaoRepo.existsByPropriedadeAndDataCotacao(
 			            cotacao.getPropriedade().getId(),
 			            cotacao.getDataCotacao());
+		}
+
+
+		public List<Cotacao> getCotationsByDate(LocalDate selectedDate) {
+			
+			return cotacaoRepo.findByDataCotacao(selectedDate);
+			
 		}
 		
 }

@@ -43,7 +43,7 @@
 				<div class="form-group col-md-8">
 					<label for="propriedade">Produto/Propriedade</label> <select
 						id="propriedade" class="form-control" th:field="*{propriedade}"
-						required>
+						required >
 						<option value="">Selecione...</option>
 						<option th:each="p : ${cotados}" th:value="${p.id}"
 							th:text="${p.produto.nome} + '  - ' + ${p.variedade}  + '  - ' + ${p.subvariedade} + '  - ' + ${p.classificacao} ">
@@ -59,7 +59,7 @@
 					
 					<input type="date" class="form-control" id="dataCotacao"
 						autofocus="autofocus" th:field="*{dataCotacao}" value="${dataAtual}"
-						 />
+						required />
 						
 					<div class="invalid-feedback">
 						<span th:errors="*{dataCotacao}"></span>
@@ -72,7 +72,7 @@
 				<div class="col ">
 					<label for="valor1">Valor cotado(1)</label> <input type="text"
 						class="form-control" id="valor1" data-mask-reverse="true"
-						th:field="*{valor1}"
+						th:field="*{valor1}" required 
 						th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -83,7 +83,7 @@
 				<div class="col">
 					<label for="valor2">Valor cotado(2)</label> <input type="text"
 						class="form-control" id="valor2" data-mask-reverse="true"
-						th:field="*{valor2}"
+						th:field="*{valor2}" required
 						th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -99,7 +99,7 @@
 				<div class="col">
 					<label for="valor3">Valor cotado(3)</label> <input type="text"
 						class="form-control" id="valor3" data-mask-reverse="true"
-						th:field="*{valor3}"
+						th:field="*{valor3}" required 
 						th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -206,7 +206,7 @@
 				<div class="col">
 					<label for="precoMinimo">Preco Minimo</label> <input type="text"
 						class="form-control" id="precoMinimo" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMinimo}"
+						data-mask-reverse="true" th:field="*{precoMinimo}" required 
 						th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -216,7 +216,7 @@
 				<div class="col">
 					<label for="precoMedio">Preco Médio</label> <input type="text"
 						class="form-control" id="precoMedio" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMedio}"
+						data-mask-reverse="true" th:field="*{precoMedio}" required 
 						th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMedio}"></span>
@@ -226,7 +226,7 @@
 				<div class="col">
 					<label for="precoMaximo">Preco Máximo</label> <input type="text"
 						class="form-control" id="precoMaximo" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMaximo}"
+						data-mask-reverse="true" th:field="*{precoMaximo}" required 
 						th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMaximo}"></span>
