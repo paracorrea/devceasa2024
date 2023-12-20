@@ -189,8 +189,9 @@ public class CotacaoController {
             // Verifica se a data não é nula antes de formatar
             if (cotacaoItem.getDataCotacao() != null) {
                 String dataFormatada = cotacaoItem.getDataCotacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                document.add(new Paragraph("Data: " + dataFormatada));
-                document.add(new Paragraph("Produto"+ cotacao.getId()));
+                document.add(new Paragraph("Data: " + dataFormatada + " - " + "Produto"+ cotacaoItem.getPropriedade().getProduto().getNome()));
+                
+                
                 
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));
