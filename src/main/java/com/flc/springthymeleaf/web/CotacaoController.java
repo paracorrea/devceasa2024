@@ -31,10 +31,12 @@ import com.flc.springthymeleaf.web.validator.CotacaoValidator;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.Style;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
-
-
-
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
 
 import enums.FatorSazonal;
 import jakarta.servlet.http.HttpServletResponse;
@@ -167,12 +169,11 @@ public class CotacaoController {
     }
 
     @GetMapping("/cotacoes/gerar-pdf")
-    public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao, Cotacao cotacao, HttpServletResponse response) throws IOException {
+    public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
+                         Cotacao cotacao, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=cotacao.pdf");
 
-        System.out.println("Data recebida no controlador: " + dataCotacao);
-        
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
@@ -181,26 +182,62 @@ public class CotacaoController {
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
 
+        String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String linhaTracejada = "------------------------------------------------------------------------------------------------------------------------"
+                + "--------------------------------------------------------------------------------------------------------------------------------------"
+                + "--------------------------------------------------------------------------------------------------------------------------------------";
+        String linha = "";
+        String cabecalho = "Produto" + "             " + "Variedade" + "             " + "SubVariedade" + "             " + "Classificação" + "             " + "Valor Mínimo" + "      " + "Valor Medio" + "      " + " Valor Máximo";
+
         // Adiciona os dados ao PDF
-        document.add(new Paragraph("Formulário de Cotação"));
-        System.out.println("ops1");
+        document.add(new Paragraph("Formulário de Cotação CEASA CAMPINAS").setFontSize(7));
+        document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(7));
+        document.add(new Paragraph("---" + linhaTracejada).setFontSize(4));
+        document.add(new Paragraph(cabecalho).setFontSize(6).setBold());
+
+        // Define estilos para a tabela
+        Style headerCellStyle = new Style().setFontSize(4).setTextAlignment(TextAlignment.RIGHT);
+        Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
+
+        float[] columnWidths = {50f, 50f, 100f, 100f, 100f, 100f, 100f};
+        Table table = new Table(columnWidths);
 
         for (Cotacao cotacaoItem : cotacaoResults) {
             // Verifica se a data não é nula antes de formatar
             if (cotacaoItem.getDataCotacao() != null) {
-                String dataFormatada = cotacaoItem.getDataCotacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                document.add(new Paragraph("Data: " + dataFormatada + " - " + "Produto"+ cotacaoItem.getPropriedade().getProduto().getNome()));
-                
-                
-                
+                String produto = cotacaoItem.getPropriedade().getProduto().getNome();
+                String variedade = cotacaoItem.getPropriedade().getVariedade();
+                String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
+                String classificacao = cotacaoItem.getPropriedade().getClassificacao();
+                String valorMinimo = cotacaoItem.getPrecoMinimo().toString();
+                String valorMedio = cotacaoItem.getPrecoMedio().toString();
+                String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
+
+                // Adiciona células à tabela
+                addCell(table, produto, cellStyle);
+                addCell(table, variedade, cellStyle);
+                addCell(table, subvariedade, cellStyle);
+                addCell(table, classificacao, cellStyle);
+                addCell(table, valorMinimo, cellStyle);
+                addCell(table, valorMedio, cellStyle);
+                addCell(table, valorMaximo, cellStyle);
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));
-                document.add(new Paragraph("Cotacao nula encontrada!"));
+                document.add(new Paragraph("Cotação nula encontrada!"));
                 System.out.println("ops2");
             }
         }
 
+        // Adiciona a tabela ao documento fora do loop
+        document.add(table);
+
         System.out.println("ops3");
         document.close();
     }
+
+    private void addCell(Table table, String content, Style style) {
+        table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
+    }
 }
+
+
