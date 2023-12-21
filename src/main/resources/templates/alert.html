@@ -2,26 +2,25 @@
 <html lang="en">
 
 <body>
-	<div th:if="${success} != null">
-		<div class="alert alert-success alert-dismissible fade show" role="alert">
-		  <i class="oi oi-check"></i>
-		  <span>
-		  	<strong th:text="${success}"></strong> 
-		  </span>
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		   
-		
-		</div>
-	</div>
-	
-	<div th:if="${fail} != null">
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-		  <i class="oi oi-check"></i>
-		  <span>
-		  	<strong th:text="${fail}"></strong>
-		  </span>
-		 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-	</div>
-	</body>
+    <div th:if="${success} != null">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="oi oi-check"></i>
+            <span>
+                <strong th:text="${success}"></strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div th:if="${fail} != null">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="oi oi-check"></i>
+            <span>
+                <strong th:text="${fail}"></strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+</body>
+
 </html>
