@@ -75,7 +75,7 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/cadastrar")
 	public String cadastrar(Cotacao cotacao, Model model) {
 		
-		model.addAttribute("cotacao", new Cotacao());
+		
 		LocalDate dataAtual = LocalDate.now();
 		
 		List<Cotacao> lista = cotacaoService.findAll();

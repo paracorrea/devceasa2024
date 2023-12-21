@@ -26,6 +26,7 @@
 
 	<div class="container">
 
+		<div th:replace="~{alert}"></div>
 
 		<br>
 		<div class="meu-hr">
@@ -45,7 +46,7 @@
 				<div class="form-group col-md-8">
 					<label for="propriedade">Produto/Propriedade</label> <select
 						id="propriedade" class="form-control" th:field="*{propriedade}"
-						required onchange="onProdutoChange()">
+						required >
 						<option value="">Selecione...</option>
 						<option th:each="p : ${cotados}" th:value="${p.id}"
 							th:text="${p.produto.nome} + '  - ' + ${p.variedade}  + '  - ' + ${p.subvariedade} + '  - ' + ${p.classificacao} ">
@@ -61,11 +62,10 @@
 						class="form-control" id="dataCotacao" autofocus="autofocus"
 						th:field="*{dataCotacao}" value="${dataAtual}" required />
 
-					<div th:if="${#fields.hasErrors('dataCotacao')}"
-						class="alert alert-danger alert-dismissible fade show">
+					<div class="invalid-feedback">
+						
 						<span th:errors="*{dataCotacao}"></span>
-						<button type="button" class="btn-close" data-bs-dismiss="alert"
-							aria-label="Close" onclick="limparCampos()"> </button>
+						
 					</div>
 				</div>
 			</div>
@@ -343,19 +343,7 @@
 		/*]]>*/
 	</script>
 	
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    function limparCampos() {
-        // Limpar campos do formulário
-        document.getElementById('cotacaoForm').reset();
-    }
 
-    function onProdutoChange() {
-        limparCampos();
-        // Adicione qualquer lógica adicional que você deseja executar quando o produto for alterado
-    }
-    /*]]>*/
-</script>
 	
 </body>
 
