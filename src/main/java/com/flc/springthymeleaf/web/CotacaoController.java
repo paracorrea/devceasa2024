@@ -83,76 +83,76 @@ public class CotacaoController {
 		
 		model.addAttribute("dataAtual", dataAtual);
 		model.addAttribute("cotacoes", lista);
-		
-		
+				
 		System.out.println("Data Atual: " + dataAtual);
 		System.out.println("Data Atual formatada: " + dataAtualFormatada);
+		
 		return "cotacao/cotacao_cadastro";
 	}
-	
-
-	
 	
 	@PostMapping("/cotacoes/salvar")
 	public String salvar(@Valid @ModelAttribute Cotacao cotacao, Model model,BindingResult result, RedirectAttributes attr ) {
 		
-		 LocalDate dataAtual = LocalDate.now();
+		LocalDate dataAtual = LocalDate.now();
 		 
+		   if (cotacao.getDataCotacao().isAfter(dataAtual)) {
+			    	result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve menor ou igual a data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
+		   } 	
 		 
-
-	        // Exibe a data no terminal
-	       
-		 
-	        if (cotacao.getDataCotacao().isAfter(dataAtual)) {
-			
-	        	result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve menor ou igual a data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
-	        	
-	        }
-		 
-
 	        if (cotacao.getDataCotacao() != null && cotacao.getPropriedade() != null &&
 	                cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
 	            result.rejectValue("dataCotacao", "error.cotacao", "Já existe uma cotação para a mesma propriedade na mesma data.");
-	            
 	        }
 		 
-		 
 		if (result.hasErrors()) {
-			 	
 			return "cotacao/cotacao_cadastro";
 		}
 		
 		cotacaoService.insert(cotacao);
 		attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
-		
 		return "redirect:/cotacoes/cadastrar";
 		}
 	
 	@GetMapping("/cotacoes/editar/{id}")
-	public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
+	public String preEditar(@PathVariable("id") Integer id, Model model) {
+		
+	
 		model.addAttribute("cotacao", cotacaoService.findById(id));
-		return "cotacao/cotacao_cadastro";
+		// model retirado do código por não ser mais necessário
+		//model.addAttribute("cotados", propriedadeService.findPropriedadePorCotacao());
+		return "cotacao/cotacao_editar";
 	}
 	
 	@PostMapping("/cotacoes/editar") 
 	public String editar (@Valid Cotacao cotacao, BindingResult result, RedirectAttributes attr) {
+		
+		
+		
+		LocalDate dataAtual = LocalDate.now();
+		
+		if (cotacao.getDataCotacao().isAfter(dataAtual)) {
+		    	result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve menor ou igual a data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
+	   } 	
+	 
+		
 		if (result.hasErrors()) {
-			return "cotacao/cotacao_cadastro";
+			return "cotacao/cotacao_editar";
 		}
 		
 		cotacaoService.update(cotacao);
 		attr.addFlashAttribute("success", "Cotação editada com sucesso");
-		return "redirect:/cotacoes/cadastrar";
+		
+		return "redirect:/cotacoes/por-data";
 	}
 	
-	@GetMapping("/cotacao/excluir/{id}")
+	@GetMapping("/cotacoes/excluir/{id}")
 	public String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
 
 		
 		
 			cotacaoService.delete(id);
 			attr.addFlashAttribute("success","Cotação excluída com sucesso");		
-			return "redirect:/cotacoes/cadastrar";
+			return "redirect:/cotacoes/por-data";
 		} 
 	
 	

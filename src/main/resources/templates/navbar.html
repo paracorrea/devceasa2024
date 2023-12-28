@@ -71,8 +71,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/cadastrar}">Cotar</a></li>
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/por-data}">Listar</a></li>
-                <li><a class="dropdown-item" href="#">Consultar</a></li>
+                <li><a class="dropdown-item"  th:href="@{/cotacoes/por-data}">Consultar</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')"  th:href="@{/cotacoes/editar}">Editar</a></li>
               </ul>
             </li>
           </ul>

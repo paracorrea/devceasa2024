@@ -12,6 +12,10 @@
 <title>Sistema DEVCEASA</title>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 </head>
 
 <body>
@@ -28,7 +32,7 @@
 					<br>
 					<div class="meu-hr">
 						Pesquisa de Cotações por Data
-						
+
 						<hr>
 					</div>
 					<div th:replace="~{alert}"></div>
@@ -39,7 +43,10 @@
 						<div style="margin-top: 10px;">
 							<button type="submit" class="btn btn-primary btn-sm mb-1">Pesquisar</button>
 							<!-- Alteração aqui: remova a data do link e deixe que o formulário envie a data diretamente para o controlador -->
-							<a th:href="@{/cotacoes/gerar-pdf(dataCotacao=${cotacao.dataCotacao})}" class="btn btn-secondary btn-sm mb-1" target="_blank">Gerar PDF</a>
+							<a
+								th:href="@{/cotacoes/gerar-pdf(dataCotacao=${cotacao.dataCotacao})}"
+								class="btn btn-secondary btn-sm mb-1" target="_blank">Gerar
+								PDF</a>
 
 						</div>
 					</form>
@@ -66,6 +73,8 @@
 					<th>Preço Máximo</th>
 					<th>Preço Médio</th>
 					<th>Fator Sazonal</th>
+					<th>Editar</th>
+					<th>Excluir</th>
 
 
 					<!-- Adicione mais colunas conforme necessário -->
@@ -83,8 +92,26 @@
 					<td th:text="${cotacao.precoMedio}"></td>
 					<td th:text="${cotacao.fatorSazonal}"></td>
 
+					<td><a type="button" class="edit" title="Editar"
+						th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }"> <i
+							class="bi bi-pencil-square"></i></a> 
+					
+					</td>
+
+					<td><button type="button" class="btn btn-danger" onclick="exibirModal()">Excluir</button>
+
+			<!-- Modal de confirmação -->
+					<div id="confirmacaoModal" class="modal">
+ 						 <div class="modal-content">
+   							 <span class="fechar" onclick="fecharModal()">&times;</span>
+   							 <p>Tem certeza de que deseja excluir esta cotação?</p>
+   							 <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+    								<a class="btn btn-danger" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">Confirmar Exclusão</a>
+ 						 </div>
+					</div>
 
 
+					</td>
 
 
 					<!-- Adicione mais colunas conforme necessário -->
@@ -102,6 +129,16 @@
 
 
 
+<script th:inline="javascript">
+  function exibirModal() {
+    var modal = document.getElementById('confirmacaoModal');
+    modal.style.display = 'block';
+  }
 
+  function fecharModal() {
+    var modal = document.getElementById('confirmacaoModal');
+    modal.style.display = 'none';
+  }
+</script>
 </body>
 </html>
