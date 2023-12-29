@@ -40,7 +40,7 @@ public class Cotacao implements Serializable {
 	private Integer id;
 
 	// @PastOrPresent(message = "{PastOrPresent.funcionario.dataEntrada}")
-	@DateTimeFormat(iso = ISO.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "data_cotacao", columnDefinition = "DATE")
 	@NotNull(message = "Campo não pode ser nullo")
 	private LocalDate dataCotacao;

@@ -76,15 +76,15 @@ public class CotacaoController {
 	public String cadastrar(Cotacao cotacao, Model model) {
 		
 		
-		LocalDate dataAtual = LocalDate.now();
-		String dataAtualFormatada = dataAtual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate dataCotacao = LocalDate.now();
+		String dataAtualFormatada = dataCotacao.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		
 		List<Cotacao> lista = cotacaoService.findAll();
 		
-		model.addAttribute("dataAtual", dataAtual);
+		model.addAttribute("dataCotacao", dataCotacao);
 		model.addAttribute("cotacoes", lista);
 				
-		System.out.println("Data Atual: " + dataAtual);
+		System.out.println("Data Atual: " + dataCotacao);
 		System.out.println("Data Atual formatada: " + dataAtualFormatada);
 		
 		return "cotacao/cotacao_cadastro";

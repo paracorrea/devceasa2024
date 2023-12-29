@@ -62,12 +62,12 @@
 				<div class="form-group col-md-2">
 					<label for="dataCotacao">Data da Cotação</label>
 					<p>
-						Data Atual: <span th:text="${dataAtual}"></span>
+						Data Atual: <span th:text="${dataCotacao}"></span>
 					</p>
 
 					<input type="date" class="form-control" id="dataCotacao"
-						autofocus="autofocus" th:field="*{dataCotacao}"
-						value="${dataAtual}" required />
+						autofocus="autofocus" 
+						th:value="${dataCotacao}" required />
 
 					
 
