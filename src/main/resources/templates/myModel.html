@@ -1,0 +1,8 @@
+<div id="myModel1" class="modal">
+    <div class="modal-content">
+        <span class="fechar" onclick="fecharModal()">&times;</span>
+        <p>Tem certeza de que deseja excluir esta cotação? Esta operação é irreversível!!! Clique em Cancelar para não excluir!!!</p>
+        <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+        <a class="btn btn-danger" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">Confirmar Exclusão</a>
+    </div>
+</div>
