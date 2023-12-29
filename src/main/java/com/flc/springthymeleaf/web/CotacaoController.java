@@ -3,6 +3,8 @@ package com.flc.springthymeleaf.web;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,15 +79,14 @@ public class CotacaoController {
 		
 		
 		LocalDate dataCotacao = LocalDate.now();
-		String dataAtualFormatada = dataCotacao.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
 		
 		List<Cotacao> lista = cotacaoService.findAll();
 		
 		model.addAttribute("dataCotacao", dataCotacao);
 		model.addAttribute("cotacoes", lista);
 				
-		System.out.println("Data Atual: " + dataCotacao);
-		System.out.println("Data Atual formatada: " + dataAtualFormatada);
+		
 		
 		return "cotacao/cotacao_cadastro";
 	}
@@ -173,6 +174,9 @@ public class CotacaoController {
     public String pesquisarCotacoesPorData(@ModelAttribute("cotacao") Cotacao cotacao, Model model) {
         LocalDate selectedDate = cotacao.getDataCotacao();
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
+       
+        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getNome()));
+        
         model.addAttribute("cotacaoResults", cotacaoResults);
         return "cotacao/cotacao_listagemdata";
     }
@@ -186,7 +190,7 @@ public class CotacaoController {
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-
+        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getNome()));
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);

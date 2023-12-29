@@ -40,10 +40,10 @@ public class Cotacao implements Serializable {
 	private Integer id;
 
 	// @PastOrPresent(message = "{PastOrPresent.funcionario.dataEntrada}")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_cotacao", columnDefinition = "DATE")
 	@NotNull(message = "Campo não pode ser nullo")
-	private LocalDate dataCotacao;
+	private LocalDate dataCotacao = LocalDate.now();;
 
 	
 	@ManyToOne(cascade = CascadeType.ALL)

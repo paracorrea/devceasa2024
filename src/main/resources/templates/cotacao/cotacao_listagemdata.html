@@ -82,7 +82,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="cotacao : ${cotacaoResults}">
-					<td th:text="${cotacao.dataCotacao}"></td>
+					 <td th:text="${#temporals.format(cotacao.dataCotacao, 'dd-MM-yyyy')}"></td>
 					<td th:text="${cotacao.propriedade.produto.nome}"></td>
 					<td th:text="${cotacao.propriedade.variedade}"></td>
 					<td th:text="${cotacao.propriedade.subvariedade}"></td>
@@ -92,31 +92,21 @@
 					<td th:text="${cotacao.precoMedio}"></td>
 					<td th:text="${cotacao.fatorSazonal}"></td>
 
-					<td><a type="button" class="edit" title="Editar"
-						th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }"> <i
-							class="bi bi-pencil-square"></i></a> 
-					
-					</td>
-
-					<td><button type="button" class="btn btn-danger" onclick="exibirModal()">Excluir</button>
-
-			<!-- Modal de confirmação -->
-					<div id="confirmacaoModal" class="modal">
- 						 <div class="modal-content">
-   							 <span class="fechar" onclick="fecharModal()">&times;</span>
-   							 <p>Tem certeza de que deseja excluir esta cotação?</p>
-   							 <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
-    								<a class="btn btn-danger" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">Confirmar Exclusão</a>
- 						 </div>
-					</div>
-
-
-					</td>
-
-
-					<!-- Adicione mais colunas conforme necessário -->
-				</tr>
-			</tbody>
+					 <td>
+            <a type="button" class="edit" title="Editar"
+                th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+        </td>
+        <td>
+       	
+		<a type="button" class="delete" title="Excluir" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">
+		<i class="bi bi-trash3"></i></a> 
+        
+        </td>
+        
+    </tr>
+</tbody>
 		</table>
 
 
@@ -129,16 +119,7 @@
 
 
 
-<script th:inline="javascript">
-  function exibirModal() {
-    var modal = document.getElementById('confirmacaoModal');
-    modal.style.display = 'block';
-  }
 
-  function fecharModal() {
-    var modal = document.getElementById('confirmacaoModal');
-    modal.style.display = 'none';
-  }
-</script>
+
 </body>
 </html>

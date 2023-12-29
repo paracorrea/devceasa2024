@@ -17,7 +17,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-
+	
 </head>
 
 <body>
@@ -57,28 +57,18 @@
 				</div>
 			</div>
 
+<div class="form-row">
+    <div class="form-group col-md-2">
+        <label for="dataCotacao">Data da Cotação</label>
 
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="dataCotacao">Data da Cotação</label>
-					<p>
-						Data Atual: <span th:text="${dataCotacao}"></span>
-					</p>
+        <input type="date" class="form-control" id="dataCotacao" autofocus="autofocus" th:field="*{dataCotacao}"
+        th:value="${dataCotacao}" required />
+        <div class="invalid-feedback">
+            <span th:errors="*{dataCotacao}"></span>
+        </div>
+    </div>
+</div>
 
-					<input type="date" class="form-control" id="dataCotacao"
-						autofocus="autofocus" 
-						th:value="${dataCotacao}" required />
-
-					
-
-
-					<div class="invalid-feedback">
-
-						<span th:errors="*{dataCotacao}"></span>
-
-					</div>
-				</div>
-			</div>
 
 
 			<div class="row">
@@ -269,6 +259,12 @@
 	</div>
 
 
+
+
+
+
+
+
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 
@@ -352,6 +348,9 @@
 		});
 		/*]]>*/
 	</script>
+	
+
+	
 
 
 
