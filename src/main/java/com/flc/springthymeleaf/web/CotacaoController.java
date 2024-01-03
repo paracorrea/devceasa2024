@@ -65,7 +65,13 @@ public class CotacaoController {
 	
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
-		return propriedadeService.findPropriedadePorCotacao();
+		
+		List<Propriedade> lista = propriedadeService.findPropriedadePorCotacao();
+		
+		  Collections.sort(lista, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
+
+	
+		return lista;
 	}
 	
 	@ModelAttribute("fatores")
