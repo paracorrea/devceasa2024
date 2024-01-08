@@ -127,7 +127,17 @@ public class Cotacao implements Serializable {
 	@Column(name = "fator_sazonal")
 	@Enumerated(EnumType.STRING)
 	private FatorSazonal fatorSazonal;
-
+	
+	
+	@Column(name="valor_comum")
+	//@NotNull(message = "Informar valor comum")
+	private BigDecimal valorComum;
+	
+	@Column(name="mercado")
+	//@NotNull(message = "Informar valor comum")
+	private String mercado;
+	
+	
 	public Cotacao() {
 		super();
 	}
@@ -275,5 +285,24 @@ public class Cotacao implements Serializable {
 	public void setPropriedade(Propriedade propriedade) {
 		this.propriedade = propriedade;
 	}
+
+	public BigDecimal getValorComum() {
+		return valorComum;
+	}
+
+	public void setValorComum(BigDecimal valorComum) {
+		this.valorComum = valorComum;
+	}
+
+	public String getMercado() {
+		return mercado;
+	}
+
+	public void setMercado(String mercado) {
+		this.mercado = mercado;
+	}
+	
+	
+	
 
 }

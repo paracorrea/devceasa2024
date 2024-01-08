@@ -201,23 +201,15 @@ public class CotacaoController {
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
         
-       
        // String logoPath = "/static/image/loginho.png";
        // PdfTableBuilder.addLogo(document, logoPath, 150, 50);
         
-       
-
         String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     
-        
-         
-
         // Adiciona os dados ao PDF
         document.add(new Paragraph("Formulário de Cotação CEASA CAMPINAS").setFontSize(7));
         document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(7));
   
-      
-
         // Define estilos para a tabela
        
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
@@ -231,8 +223,9 @@ public class CotacaoController {
         }
         
         for (Cotacao cotacaoItem : cotacaoResults) {
-            // Verifica se a data não é nula antes de formatar
-            if (cotacaoItem.getDataCotacao() != null) {
+           
+        	// Verifica se a data não é nula antes de formatar
+           	if (cotacaoItem.getDataCotacao() != null) {
                 String produto = cotacaoItem.getPropriedade().getProduto().getNome();
                 String variedade = cotacaoItem.getPropriedade().getVariedade();
                 String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
@@ -258,8 +251,6 @@ public class CotacaoController {
 
         // Adiciona a tabela ao documento fora do loop
         document.add(table);
-
-       
         document.close();
     }
 

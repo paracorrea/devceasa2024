@@ -238,11 +238,29 @@
 				</div>
 
 				<div class="col">
+					<label for="valorComum">Preco Comum</label> <input type="text"
+						class="form-control" id="valorComum" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{valorComum}" required
+						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valorComum}"></span>
+					</div>
+				</div>
+
+
+				<div class="col">
 					<br>
 					<button type="button" class="btn btn-primary"
 						onclick="calcularValores()">Calcular Valores</button>
 				</div>
 			</div>
+			
+				<div class="col">
+					<br>
+					<button type="button" class="btn btn-primary" onclick="calcularValorModal()">Calcular Valor Modal</button>
+			</div>
+			
+			
 			<div class="row">
 
 				<div class="col">
@@ -262,7 +280,64 @@
 
 
 
+<script>
+    function calcularValorModal() {
+        // Obtenha os valores fornecidos pelo usuário
+        var valores = [
+            parseFloat(document.getElementById('valor1').value),
+            parseFloat(document.getElementById('valor2').value),
+            parseFloat(document.getElementById('valor3').value),
+            
+            parseFloat(document.getElementById('valor4').value),
+            parseFloat(document.getElementById('valor5').value),
+            parseFloat(document.getElementById('valor6').value),    
+            
+            parseFloat(document.getElementById('valor7').value),
+            parseFloat(document.getElementById('valor8').value),
+            parseFloat(document.getElementById('valor9').value),
+            
+            parseFloat(document.getElementById('valor10').value),
+            
+            
+            // ... repita para os outros valores
+        ];
 
+        // Remova os valores nulos
+        var valoresNaoNulos = valores.filter(function (valor) {
+            return !isNaN(valor);
+        });
+
+        if (valoresNaoNulos.length === 0) {
+            alert('Alerta: Nenhum valor não nulo fornecido.');
+            return;
+        }
+
+        // Crie um mapa de contagem de valores
+        var contagemValores = {};
+        valoresNaoNulos.forEach(function (valor) {
+            contagemValores[valor] = (contagemValores[valor] || 0) + 1;
+        });
+
+        // Encontre o valor modal
+        var valorModal = null;
+        var contagemMaxima = 0;
+
+        for (var valor in contagemValores) {
+            if (contagemValores[valor] > contagemMaxima) {
+                contagemMaxima = contagemValores[valor];
+                valorModal = parseFloat(valor);
+            }
+        }
+
+        if (contagemMaxima === 1) {
+            alert('Alerta: Nenhum valor modal encontrado.');
+        } else {
+            alert('Valor Modal: ' + valorModal);
+            // Atualize o campo modal se necessário
+            document.getElementById('valorComum').value = valorModal.toFixed(2);
+        }
+    }
+</script>
 
 
 	<script th:inline="javascript">
