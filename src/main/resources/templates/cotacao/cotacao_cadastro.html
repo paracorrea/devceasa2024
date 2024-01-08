@@ -255,10 +255,7 @@
 				</div>
 			</div>
 			
-				<div class="col">
-					<br>
-					<button type="button" class="btn btn-primary" onclick="calcularValorModal()">Calcular Valor Modal</button>
-			</div>
+			
 			
 			
 			<div class="row">
@@ -266,153 +263,85 @@
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
 					<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-
-
 				</div>
 			</div>
-
 		</form>
-
-
 	</div>
 
 
 
 
+	<script th:inline="javascript">
+    /*<![CDATA[*/
 
-<script>
-    function calcularValorModal() {
-        // Obtenha os valores fornecidos pelo usuário
-        var valores = [
-            parseFloat(document.getElementById('valor1').value),
-            parseFloat(document.getElementById('valor2').value),
-            parseFloat(document.getElementById('valor3').value),
-            
-            parseFloat(document.getElementById('valor4').value),
-            parseFloat(document.getElementById('valor5').value),
-            parseFloat(document.getElementById('valor6').value),    
-            
-            parseFloat(document.getElementById('valor7').value),
-            parseFloat(document.getElementById('valor8').value),
-            parseFloat(document.getElementById('valor9').value),
-            
-            parseFloat(document.getElementById('valor10').value),
-            
-            
-            // ... repita para os outros valores
-        ];
+    function validarNumero(valor, campoId) {
+        var numero = parseFloat(valor.replace(',', '.'));
 
-        // Remova os valores nulos
-        var valoresNaoNulos = valores.filter(function (valor) {
-            return !isNaN(valor);
-        });
-
-        if (valoresNaoNulos.length === 0) {
-            alert('Alerta: Nenhum valor não nulo fornecido.');
-            return;
+        if (isNaN(numero)) {
+            alert("Por favor, insira um valor numérico válido no campo " + campoId + ".");
+            return false;
         }
 
-        // Crie um mapa de contagem de valores
-        var contagemValores = {};
-        valoresNaoNulos.forEach(function (valor) {
-            contagemValores[valor] = (contagemValores[valor] || 0) + 1;
-        });
+        return true;
+    }
 
-        // Encontre o valor modal
-        var valorModal = null;
-        var contagemMaxima = 0;
+    function calcularValores() {
+        var valores = [];
+        var camposValidos = true;
 
-        for (var valor in contagemValores) {
-            if (contagemValores[valor] > contagemMaxima) {
-                contagemMaxima = contagemValores[valor];
-                valorModal = parseFloat(valor);
+        for (var i = 1; i <= 10; i++) {
+            var campoId = 'valor' + i;
+            var valor = document.getElementById(campoId).value;
+
+            if (valor !== '') {
+                if (!validarNumero(valor, campoId)) {
+                    camposValidos = false;
+                    break;
+                }
+
+                valores.push(parseFloat(valor.replace(',', '.')));
             }
         }
 
-        if (contagemMaxima === 1) {
-            alert('Alerta: Nenhum valor modal encontrado.');
-        } else {
-            alert('Valor Modal: ' + valorModal);
-            // Atualize o campo modal se necessário
-            document.getElementById('valorComum').value = valorModal.toFixed(2);
+        if (camposValidos) {
+            var precoMinimo = Math.min.apply(null, valores);
+            var precoMaximo = Math.max.apply(null, valores);
+            var precoMedio = valores.reduce(function (acc, val) {
+                return acc + val;
+            }, 0) / valores.length;
+
+            document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
+            document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
+            document.getElementById('precoMedio').value = precoMedio.toFixed(2).replace(',', '.');
+
+            // Calcula o valor modal
+            var contagemValores = {};
+            valores.forEach(function (valor) {
+                contagemValores[valor] = (contagemValores[valor] || 0) + 1;
+            });
+
+            var valorModal = null;
+            var contagemMaxima = 0;
+
+            for (var valor in contagemValores) {
+                if (contagemValores[valor] > contagemMaxima) {
+                    contagemMaxima = contagemValores[valor];
+                    valorModal = parseFloat(valor);
+                }
+            }
+
+            if (contagemMaxima === 1) {
+                alert('Alerta: Nenhum valor modal encontrado.');
+            } else {
+                alert('Valor Modal: ' + valorModal.toFixed(2));
+
+                // Atualiza o campo valorComum (modal)
+                document.getElementById('valorComum').value = valorModal.toFixed(2).replace(',', '.');
+            }
         }
     }
+    /*]]>*/
 </script>
-
-
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-
-		function validarNumero(valor, campoId) {
-			var numero = parseFloat(valor.replace(',', '.'));
-
-			if (isNaN(numero)) {
-
-				alert("Por favor, insira um valor numérico válido no campo "
-						+ campoId + ".");
-				return false;
-			}
-
-			return true;
-		}
-
-		function calcularValores() {
-
-			var valores = [];
-			var camposValidos = true;
-
-			for (var i = 1; i <= 10; i++) {
-
-				var campoId = 'valor' + i;
-				var valor = document.getElementById(campoId).value;
-
-				if (valor !== '') {
-					if (!validarNumero(valor, campoId)) {
-						camposValidos = false;
-						break;
-					}
-
-					valores.push(parseFloat(valor.replace(',', '.'))); // Converte para número
-				}
-			}
-			if (camposValidos) {
-				var precoMinimo = Math.min.apply(null, valores);
-				var precoMaximo = Math.max.apply(null, valores);
-				var precoMedio = valores.reduce(function(acc, val) {
-					return acc + val;
-				}, 0) / valores.length;
-
-				var fatorSazonalidade = document.getElementById('fatorSazonal').value;
-				// Aplicar o fator de sazonalidade ao preço médio
-				switch (fatorSazonalidade) {
-				case 'MUITOBAIXO':
-					precoMedio *= 0.9; // Redução de 10%
-					break;
-				case 'BAIXO':
-					precoMedio *= 0.95; // Redução de 5%
-					break;
-				case 'NORMAL':
-					// Sem alteração
-					break;
-				case 'ALTO':
-					precoMedio *= 1.05; // Aumento de 5%
-					break;
-				case 'MUITOALTO':
-					precoMedio *= 1.10; // Aumento de 10%
-					break;
-				}
-
-				document.getElementById('precoMinimo').value = precoMinimo
-						.toFixed(2);
-				document.getElementById('precoMaximo').value = precoMaximo
-						.toFixed(2);
-				document.getElementById('precoMedio').value = precoMedio
-						.toFixed(2);
-			}
-		}
-		/*]]>*/
-	</script>
-
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 		$(document).ready(function() {
