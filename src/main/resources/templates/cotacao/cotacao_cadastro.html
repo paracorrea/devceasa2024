@@ -50,8 +50,9 @@
 						id="propriedade" class="form-control" th:field="*{propriedade}"
 						required>
 						<option value="">Selecione...</option>
-						<option th:each="p : ${cotados}" th:value="${p.id}"
-							th:text="${p.produto.nome} + '  - ' + ${p.variedade}  + '  - ' + ${p.subvariedade} + '  - ' + ${p.classificacao} ">
+						<option th:each="p : ${cotados}"  th:value="${p.id} "
+							th:text="${p.produto.nome} + '  ' + ${p.variedade}  + '  ' + ${p.subvariedade} 
+							+ '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
 						</option>
 					</select>
 				</div>

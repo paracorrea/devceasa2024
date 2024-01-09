@@ -71,10 +71,11 @@
 					<th>Variedade</th>
 					<th>Subvar.</th>
 					<th>Classif.</th>
+					<!-- Verificar se vai inserir os outros campos -->
 					<th>Preço Mínimo</th>
 					<th>Preço Máximo</th>
-					<th>Preço Médio</th>
-					<th>Fator Sazonal</th>
+					<th>Preço Comum</th>
+					<th>Mercado</th>
 					<th>Editar</th>
 					<th>Excluir</th>
 
@@ -91,8 +92,8 @@
 					<td th:text="${cotacao.propriedade.classificacao}"></td>
 					<td th:text="${cotacao.precoMinimo}"></td>
 					<td th:text="${cotacao.precoMaximo}"></td>
-					<td th:text="${cotacao.precoMedio}"></td>
-					<td th:text="${cotacao.fatorSazonal}"></td>
+					<td th:text="${cotacao.valorComum}"></td>
+					<td th:text="${cotacao.mercado}"></td>
 
 					 <td>
             <a type="button" class="edit" title="Editar"

@@ -49,10 +49,12 @@
 					<label for="propriedade">Produto/Propriedade Edição</label>
 					<!-- Exibe o nome do produto associado à cotação -->
 					<input type="text" class="form-control"
-						th:value="${cotacao.propriedade.produto.nome + ' - ' + cotacao.propriedade.variedade + ' - ' + cotacao.propriedade.subvariedade + ' - ' + cotacao.propriedade.classificacao}"
+						th:value="${cotacao.propriedade.produto.nome + ' - ' + cotacao.propriedade.variedade + ' - ' + cotacao.propriedade.subvariedade + ' - ' + cotacao.propriedade.classificacao
+									+ ' - ' + cotacao.propriedade.unidade + ' - ' + cotacao.propriedade.peso + ' - ' + cotacao.propriedade.embalagem}"
 						readonly />
 					<!-- Campo oculto para enviar o valor no formulário -->
-					<input type="hidden" th:field="*{propriedade}" 	th:value="${cotacao.propriedade.id}" />
+					<input type="hidden" th:field="*{propriedade}"
+						th:value="${cotacao.propriedade.id}" />
 				</div>
 			</div>
 
@@ -248,6 +250,16 @@
 				</div>
 
 				<div class="col">
+					<label for="valorComum">Preco Comum</label> <input type="text"
+						class="form-control" id="valorComum" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{valorComum}" required
+						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{valorComum}"></span>
+					</div>
+				</div>
+
+				<div class="col">
 					<br>
 					<button type="button" class="btn btn-primary"
 						onclick="calcularValores()">Calcular Valores</button>
@@ -257,7 +269,8 @@
 
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
-					<button type="submit" class="btn btn-primary" id="btnSalvar" disabled>Salvar</button>
+					<button type="submit" class="btn btn-primary" id="btnSalvar"
+						>Salvar</button>
 
 
 				</div>
@@ -270,81 +283,76 @@
 
 
 	<script th:inline="javascript">
-		/*<![CDATA[*/
+    /*<![CDATA[*/
 
-		function validarNumero(valor, campoId) {
-			var numero = parseFloat(valor.replace(',', '.'));
+    function validarNumero(valor, campoId) {
+        var numero = parseFloat(valor.replace(',', '.'));
 
-			if (isNaN(numero)) {
+        if (isNaN(numero)) {
+            alert("Por favor, insira um valor numérico válido no campo " + campoId + ".");
+            return false;
+        }
 
-				alert("Por favor, insira um valor numérico válido no campo "
-						+ campoId + ".");
-				return false;
-			}
+        return true;
+    }
 
-			return true;
-		}
+    function calcularValores() {
+        var valores = [];
+        var camposValidos = true;
 
-		function calcularValores() {
+        for (var i = 1; i <= 10; i++) {
+            var campoId = 'valor' + i;
+            var valor = document.getElementById(campoId).value;
 
-			var valores = [];
-			var camposValidos = true;
+            if (valor !== '') {
+                if (!validarNumero(valor, campoId)) {
+                    camposValidos = false;
+                    break;
+                }
 
-			for (var i = 1; i <= 10; i++) {
+                valores.push(parseFloat(valor.replace(',', '.')));
+            }
+        }
 
-				var campoId = 'valor' + i;
-				var valor = document.getElementById(campoId).value;
+        if (camposValidos) {
+            var precoMinimo = Math.min.apply(null, valores);
+            var precoMaximo = Math.max.apply(null, valores);
+            var precoMedio = valores.reduce(function (acc, val) {
+                return acc + val;
+            }, 0) / valores.length;
 
-				if (valor !== '') {
-					if (!validarNumero(valor, campoId)) {
-						camposValidos = false;
-						break;
-					}
+            document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
+            document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
+            document.getElementById('precoMedio').value = precoMedio.toFixed(2).replace(',', '.');
 
-					valores.push(parseFloat(valor.replace(',', '.'))); // Converte para número
-				}
-			}
-			if (camposValidos) {
-				var precoMinimo = Math.min.apply(null, valores);
-				var precoMaximo = Math.max.apply(null, valores);
-				var precoMedio = valores.reduce(function(acc, val) {
-					return acc + val;
-				}, 0) / valores.length;
+            // Calcula o valor modal
+            var contagemValores = {};
+            valores.forEach(function (valor) {
+                contagemValores[valor] = (contagemValores[valor] || 0) + 1;
+            });
 
-				var fatorSazonalidade = document.getElementById('fatorSazonal').value;
-				// Aplicar o fator de sazonalidade ao preço médio
-				switch (fatorSazonalidade) {
-				case 'MUITOBAIXO':
-					precoMedio *= 0.9; // Redução de 10%
-					break;
-				case 'BAIXO':
-					precoMedio *= 0.95; // Redução de 5%
-					break;
-				case 'NORMAL':
-					// Sem alteração
-					break;
-				case 'ALTO':
-					precoMedio *= 1.05; // Aumento de 5%
-					break;
-				case 'MUITOALTO':
-					precoMedio *= 1.10; // Aumento de 10%
-					break;
-				}
+            var valorModal = null;
+            var contagemMaxima = 0;
 
-				document.getElementById('precoMinimo').value = precoMinimo
-						.toFixed(2);
-				document.getElementById('precoMaximo').value = precoMaximo
-						.toFixed(2);
-				document.getElementById('precoMedio').value = precoMedio
-						.toFixed(2);
-				
-				  // Habilitar o botão Salvar
-                document.getElementById('btnSalvar').removeAttribute('disabled');
-			}
-		}
-		/*]]>*/
-	</script>
+            for (var valor in contagemValores) {
+                if (contagemValores[valor] > contagemMaxima) {
+                    contagemMaxima = contagemValores[valor];
+                    valorModal = parseFloat(valor);
+                }
+            }
 
+            if (contagemMaxima === 1) {
+                alert('Alerta: Nenhum valor modal encontrado.');
+            } else {
+                alert('Valor Modal: ' + valorModal.toFixed(2));
+
+                // Atualiza o campo valorComum (modal)
+                document.getElementById('valorComum').value = valorModal.toFixed(2).replace(',', '.');
+            }
+        }
+    }
+    /*]]>*/
+</script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 		$(document).ready(function() {
