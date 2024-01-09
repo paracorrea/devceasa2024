@@ -50,7 +50,7 @@
 						id="propriedade" class="form-control" th:field="*{propriedade}"
 						required>
 						<option value="">Selecione...</option>
-						<option th:each="p : ${cotados}"  th:value="${p.id} "
+						<option th:each="p : ${cotados}" th:data-peso="${p.peso}" th:value="${p.id} "
 							th:text="${p.produto.nome} + '  ' + ${p.variedade}  + '  ' + ${p.subvariedade} 
 							+ '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
 						</option>
@@ -305,11 +305,29 @@
         }
 
         if (camposValidos) {
-            var precoMinimo = Math.min.apply(null, valores);
-            var precoMaximo = Math.max.apply(null, valores);
+        	
+        	
+        	
+        	 // Ajusta o cálculo do preço mínimo considerando o peso da cotação
+            var selectedIndex = document.getElementById('propriedade').selectedIndex;
+            var selectedOption = document.getElementById('propriedade').options[selectedIndex];
+            
+            // Adicione um log para verificar o valor de peso
+            console.log("Peso da Cotação: " + selectedOption.dataset.peso);
+
+            var pesoDaCotacaoSelecionada = parseFloat(selectedOption.dataset.peso);
+
+            // Adicione outro log para verificar se o peso foi capturado corretamente
+            console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
+
+        	
+        	
+        	
+            var precoMinimo = Math.min.apply(null, valores) / pesoDaCotacaoSelecionada;
+            var precoMaximo = Math.max.apply(null, valores) / pesoDaCotacaoSelecionada;
             var precoMedio = valores.reduce(function (acc, val) {
                 return acc + val;
-            }, 0) / valores.length;
+            }, 0) / valores.length / pesoDaCotacaoSelecionada;
 
             document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
             document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
@@ -327,7 +345,7 @@
             for (var valor in contagemValores) {
                 if (contagemValores[valor] > contagemMaxima) {
                     contagemMaxima = contagemValores[valor];
-                    valorModal = parseFloat(valor);
+                    valorModal = parseFloat(valor) / pesoDaCotacaoSelecionada;
                 }
             }
 
