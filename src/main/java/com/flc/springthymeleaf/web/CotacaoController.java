@@ -66,12 +66,12 @@ public class CotacaoController {
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		
-		List<Propriedade> lista = propriedadeService.findPropriedadePorCotacao();
+		List<Propriedade> listaCotados = propriedadeService.findPropriedadePorCotacao();
 		
-		  Collections.sort(lista, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
+		  Collections.sort(listaCotados, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
 
 	
-		return lista;
+		return listaCotados;
 	}
 	
 	@ModelAttribute("fatores")
@@ -87,7 +87,7 @@ public class CotacaoController {
 		LocalDate dataCotacao = LocalDate.now();
 		
 		
-		List<Cotacao> lista = cotacaoService.findAll();
+		List<Propriedade> lista = listarCotados();
 		
 		model.addAttribute("dataCotacao", dataCotacao);
 		model.addAttribute("cotacoes", lista);
