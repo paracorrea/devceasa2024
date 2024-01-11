@@ -258,5 +258,3 @@ public class CotacaoController {
         table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
     }
 }
-
-
