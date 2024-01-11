@@ -1,9 +1,13 @@
 package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,6 +23,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -47,9 +52,10 @@ public class Propriedade  implements Serializable {
 	private String unidade;
 	
 	@Column(name="peso")
-	@Min(value = 0, message = "valor mínimo é 0")
-	@Max(value = 1000, message = "valor máximo é 1000")
-	private Integer peso;
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	//@NotNull(message = "Campo não pode ser nullo")
+	@Digits(integer = 6, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
+	private BigDecimal peso;
 	
 	@Column(name="embalagem", length = 25)
 	private String embalagem;
@@ -79,7 +85,7 @@ public class Propriedade  implements Serializable {
 
 
 	public Propriedade(Integer id, String variedade, String subvariedade, String classificacao, String unidade,
-			Integer peso, String embalagem, Boolean status, Produto produto) {
+			BigDecimal peso, String embalagem, Boolean status, Produto produto) {
 		super();
 		this.id = id;
 		this.variedade = variedade;
@@ -137,12 +143,12 @@ public class Propriedade  implements Serializable {
 	}
 
 
-	public Integer getPeso() {
+	public BigDecimal getPeso() {
 		return peso;
 	}
 
 
-	public void setPeso(Integer peso) {
+	public void setPeso(BigDecimal peso) {
 		this.peso = peso;
 	}
 
