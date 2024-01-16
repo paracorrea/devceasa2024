@@ -13,58 +13,62 @@ import com.flc.springthymeleaf.repository.CotacaoRepository;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
 
 @Service
-@Transactional(readOnly=false)
+@Transactional(readOnly = false)
 public class CotacaoService {
 
-	
-		@Autowired
-		private CotacaoRepository cotacaoRepo;
-		
-		public Cotacao insert(Cotacao obj) {
-			return cotacaoRepo.save(obj);
-		}
-		
-		
-		public Cotacao findById(Integer id) {
-			
-			Optional<Cotacao> obj = cotacaoRepo.findById(id);
-			return obj.orElseThrow(() -> new ObjectNotFoundException("Objecto não encontrado id: "+id+", tipo: "+Cotacao.class.getName()));
-			
-		}
-		@Transactional(readOnly=true)
-		public List<Cotacao> findAll() {
-			List<Cotacao> lista = cotacaoRepo.findAll();
-			return lista;
-		}
-		
-		
-		public Cotacao update(Cotacao obj) {
-			
-			findById(obj.getId());
-			return cotacaoRepo.save(obj);
-		}
-		
-		public void delete(Integer id) {
-			
-			findById(id);
-		
-				cotacaoRepo.deleteById(id);
-			
-		}
+	@Autowired
+	private CotacaoRepository cotacaoRepo;
 
+	public Cotacao insert(Cotacao obj) {
+		return cotacaoRepo.save(obj);
+	}
 
-		public boolean existeCotacaoComMesmaDataECategoria(Cotacao cotacao) {
-			
-			 return cotacaoRepo.existsByPropriedadeAndDataCotacao(
-			            cotacao.getPropriedade().getId(),
-			            cotacao.getDataCotacao());
-		}
+	public Cotacao findById(Integer id) {
 
+		Optional<Cotacao> obj = cotacaoRepo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objecto não encontrado id: " + id + ", tipo: " + Cotacao.class.getName()));
 
-		public List<Cotacao> getCotationsByDate(LocalDate selectedDate) {
-			
-			return cotacaoRepo.findByDataCotacao(selectedDate);
-			
-		}
-		
+	}
+
+	@Transactional(readOnly = true)
+	public List<Cotacao> findAll() {
+		List<Cotacao> lista = cotacaoRepo.findAll();
+		return lista;
+	}
+
+	public Cotacao update(Cotacao obj) {
+
+		findById(obj.getId());
+		return cotacaoRepo.save(obj);
+	}
+
+	public void delete(Integer id) {
+
+		findById(id);
+
+		cotacaoRepo.deleteById(id);
+
+	}
+
+	public boolean existeCotacaoComMesmaDataECategoria(Cotacao cotacao) {
+
+		return cotacaoRepo.existsByPropriedadeAndDataCotacao(cotacao.getPropriedade().getId(),
+				cotacao.getDataCotacao());
+	}
+
+	public List<Cotacao> getCotationsByDate(LocalDate selectedDate) {
+
+		return cotacaoRepo.findByDataCotacao(selectedDate);
+
+	}
+
+	 public Cotacao buscarCotacaoAnterior(Long propriedadeId, LocalDate dataCotacao) {
+	        Optional<Cotacao> cotacaoAnteriorOptional =
+	                cotacaoRepo.findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(
+	                        propriedadeId, dataCotacao);
+
+	        return cotacaoAnteriorOptional.orElse(null);
+	    }
+
 }

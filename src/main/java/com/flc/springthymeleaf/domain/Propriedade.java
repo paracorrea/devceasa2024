@@ -11,6 +11,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
@@ -37,6 +38,10 @@ public class Propriedade  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	
+	@Column(name="codigo", length=10, unique = true)
+		private String codigo;
 	
 	@Column(name="variedade", length = 50)
 	private String variedade;
@@ -66,7 +71,7 @@ public class Propriedade  implements Serializable {
 	private Boolean status=false;
 	
 	
-	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+	
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.MERGE,	CascadeType.DETACH,
 							CascadeType.REFRESH})
@@ -76,6 +81,8 @@ public class Propriedade  implements Serializable {
 	private Produto produto;
 	
 	@OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL )
+	@JsonIgnore
+	   
 	private List<Cotacao> cotacoes = new ArrayList<>();
 	
 	
@@ -84,10 +91,11 @@ public class Propriedade  implements Serializable {
 	}
 
 
-	public Propriedade(Integer id, String variedade, String subvariedade, String classificacao, String unidade,
+	public Propriedade(Integer id, String codigo, String variedade, String subvariedade, String classificacao, String unidade,
 			BigDecimal peso, String embalagem, Boolean status, Produto produto) {
 		super();
 		this.id = id;
+		this.codigo=codigo;
 		this.variedade = variedade;
 		this.subvariedade = subvariedade;
 		this.classificacao = classificacao;
@@ -115,6 +123,16 @@ public class Propriedade  implements Serializable {
 
 	public String getVariedade() {
 		return variedade;
+	}
+
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 
@@ -169,12 +187,9 @@ public class Propriedade  implements Serializable {
 	}
 
 
-
-
 	public void setClassificacao(String classificacao) {
 		this.classificacao = classificacao.toUpperCase();
 	}
-
 
 
 	public Produto getProduto() {
@@ -197,13 +212,9 @@ public class Propriedade  implements Serializable {
 	}
 
 
-	
-
-
 	public void setCotacao(List<Cotacao> cotacoes) {
 		this.cotacoes = cotacoes;
 	}
 
 
-	
 }

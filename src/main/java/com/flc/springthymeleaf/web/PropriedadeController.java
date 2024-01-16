@@ -82,10 +82,14 @@ public class PropriedadeController {
 	
 	@PostMapping("/propriedades/editar") 
 	public String editar (@Valid Propriedade propriedade, BindingResult result, RedirectAttributes attr) {
+		
 		if (result.hasErrors()) {
 			return "propriedade/pripriedade_cadastro";
 		}
-		
+		if (propriedadeService.existsByCodigo(propriedade.getCodigo())) {
+			attr.addFlashAttribute("success", "Código já existente");
+			return "propriedade/pripriedade_cadastro";
+		} 
 		propriedadeService.update(propriedade);
 		attr.addFlashAttribute("success", "Propriedade editada com sucesso");
 		return "redirect:/propriedades/cadastrar";

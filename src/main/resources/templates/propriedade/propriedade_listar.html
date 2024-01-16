@@ -24,6 +24,7 @@
 				<tr>
 					<th>Produto</th>
 					<th>Id</th>
+					<th>Código</th>
 					<th>Variedade</th>
 					<th>Subvariedade</th>
 					<th>Classificacao</th>
@@ -39,6 +40,7 @@
 				<tr th:each="prop : ${propriedades}">
 					<td th:text="${prop.produto.nome}"></td>
 					<td th:text="${prop.id}"></td>
+					<td th:text="${prop.codigo}"></td>
 					<td th:text="${prop.variedade}"></td>
 					<td th:text="${prop.subvariedade}"></td>
 					<td th:text="${prop.classificacao}"></td>

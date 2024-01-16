@@ -12,9 +12,6 @@ public class PropriedadeValidator implements Validator {
 	PropriedadeService propriedadeService;
 	
 	
-	
-	
-	
 	public PropriedadeValidator(PropriedadeService propriedadeService) {
 		this.propriedadeService = propriedadeService;
 	}
@@ -30,24 +27,15 @@ public class PropriedadeValidator implements Validator {
 		
 		Propriedade p = (Propriedade) object;
 		
-		String pVariedade = p.getVariedade();
-		String pSubvariedade = p.getSubvariedade();
-		String pClassificacao = p.getClassificacao();
-		Integer id = p.getProduto().getId();
+		//String pVariedade = p.getVariedade();
+		//String pSubvariedade = p.getSubvariedade();
+		//String pClassificacao = p.getClassificacao();
+		//Integer id = p.getProduto().getId();
 		
-		
-		
-		//Propriedade propriedade = propriedadeService.findById(id);
-		
-		//if (propriedade==null) {
-			
-			//	errors.rejectValue("nome", "Propriedade.naopode.nome");
-		//	}
-		
-		//if ( propriedades.size()>0) {
-		//	errors.rejectValue("nome", "GrupoJaExiste.grupo.nome");
-		//}
-		
+		if (propriedadeService.existsByCodigo(p.getCodigo())) {
+		    errors.rejectValue("codigo", "CodigoJaExiste.propriedade.codigo");
+		}
+
 	}
 
 }

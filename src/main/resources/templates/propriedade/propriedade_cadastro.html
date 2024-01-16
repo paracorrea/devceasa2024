@@ -55,6 +55,20 @@
 					</div>
 				</div>
 
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="codigo">Código</label> <input type="text"
+							class="form-control" id="codigo" placeholder="codigo"
+							autofocus="autofocus" th:field="*{codigo}" required
+							th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{codigo}"></span>
+						</div>
+					</div>
+					</div>
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="variedade">Variedade</label> <input type="text"

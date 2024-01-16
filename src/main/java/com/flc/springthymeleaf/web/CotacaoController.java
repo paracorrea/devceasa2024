@@ -7,9 +7,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flc.springthymeleaf.domain.Cotacao;
@@ -47,6 +52,7 @@ import jakarta.validation.Valid;
 @Controller
 public class CotacaoController {
 
+	private static final Logger logger = LoggerFactory.getLogger(Cotacao.class);
 	
 	@Autowired
 	private CotacaoService cotacaoService;
@@ -63,6 +69,18 @@ public class CotacaoController {
 		binder.addValidators(new CotacaoValidator(cotacaoService));
 	}
 	
+	
+	
+	@ModelAttribute("fatores")
+	public FatorSazonal[] getFatores() {
+		return FatorSazonal.values();
+
+	}
+	
+	
+
+
+	
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		
@@ -74,24 +92,31 @@ public class CotacaoController {
 		return listaCotados;
 	}
 	
-	@ModelAttribute("fatores")
-	public FatorSazonal[] getFatores() {
-		return FatorSazonal.values();
-
-	}
 	
+	@GetMapping("/cotacoes/buscar-cotacao-anterior")
+	@ResponseBody
+	public ResponseEntity<Cotacao> buscarCotacaoAnterior(
+	        @RequestParam Long propriedadeId,
+	        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCotacao) {
+
+	    Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior(propriedadeId, dataCotacao);
+
+	    if (cotacaoAnterior != null) {
+	        return ResponseEntity.ok(cotacaoAnterior);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
+	}
+		 
 	@GetMapping("/cotacoes/cadastrar")
 	public String cadastrar(Cotacao cotacao, Model model) {
 		
 		
+		List<Propriedade> listaCotados = listarCotados();
 		LocalDate dataCotacao = LocalDate.now();
-		
-		
-		List<Propriedade> lista = listarCotados();
-		
-		model.addAttribute("dataCotacao", dataCotacao);
-		model.addAttribute("cotacoes", lista);
-				
+
+		    model.addAttribute("dataCotacao", dataCotacao);
+		    model.addAttribute("cotacoes", listaCotados);
 		
 		
 		return "cotacao/cotacao_cadastro";

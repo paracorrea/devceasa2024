@@ -9,6 +9,9 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import enums.FatorSazonal;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -49,6 +52,9 @@ public class Cotacao implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "propriedade_id")
 	@NotNull(message="Selecione uma produto/propriedade")
+	@JsonManagedReference // ou @JsonBackReference se estiver usando Jackson 2.0 ou superior
+	   
+	   
 	private Propriedade propriedade;
 
 	private String users;

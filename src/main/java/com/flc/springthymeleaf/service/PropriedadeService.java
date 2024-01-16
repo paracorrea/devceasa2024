@@ -75,4 +75,9 @@ public class PropriedadeService {
 			List<Propriedade> listPropriedades = propRepo.findPropriedadePorCotacao();
 			return listPropriedades;
 		}
+
+		public boolean existsByCodigo(String codigo) {
+			boolean resp = propRepo.existsByCodigo(codigo);
+			return resp;
+		}
 }

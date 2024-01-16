@@ -48,13 +48,14 @@
 				<div class="form-group col-md-8">
 					<label for="propriedade">Produto/Propriedade</label> <select
 						id="propriedade" class="form-control" th:field="*{propriedade}"
-						required>
+						required onchange="buscarCotacaoAnterior()">
 						<option value="">Selecione...</option>
 						<option th:each="p : ${cotados}" th:data-peso="${p.peso}" th:value="${p.id} "
 							th:text="${p.produto.nome} + '  ' + ${p.variedade}  + '  ' + ${p.subvariedade} 
 							+ '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
 						</option>
 					</select>
+					
 				</div>
 			</div>
 
@@ -70,7 +71,7 @@
     </div>
 </div>
 
-
+ <button type="button" class="btn btn-primary" onclick="buscarCotacaoAnterior()">Buscar Cotação Anterior</button>
 
 			<div class="row">
 
@@ -272,9 +273,43 @@
 
 
 
+
+
 	<script th:inline="javascript">
     /*<![CDATA[*/
 
+    function buscarCotacaoAnterior() {
+    var propriedadeId = document.getElementById("propriedade").value;
+    var dataCotacao = document.getElementById("dataCotacao").value;
+    
+    
+    console.log("ID da cotação:", propriedadeId);
+    console.log("Data da cotação:", dataCotacao);
+    // Faça uma solicitação AJAX para buscar a cotação anterior
+    // Você pode usar uma biblioteca como jQuery ou o objeto XMLHttpRequest para isso
+    
+    // Exemplo usando jQuery:
+    $.ajax({
+        url: "/cotacoes/buscar-cotacao-anterior",
+        method: "GET",
+        data: {
+            propriedadeId: propriedadeId,
+            dataCotacao: dataCotacao
+        },
+        success: function(response) {
+            // Preencha os campos do formulário com os dados da cotação anterior
+            document.getElementById("valor1").value = response.valor1;
+            // Preencha outros campos, se necessário
+        },
+        error: function() {
+            // Trate erros, se necessário
+        }
+    });
+}
+	
+    	
+    	
+    	
     function validarNumero(valor, campoId) {
         var numero = parseFloat(valor.replace(',', '.'));
 

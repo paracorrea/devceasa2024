@@ -19,7 +19,7 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	@Query("SELECT s FROM Propriedade s WHERE s.status = true")
 	List<Propriedade> findPropriedadePorCotacao();
 
-	
+	 boolean existsByCodigo(String codigo);
 			
 
 }
