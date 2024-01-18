@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.web;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Subgrupo;
 import com.flc.springthymeleaf.service.ProdutoService;
 import com.flc.springthymeleaf.service.SubgrupoService;
+import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
 import com.flc.springthymeleaf.web.validator.ProdutoValidator;
 
 import jakarta.validation.Valid;
@@ -147,7 +149,48 @@ public class ProdutoController {
 		return "redirect:/produtos/cadastrar";
 
 	}
-	
+	@GetMapping("/produtos/pesquisar")
+    public String pesquisarPorId(@RequestParam (required= false) Integer id, 
+    							@RequestParam (required= false) String nome, Model model,
+    							RedirectAttributes attr) {
+        // Lógica para buscar o produto por ID
+       
+
+		   try {
+		        if (id != null) {
+		            // Lógica para buscar o produto por ID
+		            Produto produto = produtoService.findById(id);
+
+		            if (produto != null) {
+		                model.addAttribute("produtos", Collections.singletonList(produto));
+		            } else {
+		                // Produto não encontrado, redirecionar ou fornecer uma mensagem de erro
+		                return "redirect:/produtos/listar";
+		                // ou
+		                // model.addAttribute("error", "Produto não encontrado");
+		                // return "sua-pagina-de-erro";
+		            }
+		        } else if (nome != null && !nome.isEmpty()) {
+		            // Lógica para buscar o produto por nome
+		            List<Produto> produtos = produtoService.findByNome(nome);
+
+		            model.addAttribute("produtos", produtos);
+		        } else {
+		            // Caso nenhum parâmetro seja fornecido, retorne à página inicial ou forneça todos os produtos
+		            model.addAttribute("produtos", produtoService.findAll());
+		        }
+		    } catch (ObjectNotFoundException e) {
+		        // Trate a exceção ObjectNotFoundException
+		    	attr.addFlashAttribute("success","Produto inexistente");
+		        // ou
+		        // redirecione para uma página de erro
+		        return "produto/produto_listagem";
+		    }
+
+		    // Adicione aqui a lógica para preencher o restante dos dados necessários na página
+
+		   return "produto/produto_listagem";
+		}
 		
 	@GetMapping("/produtos/listar")
 	public String findAll(ModelMap model) {

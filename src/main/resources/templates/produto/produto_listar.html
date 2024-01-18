@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.tymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-	<title>Sistema DEVCEASA</title>
-	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+	rel="stylesheet">
+<title>Sistema DEVCEASA</title>
+<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
 
-	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
+	<div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
 
-		<div class="container">
+	<div class="container">
 
-			<div th:replace="~{alert}"></div>
+		<div th:replace="~{alert}"></div>
 
 		<br>
-		
-		<div class="meu-hr">Lista de produtos por subgrupo<hr></div>
-		
+
+		<div class="meu-hr">
+			Lista de produtos por subgrupo
+			<hr>
+		</div>
+
 		<a class="inicio" th:href="@{/}">Início</a>
+
+		
+
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -31,7 +42,7 @@
 					<th>Produto</th>
 					<th>Subgrupo</th>
 					<th>Ações</th>
-					
+
 				</tr>
 			</thead>
 			<tbody>
@@ -39,70 +50,68 @@
 					<td th:text="${produto.id}"></td>
 					<td th:text="${produto.nome}"></td>
 					<td th:text="${produto.subgrupo.nome}"></td>
-					<td>
-						<a type="button" class="edit" title="Editar"  th:href="@{/produtos/editar/{id} (id=${produto.id}) }" >
-	                	<i class="bi bi-pencil-square"></i>
-	                	</a>
-	                 	<a type="button" class="delete" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }" >
-	                	 <i class="bi bi-trash3"></i>
-	                	 </a>
-		                	 
-						<!-- ESCONDENDO EXCLUIR	                	 <a type="button" class="delete" th:href="@{/ceasadev/produtos/excluir/{id} (id=${produto.id}) }" >
+					<td><a type="button" class="edit" title="Editar"
+						th:href="@{/produtos/editar/{id} (id=${produto.id}) }"> <i
+							class="bi bi-pencil-square"></i>
+					</a> <a type="button" class="delete"
+						th:href="@{/produtos/excluir/{id} (id=${produto.id}) }"> <i
+							class="bi bi-trash3"></i>
+					</a> <!-- ESCONDENDO EXCLUIR	                	 <a type="button" class="delete" th:href="@{/ceasadev/produtos/excluir/{id} (id=${produto.id}) }" >
 	                	 											<i class="bi bi-trash3"></i></a>
-	                	-->
-	                	 </a> <a class="look"
-							th:href="@{/propriedades/produtos/{id} (id=${produto.id})}">
-								<i class="bi bi-eye-fill" title="Propriedades"></i>
-						</a>
-					<tr th:each="s : ${propriedades}">
-						<td th:text="${s.id}"></td>
-						<td th:text="${s.nome}"></td>
+	                	--> </a> <a class="look"
+						th:href="@{/propriedades/produtos/{id} (id=${produto.id})}"> <i
+							class="bi bi-eye-fill" title="Propriedades"></i>
+					</a>
+				<tr th:each="s : ${propriedades}">
+					<td th:text="${s.id}"></td>
+					<td th:text="${s.nome}"></td>
 
-					</tr>
-	                 </td>
+				</tr>
+				</td>
 				</tr>
 			</tbody>
 		</table>
-		
-		<div th:if="${totalPages > 1}">
-				<div class="pagination justify-content-center">
-					<div class="page-item disabled"	>Total Itens: [[${totalItems}]]</div>
-					
-					<div class="col-sm-1">
-						<a th:if="${currentPage > 1} " class="page-item" 
-							th:href="@{'/produtos/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Anterior</a>
-						<span th:unless="${currentPage > 1}">Anterior</span>
-					</div>
-					
-					<div class="col-sm-1">
-						<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
-							th:if="${currentPage != i}"
-							th:href="@{'/produtos/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-							<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
-							&nbsp;
-						</span>
-					</div>
-					
-					
-					<div class="col-sm-1">
-						<a th:if="${currentPage < totalPages}"
-							th:href="@{'/produtos/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Próximo</a>
-						<span th:unless="${currentPage < totalPages}">Próximo</span>
-					</div>
 
-					<div class="col-sm-1">
-						<a th:if="${currentPage < totalPages}"
-							th:href="@{'/produtos/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Último</a>
-						<span th:unless="${currentPage < totalPages}">Último</span>
-				
-				
-					</div>
+		<div th:if="${totalPages > 1}">
+			<div class="pagination justify-content-center">
+				<div class="page-item disabled">Total Itens:
+					[[${totalItems}]]</div>
+
+				<div class="col-sm-1">
+					<a th:if="${currentPage > 1} " class="page-item"
+						th:href="@{'/produtos/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Anterior</a>
+					<span th:unless="${currentPage > 1}">Anterior</span>
 				</div>
-				
+
+				<div class="col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/produtos/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+
+
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/produtos/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Próximo</a>
+					<span th:unless="${currentPage < totalPages}">Próximo</span>
+				</div>
+
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/produtos/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Último</a>
+					<span th:unless="${currentPage < totalPages}">Último</span>
+
+
+				</div>
 			</div>
+
 		</div>
-		
-		
-	
+	</div>
+
+
+
 </body>
 </html>

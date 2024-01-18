@@ -41,7 +41,7 @@ public class Subgrupo implements Serializable {
 
 	@NotNull(message = "Selecione grupo relativo ao subgrupo")
 	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-	@ManyToOne(cascade= CascadeType.ALL )
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "grupo_id")
 	@JsonIgnore
 	private Grupo grupo;
