@@ -47,8 +47,7 @@ public class Produto implements Serializable {
 	private Subgrupo subgrupo;
 	
 	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-	@OneToMany(mappedBy = "produto", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH })
+	@OneToMany(mappedBy = "produto", cascade = { CascadeType.ALL })
 
 	private List<Propriedade> propriedades = new ArrayList<>();
 

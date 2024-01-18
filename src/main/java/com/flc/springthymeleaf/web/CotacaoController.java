@@ -1,6 +1,7 @@
 package com.flc.springthymeleaf.web;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -78,9 +79,6 @@ public class CotacaoController {
 	}
 	
 	
-
-
-	
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		
@@ -96,13 +94,20 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
 	@ResponseBody
 	public ResponseEntity<Cotacao> buscarCotacaoAnterior(
+	         
 	        @RequestParam Long propriedadeId,
 	        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCotacao) {
 
-	    Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior(propriedadeId, dataCotacao);
+		
+	    Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior1(propriedadeId, dataCotacao);
 
 	    if (cotacaoAnterior != null) {
-	        return ResponseEntity.ok(cotacaoAnterior);
+	       
+	    	BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
+	    	logger.info("valorMinimoAtual", valorMinimoAnterior)    ;	
+	    	
+	    	
+	    	return ResponseEntity.ok(cotacaoAnterior);
 	    } else {
 	        return ResponseEntity.notFound().build();
 	    }

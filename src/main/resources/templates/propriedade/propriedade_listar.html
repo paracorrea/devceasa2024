@@ -49,10 +49,10 @@
 					<td th:text="${prop.unidade}"></td>
 					<td th:text="${prop.status} ? 'Sim' : 'Não'" ></td>
 					<td colspan="2">
-						<a class="btn btn-primary" th:href="@{/propriedades/editar/{id} (id=${prop.id}) }" role="button">
+						<a class="btn btn-primary" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/editar/{id} (id=${prop.id}) }" role="button">
 	                	<span class="oi oi-brush" title="Editar" aria-hidden="true">Editar</span>
 	                	</a>
-	                 	<a class="btn btn-danger" th:href="@{/propriedades/excluir/{id} (id=${prop.id}) }" role="button"
+	                 	<a class="btn btn-danger" sec:authorize="hasRole('ADMIN')" th:href="@{/propriedades/excluir/{id} (id=${prop.id}) }" role="button"
 	                	 title="excluir" aria-hidden="true">Excluir</a>
 	                 </td>
 				</tr>

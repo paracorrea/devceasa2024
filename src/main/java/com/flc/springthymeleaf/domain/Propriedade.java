@@ -9,24 +9,19 @@ import java.util.List;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -73,16 +68,15 @@ public class Propriedade  implements Serializable {
 	
 	
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.MERGE,	CascadeType.DETACH,
-							CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "produto_id")
 	@JsonIgnore
 	@NotNull(message="Campo não pode ser nullo")
 	private Produto produto;
 	
+	
 	@OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL )
 	@JsonIgnore
-	   
 	private List<Cotacao> cotacoes = new ArrayList<>();
 	
 	
@@ -132,7 +126,7 @@ public class Propriedade  implements Serializable {
 
 
 	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+		this.codigo = codigo.toUpperCase();
 	}
 
 

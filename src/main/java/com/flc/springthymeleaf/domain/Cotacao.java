@@ -18,6 +18,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -49,7 +50,7 @@ public class Cotacao implements Serializable {
 	private LocalDate dataCotacao = LocalDate.now();;
 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "propriedade_id")
 	@NotNull(message="Selecione uma produto/propriedade")
 	@JsonManagedReference // ou @JsonBackReference se estiver usando Jackson 2.0 ou superior
