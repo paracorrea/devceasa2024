@@ -151,12 +151,19 @@ public class CotacaoController {
 		}
 	
 	@GetMapping("/cotacoes/editar/{id}")
-	public String preEditar(@PathVariable("id") Integer id, Model model) {
+	public String preEditar(@PathVariable("id") Integer id,  Model model) {
 		
+		
+		Cotacao cotacao = cotacaoService.findById(id);
+		
+		BigDecimal peso = cotacao.getPropriedade().getPeso();
+		
+		System.out.println("Propriedade Peso: " + peso);
 	
-		model.addAttribute("cotacao", cotacaoService.findById(id));
-		// model retirado do código por não ser mais necessário
-		//model.addAttribute("cotados", propriedadeService.findPropriedadePorCotacao());
+		model.addAttribute("peso",peso );
+		model.addAttribute("cotacao",cotacao);
+		//model.addAttribute("propriedade", propriedade);
+		
 		return "cotacao/cotacao_editar";
 	}
 	

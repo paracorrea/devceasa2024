@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class CotacaoService {
 		return cotacaoRepo.save(obj);
 	}
 
+	@EntityGraph(attributePaths = "propriedade")
 	public Cotacao findById(Integer id) {
 
 		Optional<Cotacao> obj = cotacaoRepo.findById(id);
@@ -63,20 +65,19 @@ public class CotacaoService {
 
 	}
 
-	 public Cotacao buscarCotacaoAnterior(Long propriedadeId, LocalDate dataCotacao) {
-	        Optional<Cotacao> cotacaoAnteriorOptional =
-	                cotacaoRepo.findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(
-	                        propriedadeId, dataCotacao);
-        
-	               return cotacaoAnteriorOptional.orElse(null);
-	    }
+	public Cotacao buscarCotacaoAnterior(Long propriedadeId, LocalDate dataCotacao) {
+		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepo
+				.findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(propriedadeId, dataCotacao);
 
-	 
-	 public Cotacao buscarCotacaoAnterior1(Long propriedadeId, LocalDate dataCotacao) {
-		    Optional<Cotacao> cotacaoAnteriorOptional =
-		            cotacaoRepo.findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(
-		                    propriedadeId, dataCotacao);
+		return cotacaoAnteriorOptional.orElse(null);
+	}
 
-		    return cotacaoAnteriorOptional.orElse(null);
-		}
+	public Cotacao buscarCotacaoAnterior1(Long propriedadeId, LocalDate dataCotacao) {
+		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepo
+				.findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(propriedadeId, dataCotacao);
+
+		return cotacaoAnteriorOptional.orElse(null);
+	}
+
+	
 }

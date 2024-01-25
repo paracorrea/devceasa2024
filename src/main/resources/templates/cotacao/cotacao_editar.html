@@ -46,17 +46,27 @@
 
 			<div class="form-row">
 				<div class="form-group col-md-8">
-					<label for="propriedade">Produto/Propriedade Edição</label>
-					<!-- Exibe o nome do produto associado à cotação -->
+					<label for="propriedades">Produto/Propriedade Edição</label>
+
+					<!-- Adicione o campo para mostrar o nome do produto associado à cotação -->
 					<input type="text" class="form-control"
 						th:value="${cotacao.propriedade.produto.nome + ' - ' + cotacao.propriedade.variedade + ' - ' + cotacao.propriedade.subvariedade + ' - ' + cotacao.propriedade.classificacao
-									+ ' - ' + cotacao.propriedade.unidade + ' - ' + cotacao.propriedade.peso + ' - ' + cotacao.propriedade.embalagem}"
-						readonly />
-					<!-- Campo oculto para enviar o valor no formulário -->
-					<input type="hidden" th:field="*{propriedade}"
+               + ' - ' + cotacao.propriedade.unidade + ' - ' + cotacao.propriedade.peso + ' - ' + cotacao.propriedade.embalagem}"
+						readonly data-peso="${peso}" />
+
+					<!-- Adicione um campo para mostrar o valor do peso -->
+					<div>
+						<span th:text="${peso}"></span>
+					</div>
+
+					<!-- Adicione um campo oculto para enviar o valor do ID da propriedade no formulário -->
+					<input type="hidden" id="peso" th:field="*{propriedade}"
 						th:value="${cotacao.propriedade.id}" />
+
+					<!-- Adicione um campo oculto para enviar o valor do peso da propriedade no formulário -->
 				</div>
 			</div>
+
 
 
 
@@ -269,8 +279,7 @@
 
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
-					<button type="submit" class="btn btn-primary" id="btnSalvar"
-						>Salvar</button>
+					<button type="submit" class="btn btn-primary" id="btnSalvar">Salvar</button>
 
 
 				</div>
@@ -297,12 +306,18 @@
     }
 
     function calcularValores() {
-        var valores = [];
+       
+    	 console.log('console log - entrada()');
+    	var valores = [];
         var camposValidos = true;
 
         for (var i = 1; i <= 10; i++) {
+        	
+        	
             var campoId = 'valor' + i;
             var valor = document.getElementById(campoId).value;
+            
+            console.log("console log - for - valor: " + valor);
 
             if (valor !== '') {
                 if (!validarNumero(valor, campoId)) {
@@ -311,15 +326,41 @@
                 }
 
                 valores.push(parseFloat(valor.replace(',', '.')));
+                console.log("console log - for - valores: " + valores);
             }
         }
 
         if (camposValidos) {
-            var precoMinimo = Math.min.apply(null, valores);
-            var precoMaximo = Math.max.apply(null, valores);
+        	
+       	 // Ajusta o cálculo do preço mínimo considerando o peso da cotação
+           // var selectedIndex = document.getElementById('propriedade').selectedIndex;
+           // var selectedOption = document.getElementById('propriedade').options[selectedIndex];
+            
+          
+
+           var pesoDaCotacaoSelecionada =  /*[[${peso}]]*/ 1; // Valor padrão caso haja algum problema
+    		console.log("Peso na View (HTML): " + pesoDaCotacaoSelecionada);
+ 
+          
+            // Adicione outro log para verificar se o peso foi capturado corretamente
+            console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
+          
+        
+        	
+            if (isNaN(pesoDaCotacaoSelecionada) || pesoDaCotacaoSelecionada === null) {
+            	  // Se for NaN ou nulo, atribui o valor 1
+            	  pesoDaCotacaoSelecionada = 1;
+            	}
+        	
+        	console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
+        	
+        	
+        	
+            var precoMinimo = Math.min.apply(null, valores) / pesoDaCotacaoSelecionada;
+            var precoMaximo = Math.max.apply(null, valores) / pesoDaCotacaoSelecionada;
             var precoMedio = valores.reduce(function (acc, val) {
                 return acc + val;
-            }, 0) / valores.length;
+            }, 0) / valores.length / pesoDaCotacaoSelecionada;
 
             document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
             document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
@@ -337,7 +378,7 @@
             for (var valor in contagemValores) {
                 if (contagemValores[valor] > contagemMaxima) {
                     contagemMaxima = contagemValores[valor];
-                    valorModal = parseFloat(valor);
+                    valorModal = parseFloat(valor) / pesoDaCotacaoSelecionada;
                 }
             }
 

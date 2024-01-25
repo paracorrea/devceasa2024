@@ -50,7 +50,7 @@ public class Cotacao implements Serializable {
 	private LocalDate dataCotacao = LocalDate.now();;
 
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "propriedade_id")
 	@NotNull(message="Selecione uma produto/propriedade")
 	@JsonManagedReference // ou @JsonBackReference se estiver usando Jackson 2.0 ou superior

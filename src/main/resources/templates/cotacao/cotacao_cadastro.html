@@ -405,10 +405,18 @@
             console.log("Peso da Cotação: " + selectedOption.dataset.peso);
 
             var pesoDaCotacaoSelecionada = parseFloat(selectedOption.dataset.peso);
-
+            
+          
             // Adicione outro log para verificar se o peso foi capturado corretamente
             console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
 
+        	
+            if (isNaN(pesoDaCotacaoSelecionada) || pesoDaCotacaoSelecionada === null) {
+            	  // Se for NaN ou nulo, atribui o valor 1
+            	  pesoDaCotacaoSelecionada = 1;
+            	}
+        	
+        	console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
         	
         	
         	
