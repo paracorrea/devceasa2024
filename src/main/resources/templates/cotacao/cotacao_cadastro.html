@@ -45,29 +45,24 @@
 
 			<div th:replace="~{validacao :: validacao}"></div>
 
-			<div class="form-row">
-				<div class="form-group col-md-8">
-					<label for="propriedade">Produto/Propriedade</label> <select
-						id="propriedade" class="form-control" th:field="*{propriedade}"
-						onchange="limparCampos(); buscarCotacaoAnterior()">
-						<option value="">Selecione...</option>
-						<option th:each="p : ${cotados}" th:data-peso="${p.peso}"
-							th:value="${p.id} "
-							th:text="${p.produto.nome} + '  ' + ${p.variedade}  + '  ' + ${p.subvariedade} 
-							+ '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
-						</option>
-					</select>
-					<div class="input-group-append">
-						<span class="input-group-text">ou</span>
-					</div>
-					<input type="text" class="form-control" id="idPropriedade"
-						placeholder="ID da Propriedade"
-						oninput="limparCampos(); buscarCotacaoAnteriorPorId()">
-				</div>
+<div class="form-row">
+    <div class="form-group col-md-8">
+        <label for="propriedade">Produto/Propriedade</label>
+        <select id="propriedade" class="form-control" th:field="*{propriedade}" onchange="limparCampos(); buscarCotacaoAnterior()">
+            <option value="">Selecione...</option>
+            <option th:each="p : ${cotados}" th:value="${p.id}" th:text="${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}  + '  ' + ${p.subvariedade} + '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
+            </option>
+        </select>
+        <div class="input-group-append">
+            <span class="input-group-text">ou</span>
+        </div>
+        <input type="text" class="form-control" id="codigoPesquisa" placeholder="Pesquisar por código" oninput="filtrarPorCodigo()">
+    </div>
+</div>
 
-			</div>
-
-
+<div>
+    <p id="selecaoAtual">Seleção Atual: </p>
+</div>
 	<div class="form-row">
 		<div class="form-group col-md-2">
 			<label for="dataCotacao">Data da Cotação</label> <input type="date"
@@ -456,7 +451,46 @@
             }
         }
     }
-    /*]]>*/
+   
+    function limparCampoCodigo() {
+        document.getElementById("codigoPesquisa").value = "";
+    }
+
+    function filtrarPorCodigo() {
+        var input, filter, select, options, i, txtValue;
+        input = document.getElementById("codigoPesquisa");
+        filter = input.value.toUpperCase();
+        select = document.getElementById("propriedade");
+        options = select.getElementsByTagName("option");
+
+        // Desmarcar todas as opções antes de aplicar o filtro
+        for (i = 0; i < options.length; i++) {
+            options[i].selected = false;
+        }
+
+        // Aplicar o filtro
+        for (i = 0; i < options.length; i++) {
+            txtValue = options[i].text || options[i].textContent;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                options[i].style.display = "";
+                select.selectedIndex = i; // Selecionar automaticamente o produto encontrado
+            } else {
+                options[i].style.display = "none";
+            }
+        }
+
+        // Atualizar a exibição da seleção atual
+        var selectedOption = select.options[select.selectedIndex];
+        var selectedText = selectedOption ? selectedOption.text || selectedOption.textContent : "";
+        document.getElementById("selecaoAtual").innerText = "Seleção Atual: " + selectedText;
+
+        // Limpar os campos e buscar a cotação anterior
+        limparCampos();
+        buscarCotacaoAnterior();
+    }
+    
+
+    
 </script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
