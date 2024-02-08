@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.web;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -197,8 +198,13 @@ public class ProdutoController {
 		
 		
 		
-		List<Produto> listSubgrupos = produtoService.findAll();
-		model.addAttribute("produtos",listSubgrupos);
+		List<Produto> listProdutos = produtoService.findAll();
+		
+		List<Produto> listaOrdenada = listProdutos.stream()
+		        .sorted((p1, p2) -> p1.getNome().compareToIgnoreCase(p2.getNome()))
+		        .collect(Collectors.toList());
+		
+		model.addAttribute("produtos",listaOrdenada);
 		
 		return "produto/produto_listagem";
 	
@@ -208,8 +214,14 @@ public class ProdutoController {
 	@GetMapping("/produtos/subgrupos/{id}")
 	public String findProdutosPorSubgrupos(@PathVariable Integer id, ModelMap model) {
 		
-		List<Produto> obj = produtoService.findProdutoBySubgrupo(id);
-		model.addAttribute("search", obj);
+		List<Produto> listaProdutoPorSubgrupo = produtoService.findProdutoBySubgrupo(id);
+		
+		List<Produto> listaOrdenada = listaProdutoPorSubgrupo.stream()
+		        .sorted((p1, p2) -> p1.getNome().compareToIgnoreCase(p2.getNome()))
+		        .collect(Collectors.toList());
+		
+		
+		model.addAttribute("search", listaOrdenada);
 		return "produto/produto_listar";	}
 
 	

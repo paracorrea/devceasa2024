@@ -1,6 +1,7 @@
 package com.flc.springthymeleaf.web;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,8 +121,14 @@ public class PropriedadeController {
 		
 		
 		
-		List<Propriedade> list = propriedadeService.findAll();
-		model.addAttribute("propriedades",list);
+		List<Propriedade> listaPropriedade = propriedadeService.findAll();
+		
+		List<Propriedade> listaOrdenada = listaPropriedade.stream()
+		        .sorted((p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()))
+		        .collect(Collectors.toList());
+		
+		
+		model.addAttribute("propriedades",listaOrdenada);
 		
 		return "propriedade/propriedade_listar";
 	
