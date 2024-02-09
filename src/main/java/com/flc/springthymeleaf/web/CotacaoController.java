@@ -254,7 +254,7 @@ public class CotacaoController {
        
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
-        float[] columnWidths = {60f, 60f, 50f, 50, 65, 65, 65, 65}; // Adicionei mais um valor para a nova coluna
+        float[] columnWidths = {75f, 75f, 75f, 75f, 75f, 75f, 75f, 75f}; // Adicionei mais um valor para a nova coluna
        
         // this part to do a reduction in colluns. In the for from collum two.
         
@@ -292,10 +292,21 @@ public class CotacaoController {
         		 table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
         	        lastSubgrupo = subgrupoAtual;
         	    }
+        	 
+        	 
         	
         	// Verifica se a data não é nula antes de formatar
            	if (cotacaoItem.getDataCotacao() != null) {
-                String produto = cotacaoItem.getPropriedade().getProduto().getNome();
+           		
+           	 String unidade = cotacaoItem.getPropriedade().getUnidade();
+             
+             if (unidade ==null) {
+             	
+             	unidade = "KG";
+             }
+           		
+           		
+                String produto = cotacaoItem.getPropriedade().getProduto().getNome()+ "  " +unidade;
                 String variedade = cotacaoItem.getPropriedade().getVariedade();
                 String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
                 String classificacao = cotacaoItem.getPropriedade().getClassificacao();
@@ -303,6 +314,14 @@ public class CotacaoController {
                 String valorMedio = cotacaoItem.getPrecoMedio().toString();
                 String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
                 String valorMaisComum = cotacaoItem.getValorComum().toString();
+                
+                
+               
+                
+                
+                
+                
+               
 
                 // Adiciona células à tabela
                 addCell(table, produto, cellStyle);
@@ -313,6 +332,8 @@ public class CotacaoController {
                 addCell(table, valorMedio, cellStyle);
                 addCell(table, valorMaximo, cellStyle);
                 addCell(table, valorMaisComum, cellStyle);
+               
+                
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));
                 document.add(new Paragraph("Cotação nula encontrada!"));
