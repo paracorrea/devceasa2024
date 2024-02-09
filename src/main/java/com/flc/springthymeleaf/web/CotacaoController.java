@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -232,7 +233,10 @@ public class CotacaoController {
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getNome()));
+       
+        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
+        
+        
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
@@ -250,16 +254,45 @@ public class CotacaoController {
        
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
-        float[] columnWidths = {50f, 50f, 100f, 100f, 100f, 100f, 100f};
-        Table table = new Table(columnWidths);
+        float[] columnWidths = {60f, 60f, 50f, 50, 65, 65, 65, 65}; // Adicionei mais um valor para a nova coluna
+       
+        // this part to do a reduction in colluns. In the for from collum two.
+        
+        float scaleFactor = 0.85f; // Fator de escala para reduzir em 15%
+        
+        
+        float[] scaledColumnWidths = new float[columnWidths.length];
+        for (int i = 0; i < columnWidths.length; i++) {
+            if (i >= 2 && i <= 7) { // Ajuste para colunas 5, 6, 7 e 8
+                scaledColumnWidths[i] = columnWidths[i] * scaleFactor;
+            } else {
+                scaledColumnWidths[i] = columnWidths[i];
+            }
+        }
+        
+        // 
+        
+        Table table = new Table(scaledColumnWidths);
+        
       
-        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo"};
+        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo", "Valor +Comum"};
         for (String header : headers) {
             table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(6).setBold()).setBorder(Border.NO_BORDER));
+       
         }
+        
+        String lastSubgrupo = null;
         
         for (Cotacao cotacaoItem : cotacaoResults) {
            
+        	String subgrupoAtual = cotacaoItem.getPropriedade().getProduto().getSubgrupo().getNome();
+        	
+        	 if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
+        	        // Adiciona um cabeçalho para o novo subgrupo
+        		 table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+        	        lastSubgrupo = subgrupoAtual;
+        	    }
+        	
         	// Verifica se a data não é nula antes de formatar
            	if (cotacaoItem.getDataCotacao() != null) {
                 String produto = cotacaoItem.getPropriedade().getProduto().getNome();
@@ -269,6 +302,7 @@ public class CotacaoController {
                 String valorMinimo = cotacaoItem.getPrecoMinimo().toString();
                 String valorMedio = cotacaoItem.getPrecoMedio().toString();
                 String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
+                String valorMaisComum = cotacaoItem.getValorComum().toString();
 
                 // Adiciona células à tabela
                 addCell(table, produto, cellStyle);
@@ -278,6 +312,7 @@ public class CotacaoController {
                 addCell(table, valorMinimo, cellStyle);
                 addCell(table, valorMedio, cellStyle);
                 addCell(table, valorMaximo, cellStyle);
+                addCell(table, valorMaisComum, cellStyle);
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));
                 document.add(new Paragraph("Cotação nula encontrada!"));
