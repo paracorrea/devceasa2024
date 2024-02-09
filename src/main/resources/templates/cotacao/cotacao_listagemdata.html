@@ -67,7 +67,12 @@
 			<thead>
 				<tr>
 					<th>Data da Cotação</th>
+					
 					<th>Produto</th>
+					<th>Subgrupo</th>
+					
+					
+					
 					<th>Variedade</th>
 					<th>Subvar.</th>
 					<th>Classif.</th>
@@ -87,6 +92,9 @@
 				<tr th:each="cotacao : ${cotacaoResults}">
 					 <td th:text="${#temporals.format(cotacao.dataCotacao, 'dd-MM-yyyy')}"></td>
 					<td th:text="${cotacao.propriedade.produto.nome}"></td>
+					
+					<td th:text="${cotacao.propriedade.produto.subgrupo.nome}"></td>
+					
 					<td th:text="${cotacao.propriedade.variedade}"></td>
 					<td th:text="${cotacao.propriedade.subvariedade}"></td>
 					<td th:text="${cotacao.propriedade.classificacao}"></td>

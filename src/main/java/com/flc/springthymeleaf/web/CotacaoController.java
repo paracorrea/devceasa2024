@@ -217,7 +217,7 @@ public class CotacaoController {
         LocalDate selectedDate = cotacao.getDataCotacao();
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
        
-        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getNome()));
+        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
         
         model.addAttribute("cotacaoResults", cotacaoResults);
         return "cotacao/cotacao_listagemdata";
