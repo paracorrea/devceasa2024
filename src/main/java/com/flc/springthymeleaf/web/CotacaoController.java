@@ -107,6 +107,7 @@ public class CotacaoController {
 	    	logger.info("valorMinimoAtual", valorMinimoAnterior)    ;	
 	    	
 	    	
+	    	
 	    	return ResponseEntity.ok(cotacaoAnterior);
 	    } else {
 	        return ResponseEntity.notFound().build();
@@ -144,6 +145,10 @@ public class CotacaoController {
 		if (result.hasErrors()) {
 			return "cotacao/cotacao_cadastro";
 		}
+		
+		
+		
+		
 		
 		cotacaoService.insert(cotacao);
 		attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
