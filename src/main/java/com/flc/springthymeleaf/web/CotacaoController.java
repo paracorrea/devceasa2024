@@ -259,7 +259,7 @@ public class CotacaoController {
        
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
-        float[] columnWidths = {75f, 75f, 75f, 75f, 75f, 75f, 75f, 75f}; // Adicionei mais um valor para a nova coluna
+        float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 55f, 40f}; // Adicionei mais um valor para a nova coluna
        
         // this part to do a reduction in colluns. In the for from collum two.
         
@@ -280,7 +280,7 @@ public class CotacaoController {
         Table table = new Table(scaledColumnWidths);
         
       
-        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo", "Valor +Comum"};
+        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo", "Valor +Comum", "Mercado"};
         for (String header : headers) {
             table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(6).setBold()).setBorder(Border.NO_BORDER));
        
@@ -304,14 +304,20 @@ public class CotacaoController {
            	if (cotacaoItem.getDataCotacao() != null) {
            		
            	 String unidade = cotacaoItem.getPropriedade().getUnidade();
+           	 String mercado = cotacaoItem.getMercado().trim();
              
+           	 if (mercado == null) {
+           	           		 
+           		 mercado="MV";
+           	 }
+           	 
              if (unidade ==null) {
              	
              	unidade = "KG";
              }
            		
            		
-                String produto = cotacaoItem.getPropriedade().getProduto().getNome()+ "  " +unidade;
+                String produto = cotacaoItem.getPropriedade().getProduto().getNome()+ " - " +unidade;
                 String variedade = cotacaoItem.getPropriedade().getVariedade();
                 String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
                 String classificacao = cotacaoItem.getPropriedade().getClassificacao();
@@ -320,13 +326,6 @@ public class CotacaoController {
                 String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
                 String valorMaisComum = cotacaoItem.getValorComum().toString();
                 
-                
-               
-                
-                
-                
-                
-               
 
                 // Adiciona células à tabela
                 addCell(table, produto, cellStyle);
@@ -337,7 +336,7 @@ public class CotacaoController {
                 addCell(table, valorMedio, cellStyle);
                 addCell(table, valorMaximo, cellStyle);
                 addCell(table, valorMaisComum, cellStyle);
-               
+                addCell(table, mercado, cellStyle);
                 
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));

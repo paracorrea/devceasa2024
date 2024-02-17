@@ -432,6 +432,9 @@
 function calcularMercado() {
     var valorComumAtual = parseFloat(document.getElementById("valorComum").value);
     var valorComumAnterior = parseFloat(document.getElementById("valorComumAnterior").value);
+    
+    console.log("Valor Comum Anterior = : " + valorComumAnterior);
+    console.log("Valor Comum Atual = : " + valorComumAtual);
 
     if (!isNaN(valorComumAnterior)) {
         if (valorComumAtual > valorComumAnterior) {
