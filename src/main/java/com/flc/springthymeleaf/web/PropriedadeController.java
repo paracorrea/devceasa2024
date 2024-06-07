@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -143,5 +144,35 @@ public class PropriedadeController {
 		model.addAttribute("propriedades", obj);
 		return "propriedade/propriedade_listar";	}
 	
+
+
+
+@GetMapping("/propriedades/listar1")
+	public ResponseEntity<List<Propriedade>> findAllRest() {
+	
+	
+	
+	List<Propriedade> listaPropriedade = propriedadeService.findAll();
+	
+	List<Propriedade> listaOrdenada = listaPropriedade.stream()
+	        .sorted((p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()))
+	        .collect(Collectors.toList());
+	
+	
+	
+	return ResponseEntity.ok().body(listaOrdenada);
+
+
+}
+
+@GetMapping("/propriedades/produtos1/{id}")
+public ResponseEntity<List<Propriedade>> findPropriedadePorProduto1(@PathVariable Integer id, ModelMap model) {
+	
+	List<Propriedade> obj = propriedadeService.findPropriedadePorProduto(id);
+	model.addAttribute("propriedades", obj);
+	 return ResponseEntity.ok().body(obj);	}
+
+
+
 
 }

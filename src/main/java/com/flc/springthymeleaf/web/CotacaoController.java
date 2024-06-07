@@ -353,4 +353,6 @@ public class CotacaoController {
 	private void addCell(Table table, String content, Style style) {
         table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
     }
+	
+	
 }

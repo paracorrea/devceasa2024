@@ -438,9 +438,9 @@ function calcularMercado() {
 
     if (!isNaN(valorComumAnterior)) {
         if (valorComumAtual > valorComumAnterior) {
-            document.getElementById("mercado").value = "MF"; // Mercado Forte
+            document.getElementById("mercado").value = "MFI"; // Mercado Forte
         } else if (valorComumAtual < valorComumAnterior) {
-            document.getElementById("mercado").value = "MR"; // Mercado Ruim
+            document.getElementById("mercado").value = "MFR"; // Mercado Ruim
         } else if (valorComumAtual === valorComumAnterior) {
             document.getElementById("mercado").value = "ME"; // Mercado Estável
         } else {
