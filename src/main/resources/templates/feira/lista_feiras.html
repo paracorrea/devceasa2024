@@ -28,7 +28,11 @@
             <p>Feiras</p>
         </div>
 
-        <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/feiras/cadastrar'">Abrir Nova Feira</button>
+        <button type="button" class="btn btn-primary btn-sm" 
+        onclick="window.location.href='/feiras/nova?data=' + document.getElementById('dataInput').value">
+    Abrir Nova Feira
+</button>
+<input type="date" id="dataInput" value=""> 
 
         <table class="table">
             <thead>
@@ -41,14 +45,14 @@
             </thead>
             <tbody>
                 <tr th:each="feira : ${feiras}">
-                    <td th:text="${feira.dataFeira}"></td>
+                    <td th:text="${#temporals.format(feira.dataFeira, 'dd/MM/yyyy')}"></td>
                     <td th:text="${feira.statusFeira}"></td>
                     <td th:text="${feira.numero != null} ? ${feira.numero} : '-'"></td> 
                     <td>
                         <a th:href="@{/feiras/{id}/cotacoes(id=${feira.id})}" class="btn btn-primary btn-sm">Visualizar Cotações</a>
-                        <button th:if="${feira.statusFeira == 'ABERTA'}" th:data-feira-id="${feira.id}" class="btn btn-secondary btn-sm encerrar-feira">Encerrar</button>
-                        <button th:if="${feira.statusFeira == 'ENCERRADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar</button>
-                        <a th:if="${feira.statusFeira == 'PUBLICADA'}" th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira})}" class="btn btn-info btn-sm">Gerar PDF</a>
+                        <button th:if="${feira.statusFeira.name() == 'ABERTA'}" th:data-feira-id="${feira.id}" class="btn btn-secondary btn-sm encerrar-feira">Encerrar</button>
+                        <button th:if="${feira.statusFeira.name() == 'FECHADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar</button>
+                        <a th:if="${feira.statusFeira.name() == 'PUBLICADA'}" th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira})}" class="btn btn-info btn-sm">Gerar PDF</a>
                     </td>
                 </tr>
             </tbody>

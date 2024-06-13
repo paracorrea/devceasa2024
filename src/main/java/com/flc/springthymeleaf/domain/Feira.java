@@ -1,7 +1,6 @@
 package com.flc.springthymeleaf.domain;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -14,7 +13,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Feira {
@@ -32,7 +30,7 @@ public class Feira {
    
     
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "data_feira", columnDefinition = "DATE")
+	@Column(name = "datafeira", columnDefinition = "DATE")
 	//@NotNull(message = "Campo não pode ser nullo")
 	private LocalDate dataFeira;
     
@@ -62,6 +60,11 @@ public class Feira {
 
 	public void setStatus(StatusFeira status) {
 		this.statusFeira = status;
+	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return id;
 	}
 
 	

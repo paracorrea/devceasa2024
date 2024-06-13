@@ -50,28 +50,42 @@ public class FeiraService {
 	        }
 	    }
 
-	    public Feira abrirNovaFeira() {
-	        Long ultimoNumero = feiraRepository.findMaxNumero();
-	        if (ultimoNumero == null) {
-	            ultimoNumero = (long) 0;
-	        }
-	        Feira feira = new Feira();
-	        feira.setNumero(ultimoNumero + 1);
-	        feira.setStatus(StatusFeira.ABERTA);
-	        feira.setDataFeira(LocalDate.now());
-	        return feiraRepository.save(feira);
+	    public boolean verificarSeJaExiste(LocalDate data) {
+	        return feiraRepository.existsByDataFeira(data); // Usa o método existsByDataFeira
 	    }
 
-
+	  
+	    public Feira criarNovaFeira(LocalDate data) {
+	        
+	    	 Long ultimoNumero = feiraRepository.findMaxNumero();
+		        if (ultimoNumero == null) {
+		            ultimoNumero = (long) +1 ;
+		        }
+	    	Feira novaFeira = new Feira();
+	        novaFeira.setDataFeira(data);
+	        novaFeira.setStatus(StatusFeira.ABERTA); // Define o status como ABERTA
+	        novaFeira.setNumero(ultimoNumero);
+	        return feiraRepository.save(novaFeira);
+	    }
+	    
+	    public Feira salvarFeira(Feira feira) {
+	    	return feiraRepository.save(feira);
+	    }
+	    
 		public List<Feira> findAll() {
 			// TODO Auto-generated method stub
 			return feiraRepository.findAll();
 		}
 		
-
-
-	    
-
+		
+		public Long ObterNumero() {
+			
+	    	 Long ultimoNumero = feiraRepository.findMaxNumero();
+		        if (ultimoNumero == null) {
+		            ultimoNumero = (long) +1;
+		        }
+			return ultimoNumero;
+		}
 	  
 	}
 

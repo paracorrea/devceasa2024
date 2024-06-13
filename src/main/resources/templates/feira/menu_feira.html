@@ -1,0 +1,18 @@
+<div th:fragment="menu-feira">
+    <div class="container mt-3">
+        <div class="alert alert-info" th:if="${dataFeira != null and status != null and numero != null}">
+            <p>Feira: <span th:text="${#temporals.format(dataFeira, 'dd/MM/yyyy')}"></span> - 
+               Status: <span th:text="${status}"></span> -
+               Número: <span th:text="${numero}"></span></p> 
+            <div class="btn-group">
+                <a th:href="@{/cotacoes/cadastrar(feiraId=${feira.id})}" class="btn btn-secondary">Adicionar Cotação</a> 
+                <button th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" 
+                        th:data-feira-id="${feira.id}" class="btn btn-warning encerrar-feira">Encerrar Feira</button>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+    // ... (seu código JavaScript existente para encerrar e publicar feira) ...
+    </script>
+</div>
