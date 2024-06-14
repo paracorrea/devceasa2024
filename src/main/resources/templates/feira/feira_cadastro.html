@@ -38,12 +38,14 @@
 						
 					</div>
 
-					<input type="text" class="form-control" id="dataFeira" style="float:left" placeholder="DataFeira"
+					<input type="date" class="form-control" id="dataFeira" style="float:left" placeholder="DataFeira"
 						autofocus="autofocus" th:field="*{dataFeira}" />
 				</div>
 
+			
+
 				<input type="hidden" id="id" th:field="*{id}" />
-				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 8pt">Gravar</button>
+				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 8pt">Criar Nova Feira</button>
 
 				<br></br>
 				<a class="inicio" th:href="@{/}">Início</a>
@@ -72,6 +74,9 @@
 				<td th:text="${feira.statusFeira}"></td>
 
 				<td>
+					
+					<a th:href="@{/feiras/{id}/cotacoes(id=${feira.id})}" class="btn btn-primary btn-sm">Visualizar Cotações</a>
+					
 					<a type="button" class="edit" title="Editar" th:href="@{/feiras/editar/{id} (id=${feira.id}) }">
 						<i class="bi bi-pencil-square"></i>
 					</a>

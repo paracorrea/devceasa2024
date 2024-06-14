@@ -40,7 +40,8 @@
 					<div th:replace="~{alert}"></div>
 					<form th:object="${cotacao}" th:action="@{/cotacoes/por-data}"
 						method="get">
-						<label>Data:</label> <input type="date" th:field="*{dataCotacao}"
+						<label>Data:</label> 
+						<input type="date" th:field="*{dataCotacao}"
 							class="form-control" required />
 						<div style="margin-top: 10px;">
 							<button type="submit" class="btn btn-primary btn-sm mb-1">Pesquisar</button>
