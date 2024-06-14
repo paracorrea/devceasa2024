@@ -12,9 +12,6 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-
-
-
 </head>
 
 
@@ -50,8 +47,8 @@
                     <td th:text="${feira.numero != null} ? ${feira.numero} : '-'"></td> 
                     <td>
                         <a th:href="@{/feiras/{id}/cotacoes(id=${feira.id})}" class="btn btn-primary btn-sm">Visualizar Cotações</a>
-                        <button th:if="${feira.statusFeira.name() == 'ABERTA'}" th:data-feira-id="${feira.id}" class="btn btn-secondary btn-sm encerrar-feira">Encerrar</button>
-                        <button th:if="${feira.statusFeira.name() == 'FECHADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar</button>
+                        <button th:if="${feira.statusFeira.name() == 'ABERTA'}" th:data-feira-id="${feira.id}" class="btn btn-secondary btn-sm encerrar-feira">Encerrar feira</button>
+                        <button th:if="${feira.statusFeira.name() == 'FECHADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar Feira</button>
                         <a th:if="${feira.statusFeira.name() == 'PUBLICADA'}" th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira})}" class="btn btn-info btn-sm">Gerar PDF</a>
                     </td>
                 </tr>
@@ -62,13 +59,25 @@
     <script th:inline="javascript">
         $(document).ready(function() {
             $(".encerrar-feira").click(function() {
+            	   var botaoClicado = $(this); // Armazena o botão clicado
                 var feiraId = $(this).data("feira-id");
                 if (confirm("Tem certeza que deseja encerrar esta feira?")) {
                     $.ajax({
                         url: "/feiras/" + feiraId + "/encerrar",
                         method: "PUT",
+                        
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content') // Obtém o token CSRF do cabeçalho <meta>
+                        },
                         success: function() {
-                            location.reload(); // Recarrega a página após encerrar
+                            // Atualiza a linha da tabela com o novo status da feira
+                            var row = $(this).closest("tr"); 
+                            row.find("td:eq(1)").text("FECHADA"); // 1 é o índice da coluna de status (0-based)
+                            botaoClicado.remove();
+                            // Remove o botão "Encerrar" e adiciona os botões "Publicar" e "Excluir"
+                            $(this).remove(); 
+                            row.find("td:eq(3)").append('<button th:if="${#authorization.expression(\'hasRole(\'\'ROLE_ADMIN\'\')\')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar</button>');
+                            row.find("td:eq(3)").append('<button th:data-feira-id="${feira.id}" class="btn btn-danger btn-sm excluir-feira">Excluir</button>'); 
                         },
                         error: function() {
                             alert("Erro ao encerrar a feira.");

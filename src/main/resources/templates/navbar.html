@@ -64,7 +64,18 @@
                 <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/cadastrar}">Cadastro</a></li>
                 <li><a class="dropdown-item" th:href="@{/propriedades/listar}">Listagem</a></li>
                 </ul>
-            </li>                    
+            </li>       
+            
+             <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Controle de Feiras
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/feiras/cadastrar}">Lançar Feiras</a></li>
+                <li><a class="dropdown-item"  th:href="@{/feiras/por-data}">Consultar</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')"  th:href="@{/feiras/editar}">Editar</a></li>
+              </ul>
+            </li>         
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cotação

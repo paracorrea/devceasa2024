@@ -1,32 +1,43 @@
 package com.flc.springthymeleaf.service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.repository.FeiraRepository;
+import com.flc.springthymeleaf.service.exceptions.FeiraNaoEncontradaException;
+import com.flc.springthymeleaf.service.exceptions.FeiraNaoPodeSerEncerradaException;
 
 import enums.StatusFeira;
-import jakarta.transaction.Transactional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
+@Transactional(readOnly = false)
 public class FeiraService {
 
 	
 	    @Autowired
 	    private FeiraRepository feiraRepository;
 
-	   
+	    private static final Logger logger = LoggerFactory.getLogger(Feira.class);
 
 	    // ... outros métodos ...
 
+	 
+	    
+	    
 	    @Transactional
 	    public void publicarFeira(Long feiraId) {
-	        Feira feira = feiraRepository.findById(feiraId)
+	       
+	    	Feira feira = feiraRepository.findById(feiraId)
 	        	.orElseThrow(() -> new RuntimeException("Feira não encontrada"));
 
 	        if (feira.getStatus() != StatusFeira.FECHADA) {
@@ -43,6 +54,19 @@ public class FeiraService {
 	    }
 	    
 	    
+	    
+	    // first metodo findAll
+		public List<Feira> findAll() {
+			List<Feira> listFeiras = feiraRepository.findAll();
+			listFeiras.sort(Comparator.comparing(Feira::getDataFeira).reversed()); 
+			return (listFeiras);
+		}
+		
+		
+		
+		
+		
+		
 	    public void verificarSePodeEditar(Long id) {
 	        Feira feira = feiraRepository.findById(id).orElseThrow(() -> new RuntimeException("Feira não encontrada"));
 	        if (feira.getStatus() == StatusFeira.PUBLICADA) {
@@ -72,11 +96,7 @@ public class FeiraService {
 	    	return feiraRepository.save(feira);
 	    }
 	    
-		public List<Feira> findAll() {
-			// TODO Auto-generated method stub
-			return feiraRepository.findAll();
-		}
-		
+
 		
 		public Long ObterNumero() {
 			
@@ -85,6 +105,23 @@ public class FeiraService {
 		            ultimoNumero = (long) +1;
 		        }
 			return ultimoNumero;
+		}
+
+
+		@Transactional
+		public void encerrarFeira(Long id) {
+			
+			  logger.info("Encerrando feira com ID: {}", id); // Adicione este log
+		    
+		    Feira feira = feiraRepository.findById(id)
+		            .orElseThrow(() -> new FeiraNaoEncontradaException(id));
+
+		    if (feira.getStatus() != StatusFeira.ABERTA) {
+		        throw new FeiraNaoPodeSerEncerradaException("Apenas feiras abertas podem ser encerradas.");
+		    }
+
+		    feira.setStatus(StatusFeira.FECHADA);
+		    feiraRepository.save(feira);
 		}
 	  
 	}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+	<title>Sistema DEVCEASA - Feiras</title>
+	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
+
+
+	<div class="container">
+
+
+		<div th:replace="~{alert}"></div>
+
+
+		<form th:action="${feira.id==null} ? @{/feiras/salvar} : @{/feitas/editar}" th:object="${feira}" method="POST">
+
+			<div th:replace="~{validacao :: validacao}"></div>
+
+
+			<div class="form-group">
+
+				<div class="form-group col-md-3">
+
+					<br>
+					<div class="meu-hr">
+
+						<p>Cadastro de feiras: </p>
+						
+					</div>
+
+					<input type="text" class="form-control" id="dataFeira" style="float:left" placeholder="DataFeira"
+						autofocus="autofocus" th:field="*{dataFeira}" />
+				</div>
+
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" class="btn btn-primary btn-sm" style="margin-left: 8pt">Gravar</button>
+
+				<br></br>
+				<a class="inicio" th:href="@{/}">Início</a>
+
+			</div>
+		</form>
+
+		<table class="table table-bordered">
+
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Data da Feira</th>
+					<th>Número da Feira</th>
+					<th>Status Feira</th>
+					<th>Ações</th>
+
+				</tr>
+			</thead>
+			<!-- Use Thymeleaf loop para exibir grupos -->
+
+			<tr th:each="feira : ${feiras}">
+				<td th:text="${feira.id}"></td>
+				<td th:text="${#temporals.format(feira.dataFeira, 'dd/MM/yyyy')}"></td>
+				<td th:text="${feira.numero}"></td>
+				<td th:text="${feira.statusFeira}"></td>
+
+				<td>
+					<a type="button" class="edit" title="Editar" th:href="@{/feiras/editar/{id} (id=${feira.id}) }">
+						<i class="bi bi-pencil-square"></i>
+					</a>
+					<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('ADMIN')"
+						th:href="@{/feiras/excluir/{id} (id=${feira.id}) }">
+						<i class="bi bi-trash3"></i></a>
+
+
+					<!-- <a  class="btn disabled" aria-disabled="true" role="button" data-bs-toggle="button" title="Excluir" th:href="@{/ceasadev/grupos/excluir/{id} (id=${g.id}) }">
+							<i class="bi bi-trash3"></i></a> -->
+
+
+					
+			
+		</table>
+<br><br>
+	</div>
+
+
+
+
+
+	<div class="footer1">
+		<footer th:insert="~{footer :: pie-pagina}" class="footer"></footer>
+
+	</div>
+</body>
+
+</html>

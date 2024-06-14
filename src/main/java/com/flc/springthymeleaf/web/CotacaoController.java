@@ -53,7 +53,7 @@ import jakarta.validation.Valid;
 @Controller
 public class CotacaoController {
 
-	private static final Logger logger = LoggerFactory.getLogger(Cotacao.class);
+	//private static final Logger logger = LoggerFactory.getLogger(Cotacao.class);
 	
 	@Autowired
 	private CotacaoService cotacaoService;
@@ -104,7 +104,7 @@ public class CotacaoController {
 	    if (cotacaoAnterior != null) {
 	       
 	    	BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
-	    	logger.info("valorMinimoAtual", valorMinimoAnterior)    ;	
+	    	//logger.info("valorMinimoAtual", valorMinimoAnterior)    ;	
 	    	
 	    	
 	    	

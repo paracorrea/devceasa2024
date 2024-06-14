@@ -4,10 +4,12 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 public class DevSecurityConfig {
@@ -29,9 +31,11 @@ public class DevSecurityConfig {
 			http.authorizeHttpRequests(configurer -> 
 			
 					configurer
+								          
 							.requestMatchers("/").hasRole("EMPLOYEE")
 							.requestMatchers("/grupos/cadastrar").hasRole("MANAGER")
 							.requestMatchers("/subgrupos/cadastrar").hasRole("MANAGER")
+							.requestMatchers(HttpMethod.PUT, "/feiras/{id}/encerrar").permitAll() // Libera PUT para todos
 							.anyRequest().authenticated()
 							)
 					.formLogin(form -> 
@@ -53,24 +57,8 @@ public class DevSecurityConfig {
 			
 			
 		}
+	    
+	 
+		}
 		
-		/*
-		 * @Bean public InMemoryUserDetailsManager userDetailsManager() {
-		 * 
-		 * UserDetails john = User.builder() .username("john")
-		 * .password("{noop}teste123") .roles("EMPLOYEE") .build();
-		 * 
-		 * UserDetails mary = User.builder() .username("mary")
-		 * .password("{noop}teste123") .roles("EMPLOYEE","MANAGER") .build();
-		 * 
-		 * UserDetails susan = User.builder() .username("susan")
-		 * .password("{noop}teste123") .roles("EMPLOYEE","MANAGER","ADMIN") .build();
-		 * 
-		 * 
-		 * 
-		 * return new InMemoryUserDetailsManager(john,mary,susan);
-		 * 
-		 * }
-		 */
-	
-}
+		
