@@ -54,18 +54,23 @@ public class Feira {
 		this.numero = numeroFeira;
 	}
 
-	public StatusFeira getStatus() {
-		return statusFeira;
-	}
-
-	public void setStatus(StatusFeira status) {
-		this.statusFeira = status;
-	}
-
+	
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return id;
 	}
+
+	public StatusFeira getStatusFeira() {
+		return statusFeira;
+	}
+
+	public void setStatusFeira(StatusFeira statusFeira) {
+		this.statusFeira = statusFeira;
+	}
+
+	
+	
+	
 
 	
 

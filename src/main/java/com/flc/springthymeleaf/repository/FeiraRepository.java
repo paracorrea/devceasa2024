@@ -30,4 +30,6 @@ public interface FeiraRepository extends JpaRepository<Feira, Long> {
 
     boolean existsByDataFeira(LocalDate dataFeira); // Método existsByDataFeira do Spring Data JPA
     // ... outros métodos ...
+
+	Feira findByDataFeira(LocalDate dataFeira);
 }

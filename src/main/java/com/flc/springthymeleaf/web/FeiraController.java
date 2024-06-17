@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -44,21 +45,47 @@ public class FeiraController {
 	@Autowired
 	private FeiraService feiraService;
 	
-	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.addValidators(new FeiraValidator(feiraService));
-	}
+	/*
+	 * @InitBinder public void initBinder(WebDataBinder binder) {
+	 * binder.addValidators(new FeiraValidator(feiraService)); }
+	 */
 
+	 @GetMapping("/feiras/cadastrar")
+	    public String cadastrar(Feira feira, Model model) {
+	        model.addAttribute("feiras", feiraService.findAll());
+	        return "feira/feira_cadastro";
+	    }
 
-	@GetMapping("/feiras/cadastrar")
-	public String cadastrar(Feira feira, ModelMap model ) {
-		
-		model.addAttribute("feiras", feiraService.findAll());
-		return "feira/feira_cadastro";
-	}
+	    // Endpoint para salvar a nova feira
+	 @PostMapping("/feiras/salvar")
+	    public String salvarFeira(@Valid @ModelAttribute("feira") Feira feira, BindingResult result, RedirectAttributes attr, Model model) {
+	        // Verifica se já existe uma feira com a mesma data
+	        Feira feiraExistente = feiraService.findByDataFeira(feira.getDataFeira());
+	        
+	        if (feiraExistente != null) {
+	            result.rejectValue("dataFeira", "error.feira", "Já existe uma feira marcada para esta data.");
+	        }
+
+	        // Verifica se a data da feira é posterior à data atual
+	        if (feira.getDataFeira().isAfter(LocalDate.now())) {
+	            result.rejectValue("dataFeira", "error.feira", "A data da feira não pode ser posterior à data atual.");
+	        }
+
+	        // Define o status como ABERTA por padrão
+	        feira.setStatusFeira(StatusFeira.ABERTA);
+
+	        if (result.hasErrors()) {
+	            model.addAttribute("feiras", feiraService.findAll());
+	            return "feira/feira_cadastro";
+	        }
+
+	        // Salva a feira se não houver erros
+	        feiraService.salvarFeira(feira);
+	        attr.addFlashAttribute("success", "Feira cadastrada com sucesso!");
+	        return "redirect:/feiras/cadastrar";
+	    }
 	
-	
+	 
 	@GetMapping("/feiras/listar")
 	public String listarFeiras(Model model) {
 		List<Feira> feiras = feiraService.findAll();
@@ -102,7 +129,7 @@ public class FeiraController {
 
 		Feira novaFeira = new Feira();
 		novaFeira.setDataFeira(data);
-		novaFeira.setStatus(StatusFeira.ABERTA); // Define o status como ABERTA
+		novaFeira.setStatusFeira(StatusFeira.ABERTA); // Define o status como ABERTA
 		novaFeira.setNumero(ultimaFeira + 1);
 		//feiraService.salvarFeira(novaFeira);
 
@@ -110,27 +137,8 @@ public class FeiraController {
 
 	}
 
-	@PostMapping("/salvar")
-	public String criarFeira(@Valid @ModelAttribute("feira") Feira feira, BindingResult result, boolean resultado,
-			RedirectAttributes attr) {
-		if (result.hasErrors()) {
-			return "feira/menu_feira"; // Retorna para a página de abertura de feira em caso de erros
-		}
-
-		// Verificar se já existe uma feira publicada na mesma data
-		LocalDate dataFeira = feira.getDataFeira();
-		if (feiraService.verificarSeJaExiste(dataFeira)) {
-			attr.addFlashAttribute("error", "Já existe uma feira publicada na data " + dataFeira);
-			return "redirect:/feiras"; // Redireciona para a página de abertura de feira com mensagem de erro
-		}
-
-		feiraService.salvarFeira(feira); // Salva a nova feira no banco de dados
-
-		attr.addFlashAttribute("success", "Feira aberta com sucesso!");
-		return "redirect:/feiras/" + feira.getId() + "/cotacoes"; // Redireciona para a página de visualização de
-																	// cotações da feira
-	}
-
+	 
+	 
 	 @PutMapping("/{id}/encerrar") // Certifique-se de que o @PutMapping está correto
 	    public String encerrarFeira(@PathVariable("id") Long id, RedirectAttributes attr) {
 		

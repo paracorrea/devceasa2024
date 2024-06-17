@@ -40,12 +40,12 @@ public class FeiraService {
 	    	Feira feira = feiraRepository.findById(feiraId)
 	        	.orElseThrow(() -> new RuntimeException("Feira não encontrada"));
 
-	        if (feira.getStatus() != StatusFeira.FECHADA) {
+	        if (feira.getStatusFeira() != StatusFeira.FECHADA) {
 	            throw new RuntimeException("Feira não encontrada");
 	        }
 
 	       
-	        feira.setStatus(StatusFeira.PUBLICADA);
+	        feira.setStatusFeira(StatusFeira.PUBLICADA);
 	        feiraRepository.save(feira);
 
 	        
@@ -69,7 +69,7 @@ public class FeiraService {
 		
 	    public void verificarSePodeEditar(Long id) {
 	        Feira feira = feiraRepository.findById(id).orElseThrow(() -> new RuntimeException("Feira não encontrada"));
-	        if (feira.getStatus() == StatusFeira.PUBLICADA) {
+	        if (feira.getStatusFeira() == StatusFeira.PUBLICADA) {
 	            throw new RuntimeException("Não é possível editar uma feira publicada");
 	        }
 	    }
@@ -87,7 +87,7 @@ public class FeiraService {
 		        }
 	    	Feira novaFeira = new Feira();
 	        novaFeira.setDataFeira(data);
-	        novaFeira.setStatus(StatusFeira.ABERTA); // Define o status como ABERTA
+	        novaFeira.setStatusFeira(StatusFeira.ABERTA); // Define o status como ABERTA
 	        novaFeira.setNumero(ultimoNumero);
 	        return feiraRepository.save(novaFeira);
 	    }
@@ -116,12 +116,19 @@ public class FeiraService {
 		    Feira feira = feiraRepository.findById(id)
 		            .orElseThrow(() -> new FeiraNaoEncontradaException(id));
 
-		    if (feira.getStatus() != StatusFeira.ABERTA) {
+		    if (feira.getStatusFeira() != StatusFeira.ABERTA) {
 		        throw new FeiraNaoPodeSerEncerradaException("Apenas feiras abertas podem ser encerradas.");
 		    }
 
-		    feira.setStatus(StatusFeira.FECHADA);
+		    feira.setStatusFeira(StatusFeira.FECHADA);
 		    feiraRepository.save(feira);
+		}
+
+
+
+		public Feira findByDataFeira(LocalDate dataFeira) {
+			// TODO Auto-generated method stub
+			return feiraRepository.findByDataFeira(dataFeira);
 		}
 	  
 	}
