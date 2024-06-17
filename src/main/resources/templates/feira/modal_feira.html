@@ -1,0 +1,24 @@
+<div class="modal fade" id="modalCadastroFeira" tabindex="-1" aria-labelledby="modalCadastroFeiraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form th:action="@{/feiras/salvar}" th:object="${feira}" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCadastroFeiraLabel">Cadastro de Feiras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div th:replace="~{validacao :: validacao}"></div>
+                    <div class="form-group col-md-3">
+                        <label for="dataFeira" class="form-label">Data da Feira</label>
+                        <input type="date" class="form-control" id="dataFeira" th:field="*{dataFeira}" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="id" th:field="*{id}" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Feira</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

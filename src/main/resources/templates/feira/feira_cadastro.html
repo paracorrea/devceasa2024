@@ -75,9 +75,14 @@
 
 				<td>
 					
-					<a th:href="@{/feiras/{id}/cotacoes(id=${feira.id})}" class="btn btn-primary btn-sm">Visualizar Cotações</a>
+					<a th:href="@{/cotacoes/por-feira/{dataFeira}(dataFeira=${feira.dataFeira})}" class="btn btn-primary btn-sm">Visualizar Cotações</a>
 					
-					<a type="button" class="edit" title="Editar" th:href="@{/feiras/editar/{id} (id=${feira.id}) }">
+				
+					<button th:if="${feira.statusFeira.name() == 'ABERTA'}" th:data-feira-id="${feira.id}" class="btn btn-secondary btn-sm encerrar-feira">Encerrar feira</button>
+                        <button th:if="${feira.statusFeira.name() == 'FECHADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:data-feira-id="${feira.id}" class="btn btn-success btn-sm publicar-feira">Publicar Feira</button>
+                        <a th:if="${feira.statusFeira.name() == 'PUBLICADA'}" th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira})}" class="btn btn-info btn-sm">Gerar PDF</a>
+                 
+                 	<a type="button" class="edit" title="Editar" th:href="@{/feiras/editar/{id} (id=${feira.id}) }">
 						<i class="bi bi-pencil-square"></i>
 					</a>
 					<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('ADMIN')"

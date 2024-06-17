@@ -37,10 +37,8 @@ import jakarta.validation.Valid;
 @Controller
 public class FeiraController {
 
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(Feira.class);
-	
 	
 	
 	@Autowired
@@ -70,8 +68,6 @@ public class FeiraController {
 		return "feira/lista_feiras"; // Nova página de listagem de feiras
 	}
 
-	
-	
 	
 	@GetMapping("/nova")
 	public String prepararNovaFeira(

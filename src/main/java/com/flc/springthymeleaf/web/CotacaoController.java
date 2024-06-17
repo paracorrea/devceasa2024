@@ -229,6 +229,20 @@ public class CotacaoController {
         return "cotacao/cotacao_listagemdata";
     }
 
+    @GetMapping("/cotacoes/por-feira/{dataFeira}")
+    public String pesquisarCotacoesPorFeira(@PathVariable("dataFeira") @DateTimeFormat(iso = ISO.DATE) LocalDate dataFeira, Model model) {
+        List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(dataFeira);
+        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
+        
+        // Adiciona a data formatada para exibição no template (opcional, se necessário)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String dataFeiraFormatada = dataFeira.format(formatter);
+        model.addAttribute("dataFeiraFormatada", dataFeiraFormatada);
+
+        model.addAttribute("cotacaoResults", cotacaoResults);
+        return "cotacao/cotacao_por_feira";
+    }
+    
     @GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
                          Cotacao cotacao, HttpServletResponse response) throws IOException {

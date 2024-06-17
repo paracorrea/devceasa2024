@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+	rel="stylesheet">
+<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+<title>Sistema DEVCEASA</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+	
+</head>
+
+<body>
+
+	<div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
+
+	<div class="container">
+
+		<div class="form-group row">
+
+			<div class="col-sm-5">
+
+				<div class="col-sm-5">
+					<br>
+					<div class="meu-hr">
+						Pesquisa de Cotações por Data
+
+						<hr>
+					</div>
+					<div th:replace="~{alert}"></div>
+					
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="meu-hr">Resultados da Pesquisa</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Data da Cotação</th>
+					
+					<th>Produto</th>
+					<th>Subgrupo</th>
+					
+					
+					
+					<th>Variedade</th>
+					<th>Subvar.</th>
+					<th>Classif.</th>
+					<!-- Verificar se vai inserir os outros campos -->
+					<th>Preço Mínimo</th>
+					<th>Preço Máximo</th>
+					<th>Preço Comum</th>
+					<th>Mercado</th>
+					<th>Editar</th>
+					<th>Excluir</th>
+
+
+					<!-- Adicione mais colunas conforme necessário -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cotacao : ${cotacaoResults}">
+					 <td th:text="${#temporals.format(cotacao.dataCotacao, 'dd-MM-yyyy')}"></td>
+					<td th:text="${cotacao.propriedade.produto.nome}"></td>
+					
+					<td th:text="${cotacao.propriedade.produto.subgrupo.nome}"></td>
+					
+					<td th:text="${cotacao.propriedade.variedade}"></td>
+					<td th:text="${cotacao.propriedade.subvariedade}"></td>
+					<td th:text="${cotacao.propriedade.classificacao}"></td>
+					<td th:text="${cotacao.precoMinimo}"></td>
+					<td th:text="${cotacao.precoMaximo}"></td>
+					<td th:text="${cotacao.valorComum}"></td>
+					<td th:text="${cotacao.mercado}"></td>
+
+					 <td>
+            <a type="button" class="edit" title="Editar"
+                th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+        </td>
+       
+       
+        <td sec:authorize="hasRole('ROLE_ADMIN')">
+       	
+		<a type="button" class="delete" title="Excluir" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">
+		<i class="bi bi-trash3"></i></a> 
+        
+        </td>
+        
+    </tr>
+</tbody>
+		</table>
+
+
+		<a class="inicio" th:href="@{/}">INICIO</a>
+	</div>
+
+	<!-- Adicione links de paginação ou outros elementos conforme necessário -->
+
+
+
+
+
+
+
+</body>
+</html>
