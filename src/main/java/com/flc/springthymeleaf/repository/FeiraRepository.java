@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.flc.springthymeleaf.domain.Feira;
 
@@ -13,7 +14,7 @@ import enums.StatusFeira;
 
 
 
-public interface FeiraRepository extends JpaRepository<Feira, Long> {
+public interface FeiraRepository extends JpaRepository<Feira, Long> , PagingAndSortingRepository<Feira, Long> {
 
     @Query("SELECT MAX(c.numero) FROM Feira c")
     Long findMaxNumero();

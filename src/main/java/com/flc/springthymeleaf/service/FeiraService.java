@@ -1,10 +1,12 @@
 package com.flc.springthymeleaf.service;
 
+
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,7 +58,7 @@ public class FeiraService {
 	    
 	    
 	    // first metodo findAll
-		public List<Feira> findAll() {
+		public List<Feira> findAll(Pageable pageable) {
 			List<Feira> listFeiras = feiraRepository.findAll();
 			listFeiras.sort(Comparator.comparing(Feira::getDataFeira).reversed()); 
 			return (listFeiras);
