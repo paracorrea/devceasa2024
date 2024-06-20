@@ -318,7 +318,7 @@ public class CotacaoController {
            	if (cotacaoItem.getDataCotacao() != null) {
            		
            	 String unidade = cotacaoItem.getPropriedade().getUnidade();
-           	 String mercado = cotacaoItem.getMercado().trim();
+           	 String mercado = cotacaoItem.getMercado();
              
            	 if (mercado == null) {
            	           		 
@@ -361,6 +361,42 @@ public class CotacaoController {
 
         // Adiciona a tabela ao documento fora do loop
         document.add(table);
+        
+        String notas = "Este boletim informa o comportamento do preço na CEASA.\n" +
+                "Não é tabela.\n" +
+                "Abreviaturas\n" +
+                "============\n" +
+                "Min = Preço mínimo pesquisado\n" +
+                "MC = Preço mais comum ou preço modal.\n" +
+                "Aquele que apresentou maior número de observações durante a pesquisa.\n" +
+                "Preço de maior expressão no mercado.\n" +
+                "Max = Preço máximo pesquisado.\n" +
+                "MFR = Mercado fraco. Quando o preço mais comum é inferior ao da pesquisa anterior.\n" +
+                "ME = Mercado estável. Quando o preço mais comum é igual ao da pesquisa anterior.\n" +
+                "MFI = Mercado firme. Quando o preço mais comum é superior ao da pesquisa anterior.\n" +
+                "MV = Mercado vazio. Quando não existe pesquisa anterior do produto.\n" +
+                "T. = Tipo ou número de frutas por embalagem\n" +
+                "CX/MAD = Caixa de madeira\n" +
+                "CX/PAP = Caixa de papelão\n" +
+                "S/CLIM = Sem climatizar\n" +
+                "CLIM = Climatizada\n" +
+                "KG = Quilograma\n" +
+                "S/LAV = Sem lavar\n" +
+                "ENG = Engradado\n" +
+                "IMP = Importado\n" +
+                "ESP = Especial\n" +
+                "PRI = Primeira\n" +
+                "SEG = Segunda\n" +
+                "CORT = Cortado\n" +
+                "REST = Réstia\n" +
+                "EXT = Extra\n" +
+                "CX = Caixa\n" +
+                "DZ = Dúzia\n" +
+                "MO = Molho\n" +
+                "SC = Saca";
+
+ document.add(new Paragraph(notas).setFontSize(7).setTextAlignment(TextAlignment.LEFT));
+        
         document.close();
     }
 
