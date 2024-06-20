@@ -8,18 +8,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Sistema DEVCEASA - Feiras</title>
-    <link th:href="@{/css/myStyle.css}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
+    <div th:replace="~{navbar :: menu-principal}"></div>
 
     <div class="container">
         <!-- Exibir mensagens de sucesso -->
         <div th:if="${success}" class="alert alert-success" role="alert">
             <span th:text="${success}"></span>
         </div>
+
+        <!-- Exibir mensagens de erro -->
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- Formulário de pesquisa -->
+        <form th:action="@{/feiras/pesquisar}" method="get" class="row g-3 align-items-end mb-3">
+            <div class="col-auto">
+                <label for="dataInicio" class="col-form-label" style="font-size: 0.8rem;">Data Início:</label>
+                <input type="date" class="form-control form-control-sm" id="dataInicio" name="dataInicio" required>
+            </div>
+            <div class="col-auto">
+                <label for="dataFim" class="col-form-label" style="font-size: 0.8rem;">Data Fim:</label>
+                <input type="date" class="form-control form-control-sm" id="dataFim" name="dataFim" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary btn-sm">Pesquisar</button>
+            </div>
+        </form>
 
         <!-- Formulário de cadastro -->
         <form th:action="@{/feiras/salvar}" th:object="${feira}" method="POST">
@@ -31,22 +49,22 @@
             </div>
 
             <div class="form-group">
-                <div class="form-group col-md-3">
-                    <br>
-                    <div class="meu-hr">
-                        <p>Cadastro de feiras:</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="dataFeira" class="form-label">Data da Feira</label>
+                        <input type="date" class="form-control" id="dataFeira"
+                               th:field="*{dataFeira}" required autofocus="autofocus" />
                     </div>
-
-                    <input type="date" class="form-control" id="dataFeira"
-                           placeholder="DataFeira" autofocus="autofocus"
-                           th:field="*{dataFeira}" required />
+                   
+                    <div class="col-md-4 align-self-end">
+                        <input type="hidden" id="id" th:field="*{id}" />
+                        <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 20px;">
+                            Criar Nova Feira
+                        </button>
+                        <a th:href="@{/feiras/cadastrar}" class="btn btn-secondary btn-sm" style="margin-top: 20px;">Voltar</a>
+                    </div>
                 </div>
-
-                <input type="hidden" id="id" th:field="*{id}" />
-                <button type="submit" class="btn btn-primary btn-sm" style="margin-left: 8pt">Criar Nova Feira</button>
-
                 <br><br>
-                <a class="inicio" th:href="@{/}">Início</a>
             </div>
         </form>
 
@@ -62,7 +80,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="feira : ${feiras}">
+                <tr th:each="feira : ${feiraPage?.content}">
                     <td th:text="${feira.id}"></td>
                     <td th:text="${#temporals.format(feira.dataFeira, 'dd/MM/yyyy')}"></td>
                     <td th:text="${feira.numero}"></td>
@@ -71,34 +89,81 @@
                         <a th:href="@{/cotacoes/por-feira/{dataFeira}(dataFeira=${feira.dataFeira})}"
                            class="btn btn-primary btn-sm">Visualizar Cotações</a>
 
-                        <button th:if="${feira.statusFeira.name() == 'ABERTA'}"
-                                th:data-feira-id="${feira.id}"
-                                class="btn btn-secondary btn-sm encerrar-feira">Encerrar feira</button>
-                        <button th:if="${feira.statusFeira.name() == 'FECHADA' and #authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                        <form th:action="@{/feiras/encerrar}" method="post" style="display:inline;">
+                            <input type="hidden" name="_method" value="PUT" />
+                            <input type="hidden" name="id" th:value="${feira.id}" />
+                            <button th:if="${feira.statusFeira.name() == 'ABERTA'}"
+                                    class="btn btn-secondary btn-sm">Encerrar feira</button>
+                        </form>
+                        <button th:if="${feira.statusFeira.name() == 'FECHADA'}"
                                 th:data-feira-id="${feira.id}"
                                 class="btn btn-success btn-sm publicar-feira">Publicar Feira</button>
                         <a th:if="${feira.statusFeira.name() == 'PUBLICADA'}"
                            th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira})}"
                            class="btn btn-info btn-sm">Gerar PDF</a>
-                        <a type="button"
-                           class="edit" title="Editar"
-                           th:href="@{/feiras/editar/{id} (id=${feira.id}) }">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <a type="button" class="delete" title="Excluir"
-                           sec:authorize="hasRole('ADMIN')"
-                           th:href="@{/feiras/excluir/{id} (id=${feira.id}) }">
-                            <i class="bi bi-trash3"></i>
-                        </a>
+                        <button th:if="${feira.statusFeira.name() != 'ABERTA' && feira.statusFeira.name() != 'PUBLICADA'}"
+                                class="btn btn-danger btn-sm" th:onclick="'confirmarExclusao(' + ${feira.id} + ')'">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <!-- Paginação -->
+        <div th:if="${feiraPage}">
+            <span th:if="${feiraPage.hasPrevious()}">
+                <a th:href="@{/feiras/pesquisar(dataInicio=${param.dataInicio}, dataFim=${param.dataFim}, page=${feiraPage.number - 1})}">Anterior</a>
+            </span>
+            <span th:if="${feiraPage.hasNext()}">
+                <a th:href="@{/feiras/pesquisar(dataInicio=${param.dataInicio}, dataFim=${param.dataFim}, page=${feiraPage.number + 1})}">Próxima</a>
+            </span>
+        </div>
         <br><br>
     </div>
 
     <div class="footer1">
         <footer th:insert="~{footer :: pie-pagina}" class="footer"></footer>
     </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" aria-labelledby="confirmarExclusaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir esta feira?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="formExcluirFeira" th:action="@{/feiras/excluir}" method="post">
+                        <input type="hidden" name="id" id="feiraIdParaExcluir">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log("Página carregada");
+        });
+
+        function confirmarExclusao(feiraId) {
+            console.log("ID da feira para exclusão: " + feiraId); // Log do ID da feira
+            document.getElementById('feiraIdParaExcluir').value = feiraId;
+            var confirmarExclusaoModal = new bootstrap.Modal(document.getElementById('confirmarExclusaoModal'));
+            confirmarExclusaoModal.show();
+        }
+
+        function showModal() {
+            var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            modal.show();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
