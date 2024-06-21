@@ -35,7 +35,7 @@ public class DevSecurityConfig {
 							.requestMatchers("/").hasRole("EMPLOYEE")
 							.requestMatchers("/grupos/cadastrar").hasRole("MANAGER")
 							.requestMatchers("/subgrupos/cadastrar").hasRole("MANAGER")
-							.requestMatchers(HttpMethod.PUT, "/feiras/{id}/encerrar").permitAll() // Libera PUT para todos
+							.requestMatchers(HttpMethod.PUT, "/feiras/encerrar").permitAll() // Libera PUT para todos
 							.anyRequest().authenticated()
 							)
 					.formLogin(form -> 

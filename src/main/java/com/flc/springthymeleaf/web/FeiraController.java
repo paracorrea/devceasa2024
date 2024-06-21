@@ -71,16 +71,19 @@ public class FeiraController {
         return "redirect:/feiras/cadastrar";
     }
 
-    @PutMapping("/feiras/encerrar")
-    public String encerrarFeira(@RequestParam Long id, RedirectAttributes attr) {
+    @PostMapping("/feiras/encerrar")
+    public String encerrarFeiraPost(@RequestParam Long id, RedirectAttributes attr) {
+        System.out.println("Encerrar feira chamado para o ID: " + id);
         Optional<Feira> feiraOptional = feiraService.findById(id);
         if (feiraOptional.isPresent()) {
             Feira feira = feiraOptional.get();
             feira.setStatusFeira(StatusFeira.FECHADA);
             feiraService.salvarFeira(feira);
             attr.addFlashAttribute("success", "Feira encerrada com sucesso!");
+            System.out.println("Feira encerrada com sucesso para o ID: " + id);
         } else {
             attr.addFlashAttribute("error", "Feira não encontrada!");
+            System.out.println("Feira não encontrada para o ID: " + id);
         }
         return "redirect:/feiras/cadastrar";
     }

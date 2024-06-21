@@ -55,7 +55,6 @@
                         <input type="date" class="form-control" id="dataFeira"
                                th:field="*{dataFeira}" required autofocus="autofocus" />
                     </div>
-                 
                     <div class="col-md-4 align-self-end">
                         <input type="hidden" id="id" th:field="*{id}" />
                         <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 20px;">
@@ -89,12 +88,12 @@
                         <a th:href="@{/cotacoes/por-feira/{dataFeira}(dataFeira=${feira.dataFeira})}"
                            class="btn btn-primary btn-sm">Visualizar Cotações</a>
 
-                        <form th:action="@{/feiras/encerrar}" method="post" style="display:inline;">
-                            <input type="hidden" name="_method" value="PUT" />
-                            <input type="hidden" name="id" th:value="${feira.id}" />
-                            <button th:if="${feira.statusFeira.name() == 'ABERTA'}"
-                                    class="btn btn-secondary btn-sm">Encerrar feira</button>
-                        </form>
+<form th:action="@{/feiras/encerrar}" method="post" style="display:inline;">
+    <input type="hidden" name="id" th:value="${feira.id}" />
+    <button th:if="${feira.statusFeira.name() == 'ABERTA'}"
+            class="btn btn-secondary btn-sm">Encerrar feira</button>
+</form>
+
                         <button th:if="${feira.statusFeira.name() == 'FECHADA'}"
                                 th:data-feira-id="${feira.id}"
                                 class="btn btn-success btn-sm publicar-feira">Publicar Feira</button>
@@ -115,8 +114,9 @@
                    th:href="@{/feiras/cadastrar(page=${feiraPage.number - 1})}">Anterior</a>
                 <a th:if="${dataInicio != null}"
                    th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number - 1})}">Anterior</a>
-        <br><br>
-			 <a th:href="@{/feiras/cadastrar}" class="btn btn-secondary btn-sm" style="margin-top: 20px;">Voltar</a>
+                <br>
+             <a th:href="@{/feiras/cadastrar}" class="btn btn-secondary btn-sm" style="margin-top: 20px;">Voltar</a>
+            
             </span>
             <span th:if="${feiraPage.hasNext()}">
                 <a th:if="${dataInicio == null}"
@@ -125,7 +125,6 @@
                    th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number + 1})}">Próxima</a>
             </span>
         </div>
-        
         <br><br>
     </div>
 
@@ -153,7 +152,6 @@
                 </div>
             </div>
         </div>
-         
     </div>
 
     <script>
