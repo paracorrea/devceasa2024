@@ -71,9 +71,7 @@
                Controle de Feiras
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/feiras/cadastrar}">Lançar Feiras</a></li>
-                <li><a class="dropdown-item"  th:href="@{/feiras/por-data}">Consultar</a></li>
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')"  th:href="@{/feiras/editar}">Editar</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/feiras/cadastrar}">Todas as feiras</a></li>
               </ul>
             </li>         
             <li class="nav-item dropdown">
@@ -83,8 +81,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/cadastrar}">Cotação</a></li>
                 <li><a class="dropdown-item"  th:href="@{/cotacoes/por-data}">Consultar</a></li>
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')"  th:href="@{/cotacoes/editar}">Editar</a></li>
-              </ul>
+               </ul>
             </li>
           </ul>
           
