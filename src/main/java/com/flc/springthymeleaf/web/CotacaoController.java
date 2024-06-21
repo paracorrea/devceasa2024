@@ -245,93 +245,72 @@ public class CotacaoController {
     
     @GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
+                         @RequestParam("numeroFeira") Long numeroFeira,
                          Cotacao cotacao, HttpServletResponse response) throws IOException {
-    						response.setContentType("application/pdf");
-    						response.setHeader("Content-Disposition", "attachment; filename=cotacao.pdf");
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=cotacao.pdf");
 
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-       
+
         Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
-        
-        
+
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
-        
-       // String logoPath = "/static/image/loginho.png";
-       // PdfTableBuilder.addLogo(document, logoPath, 150, 50);
-        
+
         String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    
+
         // Adiciona os dados ao PDF
         document.add(new Paragraph("Formulário de Cotação CEASA CAMPINAS").setFontSize(7));
         document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(7));
-  
+        document.add(new Paragraph("Número da Feira: " + numeroFeira).setFontSize(7));
+
         // Define estilos para a tabela
-       
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
-        float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 55f, 40f}; // Adicionei mais um valor para a nova coluna
-       
-        // this part to do a reduction in colluns. In the for from collum two.
-        
+        float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 55f, 40f};
+
         float scaleFactor = 0.85f; // Fator de escala para reduzir em 15%
-        
-        
         float[] scaledColumnWidths = new float[columnWidths.length];
         for (int i = 0; i < columnWidths.length; i++) {
-            if (i >= 2 && i <= 7) { // Ajuste para colunas 5, 6, 7 e 8
+            if (i >= 2 && i <= 7) {
                 scaledColumnWidths[i] = columnWidths[i] * scaleFactor;
             } else {
                 scaledColumnWidths[i] = columnWidths[i];
             }
         }
-        
-        // 
-        
+
         Table table = new Table(scaledColumnWidths);
-        
-      
+
         String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo", "Valor +Comum", "Mercado"};
         for (String header : headers) {
             table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(6).setBold()).setBorder(Border.NO_BORDER));
-       
         }
-        
+
         String lastSubgrupo = null;
-        
         for (Cotacao cotacaoItem : cotacaoResults) {
-           
-        	String subgrupoAtual = cotacaoItem.getPropriedade().getProduto().getSubgrupo().getNome();
-        	
-        	 if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
-        	        // Adiciona um cabeçalho para o novo subgrupo
-        		 table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
-        	        lastSubgrupo = subgrupoAtual;
-        	    }
-        	 
-        	 
-        	
-        	// Verifica se a data não é nula antes de formatar
-           	if (cotacaoItem.getDataCotacao() != null) {
-           		
-           	 String unidade = cotacaoItem.getPropriedade().getUnidade();
-           	 String mercado = cotacaoItem.getMercado();
-             
-           	 if (mercado == null) {
-           	           		 
-           		 mercado="MV";
-           	 }
-           	 
-             if (unidade ==null) {
-             	
-             	unidade = "KG";
-             }
-           		
-           		
-                String produto = cotacaoItem.getPropriedade().getProduto().getNome()+ " - " +unidade;
+            String subgrupoAtual = cotacaoItem.getPropriedade().getProduto().getSubgrupo().getNome();
+
+            if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
+                table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+                lastSubgrupo = subgrupoAtual;
+            }
+
+            if (cotacaoItem.getDataCotacao() != null) {
+                String unidade = cotacaoItem.getPropriedade().getUnidade();
+                String mercado = cotacaoItem.getMercado();
+
+                if (mercado == null) {
+                    mercado = "MV";
+                }
+
+                if (unidade == null) {
+                    unidade = "KG";
+                }
+
+                String produto = cotacaoItem.getPropriedade().getProduto().getNome() + " - " + unidade;
                 String variedade = cotacaoItem.getPropriedade().getVariedade();
                 String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
                 String classificacao = cotacaoItem.getPropriedade().getClassificacao();
@@ -339,9 +318,7 @@ public class CotacaoController {
                 String valorMedio = cotacaoItem.getPrecoMedio().toString();
                 String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
                 String valorMaisComum = cotacaoItem.getValorComum().toString();
-                
 
-                // Adiciona células à tabela
                 addCell(table, produto, cellStyle);
                 addCell(table, variedade, cellStyle);
                 addCell(table, subvariedade, cellStyle);
@@ -351,17 +328,14 @@ public class CotacaoController {
                 addCell(table, valorMaximo, cellStyle);
                 addCell(table, valorMaisComum, cellStyle);
                 addCell(table, mercado, cellStyle);
-                
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));
                 document.add(new Paragraph("Cotação nula encontrada!"));
-                
             }
         }
 
-        // Adiciona a tabela ao documento fora do loop
         document.add(table);
-        
+
         String notas = "Este boletim informa o comportamento do preço na CEASA.\n" +
                 "Não é tabela.\n" +
                 "Abreviaturas\n" +
@@ -395,14 +369,15 @@ public class CotacaoController {
                 "MO = Molho\n" +
                 "SC = Saca";
 
- document.add(new Paragraph(notas).setFontSize(7).setTextAlignment(TextAlignment.LEFT));
-        
+        document.add(new Paragraph(notas).setFontSize(7).setTextAlignment(TextAlignment.LEFT));
+
         document.close();
     }
 
-	private void addCell(Table table, String content, Style style) {
+    private void addCell(Table table, String content, Style style) {
         table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
     }
+
 	
 	
 }

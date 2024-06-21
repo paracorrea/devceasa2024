@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.web;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.service.FeiraService;
 import enums.StatusFeira;
@@ -32,8 +34,6 @@ public class FeiraController {
 
         model.addAttribute("feiraPage", feiraPage);
         model.addAttribute("feira", new Feira());
-        model.addAttribute("dataInicio", null); // Adicione null para distinguir a tela de cadastro
-        model.addAttribute("dataFim", null);    // Adicione null para distinguir a tela de cadastro
         return "feira/feira_cadastro";
     }
 
@@ -72,18 +72,31 @@ public class FeiraController {
     }
 
     @PostMapping("/feiras/encerrar")
-    public String encerrarFeiraPost(@RequestParam Long id, RedirectAttributes attr) {
-        System.out.println("Encerrar feira chamado para o ID: " + id);
+    public String encerrarFeira(@RequestParam Long id, RedirectAttributes attr) {
         Optional<Feira> feiraOptional = feiraService.findById(id);
         if (feiraOptional.isPresent()) {
             Feira feira = feiraOptional.get();
             feira.setStatusFeira(StatusFeira.FECHADA);
             feiraService.salvarFeira(feira);
             attr.addFlashAttribute("success", "Feira encerrada com sucesso!");
-            System.out.println("Feira encerrada com sucesso para o ID: " + id);
         } else {
             attr.addFlashAttribute("error", "Feira não encontrada!");
-            System.out.println("Feira não encontrada para o ID: " + id);
+        }
+        return "redirect:/feiras/cadastrar";
+    }
+
+    @PostMapping("/feiras/publicar")
+    public String publicarFeira(@RequestParam Long id, RedirectAttributes attr) {
+        Optional<Feira> feiraOptional = feiraService.findById(id);
+        if (feiraOptional.isPresent()) {
+            Feira feira = feiraOptional.get();
+            Long maxNumero = feiraService.findMaxNumero();
+            feira.setNumero(maxNumero + 1);
+            feira.setStatusFeira(StatusFeira.PUBLICADA);
+            feiraService.salvarFeira(feira);
+            attr.addFlashAttribute("success", "Feira publicada com sucesso!");
+        } else {
+            attr.addFlashAttribute("error", "Feira não encontrada!");
         }
         return "redirect:/feiras/cadastrar";
     }
@@ -115,9 +128,9 @@ public class FeiraController {
         Page<Feira> feiraPage = feiraService.findByDataFeiraBetween(dataInicio, dataFim, pageable);
 
         model.addAttribute("feiraPage", feiraPage);
-        model.addAttribute("feira", new Feira());
         model.addAttribute("dataInicio", dataInicio);
         model.addAttribute("dataFim", dataFim);
+        model.addAttribute("feira", new Feira());
         return "feira/feira_cadastro"; // Retorne para a mesma página com os resultados da pesquisa
     }
 }

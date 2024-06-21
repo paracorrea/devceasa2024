@@ -2,9 +2,11 @@ package com.flc.springthymeleaf.service;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.repository.FeiraRepository;
 
@@ -17,7 +19,7 @@ public class FeiraService {
     }
 
     public Page<Feira> findAll(Pageable pageable) {
-        return feiraRepository.findAllByOrderByDataFeiraDesc(pageable);
+        return feiraRepository.findAll(pageable);
     }
 
     public Page<Feira> findByDataFeiraBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable) {
@@ -38,5 +40,10 @@ public class FeiraService {
 
     public void excluirFeira(Long id) {
         feiraRepository.deleteById(id);
+    }
+
+    public Long findMaxNumero() {
+        Long maxNumero = feiraRepository.findMaxNumero();
+        return maxNumero != null ? maxNumero : 0;
     }
 }
