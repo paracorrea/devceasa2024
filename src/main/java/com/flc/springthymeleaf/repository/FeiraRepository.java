@@ -30,4 +30,6 @@ public interface FeiraRepository extends JpaRepository<Feira, Long>, PagingAndSo
 
     @Query("SELECT f FROM Feira f WHERE f.dataFeira BETWEEN :dataInicio AND :dataFim ORDER BY f.dataFeira DESC")
     Page<Feira> findByDataFeiraBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable);
+    
+    Page<Feira> findAllByOrderByDataFeiraDesc(Pageable pageable);
 }

@@ -55,24 +55,13 @@
                         <input type="date" class="form-control" id="dataFeira"
                                th:field="*{dataFeira}" required autofocus="autofocus" />
                     </div>
-                    <div class="col-md-4">
-                        <label for="numero" class="form-label">Número da Feira</label>
-                        <input type="text" class="form-control" id="numero"
-                               th:field="*{numero}" required />
-                    </div>
-                    <div class="col-md-4">
-                        <label for="statusFeira" class="form-label">Status da Feira</label>
-                        <select class="form-select" id="statusFeira" th:field="*{statusFeira}" required>
-                            <option th:each="status : ${T(enums.StatusFeira).values()}"
-                                    th:value="${status}" th:text="${status}"></option>
-                        </select>
-                    </div>
+                 
                     <div class="col-md-4 align-self-end">
                         <input type="hidden" id="id" th:field="*{id}" />
                         <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 20px;">
                             Criar Nova Feira
                         </button>
-                        <a th:href="@{/feiras/cadastrar}" class="btn btn-secondary btn-sm" style="margin-top: 20px;">Voltar</a>
+                       
                     </div>
                 </div>
                 <br><br>
@@ -122,12 +111,21 @@
         <!-- Paginação -->
         <div th:if="${feiraPage}">
             <span th:if="${feiraPage.hasPrevious()}">
-                <a th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number - 1})}">Anterior</a>
+                <a th:if="${dataInicio == null}"
+                   th:href="@{/feiras/cadastrar(page=${feiraPage.number - 1})}">Anterior</a>
+                <a th:if="${dataInicio != null}"
+                   th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number - 1})}">Anterior</a>
+        <br><br>
+			 <a th:href="@{/feiras/cadastrar}" class="btn btn-secondary btn-sm" style="margin-top: 20px;">Voltar</a>
             </span>
             <span th:if="${feiraPage.hasNext()}">
-                <a th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number + 1})}">Próxima</a>
+                <a th:if="${dataInicio == null}"
+                   th:href="@{/feiras/cadastrar(page=${feiraPage.number + 1})}">Próxima</a>
+                <a th:if="${dataInicio != null}"
+                   th:href="@{/feiras/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${feiraPage.number + 1})}">Próxima</a>
             </span>
         </div>
+        
         <br><br>
     </div>
 
@@ -155,6 +153,7 @@
                 </div>
             </div>
         </div>
+         
     </div>
 
     <script>

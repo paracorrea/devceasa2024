@@ -32,6 +32,8 @@ public class FeiraController {
 
         model.addAttribute("feiraPage", feiraPage);
         model.addAttribute("feira", new Feira());
+        model.addAttribute("dataInicio", null); // Adicione null para distinguir a tela de cadastro
+        model.addAttribute("dataFim", null);    // Adicione null para distinguir a tela de cadastro
         return "feira/feira_cadastro";
     }
 

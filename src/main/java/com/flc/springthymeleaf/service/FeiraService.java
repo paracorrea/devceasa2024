@@ -17,7 +17,7 @@ public class FeiraService {
     }
 
     public Page<Feira> findAll(Pageable pageable) {
-        return feiraRepository.findAll(pageable);
+        return feiraRepository.findAllByOrderByDataFeiraDesc(pageable);
     }
 
     public Page<Feira> findByDataFeiraBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable) {
