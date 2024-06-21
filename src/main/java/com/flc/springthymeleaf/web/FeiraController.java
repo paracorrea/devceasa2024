@@ -1,6 +1,5 @@
 package com.flc.springthymeleaf.web;
 
-
 import java.time.LocalDate;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -111,6 +110,9 @@ public class FeiraController {
         Page<Feira> feiraPage = feiraService.findByDataFeiraBetween(dataInicio, dataFim, pageable);
 
         model.addAttribute("feiraPage", feiraPage);
+        model.addAttribute("feira", new Feira());
+        model.addAttribute("dataInicio", dataInicio);
+        model.addAttribute("dataFim", dataFim);
         return "feira/feira_cadastro"; // Retorne para a mesma página com os resultados da pesquisa
     }
 }
