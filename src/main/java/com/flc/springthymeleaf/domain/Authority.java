@@ -1,6 +1,5 @@
 package com.flc.springthymeleaf.domain;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -18,9 +17,25 @@ public class Authority {
     @JoinColumn(name = "username", nullable = false)
     private User user;
 
+    public Authority() {}
+
+    public Authority(String authority, User user) {
+        this.authority = authority;
+        this.user = user;
+    }
+    
+    // Getters and Setters
+    
+    
+    
 	public String getAuthority() {
 		return authority;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
@@ -33,7 +48,8 @@ public class Authority {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 
-    // Getters and Setters
+    
     
 }

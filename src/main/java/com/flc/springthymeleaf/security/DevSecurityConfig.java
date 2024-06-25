@@ -6,12 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
+@EnableWebSecurity
 public class DevSecurityConfig {
 
 	
@@ -25,6 +29,11 @@ public class DevSecurityConfig {
 		}
 		
 		
+		 @Bean
+		    public PasswordEncoder passwordEncoder() {
+		        return new BCryptPasswordEncoder();
+		    }
+		
 		@Bean
 		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 			
@@ -33,8 +42,11 @@ public class DevSecurityConfig {
 					configurer
 								          
 							.requestMatchers("/").hasRole("EMPLOYEE")
-							.requestMatchers("/grupos/cadastrar").hasRole("MANAGER")
-							.requestMatchers("/subgrupos/cadastrar").hasRole("MANAGER")
+							.requestMatchers("/grupos/cadastrar").hasRole("EMPLOYEE")
+							.requestMatchers("/subgrupos/cadastrar").hasRole("EMPLOYEE")
+							.requestMatchers("/produtos/cadastrar").hasRole("EMPLOYEE")
+							.requestMatchers("/propriedades/cadastrar").hasRole("EMPLOYEE")
+							
 							.anyRequest().authenticated()
 							)
 					.formLogin(form -> 

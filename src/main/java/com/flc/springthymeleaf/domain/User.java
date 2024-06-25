@@ -1,10 +1,7 @@
 package com.flc.springthymeleaf.domain;
 
 import jakarta.persistence.*;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,8 +18,10 @@ public class User {
     @Column(name = "enabled", nullable = false)
     private Long enabled;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Authority> authorities;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<Authority> authorities = new HashSet<>();
+
+    public User() {}
 
 	public String getUsername() {
 		return username;
@@ -56,6 +55,6 @@ public class User {
 		this.authorities = authorities;
 	}
 
+    // Getters and Setters
     
 }
-

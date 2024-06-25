@@ -66,13 +66,13 @@
 						<td th:text="${produto.nome}" class="fonte-table" ></td>
 						<td th:text="${produto.subgrupo.nome}" class="fonte-table" ></td>
 
-						<td><a type="button" class="edit" title="Editar"
+						<td><a type="button" class="edit" title="Editar" sec:authorize="hasRole('MANAGER')"
 								th:href="@{/produtos/editar/{id} (id=${produto.id}) }">
 								<i class="bi bi-pencil-square"></i>
 							
 							</a> 
 							
-							<a type="button" class="delete" title="Excluir" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }">
+							<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }">
 							<i class="bi bi-trash3"></i>
 							
 							</a> 

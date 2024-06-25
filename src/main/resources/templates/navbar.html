@@ -31,7 +31,7 @@
                 Grupo
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/grupos/cadastrar}">Cadastro</a></li>
                 <li><a class="dropdown-item" th:href="@{/grupos/listar}">Listagem</a></li>
                 </ul>
             </li>
@@ -41,7 +41,7 @@
                 Subgrupo
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/subgrupos/cadastrar}">Cadastro</a></li>
                 <li><a class="dropdown-item" th:href="@{/subgrupos/listar}">Listagem</a></li>
                 </ul>
             </li>
@@ -51,7 +51,7 @@
                 Produto
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/cadastrar}">Cadastro</a></li>
                 <li><a class="dropdown-item" th:href="@{/produtos/listar}">Listagem</a></li>
                 </ul>
             </li>
@@ -61,7 +61,7 @@
                 Propriedade
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/cadastrar}">Cadastro</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Cadastro</a></li>
                 <li><a class="dropdown-item" th:href="@{/propriedades/listar}">Listagem</a></li>
                 </ul>
             </li>       
@@ -71,7 +71,7 @@
                Controle de Feiras
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/feiras/cadastrar}">Todas as feiras</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/feiras/cadastrar}">Todas as feiras</a></li>
               </ul>
             </li>         
             <li class="nav-item dropdown">
@@ -79,7 +79,7 @@
                 Cotação
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/cadastrar}">Cotação</a></li>
+                <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/cadastrar}">Cotação</a></li>
                 <li><a class="dropdown-item"  th:href="@{/cotacoes/por-data}">Consultar</a></li>
                </ul>
             </li>
