@@ -10,6 +10,34 @@
 <body>
     <div class="container">
         <h1>Gerenciamento de Usuários</h1>
+        
+        <form th:action="@{/admin/users/save}" method="post">
+            <div class="row mb-3">
+                <div class="col">
+                    <input type="text" class="form-control" name="username" placeholder="Nome de Usuário" required>
+                </div>
+                <div class="col">
+                    <select class="form-control" name="enabled">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-control" name="roles" multiple>
+                        <option value="ROLE_EMPLOYEE">EMPLOYEE</option>
+                        <option value="ROLE_ADMIN">ADMIN</option>
+                        <option value="ROLE_MANAGER">MANAGER</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Criar Novo Usuário</button>
+                </div>
+            </div>
+        </form>
+        
         <table class="table">
             <thead>
                 <tr>

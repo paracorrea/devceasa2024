@@ -1,6 +1,7 @@
 package com.flc.springthymeleaf.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,8 @@ public class AdminController {
     }
 
     @PostMapping("/admin/users/save")
-    public String saveUser(@ModelAttribute("user") User user, @RequestParam("roles") Set<String> roles) {
+    public String saveUser(@ModelAttribute("user") User user, @RequestParam("roles") Set<String> roles, @RequestParam("password") String password) {
+        user.setPassword(new BCryptPasswordEncoder().encode(password));
         Set<Authority> authorities = new HashSet<>();
         for (String role : roles) {
             authorities.add(new Authority(role, user));
