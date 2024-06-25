@@ -22,6 +22,8 @@ public class UserService {
         return userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+ 
+    
     public void saveUser(User user) {
         userRepository.save(user);
     }

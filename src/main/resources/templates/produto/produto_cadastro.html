@@ -72,7 +72,7 @@
 							
 							</a> 
 							
-							<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }">
+							<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('ADMIN')" th:href="@{/produtos/excluir/{id} (id=${produto.id}) }">
 							<i class="bi bi-trash3"></i>
 							
 							</a> 

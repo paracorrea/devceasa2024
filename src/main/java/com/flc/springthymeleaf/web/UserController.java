@@ -1,10 +1,13 @@
 package com.flc.springthymeleaf.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,35 +17,33 @@ import com.flc.springthymeleaf.service.UserService;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	 @Autowired
+	    private UserService userService;
 
-    @GetMapping("/register")
-    public String showRegisterForm(Model model) {
-        model.addAttribute("user", new User());
-        return "registro/register";
-    }
+	    @GetMapping("/usuario/alterar-senha")
+	    public String showChangePasswordForm(Model model) {
+	        return "usuario/alterar-senha";
+	    }
 
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user) {
-       
-    	 if (user.getEnabled() == null) {
-             user.setEnabled(0L);
-         }
-    	//userService.registerUser(user);
-        return "redirect:/login"; 
-    }
+	    @PostMapping("/usuario/alterar-senha")
+	    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+	                                 @RequestParam("newPassword") String newPassword,
+	                                 Model model) {
+	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        String username = authentication.getName();
+	        User user = userService.findUserByUsername(username);
 
-    @GetMapping("/change_password")
-    public String showChangePasswordForm() {
-        return "registro/change_password";
-    }
+	        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
+	            model.addAttribute("error", "Senha atual incorreta.");
+	            return "usuario/alterar-senha";
+	        }
 
-    @PostMapping("/change_password")
-    public String changePassword(@RequestParam String username, @RequestParam String newPassword) {
-      //  userService.changePassword(username, newPassword);
-        return "redirect:/login";
-    }
-    
+	        user.setPassword(passwordEncoder.encode(newPassword));
+	        userService.saveUser(user);
+	        model.addAttribute("success", "Senha alterada com sucesso.");
+	        return "usuario/alterar-senha";
+	    }
+	
     
 }
