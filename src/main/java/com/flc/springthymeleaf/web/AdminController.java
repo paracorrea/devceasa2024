@@ -102,4 +102,13 @@ public class AdminController {
         userService.deleteUser(username);
         return "redirect:/admin/users";
     }
+
+    @PostMapping("/admin/users/changePassword")
+    public String changeUserPassword(@RequestParam("username") String username,
+                                     @RequestParam("newPassword") String newPassword) {
+        User user = userService.findUserByUsername(username);
+        user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+        userService.saveUser(user);
+        return "redirect:/admin/users";
+    }
 }
