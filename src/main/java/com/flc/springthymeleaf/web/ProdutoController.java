@@ -173,7 +173,7 @@ public class ProdutoController {
 		            }
 		        } else if (nome != null && !nome.isEmpty()) {
 		            // Lógica para buscar o produto por nome
-		            List<Produto> produtos = produtoService.findByNome(nome);
+		            List<Produto> produtos = produtoService.findByNome(nome.toUpperCase());
 
 		            model.addAttribute("produtos", produtos);
 		        } else {

@@ -14,69 +14,54 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "Feira")
 public class Feira {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Integer id;
 
-   // @Column(unique = true, nullable = false)
     private Long numero;
-
     
     @Enumerated(EnumType.STRING)
     public StatusFeira statusFeira;
    
-    
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "datafeira", columnDefinition = "DATE")
-	//@NotNull(message = "Campo não pode ser nullo")
-	private LocalDate dataFeira;
-    
-    
-    
-    
-    
-	public LocalDate getDataFeira() {
-		return dataFeira;
-	}
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "datafeira", columnDefinition = "DATE")
+    private LocalDate dataFeira;
 
-	public void setDataFeira(LocalDate dataFeira) {
-		this.dataFeira = dataFeira;
-	}
+    // getters and setters
+    public Integer getId() {
+        return id;
+    }
 
-	public Long getNumero() {
-		return numero;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setNumero(Long numeroFeira) {
-		this.numero = numeroFeira;
-	}
+    public LocalDate getDataFeira() {
+        return dataFeira;
+    }
 
-	
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
+    public void setDataFeira(LocalDate dataFeira) {
+        this.dataFeira = dataFeira;
+    }
 
-	public StatusFeira getStatusFeira() {
-		return statusFeira;
-	}
+    public Long getNumero() {
+        return numero;
+    }
 
-	public void setStatusFeira(StatusFeira statusFeira) {
-		this.statusFeira = statusFeira;
-	}
+    public void setNumero(Long numero) {
+        this.numero = numero;
+    }
 
-	
-	
-	
+    public StatusFeira getStatusFeira() {
+        return statusFeira;
+    }
 
-	
-
-	
-
-    
+    public void setStatusFeira(StatusFeira statusFeira) {
+        this.statusFeira = statusFeira;
+    }
 }
 
 

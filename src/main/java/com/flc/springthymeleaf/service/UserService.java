@@ -2,7 +2,6 @@ package com.flc.springthymeleaf.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.flc.springthymeleaf.domain.User;
 import com.flc.springthymeleaf.repository.UserRepository;
 
@@ -21,8 +20,6 @@ public class UserService {
     public User findUserByUsername(String username) {
         return userRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
     }
-
- 
     
     public void saveUser(User user) {
         userRepository.save(user);

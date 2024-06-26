@@ -72,7 +72,7 @@ public class FeiraController {
     }
 
     @PostMapping("/feiras/encerrar")
-    public String encerrarFeira(@RequestParam Long id, RedirectAttributes attr) {
+    public String encerrarFeira(@RequestParam Integer id, RedirectAttributes attr) {
         Optional<Feira> feiraOptional = feiraService.findById(id);
         if (feiraOptional.isPresent()) {
             Feira feira = feiraOptional.get();
@@ -86,7 +86,7 @@ public class FeiraController {
     }
 
     @PostMapping("/feiras/publicar")
-    public String publicarFeira(@RequestParam Long id, RedirectAttributes attr) {
+    public String publicarFeira(@RequestParam Integer id, RedirectAttributes attr) {
         Optional<Feira> feiraOptional = feiraService.findById(id);
         if (feiraOptional.isPresent()) {
             Feira feira = feiraOptional.get();
@@ -102,7 +102,7 @@ public class FeiraController {
     }
 
     @PostMapping("/feiras/excluir")
-    public String excluirFeira(@RequestParam Long id, RedirectAttributes attr) {
+    public String excluirFeira(@RequestParam Integer id, RedirectAttributes attr) {
         Optional<Feira> feiraOptional = feiraService.findById(id);
         if (feiraOptional.isPresent()) {
             Feira feira = feiraOptional.get();

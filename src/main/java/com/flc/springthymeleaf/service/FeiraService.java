@@ -26,7 +26,7 @@ public class FeiraService {
         return feiraRepository.findByDataFeiraBetween(dataInicio, dataFim, pageable);
     }
 
-    public Optional<Feira> findById(Long id) {
+    public Optional<Feira> findById(Integer id) {
         return feiraRepository.findById(id);
     }
 
@@ -38,7 +38,7 @@ public class FeiraService {
         feiraRepository.save(feira);
     }
 
-    public void excluirFeira(Long id) {
+    public void excluirFeira(Integer id) {
         feiraRepository.deleteById(id);
     }
 

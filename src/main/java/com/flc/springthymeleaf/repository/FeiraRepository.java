@@ -12,7 +12,7 @@ import com.flc.springthymeleaf.domain.Feira;
 
 import enums.StatusFeira;
 
-public interface FeiraRepository extends JpaRepository<Feira, Long>, PagingAndSortingRepository<Feira, Long> {
+public interface FeiraRepository extends JpaRepository<Feira, Integer>, PagingAndSortingRepository<Feira, Integer> {
 
     @Query("SELECT MAX(c.numero) FROM Feira c")
     Long findMaxNumero();
@@ -29,6 +29,8 @@ public interface FeiraRepository extends JpaRepository<Feira, Long>, PagingAndSo
     Feira findByDataFeira(LocalDate dataFeira);
 
     Feira findByNumero(Long numero);
+    
+    void deleteById(Integer id);
 
     @Query("SELECT f FROM Feira f WHERE f.dataFeira BETWEEN :dataInicio AND :dataFim ORDER BY f.dataFeira DESC")
     Page<Feira> findByDataFeiraBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable);
