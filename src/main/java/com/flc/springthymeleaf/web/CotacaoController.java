@@ -240,7 +240,7 @@ public class CotacaoController {
         // Define estilos para a tabela
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
-        float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 55f, 40f};
+        float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 40f};
 
         float scaleFactor = 0.85f; // Fator de escala para reduzir em 15%
         float[] scaledColumnWidths = new float[columnWidths.length];
@@ -254,7 +254,7 @@ public class CotacaoController {
 
         Table table = new Table(scaledColumnWidths);
 
-        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Médio", "Valor Máximo", "Valor +Comum", "Mercado"};
+        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Máximo", "Valor +Comum", "Mercado"};
         for (String header : headers) {
             table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(6).setBold()).setBorder(Border.NO_BORDER));
         }
@@ -285,7 +285,7 @@ public class CotacaoController {
                 String subvariedade = cotacaoItem.getPropriedade().getSubvariedade();
                 String classificacao = cotacaoItem.getPropriedade().getClassificacao();
                 String valorMinimo = cotacaoItem.getPrecoMinimo().toString();
-                String valorMedio = cotacaoItem.getPrecoMedio().toString();
+                //String valorMedio = cotacaoItem.getPrecoMedio().toString();
                 String valorMaximo = cotacaoItem.getPrecoMaximo().toString();
                 String valorMaisComum = cotacaoItem.getValorComum().toString();
 
@@ -294,7 +294,7 @@ public class CotacaoController {
                 addCell(table, subvariedade, cellStyle);
                 addCell(table, classificacao, cellStyle);
                 addCell(table, valorMinimo, cellStyle);
-                addCell(table, valorMedio, cellStyle);
+               // addCell(table, valorMedio, cellStyle);
                 addCell(table, valorMaximo, cellStyle);
                 addCell(table, valorMaisComum, cellStyle);
                 addCell(table, mercado, cellStyle);
