@@ -40,7 +40,7 @@ public class AuditAspect {
         AuditLog auditLog = createAuditLog(entity, "SAVE");
         auditLog.setNewData(objectMapper.writeValueAsString(entity));
         auditLogRepository.save(auditLog);
-        logger.info("Auditoria SAVE registrada para entidade: " + entity.getClass().getSimpleName());
+        logger.info("LOGG: Auditoria SAVE registrada para entidade: " + entity.getClass().getSimpleName());
     }
 
     @Before("deletePointcut()")
@@ -53,12 +53,12 @@ public class AuditAspect {
             AuditLog auditLog = createAuditLogWithId(entityId, "DELETE", entityName);
             auditLog.setOldData("Old data not available");
             auditLogRepository.save(auditLog);
-            logger.info("Auditoria DELETE registrada para entidade: " + entityName + " com ID: " + entityId);
+            logger.info("LOGG - IF DELETE - Auditoria DELETE registrada para entidade: " + entityName + " com ID: " + entityId);
         } else {
             AuditLog auditLog = createAuditLog(entity, "DELETE");
             auditLog.setOldData(objectMapper.writeValueAsString(entity));
             auditLogRepository.save(auditLog);
-            logger.info("Auditoria DELETE registrada para entidade: " + entity.getClass().getSimpleName());
+            logger.info("LOGG - IF ELSE -Auditoria DELETE registrada para entidade: " + entity.getClass().getSimpleName());
         }
     }
 
@@ -91,12 +91,12 @@ public class AuditAspect {
                 logger.info("ID da entidade: " + idValue);
                 return idValue;
             } else {
-                logger.severe("Campo ID não encontrado na entidade " + entity.getClass().getSimpleName());
-                throw new RuntimeException("Campo ID não encontrado na entidade");
+                logger.severe("LOGG - GET -Campo ID não encontrado na entidade " + entity.getClass().getSimpleName());
+                throw new RuntimeException("LOGG - GET THROW -Campo ID não encontrado na entidade");
             }
         } catch (Exception e) {
-            logger.severe("Erro ao obter o ID da entidade: " + e.getMessage());
-            throw new RuntimeException("Não foi possível obter o ID da entidade", e);
+            logger.severe("LOGG - GET CACTCH -Erro ao obter o ID da entidade: " + e.getMessage());
+            throw new RuntimeException("LOGG - GET EXCEPTION -  Não foi possível obter o ID da entidade", e);
         }
     }
 
