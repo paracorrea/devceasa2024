@@ -3,17 +3,12 @@ package com.flc.springthymeleaf.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import enums.FatorSazonal;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,11 +28,10 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "cotacao" , uniqueConstraints = {
 	    @UniqueConstraint(columnNames = {"propriedade_id", "data_cotacao"})
-	})
+		})
 public class Cotacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,15 +43,12 @@ public class Cotacao implements Serializable {
 	@NotNull(message = "Campo não pode ser nullo")
 	private LocalDate dataCotacao = LocalDate.now();;
 
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "propriedade_id")
 	@NotNull(message="Selecione uma produto/propriedade")
 	@JsonManagedReference // ou @JsonBackReference se estiver usando Jackson 2.0 ou superior
-	   
-	   
+	   	   
 	private Propriedade propriedade;
-
 	private String users;
 
 	@Column(name = "valor1")
@@ -67,7 +58,6 @@ public class Cotacao implements Serializable {
 	@Digits(integer = 10, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
 	private BigDecimal valor1;
 	
-
 	@Column(name = "valor2")
 	// @PositiveOrZero
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
@@ -117,8 +107,6 @@ public class Cotacao implements Serializable {
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	private BigDecimal valor10;
 
-	// private Integer quantCotado;
-
 	@Column(name = "preco_minimo")
 	@NotNull(message = "Aplicar cálculo antes de salvar")
 	private BigDecimal precoMinimo;
@@ -134,8 +122,7 @@ public class Cotacao implements Serializable {
 	@Column(name = "fator_sazonal")
 	@Enumerated(EnumType.STRING)
 	private FatorSazonal fatorSazonal;
-	
-	
+		
 	@Column(name="valor_comum")
 	//@NotNull(message = "Informar valor comum")
 	private BigDecimal valorComum;
@@ -144,6 +131,11 @@ public class Cotacao implements Serializable {
 	//@NotNull(message = "Informar valor comum")
 	private String mercado;
 	
+	@Column(name="peso_variavel")
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	//@NotNull(message = "Campo não pode ser nullo")
+	@Digits(integer = 6, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
+	private BigDecimal pesoVariavel;
 	
 	public Cotacao() {
 		super();
@@ -308,8 +300,13 @@ public class Cotacao implements Serializable {
 	public void setMercado(String mercado) {
 		this.mercado = mercado;
 	}
-	
-	
-	
 
+	public BigDecimal getPesoVariavel() {
+		return pesoVariavel;
+	}
+
+	public void setPesoVariavel(BigDecimal pesoVariavel) {
+		this.pesoVariavel = pesoVariavel;
+	}
+	
 }

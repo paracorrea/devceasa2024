@@ -8,9 +8,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -28,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.CotacaoService;
@@ -61,36 +57,25 @@ public class CotacaoController {
 	@Autowired
 	private PropriedadeService propriedadeService;
 	
-	
-	
-	
-	@InitBinder
+		@InitBinder
 	public void initBinder(WebDataBinder binder) {
 			
 		binder.addValidators(new CotacaoValidator(cotacaoService));
 	}
 	
-	
-	
 	@ModelAttribute("fatores")
 	public FatorSazonal[] getFatores() {
 		return FatorSazonal.values();
-
 	}
-	
 	
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		
 		List<Propriedade> listaCotados = propriedadeService.findPropriedadePorCotacao();
-		
-		  Collections.sort(listaCotados, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
-
-	
+		Collections.sort(listaCotados, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
 		return listaCotados;
 	}
-	
-	
+		
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
 	@ResponseBody
 	public ResponseEntity<Cotacao> buscarCotacaoAnterior(
@@ -103,11 +88,7 @@ public class CotacaoController {
 
 	    if (cotacaoAnterior != null) {
 	       
-	    	BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
-	    	//logger.info("valorMinimoAtual", valorMinimoAnterior)    ;	
-	    	
-	    	
-	    	
+	    	//BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
 	    	return ResponseEntity.ok(cotacaoAnterior);
 	    } else {
 	        return ResponseEntity.notFound().build();
@@ -117,14 +98,10 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/cadastrar")
 	public String cadastrar(Cotacao cotacao, Model model) {
 		
-		
 		List<Propriedade> listaCotados = listarCotados();
 		LocalDate dataCotacao = LocalDate.now();
-
-		    model.addAttribute("dataCotacao", dataCotacao);
-		    model.addAttribute("cotacoes", listaCotados);
-		
-		
+		model.addAttribute("dataCotacao", dataCotacao);
+		model.addAttribute("cotacoes", listaCotados);
 		return "cotacao/cotacao_cadastro";
 	}
 	
@@ -146,10 +123,6 @@ public class CotacaoController {
 			return "cotacao/cotacao_cadastro";
 		}
 		
-		
-		
-		
-		
 		cotacaoService.insert(cotacao);
 		attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
 		return "redirect:/cotacoes/cadastrar";
@@ -158,23 +131,17 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/editar/{id}")
 	public String preEditar(@PathVariable("id") Integer id,  Model model) {
 		
-		
 		Cotacao cotacao = cotacaoService.findById(id);
-		
 		BigDecimal peso = cotacao.getPropriedade().getPeso();
-		
 		System.out.println("Propriedade Peso: " + peso);
-	
 		model.addAttribute("peso",peso );
 		model.addAttribute("cotacao",cotacao);
-		//model.addAttribute("propriedade", propriedade);
-		
+				
 		return "cotacao/cotacao_editar";
 	}
 	
 	@PostMapping("/cotacoes/editar") 
 	public String editar (@Valid Cotacao cotacao, BindingResult result, RedirectAttributes attr) {
-		
 		
 		
 		LocalDate dataAtual = LocalDate.now();
@@ -254,7 +221,10 @@ public class CotacaoController {
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
 
-        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
+        // Ordena a lista de cotacoes primeiro por subgrupo e depois por produto dentro de cada subgrupo
+        Collections.sort(cotacaoResults, Comparator
+                .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
+                .thenComparing(c -> c.getPropriedade().getProduto().getNome()));
 
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);

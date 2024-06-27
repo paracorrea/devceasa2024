@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.tymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
-	<title>Sistema DEVCEASA</title>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+	rel="stylesheet">
+<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+<title>Sistema DEVCEASA</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 
 </head>
@@ -33,18 +39,21 @@
 		</div>
 
 
-		<form th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}" th:object="${cotacao}"
-			method="POST">
+		<form
+			th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}"
+			th:object="${cotacao}" method="POST">
 
 			<div th:replace="~{validacao :: validacao}"></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-8">
-					<label for="propriedade">Produto/Propriedade</label>
-					<select id="propriedade" class="form-control" th:field="*{propriedade}"
+					<label for="propriedade">Produto/Propriedade</label> <select
+						id="propriedade" class="form-control" th:field="*{propriedade}"
 						onchange="limparCampos(); buscarCotacaoAnterior()">
 						<option value="">Selecione...</option>
-						<option th:each="p : ${cotados}" th:data-peso="${p.peso}" th:value="${p.id}" th:text="${p.produto.nome} + ' - ' + 
+						<option th:each="p : ${cotados}" th:data-peso="${p.peso}"
+							th:value="${p.id}"
+							th:text="${p.produto.nome} + ' - ' + 
             ${p.codigo} + ' - ' + ${p.variedade}  + '  ' + 
             ${p.subvariedade} + '  ' + ${p.classificacao}  + '  ' + 
             ${p.unidade} + '  ' + ${p.peso} + '   ' + 
@@ -54,19 +63,19 @@
 					<div class="input-group-append">
 						<span class="input-group-text">ou</span>
 					</div>
-					<input type="text" class="form-control" id="codigoPesquisa" placeholder="Pesquisar por código"
-						oninput="filtrarPorCodigo()">
+					<input type="text" class="form-control" id="codigoPesquisa"
+						placeholder="Pesquisar por código" oninput="filtrarPorCodigo()">
 				</div>
 			</div>
 
 			<div>
-				<p id="selecaoAtual">Seleção Atual: </p>
+				<p id="selecaoAtual">Seleção Atual:</p>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<label for="dataCotacao">Data da Cotação</label> <input type="date" class="form-control"
-						id="dataCotacao" autofocus="autofocus" th:field="*{dataCotacao}" th:value="${dataCotacao}"
-						required />
+					<label for="dataCotacao">Data da Cotação</label> <input type="date"
+						class="form-control" id="dataCotacao" autofocus="autofocus"
+						th:field="*{dataCotacao}" th:value="${dataCotacao}" required />
 					<div class="invalid-feedback">
 						<span th:errors="*{dataCotacao}"></span>
 					</div>
@@ -79,8 +88,9 @@
 
 				<div class="col ">
 					<label for="valor1">Valor cotado(1)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor1" data-mask-reverse="true" th:field="*{valor1}"
-						required th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor1"
+						data-mask-reverse="true" th:field="*{valor1}" required
+						th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor1}"></span>
@@ -89,8 +99,9 @@
 
 				<div class="col">
 					<label for="valor2">Valor cotado(2)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor2" data-mask-reverse="true" th:field="*{valor2}"
-						required th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor2"
+						data-mask-reverse="true" th:field="*{valor2}" required
+						th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor2}"></span>
@@ -104,8 +115,9 @@
 
 				<div class="col">
 					<label for="valor3">Valor cotado(3)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor3" data-mask-reverse="true" th:field="*{valor3}"
-						required th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor3"
+						data-mask-reverse="true" th:field="*{valor3}" required
+						th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor3}"></span>
@@ -113,8 +125,9 @@
 				</div>
 				<div class="col">
 					<label for="valor4">Valor cotado(4)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor4" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor4}" th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor4"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor4}"
+						th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor4}"></span>
 					</div>
@@ -126,8 +139,9 @@
 
 				<div class="col">
 					<label for="valor5">Valor cotado(5)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor5" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor5}" th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor5"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor5}"
+						th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor5}"></span>
@@ -135,8 +149,9 @@
 				</div>
 				<div class="col">
 					<label for="valor6">Valor cotado(6)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor6" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor6}" th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor6"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor6}"
+						th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor6}"></span>
 					</div>
@@ -148,8 +163,9 @@
 
 				<div class="col">
 					<label for="valor7">Valor cotado(7)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor7" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor7}" th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor7"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor7}"
+						th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor7}"></span>
@@ -157,8 +173,9 @@
 				</div>
 				<div class="col">
 					<label for="valor8">Valor cotado(8)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor8" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor8}" th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor8"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor8}"
+						th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor8}"></span>
 					</div>
@@ -167,8 +184,9 @@
 			<div class="row">
 				<div class="col">
 					<label for="valor9">Valor cotado(9)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor9" data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor9}" th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
+						class="form-control valor-com-virgula" id="valor9"
+						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor9}"
+						th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{valor9}"></span>
@@ -176,8 +194,9 @@
 				</div>
 				<div class="col">
 					<label for="valor10">Valor cotado(10)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor10" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{valor10}"
+						class="form-control valor-com-virgula" id="valor10"
+						data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{valor10}"
 						th:classappend="${#fields.hasErrors('valor10')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor10}"></span>
@@ -187,31 +206,35 @@
 
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<label for="fatorSazonal">Fator Sazonal</label> <select id="fatorSazonal" class="form-control"
-						th:field="*{fatorSazonal}" th:classappend="${#fields.hasErrors('fatorSazonal')} ? 'is-invalid'">
-						<option value="">Selecione...</option>
-						<option th:each="fator : ${fatores}" th:value="${fator}" th:text="${fator.descricao}">Normal
-						</option>
-					</select>
+					<label for="pesoVariavel">Peso Opcional</label> 
+					
+					<input type="text"
+						class="form-control valor-com-virgula" id="pesoVariavel"
+						data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{pesoVariavel}"
+						th:classappend="${#fields.hasErrors('pesoVariavel')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
-						<span th:errors="*{fatorSazonal}"></span>
+						<span th:errors="*{pesoVariavel}"></span>
 					</div>
+					
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col">
-					<label for="precoMinimo">Preco Minimo</label> <input type="text" class="form-control"
-						id="precoMinimo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMinimo}"
-						required th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
+					<label for="precoMinimo">Preco Minimo</label> <input type="text"
+						class="form-control" id="precoMinimo" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{precoMinimo}" required
+						th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMinimo}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="precoMedio">Preco Médio</label> <input type="text" class="form-control" id="precoMedio"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMedio}" required
+					<label for="precoMedio">Preco Médio</label> <input type="text"
+						class="form-control" id="precoMedio" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{precoMedio}" required
 						th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMedio}"></span>
@@ -219,31 +242,35 @@
 				</div>
 
 				<div class="col">
-					<label for="precoMaximo">Preco Máximo</label> <input type="text" class="form-control"
-						id="precoMaximo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMaximo}"
-						required th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
+					<label for="precoMaximo">Preco Máximo</label> <input type="text"
+						class="form-control" id="precoMaximo" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{precoMaximo}" required
+						th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMaximo}"></span>
 					</div>
 				</div>
 
 				<div class="col">
-					<label for="valorComum">Preco Comum</label> <input type="text" class="form-control" id="valorComum"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valorComum}" required
+					<label for="valorComum">Preco Comum</label> <input type="text"
+						class="form-control" id="valorComum" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{valorComum}" required
 						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
-					
-					
+
+
 					<div class="invalid-feedback">
 						<span th:errors="*{valorComum}"></span>
 					</div>
 				</div>
 
-				<input type="hidden" id="valorComumAnterior" name="valorComumAnterior" value="${valorComumAnterior}" />		
-				<input type="hidden" id="mercado" name="mercado" value="${mercado}" />
+				<input type="hidden" id="valorComumAnterior"
+					name="valorComumAnterior" value="${valorComumAnterior}" /> <input
+					type="hidden" id="mercado" name="mercado" value="${mercado}" />
 
 				<div class="col">
 					<br>
-					<button type="button" class="btn btn-primary" onclick="calcularValores()">Calcular Valores</button>
+					<button type="button" class="btn btn-primary"
+						onclick="calcularValores()">Calcular Valores</button>
 				</div>
 			</div>
 
@@ -252,7 +279,8 @@
 
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
-					<button type="submit" class="btn btn-primary btn-sm" onclick="calcularMercado()">Salvar</button>
+					<button type="submit" class="btn btn-primary btn-sm"
+						onclick="calcularMercado()">Salvar</button>
 				</div>
 			</div>
 		</form>
