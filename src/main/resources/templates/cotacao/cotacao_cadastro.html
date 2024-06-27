@@ -407,8 +407,13 @@
 				console.log("Peso da Cotação: " + selectedOption.dataset.peso);
 
 				var pesoDaCotacaoSelecionada = parseFloat(selectedOption.dataset.peso);
-
-
+				var pesoVariavel = parseFloat(document.getElementById('pesoVariavel').value.replace(',', '.'));
+				console.log("Peso Variavel da Cotação: " + pesoVariavel);
+				
+				
+				if (!isNaN(pesoVariavel)) {
+		            pesoDaCotacaoSelecionada = pesoVariavel;
+		        }
 				
 				if (isNaN(pesoDaCotacaoSelecionada) || pesoDaCotacaoSelecionada === null) {
 					// Se for NaN ou nulo, atribui o valor 1
