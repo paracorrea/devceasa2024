@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.tymeleaf.org">
+<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <link th:href="@{/css/myStyle.css}" rel="stylesheet">
 <title>Sistema DEVCEASA</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 </head>
 
@@ -24,189 +18,139 @@
 
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
 
-
-
 	<div class="container">
 
 		<div th:replace="~{alert}"></div>
 
 		<br>
 		<div class="meu-hr">
-
-			<p>Cotação de produtos</p>
-
+			<p>Edição de Cotação</p>
 		</div>
 
-
-		<form
-			th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}"
-			th:object="${cotacao}" method="POST">
+		<form th:action="@{/cotacoes/editar}" th:object="${cotacao}" method="POST">
 
 			<div th:replace="~{validacao :: validacao}"></div>
 
 			<div class="form-row">
 				<div class="form-group col-md-8">
-					<label for="propriedades">Produto/Propriedade Edição</label>
-
-					<!-- Adicione o campo para mostrar o nome do produto associado à cotação -->
-					<input type="text" class="form-control"
-						th:value="${cotacao.propriedade.produto.nome + ' - ' + cotacao.propriedade.variedade + ' - ' + cotacao.propriedade.subvariedade + ' - ' + cotacao.propriedade.classificacao
-               + ' - ' + cotacao.propriedade.unidade + ' - ' + cotacao.propriedade.peso + ' - ' + cotacao.propriedade.embalagem}"
-						readonly data-peso="${peso}" />
-
-					<!-- Adicione um campo para mostrar o valor do peso -->
-					<div>
-						<span th:text="${peso}"></span>
+					<label for="propriedade">Produto/Propriedade</label>
+					<select id="propriedade" class="form-control" th:field="*{propriedade}" onchange="limparCampos(); buscarCotacaoAnterior()">
+						<option value="">Selecione...</option>
+						<option th:each="p : ${cotados}" th:data-peso="${p.peso}" th:value="${p.id}" th:selected="${p.id == cotacao.propriedade.id}" th:text="${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}  + '  ' + ${p.subvariedade} + '  ' + ${p.classificacao}  + '  ' + ${p.unidade} + '  ' + ${p.peso} + '   ' + ${p.embalagem}">
+						</option>
+					</select>
+					<div class="input-group-append">
+						<span class="input-group-text">ou</span>
 					</div>
-
-					<!-- Adicione um campo oculto para enviar o valor do ID da propriedade no formulário -->
-					<input type="hidden" id="peso" th:field="*{propriedade}"
-						th:value="${cotacao.propriedade.id}" />
-
-					<!-- Adicione um campo oculto para enviar o valor do peso da propriedade no formulário -->
+					<input type="text" class="form-control" id="codigoPesquisa" placeholder="Pesquisar por código" oninput="filtrarPorCodigo()">
 				</div>
 			</div>
 
-
-
-
+			<div>
+				<p id="selecaoAtual">Seleção Atual:</p>
+			</div>
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="dataCotacao">Data da Cotação</label>
-					<p>
-						Data Atual: <span th:text="${dataAtual}"></span>
-					</p>
-
-					<input type="date" class="form-control" id="dataCotacao"
-						autofocus="autofocus" th:field="*{dataCotacao}"
-						value="${dataAtual}" readonly />
-
-
-
-
+					<input type="date" class="form-control" id="dataCotacao" autofocus="autofocus" th:field="*{dataCotacao}" th:value="${cotacao.dataCotacao}" required />
 					<div class="invalid-feedback">
-
 						<span th:errors="*{dataCotacao}"></span>
-
 					</div>
 				</div>
 			</div>
 
-
 			<div class="row">
-
-				<div class="col ">
-					<label for="valor1">Valor cotado(1)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor1"
-						data-mask-reverse="true" th:field="*{valor1}" required
-						th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
-
+				<div class="col">
+					<label for="valor1">Valor cotado(1)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor1" data-mask-reverse="true" th:field="*{valor1}" required th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor1}"></span>
 					</div>
 				</div>
 
 				<div class="col">
-					<label for="valor2">Valor cotado(2)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor2"
-						data-mask-reverse="true" th:field="*{valor2}" required
-						th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
-
+					<label for="valor2">Valor cotado(2)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor2" data-mask-reverse="true" th:field="*{valor2}" required th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor2}"></span>
 					</div>
 				</div>
-
 			</div>
 
-
 			<div class="row">
-
 				<div class="col">
-					<label for="valor3">Valor cotado(3)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor3"
-						data-mask-reverse="true" th:field="*{valor3}" required
-						th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
-
+					<label for="valor3">Valor cotado(3)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor3" data-mask-reverse="true" th:field="*{valor3}" required th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor3}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="valor4">Valor cotado(4)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor4"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor4}"
-						th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
+					<label for="valor4">Valor cotado(4)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor4" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor4}" th:classappend="${#fields.hasErrors('valor4')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor4}"></span>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="row">
-
 				<div class="col">
-					<label for="valor5">Valor cotado(5)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor5"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor5}"
-						th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
-
+					<label for="valor5">Valor cotado(5)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor5" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor5}" th:classappend="${#fields.hasErrors('valor5')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor5}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="valor6">Valor cotado(6)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor6"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor6}"
-						th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
+					<label for="valor6">Valor cotado(6)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor6" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor6}" th:classappend="${#fields.hasErrors('valor6')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor6}"></span>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="row">
-
 				<div class="col">
-					<label for="valor7">Valor cotado(7)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor7"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor7}"
-						th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
-
+					<label for="valor7">Valor cotado(7)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor7" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor7}" th:classappend="${#fields.hasErrors('valor7')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor7}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="valor8">Valor cotado(8)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor8"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor8}"
-						th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
+					<label for="valor8">Valor cotado(8)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor8" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor8}" th:classappend="${#fields.hasErrors('valor8')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor8}"></span>
 					</div>
 				</div>
 			</div>
 			<div class="row">
+					<label for="pesoVariavel">Peso Opcional</label> 
+					
+					<input type="text"
+						class="form-control valor-com-virgula" id="pesoVariavel"
+						data-mask="#.##0,00" data-mask-reverse="true"
+						th:field="*{pesoVariavel}"
+						th:classappend="${#fields.hasErrors('pesoVariavel')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{pesoVariavel}"></span>
+					</div>
+					
+				</div>
+			<div class="row">
 				<div class="col">
-					<label for="valor9">Valor cotado(9)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor9"
-						data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor9}"
-						th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
-
+					<label for="valor9">Valor cotado(9)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor9" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor9}" th:classappend="${#fields.hasErrors('valor9')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor9}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="valor10">Valor cotado(10)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor10"
-						data-mask="#.##0,00" data-mask-reverse="true"
-						th:field="*{valor10}"
-						th:classappend="${#fields.hasErrors('valor10')} ? 'is-invalid'" />
+					<label for="valor10">Valor cotado(10)</label>
+					<input type="text" class="form-control valor-com-virgula" id="valor10" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor10}" th:classappend="${#fields.hasErrors('valor10')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valor10}"></span>
 					</div>
@@ -215,12 +159,10 @@
 
 			<div class="form-row">
 				<div class="form-group col-md-2">
-					<label for="fatorSazonal">Fator Sazonal</label> <select
-						id="fatorSazonal" class="form-control" th:field="*{fatorSazonal}"
-						th:classappend="${#fields.hasErrors('fatorSazonal')} ? 'is-invalid'">
+					<label for="fatorSazonal">Fator Sazonal</label> <select id="fatorSazonal" class="form-control" th:field="*{fatorSazonal}" th:classappend="${#fields.hasErrors('fatorSazonal')} ? 'is-invalid'">
 						<option value="">Selecione...</option>
-						<option th:each="fator : ${fatores}" th:value="${fator}"
-							th:text="${fator.descricao}">Normal</option>
+						<option th:each="fator : ${fatores}" th:value="${fator}" th:text="${fator.descricao}">Normal
+						</option>
 					</select>
 					<div class="invalid-feedback">
 						<span th:errors="*{fatorSazonal}"></span>
@@ -230,182 +172,250 @@
 
 			<div class="row">
 				<div class="col">
-					<label for="precoMinimo">Preco Minimo</label> <input type="text"
-						class="form-control" id="precoMinimo" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMinimo}" required
-						th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
-
+					<label for="precoMinimo">Preco Minimo</label>
+					<input type="text" class="form-control" id="precoMinimo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMinimo}" required th:classappend="${#fields.hasErrors('precoMinimo')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMinimo}"></span>
 					</div>
 				</div>
 				<div class="col">
-					<label for="precoMedio">Preco Médio</label> <input type="text"
-						class="form-control" id="precoMedio" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMedio}" required
-						th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
+					<label for="precoMedio">Preco Médio</label>
+					<input type="text" class="form-control" id="precoMedio" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMedio}" required th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMedio}"></span>
 					</div>
 				</div>
-
 				<div class="col">
-					<label for="precoMaximo">Preco Máximo</label> <input type="text"
-						class="form-control" id="precoMaximo" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMaximo}" required
-						th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
+					<label for="precoMaximo">Preco Máximo</label>
+					<input type="text" class="form-control" id="precoMaximo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMaximo}" required th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{precoMaximo}"></span>
 					</div>
 				</div>
-
 				<div class="col">
-					<label for="valorComum">Preco Comum</label> <input type="text"
-						class="form-control" id="valorComum" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{valorComum}" required
-						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
+					<label for="valorComum">Preco Comum</label>
+					<input type="text" class="form-control" id="valorComum" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valorComum}" required th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valorComum}"></span>
 					</div>
 				</div>
-
+				<input type="hidden" id="valorComumAnterior" name="valorComumAnterior" value="${valorComumAnterior}" />
+				<input type="hidden" id="mercado" name="mercado" value="${mercado}" />
 				<div class="col">
 					<br>
-					<button type="button" class="btn btn-primary"
-						onclick="calcularValores()">Calcular Valores</button>
+					<button type="button" class="btn btn-primary" onclick="calcularValores()">Calcular Valores</button>
 				</div>
 			</div>
+
 			<div class="row">
-
 				<div class="col">
-					<br> <input type="hidden" id="id" th:field="*{id}" />
-					<button type="submit" class="btn btn-primary" id="btnSalvar">Salvar</button>
-
-
+					<br>
+					<input type="hidden" id="id" th:field="*{id}" />
+					<button type="submit" class="btn btn-primary btn-sm" onclick="calcularMercado()">Salvar</button>
 				</div>
 			</div>
-
 		</form>
-
-
 	</div>
 
-
-	<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    function validarNumero(valor, campoId) {
-        var numero = parseFloat(valor.replace(',', '.'));
-
-        if (isNaN(numero)) {
-            alert("Por favor, insira um valor numérico válido no campo " + campoId + ".");
-            return false;
-        }
-
-        return true;
-    }
-
-    function calcularValores() {
-       
-    	 console.log('console log - entrada()');
-    	var valores = [];
-        var camposValidos = true;
-
-        for (var i = 1; i <= 10; i++) {
-        	
-        	
-            var campoId = 'valor' + i;
-            var valor = document.getElementById(campoId).value;
-            
-            console.log("console log - for - valor: " + valor);
-
-            if (valor !== '') {
-                if (!validarNumero(valor, campoId)) {
-                    camposValidos = false;
-                    break;
-                }
-
-                valores.push(parseFloat(valor.replace(',', '.')));
-                console.log("console log - for - valores: " + valores);
-            }
-        }
-
-        if (camposValidos) {
-        	
-       	 // Ajusta o cálculo do preço mínimo considerando o peso da cotação
-           // var selectedIndex = document.getElementById('propriedade').selectedIndex;
-           // var selectedOption = document.getElementById('propriedade').options[selectedIndex];
-            
-          
-
-           var pesoDaCotacaoSelecionada =  /*[[${peso}]]*/ 1; // Valor padrão caso haja algum problema
-    		console.log("Peso na View (HTML): " + pesoDaCotacaoSelecionada);
- 
-          
-            // Adicione outro log para verificar se o peso foi capturado corretamente
-            console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
-          
-        
-        	
-            if (isNaN(pesoDaCotacaoSelecionada) || pesoDaCotacaoSelecionada === null) {
-            	  // Se for NaN ou nulo, atribui o valor 1
-            	  pesoDaCotacaoSelecionada = 1;
-            	}
-        	
-        	console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
-        	
-        	
-        	
-            var precoMinimo = Math.min.apply(null, valores) / pesoDaCotacaoSelecionada;
-            var precoMaximo = Math.max.apply(null, valores) / pesoDaCotacaoSelecionada;
-            var precoMedio = valores.reduce(function (acc, val) {
-                return acc + val;
-            }, 0) / valores.length / pesoDaCotacaoSelecionada;
-
-            document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
-            document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
-            document.getElementById('precoMedio').value = precoMedio.toFixed(2).replace(',', '.');
-
-            // Calcula o valor modal
-            var contagemValores = {};
-            valores.forEach(function (valor) {
-                contagemValores[valor] = (contagemValores[valor] || 0) + 1;
-            });
-
-            var valorModal = null;
-            var contagemMaxima = 0;
-
-            for (var valor in contagemValores) {
-                if (contagemValores[valor] > contagemMaxima) {
-                    contagemMaxima = contagemValores[valor];
-                    valorModal = parseFloat(valor) / pesoDaCotacaoSelecionada;
-                }
-            }
-
-            if (contagemMaxima === 1) {
-                alert('Alerta: Nenhum valor modal encontrado.');
-            } else {
-                alert('Valor Modal: ' + valorModal.toFixed(2));
-
-                // Atualiza o campo valorComum (modal)
-                document.getElementById('valorComum').value = valorModal.toFixed(2).replace(',', '.');
-            }
-        }
-    }
-    /*]]>*/
-</script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
-		$(document).ready(function() {
-			// Aplica a máscara para aceitar somente vírgulas em todos os campos de valor
+
+		function limparCampos() {
+			document.getElementById("valor1").value = "";
+			document.getElementById("valor2").value = "";
+			document.getElementById("valor3").value = "";
+			document.getElementById("valor4").value = "";
+			document.getElementById("valor5").value = "";
+			document.getElementById("valor6").value = "";
+			document.getElementById("valor7").value = "";
+			document.getElementById("valor8").value = "";
+			document.getElementById("valor9").value = "";
+			document.getElementById("valor10").value = "";
+			document.getElementById("precoMinimo").value = "";
+			document.getElementById("precoMedio").value = "";
+			document.getElementById("precoMaximo").value = "";
+			document.getElementById("valorComum").value = "";
+
+			buscarCotacaoAnterior();
+
+		}
+
+		function buscarCotacaoAnterior() {
+
+			var propriedadeId = document.getElementById("propriedade").value;
+			var dataCotacao = document.getElementById("dataCotacao").value;
+
+			console.log("ID da cotação:", propriedadeId);
+			console.log("Data da cotação:", dataCotacao);
+
+			$.ajax({
+				url: "/cotacoes/buscar-cotacao-anterior",
+				method: "GET",
+				data: {
+					propriedadeId: propriedadeId,
+					dataCotacao: dataCotacao
+				},
+				success: function (response) {
+					var campos = ["valor1", "valor2", "valor3", "valor4", "valor5", "valor6", "valor7", "valor8", "valor9", "valor10"];
+					campos.forEach(function (campo) {
+						document.getElementById(campo).value = response[campo];
+					});
+
+					document.getElementById("precoMinimo").value = response.precoMinimo;
+					document.getElementById("precoMedio").value = response.precoMedio;
+					document.getElementById("precoMaximo").value = response.precoMaximo;
+					document.getElementById("valorComum").value = response.valorComum;
+
+					document.getElementById("valorComumAnterior").value = response.valorComum;
+					console.log("Valor comum anterior:", document.getElementById("valorComumAnterior").value = response.valorComum);
+				},
+				error: function () {
+				}
+			});
+		}
+
+		function validarNumero(valor, campoId) {
+			var numero = parseFloat(valor.replace(',', '.'));
+			if (isNaN(numero)) {
+				alert("Por favor, insira um valor numérico válido no campo " + campoId + ".");
+				return false;
+			}
+			return true;
+		}
+
+		function calcularValores() {
+			var valores = [];
+			var camposValidos = true;
+
+			for (var i = 1; i <= 10; i++) {
+				var campoId = 'valor' + i;
+				var valor = document.getElementById(campoId).value;
+
+				if (valor !== '') {
+					if (!validarNumero(valor, campoId)) {
+						camposValidos = false;
+						break;
+					}
+					valores.push(parseFloat(valor.replace(',', '.')));
+				}
+			}
+
+			if (camposValidos) {
+				var selectedIndex = document.getElementById('propriedade').selectedIndex;
+				var selectedOption = document.getElementById('propriedade').options[selectedIndex];
+				var pesoDaCotacaoSelecionada = parseFloat(selectedOption.dataset.peso);
+				var pesoVariavel = parseFloat(document.getElementById('pesoVariavel').value.replace(',', '.'));
+
+				console.log("Peso Variavel da Cotação: " + pesoVariavel);
+
+				if (!isNaN(pesoVariavel)) {
+					pesoDaCotacaoSelecionada = pesoVariavel;
+				}
+
+				if (isNaN(pesoDaCotacaoSelecionada) || pesoDaCotacaoSelecionada === null) {
+					pesoDaCotacaoSelecionada = 1;
+				}
+
+				console.log("Peso da Cotação (Float): " + pesoDaCotacaoSelecionada);
+
+				var precoMinimo = Math.min.apply(null, valores) / pesoDaCotacaoSelecionada;
+				var precoMaximo = Math.max.apply(null, valores) / pesoDaCotacaoSelecionada;
+				var precoMedio = valores.reduce(function (acc, val) {
+					return acc + val;
+				}, 0) / valores.length / pesoDaCotacaoSelecionada;
+
+				document.getElementById('precoMinimo').value = precoMinimo.toFixed(2).replace(',', '.');
+				document.getElementById('precoMaximo').value = precoMaximo.toFixed(2).replace(',', '.');
+				document.getElementById('precoMedio').value = precoMedio.toFixed(2).replace(',', '.');
+
+				var contagemValores = {};
+				valores.forEach(function (valor) {
+					contagemValores[valor] = (contagemValores[valor] || 0) + 1;
+				});
+
+				var valorModal = null;
+				var contagemMaxima = 0;
+
+				for (var valor in contagemValores) {
+					if (contagemValores[valor] > contagemMaxima) {
+						contagemMaxima = contagemValores[valor];
+						valorModal = parseFloat(valor) / pesoDaCotacaoSelecionada;
+					}
+				}
+
+				if (contagemMaxima === 1) {
+					alert('Alerta: Nenhum valor modal encontrado.');
+				} else {
+					alert('Valor Modal: ' + valorModal.toFixed(2));
+					document.getElementById('valorComum').value = valorModal.toFixed(2).replace(',', '.');
+				}
+			}
+		}
+
+		function calcularMercado() {
+			var valorComumAtual = parseFloat(document.getElementById("valorComum").value);
+			var valorComumAnterior = parseFloat(document.getElementById("valorComumAnterior").value);
+
+			console.log("Valor Comum Anterior = : " + valorComumAnterior);
+			console.log("Valor Comum Atual = : " + valorComumAtual);
+
+			if (!isNaN(valorComumAnterior)) {
+				if (valorComumAtual > valorComumAnterior) {
+					document.getElementById("mercado").value = "MFI";
+				} else if (valorComumAtual < valorComumAnterior) {
+					document.getElementById("mercado").value = "MFR";
+				} else if (valorComumAtual === valorComumAnterior) {
+					document.getElementById("mercado").value = "ME";
+				} else {
+					document.getElementById("mercado").value = "MV";
+				}
+			} else {
+				document.getElementById("mercado").value = "MV";
+			}
+		}
+
+		function limparCampoCodigo() {
+			document.getElementById("codigoPesquisa").value = "";
+		}
+
+		function filtrarPorCodigo() {
+			var input, filter, select, options, i, txtValue;
+			input = document.getElementById("codigoPesquisa");
+			filter = input.value.toUpperCase();
+			select = document.getElementById("propriedade");
+			options = select.getElementsByTagName("option");
+
+			for (i = 0; i < options.length; i++) {
+				options[i].selected = false;
+			}
+
+			for (i = 0; i < options.length; i++) {
+				txtValue = options[i].text || options[i].textContent;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					options[i].style.display = "";
+					select.selectedIndex = i;
+				} else {
+					options[i].style.display = "none";
+				}
+			}
+
+			var selectedOption = select.options[select.selectedIndex];
+			var selectedText = selectedOption ? selectedOption.text || selectedOption.textContent : "";
+			document.getElementById("selecaoAtual").innerText = "Seleção Atual: " + selectedText;
+
+			limparCampos();
+			buscarCotacaoAnterior();
+		}
+	</script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(document).ready(function () {
 			$('.valor-com-virgula').mask('#.##0,00', {
-				reverse : true
+				reverse: true
 			});
 		});
 		/*]]>*/
 	</script>
-
-
 
 </body>
 

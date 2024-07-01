@@ -116,12 +116,13 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="peso">Peso</label> <input type="text" 
+						<label for="peso">Peso</label> 
+						<input type="text" 
 							class="form-control" id="peso" placeholder="Peso"
 							autofocus="autofocus" th:field="*{peso}" data-mask="#.##0,00" data-mask-reverse="true"
 							th:classappend="${#fields.hasErrors('peso')} ? 'is-invalid'" />
 						<div class="invalid-feedback">
-							<span Please provide a valid city.></span>
+							<span Inserir um peso></span>
 							<span th:errors="*{peso}"></span>
 						</div>
 					</div>

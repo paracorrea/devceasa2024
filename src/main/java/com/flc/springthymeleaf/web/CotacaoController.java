@@ -233,9 +233,10 @@ public class CotacaoController {
         String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         // Adiciona os dados ao PDF
-        document.add(new Paragraph("Formulário de Cotação CEASA CAMPINAS").setFontSize(7));
+        document.add(new Paragraph("CENTRAIS DE ABASTECIMENTO DE CAMPINAS - SA").setFontSize(7));
+        document.add(new Paragraph("Formulário de Cotação - CEASA CAMPINAS - Boletim número: " + numeroFeira).setFontSize(7));
         document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(7));
-        document.add(new Paragraph("Número da Feira: " + numeroFeira).setFontSize(7));
+       
 
         // Define estilos para a tabela
         Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
