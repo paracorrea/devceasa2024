@@ -62,6 +62,9 @@ public class Propriedade  implements Serializable {
 	
 	// 1 para cotado 0 para não cotar
 	
+	 @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
+	    private List<ItemNotaFiscal> itensNotaFiscal = new ArrayList<>();
+	
 	@Column(columnDefinition = "bit default 0")
 	private Boolean status=false;
 	
@@ -209,6 +212,12 @@ public class Propriedade  implements Serializable {
 	public void setCotacao(List<Cotacao> cotacoes) {
 		this.cotacoes = cotacoes;
 	}
+	 public List<ItemNotaFiscal> getItensNotaFiscal() {
+	        return Collections.unmodifiableList(itensNotaFiscal);
+	    }
 
+	    public void setItensNotaFiscal(List<ItemNotaFiscal> itensNotaFiscal) {
+	        this.itensNotaFiscal = itensNotaFiscal;
+	    }
 
 }
