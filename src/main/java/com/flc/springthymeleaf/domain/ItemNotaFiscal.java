@@ -3,6 +3,8 @@ package com.flc.springthymeleaf.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class ItemNotaFiscal implements Serializable {
     @ManyToOne
     @JoinColumn(name = "nota_fiscal_id")
     @NotNull(message = "Nota fiscal não pode ser nula")
+    @JsonBackReference
     private NotaFiscal notaFiscal;
 
     @ManyToOne
@@ -36,7 +39,7 @@ public class ItemNotaFiscal implements Serializable {
     private BigDecimal quantidade;
 
     @Column(name = "volume", nullable = false)
-    @NotNull(message = "Volume não pode ser nulo")
+    @NotNull(message = "Volume não pode ser nula")
     private BigDecimal volume;
 
     @Column(name = "valor_unitario", nullable = false)

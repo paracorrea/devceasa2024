@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -233,5 +234,15 @@ public class ProdutoController {
 		model.addAttribute("search", obj);
 		return "produto/produto_listar";
 		}
+	
+	 @GetMapping("/produtos/{id}")
+	    public ResponseEntity<Produto> getProdutoById(@PathVariable Integer id) {
+	        Produto produto = produtoService.findById(id);
+	        if (produto != null) {
+	            return ResponseEntity.ok(produto);
+	        } else {
+	            return ResponseEntity.notFound().build();
+	        }
+	    }
 }
 	

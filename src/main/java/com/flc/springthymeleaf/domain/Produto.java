@@ -27,118 +27,67 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "produto")
 public class Produto implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@Column(name = "nome", nullable = false, length = 25)
-	@NotBlank(message ="Campo não pode ser em branco")
-	@NotNull(message = "Produto não pode ser nullo")
-	private String nome;
+    @Column(name = "nome", nullable = false, length = 25)
+    @NotBlank(message = "Campo não pode ser em branco")
+    @NotNull(message = "Produto não pode ser nulo")
+    private String nome;
 
-	
-	@NotNull(message = "Selecione subgrupo relativo ao produto")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH })
-	@JoinColumn(name = "subgrupo_id")
-	@JsonIgnore
-	private Subgrupo subgrupo;
-	
-	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-	@OneToMany(mappedBy = "produto", cascade = { CascadeType.ALL })
+    @NotNull(message = "Selecione subgrupo relativo ao produto")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    @JoinColumn(name = "subgrupo_id")
+    @JsonIgnore
+    private Subgrupo subgrupo;
 
-	private List<Propriedade> propriedades = new ArrayList<>();
+    @OneToMany(mappedBy = "produto", cascade = { CascadeType.ALL })
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+    private List<Propriedade> propriedades = new ArrayList<>();
 
-	
-	
-	public Produto() {
-		super();
-	}
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
 
-	public Produto(String nome) {
-		super();
-		this.nome = nome;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	
-	public Produto(String nome, Subgrupo subgrupo) {
-		super();
-		this.nome = nome;
-		this.subgrupo = subgrupo;
-	}
-	
-	public Produto(String nome, Subgrupo subgrupo, List<Propriedade> propriedades) {
-		super();
-		this.nome = nome;
-		this.subgrupo = subgrupo;
-		this.propriedades = propriedades;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	
-	
-	public void addPropriedade(Propriedade thePropriedade) {
-		
-		this.propriedades.add(thePropriedade);
-		thePropriedade.setProduto(this);
-	
-	}
+    public void setNome(String nome) {
+        this.nome = nome.toUpperCase();
+    }
 
-	 public List<Propriedade> getPropriedade() {
-	        List<Propriedade> listaSegura = Collections.unmodifiableList(this.propriedades);  
-	        return listaSegura;
-	    }
-	
-	
-	public Integer getId() {
-		return id;
-	}
+    public Subgrupo getSubgrupo() {
+        return subgrupo;
+    }
 
-	
+    public void setSubgrupo(Subgrupo subgrupo) {
+        this.subgrupo = subgrupo;
+    }
 
+    public List<Propriedade> getPropriedades() {
+        return Collections.unmodifiableList(propriedades);
+    }
 
+    public void setPropriedades(List<Propriedade> propriedades) {
+        this.propriedades = propriedades;
+    }
 
+    public void addPropriedade(Propriedade thePropriedade) {
+        this.propriedades.add(thePropriedade);
+        thePropriedade.setProduto(this);
+    }
 
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome.toUpperCase();
-	}
-
-	public Subgrupo getSubgrupo() {
-		return subgrupo;
-	}
-
-	public void setSubgrupo(Subgrupo subgrupo) {
-		this.subgrupo = subgrupo;
-	}
-
-	public List<Propriedade> getPropriedades() {
-		return propriedades;
-	}
-
-	public void setPropriedades(List<Propriedade> propriedades) {
-		this.propriedades = propriedades;
-	}
-
-	@Override
-	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", subgrupo=" + subgrupo + ", propriedades=" + propriedades
-				+ "]";
-	}
-	
-	
-	
-	
-	
-
+    @Override
+    public String toString() {
+        return "Produto [id=" + id + ", nome=" + nome + ", subgrupo=" + subgrupo + ", propriedades=" + propriedades + "]";
+    }
 }
-

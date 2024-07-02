@@ -2,8 +2,12 @@ package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -60,7 +64,13 @@ public class NotaFiscal implements Serializable {
     @NotNull(message = "Data de emissão não pode ser nula")
     private LocalDate dataEmissao;
 
+    @Column(name = "data_entrada", nullable = false)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
+    @NotNull(message = "Data de entrada não pode ser nula")
+    private LocalDateTime dataEntrada;
+
     @OneToMany(mappedBy = "notaFiscal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ItemNotaFiscal> itens = new ArrayList<>();
 
     // Getters and Setters
@@ -136,6 +146,14 @@ public class NotaFiscal implements Serializable {
         this.dataEmissao = dataEmissao;
     }
 
+    public LocalDateTime getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(LocalDateTime dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
     public List<ItemNotaFiscal> getItens() {
         return itens;
     }
@@ -144,4 +162,3 @@ public class NotaFiscal implements Serializable {
         this.itens = itens;
     }
 }
-

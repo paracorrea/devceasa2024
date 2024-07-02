@@ -4,22 +4,26 @@ package com.flc.springthymeleaf.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "municipio")
 public class Municipio {
-    @Id
-    private Integer ibge;
+    
+	@Id
+	@NotNull(message = "IBGE não pode ser nulo")
+	
+    private String ibge;
     private String codigo;
     private String uf;
     private String nome;
 
     // Getters and setters
-    public Integer getIbge() {
+    public String getIbge() {
         return ibge;
     }
 
-    public void setIbge(Integer ibge) {
+    public void setIbge(String ibge) {
         this.ibge = ibge;
     }
 
