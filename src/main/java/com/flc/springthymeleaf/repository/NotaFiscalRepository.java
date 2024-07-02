@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import com.flc.springthymeleaf.domain.NotaFiscal;
 
 public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Integer>{
 
-	List<NotaFiscal> findByDataEntrada(LocalDateTime dataEntrada);
+	//List<NotaFiscal> findByDataEntrada(LocalDate dataEntrada);
 
 
 	

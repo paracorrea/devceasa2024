@@ -2,12 +2,14 @@ package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,6 +20,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -60,14 +63,20 @@ public class NotaFiscal implements Serializable {
     @NotNull(message = "Permissionário não pode ser nulo")
     private Permissionario permissionario;
 
-    @Column(name = "data_emissao", nullable = false)
-    @NotNull(message = "Data de emissão não pode ser nula")
-    private LocalDate dataEmissao;
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "data_emissao", columnDefinition = "DATE")
+    //@NotNull(message = "Campo não pode ser nulo")
+    private LocalDate dataEmissao = LocalDate.now();
+    
+    
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "data_entrada", columnDefinition = "DATE")
+    //@NotNull(message = "Campo não pode ser nulo")
+    private LocalDate dataEntrada= LocalDate.now();
+    
+   
+    
 
-    @Column(name = "data_entrada", nullable = false)
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss")
-    @NotNull(message = "Data de entrada não pode ser nula")
-    private LocalDateTime dataEntrada;
 
     @OneToMany(mappedBy = "notaFiscal", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -138,23 +147,8 @@ public class NotaFiscal implements Serializable {
         this.permissionario = permissionario;
     }
 
-    public LocalDate getDataEmissao() {
-        return dataEmissao;
-    }
 
-    public void setDataEmissao(LocalDate dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
-
-    public LocalDateTime getDataEntrada() {
-        return dataEntrada;
-    }
-
-    public void setDataEntrada(LocalDateTime dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
-
-    public List<ItemNotaFiscal> getItens() {
+	public List<ItemNotaFiscal> getItens() {
         return itens;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,11 +19,13 @@ public class NotaFiscalController {
 
     @PostMapping("/save")
     public NotaFiscal saveNotaFiscal(@RequestBody NotaFiscal notaFiscal) {
-        return notaFiscalService.save(notaFiscal);
+      
+    	
+    	return notaFiscalService.save(notaFiscal);
     }
 
-    @GetMapping("/por-data-entrada")
-    public List<NotaFiscal> findByDataEntrada(@RequestParam("dataEntrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataEntrada) {
-        return notaFiscalService.findByDataEntrada(dataEntrada);
-    }
+//    @GetMapping("/por-data-entrada")
+//    public List<NotaFiscal> findByDataEntrada(@RequestParam("dataEntrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataEntrada) {
+//        return notaFiscalService.findByDataEntrada(dataEntrada);
+//    }
 }
