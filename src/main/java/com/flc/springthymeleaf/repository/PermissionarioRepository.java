@@ -1,9 +1,12 @@
-package com.flc.springthymeleaf.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+
+	package com.flc.springthymeleaf.repository;
 
 import com.flc.springthymeleaf.domain.Permissionario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PermissionarioRepository extends JpaRepository<Permissionario, Long>{
-
+@Repository
+public interface PermissionarioRepository extends JpaRepository<Permissionario, String> {
 }
+

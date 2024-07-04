@@ -7,22 +7,5 @@ import org.springframework.web.bind.annotation.*;
 
 
 
-@RestController
-@RequestMapping("/notas-fiscais")
-public class NotaFiscalAPIController {
 
-    @Autowired
-    private NotaFiscalService notaFiscalService;
 
-    @PostMapping("/save")
-    public NotaFiscal saveNotaFiscal(@RequestBody NotaFiscal notaFiscal) {
-      
-    	
-    	return notaFiscalService.save(notaFiscal);
-    }
-
-//    @GetMapping("/por-data-entrada")
-//    public List<NotaFiscal> findByDataEntrada(@RequestParam("dataEntrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate dataEntrada) {
-//        return notaFiscalService.findByDataEntrada(dataEntrada);
-//    }
-}

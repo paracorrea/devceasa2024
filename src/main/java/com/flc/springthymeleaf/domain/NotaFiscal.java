@@ -16,9 +16,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name  = "notafiscal")
 public class NotaFiscal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,14 +62,14 @@ public class NotaFiscal implements Serializable {
 
     @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "data_emissao", columnDefinition = "DATE")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private LocalDate dataEmissao = LocalDate.now();
+    @NotNull(message = "Campo não pode ser nulo")
+    private LocalDate dataEmissao = LocalDate.now() ;
     
     
     @DateTimeFormat(iso = ISO.DATE)
     @Column(name = "data_entrada", columnDefinition = "DATE")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private LocalDate dataEntrada= LocalDate.now();
+    @NotNull(message = "Campo não pode ser nulo")
+    private LocalDate dataEntrada = LocalDate.now();
     
    
     

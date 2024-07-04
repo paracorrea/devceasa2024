@@ -1,6 +1,8 @@
 package com.flc.springthymeleaf.service;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.flc.springthymeleaf.domain.Municipio;
@@ -20,6 +22,11 @@ public class MunicipioService {
 	public void save(Municipio municipio) {
 		
 		municipioRepository.save(municipio);
+	}
+
+	public List<Municipio> findAll() {
+		// TODO Auto-generated method stub
+		return municipioRepository.findAll();
 	}
 	
 	
