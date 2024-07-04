@@ -18,17 +18,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class DevSecurityConfig {
 
     @Bean
-    public UserDetailsManager userDetaisManager(DataSource dataSource) {
+    UserDetailsManager userDetaisManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorizeRequests -> 

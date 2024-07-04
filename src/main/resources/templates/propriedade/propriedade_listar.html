@@ -1,72 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.tymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
-	<title>Sistema DEVCEASA</title>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+	rel="stylesheet">
+<title>Sistema DEVCEASA - Feiras</title>
 </head>
 
 <body>
 
-	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
-	
-	
-	<section class="layout-content" layout:fragment="corpo">
-	<div class="container">
-		
-				<table class="table">
-			<thead>
-				<tr>
-					<th>Produto</th>
-					<th>Id</th>
-					<th>Código</th>
-					<th>Variedade</th>
-					<th>Subvariedade</th>
-					<th>Classificacao</th>
-					<th>Embalagem</th>
-					<th>Peso</th>
-					<th>Unidade</th>
-					<th>Cotação</th>
-					<th>Editar/Excluir</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="prop : ${propriedades}">
-					<td th:text="${prop.produto.nome}"></td>
-					<td th:text="${prop.id}"></td>
-					<td th:text="${prop.codigo}"></td>
-					<td th:text="${prop.variedade}"></td>
-					<td th:text="${prop.subvariedade}"></td>
-					<td th:text="${prop.classificacao}"></td>
-					<td th:text="${prop.embalagem}"></td>
-					<td th:text="${prop.peso}"></td>
-					<td th:text="${prop.unidade}"></td>
-					<td th:text="${prop.status} ? 'Sim' : 'Não'" ></td>
-					<td colspan="2">
-						<a class="btn btn-primary" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/editar/{id} (id=${prop.id}) }" role="button">
-	                	<span class="oi oi-brush" title="Editar" aria-hidden="true">Editar</span>
-	                	</a>
-	                 	<a class="btn btn-danger" sec:authorize="hasRole('ADMIN')" th:href="@{/propriedades/excluir/{id} (id=${prop.id}) }" role="button"
-	                	 title="excluir" aria-hidden="true">Excluir</a>
-	                 </td>
-				</tr>
+    <div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
 
-			</tbody>
-		</table>
-		
-		
-	</div>
-	</section>	
-	
-		
-		
-		
+    <section class="layout-content" layout:fragment="corpo">
+        <div class="container">
 
+            <!-- Mensagens de sucesso -->
+            <div th:if="${success}" class="alert alert-success" role="alert">
+                <span th:text="${success}"></span>
+            </div>
+
+            <!-- Mensagens de erro -->
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <span th:text="${error}"></span>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Id</th>
+                        <th>Código</th>
+                        <th>Variedade</th>
+                        <th>Subvariedade</th>
+                        <th>Classificacao</th>
+                        <th>Embalagem</th>
+                        <th>Peso</th>
+                        <th>Unidade</th>
+                        <th>Cotação</th>
+                        <th>Editar/Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prop : ${propriedades}">
+                        <td th:text="${prop.produto.nome}"></td>
+                        <td th:text="${prop.id}"></td>
+                        <td th:text="${prop.codigo}"></td>
+                        <td th:text="${prop.variedade}"></td>
+                        <td th:text="${prop.subvariedade}"></td>
+                        <td th:text="${prop.classificacao}"></td>
+                        <td th:text="${prop.embalagem}"></td>
+                        <td th:text="${prop.peso}"></td>
+                        <td th:text="${prop.unidade}"></td>
+                        <td th:text="${prop.status} ? 'Sim' : 'Não'"></td>
+                        <td colspan="2">
+                            <a class="btn btn-primary" sec:authorize="hasRole('MANAGER')"
+                                th:href="@{/propriedades/editar/{id} (id=${prop.id}) }" role="button">
+                                <span class="oi oi-brush" title="Editar" aria-hidden="true">Editar</span>
+                            </a>
+                            <button class="btn btn-danger" sec:authorize="hasRole('ADMIN')"
+                                th:onclick="'confirmarExclusao(' + ${prop.id} + ')'">Excluir</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </section>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmarExclusaoModal" tabindex="-1" aria-labelledby="confirmarExclusaoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Tem certeza de que deseja excluir esta propriedade? Todas as cotações relacionadas a este produto serão exluídas automaticamente</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="formExcluirPropriedade" th:action="@{/propriedades/excluir}" method="post">
+                        <input type="hidden" name="id" id="propriedadeIdParaExcluir">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log("Página carregada");
+        });
+
+        function confirmarExclusao(propriedadeId) {
+            console.log("ID da propriedade para exclusão: " + propriedadeId);
+            document.getElementById('propriedadeIdParaExcluir').value = propriedadeId;
+            var confirmarExclusaoModal = new bootstrap.Modal(document.getElementById('confirmarExclusaoModal'));
+            confirmarExclusaoModal.show();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

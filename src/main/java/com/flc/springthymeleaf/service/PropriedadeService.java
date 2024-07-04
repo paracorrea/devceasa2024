@@ -26,10 +26,10 @@ public class PropriedadeService {
 		}
 		
 		@Transactional(readOnly=true)
-		public Propriedade findById(Integer id) {
+		public Optional<Propriedade> findById(Integer id) {
 			
 			Optional<Propriedade> obj = propRepo.findById(id);
-			return obj.orElseThrow(() -> new ObjectNotFoundException("Objecto não encontrado id: "+id+", tipo: "+Propriedade.class.getName()));
+			return obj;
 			
 		}
 		@Transactional(readOnly=true)
