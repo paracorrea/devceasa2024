@@ -83,9 +83,11 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/admin/users}">Gerenciamento de Usuários</a></li>
                     </ul>
-                     <li class="nav-item">
-                    <a class="nav-link" sec:authorize="hasRole('MANAGER')" href="/notas-fiscais/cadastrar">Notas Fiscais</a>
+                 <li class="nav-item">
+                    <a class="nav-link" sec:authorize="hasRole('MANAGER')" th:href="@{/notas/cadastrar}">Notas</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" sec:authorize="hasRole('MANAGER')" th:href="@{/notas-fiscais/cadastrar}">Notas Fiscais</a>
                 </li>
             </ul>
             
