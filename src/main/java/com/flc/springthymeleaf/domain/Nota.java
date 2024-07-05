@@ -31,6 +31,11 @@ public class Nota {
     @NotNull(message = "Campo não pode ser nulo")
     public LocalDate dataCaptura;
     
+    @DateTimeFormat(iso = ISO.DATE)
+    @Column(name = "data_emissao", columnDefinition = "DATE")
+    //@NotNull(message = "Campo não pode ser nulo")
+    public LocalDate dataEmissao;
+    
     @Column(name = "cnpj_emissor")
     private String cnpjEmissor;
     
@@ -79,6 +84,14 @@ public class Nota {
 
 	public LocalDate getDataCaptura() {
 		return dataCaptura;
+	}
+
+	public LocalDate getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(LocalDate dataEmissao) {
+		this.dataEmissao = dataEmissao;
 	}
 
 	

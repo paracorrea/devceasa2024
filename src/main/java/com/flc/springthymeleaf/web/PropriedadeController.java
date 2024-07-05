@@ -76,11 +76,17 @@ public class PropriedadeController {
 
     @GetMapping("/propriedades/editar/{id}")
     public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
-        model.addAttribute("unidades", unidades);
-        model.addAttribute("propriedade", propriedadeService.findById(id));
-        logger.info("id: de propriedade: ", id);
-        return "propriedade/propriedade_cadastro";
+        Optional<Propriedade> propriedadeOptional = propriedadeService.findById(id);
+        if (propriedadeOptional.isPresent()) {
+            model.addAttribute("unidades", unidades);
+            model.addAttribute("propriedade", propriedadeOptional.get());
+            return "propriedade/propriedade_cadastro";
+        } else {
+            model.addAttribute("error", "Propriedade não encontrada");
+            return "redirect:/propriedades/listar";
+        }
     }
+    
 
     @PostMapping("/propriedades/editar")
     public String editar(@Valid Propriedade propriedade, BindingResult result, RedirectAttributes attr) {

@@ -79,6 +79,7 @@
 				<tr>
 					<th>ID</th>
 					<th>Data Captura da Nota</th>
+					<th>Data Emissao da Nota</th>
 					<th>Número da Nota</th>
 					<th>Cnpj Origem</th>
 					<th>Cnpj Destino</th>
@@ -88,6 +89,7 @@
 				<tr th:each="nota : ${notaPage?.content}">
 					<td th:text="${nota.id}"></td>
 					<td th:text="${nota.dataCaptura}"></td>
+					<td th:text="${nota.dataEmissao}"></td>
 					<td th:text="${nota.numeroDaNotaFiscal}"></td>
 					<td th:text="${nota.cnpjEmissor}"></td>
 					<td th:text="${nota.cnpjDestinatario}"></td> 
