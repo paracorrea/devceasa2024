@@ -3,6 +3,7 @@ package com.flc.springthymeleaf.aspect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flc.springthymeleaf.domain.AuditLog;
+import com.flc.springthymeleaf.domain.Nota;
 import com.flc.springthymeleaf.repository.AuditLogRepository;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -26,6 +27,12 @@ public class AuditAspect {
     private AuditLogRepository auditLogRepository;
 
     private ObjectMapper objectMapper = new ObjectMapper();
+    
+    
+    public AuditAspect(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+    
     private static final Logger logger = Logger.getLogger(AuditAspect.class.getName());
 
     @Pointcut("execution(* com.flc.springthymeleaf.service.*.save*(..))")
@@ -43,6 +50,13 @@ public class AuditAspect {
         logger.info("LOGG: Auditoria SAVE registrada para entidade: " + entity.getClass().getSimpleName());
     }
 
+    @Before("execution(* com.flc.springthymeleaf.service.NotaService.save(..)) && args(nota)")
+    public void beforeSave(Nota nota) throws JsonProcessingException {
+        System.out.println("ObjectMapper configurado: " + objectMapper);
+        String newData = objectMapper.writeValueAsString(nota);
+        System.out.println("Dados da nova nota: " + newData);
+        // lógica de auditoria aqui
+    }
     @Before("deletePointcut()")
     public void beforeDelete(JoinPoint joinPoint) throws JsonProcessingException {
         Object entity = joinPoint.getArgs()[0];

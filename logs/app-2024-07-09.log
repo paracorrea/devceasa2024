@@ -1,0 +1,1399 @@
+2024-07-09 10:51:08 - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-09 10:51:08 - Starting SpringThymeleafApplication using Java 17.0.7 with PID 25384 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\app-devceasa01.2003\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\app-devceasa01.2003)
+2024-07-09 10:51:08 - No active profile set, falling back to 1 default profile: "default"
+2024-07-09 10:51:08 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-07-09 10:51:08 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-07-09 10:51:09 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-09 10:51:09 - Finished Spring Data repository scanning in 97 ms. Found 15 JPA repository interfaces.
+2024-07-09 10:51:10 - Tomcat initialized with port(s): 5001 (http)
+2024-07-09 10:51:10 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-07-09 10:51:10 - Starting service [Tomcat]
+2024-07-09 10:51:10 - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2024-07-09 10:51:10 - Initializing Spring embedded WebApplicationContext
+2024-07-09 10:51:10 - Root WebApplicationContext: initialization completed in 1988 ms
+2024-07-09 10:51:10 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-09 10:51:10 - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-07-09 10:51:10 - HHH000406: Using bytecode reflection optimizer
+2024-07-09 10:51:10 - Adding type registration boolean -> org.hibernate.type.BasicTypeReference@4dd92ac3
+2024-07-09 10:51:10 - Adding type registration boolean -> org.hibernate.type.BasicTypeReference@4dd92ac3
+2024-07-09 10:51:10 - Adding type registration java.lang.Boolean -> org.hibernate.type.BasicTypeReference@4dd92ac3
+2024-07-09 10:51:10 - Adding type registration numeric_boolean -> org.hibernate.type.BasicTypeReference@1a169b36
+2024-07-09 10:51:10 - Adding type registration org.hibernate.type.NumericBooleanConverter -> org.hibernate.type.BasicTypeReference@1a169b36
+2024-07-09 10:51:10 - Adding type registration true_false -> org.hibernate.type.BasicTypeReference@41029dc5
+2024-07-09 10:51:10 - Adding type registration org.hibernate.type.TrueFalseConverter -> org.hibernate.type.BasicTypeReference@41029dc5
+2024-07-09 10:51:10 - Adding type registration yes_no -> org.hibernate.type.BasicTypeReference@27506cff
+2024-07-09 10:51:10 - Adding type registration org.hibernate.type.YesNoConverter -> org.hibernate.type.BasicTypeReference@27506cff
+2024-07-09 10:51:10 - Adding type registration byte -> org.hibernate.type.BasicTypeReference@235bc5e4
+2024-07-09 10:51:10 - Adding type registration byte -> org.hibernate.type.BasicTypeReference@235bc5e4
+2024-07-09 10:51:10 - Adding type registration java.lang.Byte -> org.hibernate.type.BasicTypeReference@235bc5e4
+2024-07-09 10:51:10 - Adding type registration binary -> org.hibernate.type.BasicTypeReference@7c10c52e
+2024-07-09 10:51:10 - Adding type registration byte[] -> org.hibernate.type.BasicTypeReference@7c10c52e
+2024-07-09 10:51:10 - Adding type registration [B -> org.hibernate.type.BasicTypeReference@7c10c52e
+2024-07-09 10:51:10 - Adding type registration binary_wrapper -> org.hibernate.type.BasicTypeReference@1995bad
+2024-07-09 10:51:10 - Adding type registration wrapper-binary -> org.hibernate.type.BasicTypeReference@1995bad
+2024-07-09 10:51:10 - Adding type registration image -> org.hibernate.type.BasicTypeReference@5dd3e8b9
+2024-07-09 10:51:10 - Adding type registration blob -> org.hibernate.type.BasicTypeReference@1ef9df03
+2024-07-09 10:51:10 - Adding type registration java.sql.Blob -> org.hibernate.type.BasicTypeReference@1ef9df03
+2024-07-09 10:51:10 - Adding type registration materialized_blob -> org.hibernate.type.BasicTypeReference@643a4047
+2024-07-09 10:51:10 - Adding type registration materialized_blob_wrapper -> org.hibernate.type.BasicTypeReference@2f353b5e
+2024-07-09 10:51:10 - Adding type registration short -> org.hibernate.type.BasicTypeReference@6de18821
+2024-07-09 10:51:10 - Adding type registration short -> org.hibernate.type.BasicTypeReference@6de18821
+2024-07-09 10:51:10 - Adding type registration java.lang.Short -> org.hibernate.type.BasicTypeReference@6de18821
+2024-07-09 10:51:10 - Adding type registration integer -> org.hibernate.type.BasicTypeReference@3db04359
+2024-07-09 10:51:10 - Adding type registration int -> org.hibernate.type.BasicTypeReference@3db04359
+2024-07-09 10:51:10 - Adding type registration java.lang.Integer -> org.hibernate.type.BasicTypeReference@3db04359
+2024-07-09 10:51:10 - Adding type registration long -> org.hibernate.type.BasicTypeReference@b3e04d0
+2024-07-09 10:51:10 - Adding type registration long -> org.hibernate.type.BasicTypeReference@b3e04d0
+2024-07-09 10:51:10 - Adding type registration java.lang.Long -> org.hibernate.type.BasicTypeReference@b3e04d0
+2024-07-09 10:51:10 - Adding type registration float -> org.hibernate.type.BasicTypeReference@d573122
+2024-07-09 10:51:10 - Adding type registration float -> org.hibernate.type.BasicTypeReference@d573122
+2024-07-09 10:51:10 - Adding type registration java.lang.Float -> org.hibernate.type.BasicTypeReference@d573122
+2024-07-09 10:51:10 - Adding type registration double -> org.hibernate.type.BasicTypeReference@6c961029
+2024-07-09 10:51:10 - Adding type registration double -> org.hibernate.type.BasicTypeReference@6c961029
+2024-07-09 10:51:10 - Adding type registration java.lang.Double -> org.hibernate.type.BasicTypeReference@6c961029
+2024-07-09 10:51:10 - Adding type registration big_integer -> org.hibernate.type.BasicTypeReference@53833c69
+2024-07-09 10:51:10 - Adding type registration java.math.BigInteger -> org.hibernate.type.BasicTypeReference@53833c69
+2024-07-09 10:51:10 - Adding type registration big_decimal -> org.hibernate.type.BasicTypeReference@28e0ba4d
+2024-07-09 10:51:10 - Adding type registration java.math.BigDecimal -> org.hibernate.type.BasicTypeReference@28e0ba4d
+2024-07-09 10:51:10 - Adding type registration character -> org.hibernate.type.BasicTypeReference@1c8a5052
+2024-07-09 10:51:10 - Adding type registration char -> org.hibernate.type.BasicTypeReference@1c8a5052
+2024-07-09 10:51:10 - Adding type registration java.lang.Character -> org.hibernate.type.BasicTypeReference@1c8a5052
+2024-07-09 10:51:10 - Adding type registration character_nchar -> org.hibernate.type.BasicTypeReference@40411cb2
+2024-07-09 10:51:10 - Adding type registration string -> org.hibernate.type.BasicTypeReference@aeb10a7
+2024-07-09 10:51:10 - Adding type registration java.lang.String -> org.hibernate.type.BasicTypeReference@aeb10a7
+2024-07-09 10:51:10 - Adding type registration nstring -> org.hibernate.type.BasicTypeReference@2774f165
+2024-07-09 10:51:10 - Adding type registration characters -> org.hibernate.type.BasicTypeReference@69322d19
+2024-07-09 10:51:10 - Adding type registration char[] -> org.hibernate.type.BasicTypeReference@69322d19
+2024-07-09 10:51:10 - Adding type registration [C -> org.hibernate.type.BasicTypeReference@69322d19
+2024-07-09 10:51:10 - Adding type registration wrapper-characters -> org.hibernate.type.BasicTypeReference@215e1801
+2024-07-09 10:51:10 - Adding type registration text -> org.hibernate.type.BasicTypeReference@73625aa5
+2024-07-09 10:51:10 - Adding type registration ntext -> org.hibernate.type.BasicTypeReference@739d7275
+2024-07-09 10:51:10 - Adding type registration clob -> org.hibernate.type.BasicTypeReference@bbfc3fa
+2024-07-09 10:51:10 - Adding type registration java.sql.Clob -> org.hibernate.type.BasicTypeReference@bbfc3fa
+2024-07-09 10:51:10 - Adding type registration nclob -> org.hibernate.type.BasicTypeReference@5af04c9c
+2024-07-09 10:51:10 - Adding type registration java.sql.NClob -> org.hibernate.type.BasicTypeReference@5af04c9c
+2024-07-09 10:51:10 - Adding type registration materialized_clob -> org.hibernate.type.BasicTypeReference@3b269215
+2024-07-09 10:51:10 - Adding type registration materialized_clob_char_array -> org.hibernate.type.BasicTypeReference@23b051de
+2024-07-09 10:51:10 - Adding type registration materialized_clob_character_array -> org.hibernate.type.BasicTypeReference@56e5e641
+2024-07-09 10:51:10 - Adding type registration materialized_nclob -> org.hibernate.type.BasicTypeReference@e29c4ad
+2024-07-09 10:51:10 - Adding type registration materialized_nclob_character_array -> org.hibernate.type.BasicTypeReference@1105947
+2024-07-09 10:51:10 - Adding type registration materialized_nclob_char_array -> org.hibernate.type.BasicTypeReference@208fc61a
+2024-07-09 10:51:10 - Adding type registration Duration -> org.hibernate.type.BasicTypeReference@59a1eba4
+2024-07-09 10:51:10 - Adding type registration java.time.Duration -> org.hibernate.type.BasicTypeReference@59a1eba4
+2024-07-09 10:51:10 - Adding type registration LocalDateTime -> org.hibernate.type.BasicTypeReference@196d4091
+2024-07-09 10:51:10 - Adding type registration java.time.LocalDateTime -> org.hibernate.type.BasicTypeReference@196d4091
+2024-07-09 10:51:10 - Adding type registration LocalDate -> org.hibernate.type.BasicTypeReference@1a34e89a
+2024-07-09 10:51:10 - Adding type registration java.time.LocalDate -> org.hibernate.type.BasicTypeReference@1a34e89a
+2024-07-09 10:51:10 - Adding type registration LocalTime -> org.hibernate.type.BasicTypeReference@445542d0
+2024-07-09 10:51:10 - Adding type registration java.time.LocalTime -> org.hibernate.type.BasicTypeReference@445542d0
+2024-07-09 10:51:10 - Adding type registration OffsetDateTime -> org.hibernate.type.BasicTypeReference@12ff6d35
+2024-07-09 10:51:10 - Adding type registration java.time.OffsetDateTime -> org.hibernate.type.BasicTypeReference@12ff6d35
+2024-07-09 10:51:10 - Adding type registration OffsetDateTimeWithTimezone -> org.hibernate.type.BasicTypeReference@6165de33
+2024-07-09 10:51:10 - Adding type registration OffsetDateTimeWithoutTimezone -> org.hibernate.type.BasicTypeReference@5ca89abd
+2024-07-09 10:51:10 - Adding type registration OffsetTime -> org.hibernate.type.BasicTypeReference@3285003a
+2024-07-09 10:51:10 - Adding type registration java.time.OffsetTime -> org.hibernate.type.BasicTypeReference@3285003a
+2024-07-09 10:51:10 - Adding type registration OffsetTimeUtc -> org.hibernate.type.BasicTypeReference@5b7a459a
+2024-07-09 10:51:10 - Adding type registration OffsetTimeWithTimezone -> org.hibernate.type.BasicTypeReference@14a18c80
+2024-07-09 10:51:10 - Adding type registration OffsetTimeWithoutTimezone -> org.hibernate.type.BasicTypeReference@c4491db
+2024-07-09 10:51:10 - Adding type registration ZonedDateTime -> org.hibernate.type.BasicTypeReference@165ac4b9
+2024-07-09 10:51:10 - Adding type registration java.time.ZonedDateTime -> org.hibernate.type.BasicTypeReference@165ac4b9
+2024-07-09 10:51:10 - Adding type registration ZonedDateTimeWithTimezone -> org.hibernate.type.BasicTypeReference@1f05157d
+2024-07-09 10:51:10 - Adding type registration ZonedDateTimeWithoutTimezone -> org.hibernate.type.BasicTypeReference@7584f91
+2024-07-09 10:51:10 - Adding type registration date -> org.hibernate.type.BasicTypeReference@2fbacce8
+2024-07-09 10:51:10 - Adding type registration java.sql.Date -> org.hibernate.type.BasicTypeReference@2fbacce8
+2024-07-09 10:51:10 - Adding type registration time -> org.hibernate.type.BasicTypeReference@6f85baaa
+2024-07-09 10:51:10 - Adding type registration java.sql.Time -> org.hibernate.type.BasicTypeReference@6f85baaa
+2024-07-09 10:51:10 - Adding type registration timestamp -> org.hibernate.type.BasicTypeReference@589ce4da
+2024-07-09 10:51:10 - Adding type registration java.sql.Timestamp -> org.hibernate.type.BasicTypeReference@589ce4da
+2024-07-09 10:51:10 - Adding type registration java.util.Date -> org.hibernate.type.BasicTypeReference@589ce4da
+2024-07-09 10:51:10 - Adding type registration calendar -> org.hibernate.type.BasicTypeReference@1d7d1c9f
+2024-07-09 10:51:10 - Adding type registration java.util.Calendar -> org.hibernate.type.BasicTypeReference@1d7d1c9f
+2024-07-09 10:51:10 - Adding type registration java.util.GregorianCalendar -> org.hibernate.type.BasicTypeReference@1d7d1c9f
+2024-07-09 10:51:10 - Adding type registration calendar_date -> org.hibernate.type.BasicTypeReference@64594e54
+2024-07-09 10:51:10 - Adding type registration calendar_time -> org.hibernate.type.BasicTypeReference@264be89f
+2024-07-09 10:51:10 - Adding type registration instant -> org.hibernate.type.BasicTypeReference@19ce72b8
+2024-07-09 10:51:10 - Adding type registration java.time.Instant -> org.hibernate.type.BasicTypeReference@19ce72b8
+2024-07-09 10:51:10 - Adding type registration uuid -> org.hibernate.type.BasicTypeReference@6ca21cfa
+2024-07-09 10:51:10 - Adding type registration java.util.UUID -> org.hibernate.type.BasicTypeReference@6ca21cfa
+2024-07-09 10:51:10 - Adding type registration pg-uuid -> org.hibernate.type.BasicTypeReference@6ca21cfa
+2024-07-09 10:51:10 - Adding type registration uuid-binary -> org.hibernate.type.BasicTypeReference@42a7d4d4
+2024-07-09 10:51:10 - Adding type registration uuid-char -> org.hibernate.type.BasicTypeReference@3b51c30f
+2024-07-09 10:51:10 - Adding type registration class -> org.hibernate.type.BasicTypeReference@51e03d6f
+2024-07-09 10:51:10 - Adding type registration java.lang.Class -> org.hibernate.type.BasicTypeReference@51e03d6f
+2024-07-09 10:51:10 - Adding type registration currency -> org.hibernate.type.BasicTypeReference@2dd9be65
+2024-07-09 10:51:10 - Adding type registration Currency -> org.hibernate.type.BasicTypeReference@2dd9be65
+2024-07-09 10:51:10 - Adding type registration java.util.Currency -> org.hibernate.type.BasicTypeReference@2dd9be65
+2024-07-09 10:51:10 - Adding type registration locale -> org.hibernate.type.BasicTypeReference@51a4ce7e
+2024-07-09 10:51:10 - Adding type registration java.util.Locale -> org.hibernate.type.BasicTypeReference@51a4ce7e
+2024-07-09 10:51:10 - Adding type registration serializable -> org.hibernate.type.BasicTypeReference@64d836fe
+2024-07-09 10:51:10 - Adding type registration java.io.Serializable -> org.hibernate.type.BasicTypeReference@64d836fe
+2024-07-09 10:51:10 - Adding type registration timezone -> org.hibernate.type.BasicTypeReference@3483744f
+2024-07-09 10:51:10 - Adding type registration java.util.TimeZone -> org.hibernate.type.BasicTypeReference@3483744f
+2024-07-09 10:51:10 - Adding type registration ZoneOffset -> org.hibernate.type.BasicTypeReference@5449ce2c
+2024-07-09 10:51:10 - Adding type registration java.time.ZoneOffset -> org.hibernate.type.BasicTypeReference@5449ce2c
+2024-07-09 10:51:10 - Adding type registration url -> org.hibernate.type.BasicTypeReference@23e93de5
+2024-07-09 10:51:10 - Adding type registration java.net.URL -> org.hibernate.type.BasicTypeReference@23e93de5
+2024-07-09 10:51:10 - Adding type registration row_version -> org.hibernate.type.BasicTypeReference@62380a0
+2024-07-09 10:51:10 - Adding type registration object -> org.hibernate.type.JavaObjectType@1e3b7bd8
+2024-07-09 10:51:10 - Adding type registration java.lang.Object -> org.hibernate.type.JavaObjectType@1e3b7bd8
+2024-07-09 10:51:10 - Adding type registration null -> org.hibernate.type.NullType@20b4dcaf
+2024-07-09 10:51:10 - Adding type registration imm_date -> org.hibernate.type.BasicTypeReference@767d6e91
+2024-07-09 10:51:10 - Adding type registration imm_time -> org.hibernate.type.BasicTypeReference@76068a0b
+2024-07-09 10:51:10 - Adding type registration imm_timestamp -> org.hibernate.type.BasicTypeReference@1bc75eb3
+2024-07-09 10:51:10 - Adding type registration imm_calendar -> org.hibernate.type.BasicTypeReference@1d90a8c0
+2024-07-09 10:51:10 - Adding type registration imm_calendar_date -> org.hibernate.type.BasicTypeReference@44405
+2024-07-09 10:51:10 - Adding type registration imm_calendar_time -> org.hibernate.type.BasicTypeReference@4210d0dc
+2024-07-09 10:51:10 - Adding type registration imm_binary -> org.hibernate.type.BasicTypeReference@63033ceb
+2024-07-09 10:51:10 - Adding type registration imm_serializable -> org.hibernate.type.BasicTypeReference@7b4d5ee3
+2024-07-09 10:51:11 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-09 10:51:11 - HikariPool-1 - Starting...
+2024-07-09 10:51:11 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2888e968
+2024-07-09 10:51:11 - HikariPool-1 - Start completed.
+2024-07-09 10:51:11 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-09 10:51:11 - addDescriptor(6, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4cecd10) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5cb861b)
+2024-07-09 10:51:11 - addDescriptor(2004, BlobTypeDescriptor(BLOB_BINDING)) replaced previous registration(BlobTypeDescriptor(DEFAULT))
+2024-07-09 10:51:11 - addDescriptor(2005, ClobTypeDescriptor(CLOB_BINDING)) replaced previous registration(ClobTypeDescriptor(DEFAULT))
+2024-07-09 10:51:11 - Adding type registration JAVA_OBJECT -> org.hibernate.type.JavaObjectType@4bb01c76
+2024-07-09 10:51:11 - Adding type registration java.lang.Object -> org.hibernate.type.JavaObjectType@4bb01c76
+2024-07-09 10:51:11 - Type registration key [java.lang.Object] overrode previous entry : `org.hibernate.type.JavaObjectType@1e3b7bd8`
+2024-07-09 10:51:11 - Adding type registration Duration -> basicType@1(java.time.Duration,2)
+2024-07-09 10:51:11 - Adding type registration java.time.Duration -> basicType@1(java.time.Duration,2)
+2024-07-09 10:51:11 - Adding type registration org.hibernate.type.OffsetDateTimeType -> basicType@2(java.time.OffsetDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration OffsetDateTime -> basicType@2(java.time.OffsetDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration java.time.OffsetDateTime -> basicType@2(java.time.OffsetDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration org.hibernate.type.ZonedDateTimeType -> basicType@3(java.time.ZonedDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration ZonedDateTime -> basicType@3(java.time.ZonedDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration java.time.ZonedDateTime -> basicType@3(java.time.ZonedDateTime,3003)
+2024-07-09 10:51:11 - Adding type registration org.hibernate.type.OffsetTimeType -> basicType@4(java.time.OffsetTime,3007)
+2024-07-09 10:51:11 - Adding type registration OffsetTime -> basicType@4(java.time.OffsetTime,3007)
+2024-07-09 10:51:11 - Adding type registration java.time.OffsetTime -> basicType@4(java.time.OffsetTime,3007)
+2024-07-09 10:51:11 - Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@75e30472] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@17e12f23]
+2024-07-09 10:51:12 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-09 10:51:12 - Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@75e30472] to SessionFactoryImplementor [org.hibernate.internal.SessionFactoryImpl@17173e5b]
+2024-07-09 10:51:12 - Handling #sessionFactoryCreated from [org.hibernate.internal.SessionFactoryImpl@17173e5b] for TypeConfiguration
+2024-07-09 10:51:12 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09 10:51:13 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-07-09 10:51:13 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-07-09 10:51:14 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@d04bbd7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@abf791f, org.springframework.security.web.context.SecurityContextHolderFilter@7d06d4a4, org.springframework.security.web.header.HeaderWriterFilter@47fc38f4, org.springframework.security.web.authentication.logout.LogoutFilter@209ec06, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@735871f7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@d248487, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2fd552a4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@55e0ce6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ddc2e3d, org.springframework.security.web.access.ExceptionTranslationFilter@705a611, org.springframework.security.web.access.intercept.AuthorizationFilter@1e69179c]
+2024-07-09 10:51:14 - LiveReload server is running on port 35729
+2024-07-09 10:51:14 - Starting ProtocolHandler ["http-nio-5001"]
+2024-07-09 10:51:14 - Tomcat started on port(s): 5001 (http) with context path ''
+2024-07-09 10:51:14 - Started SpringThymeleafApplication in 7.104 seconds (process running for 8.06)
+2024-07-09 10:55:20 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-09 10:55:20 - Initializing Servlet 'dispatcherServlet'
+2024-07-09 10:55:21 - Completed initialization in 1 ms
+2024-07-09 10:55:30 - select n1_0.id,n1_0.cnpj_destinatario,n1_0.cnpj_emissor,n1_0.data_captura,n1_0.data_emissao,n1_0.numero_da_nota from nota n1_0 order by n1_0.data_captura desc offset ? rows fetch first ? rows only
+2024-07-09 10:55:32 - select n1_0.id,n1_0.cnpj_destinatario,n1_0.cnpj_emissor,n1_0.data_captura,n1_0.data_emissao,n1_0.numero_da_nota from nota n1_0 order by n1_0.data_captura desc offset ? rows fetch first ? rows only
+2024-07-09 11:03:20 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:20 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 where c1_0.data_cotacao=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:24 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 where c1_0.data_cotacao=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:28 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 where c1_0.data_cotacao=?
+2024-07-09 11:03:35 - select f1_0.id,f1_0.datafeira,f1_0.numero,f1_0.status_feira from feira f1_0 order by f1_0.datafeira desc offset ? rows fetch first ? rows only
+2024-07-09 11:03:35 - select count(f1_0.id) from feira f1_0
+2024-07-09 11:03:41 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:03:41 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 where c1_0.data_cotacao=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:03:41 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:04:18 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p2_0.id,p2_0.nome,p2_0.subgrupo_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 join propriedade p1_0 on p1_0.id=c1_0.propriedade_id left join produto p2_0 on p2_0.id=p1_0.produto_id where c1_0.id=?
+2024-07-09 11:05:25 - select f1_0.id,f1_0.datafeira,f1_0.numero,f1_0.status_feira from feira f1_0 order by f1_0.datafeira desc offset ? rows fetch first ? rows only
+2024-07-09 11:05:25 - select count(f1_0.id) from feira f1_0
+2024-07-09 11:05:29 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:29 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 where c1_0.data_cotacao=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:29 - select s1_0.id,s1_0.grupo_id,g1_0.id,g1_0.nome,s1_0.nome from subgrupo s1_0 join grupos g1_0 on g1_0.id=s1_0.grupo_id where s1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade from propriedade p1_0 where p1_0.status=true
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select p1_0.id,p1_0.nome,p1_0.subgrupo_id from produto p1_0 where p1_0.id=?
+2024-07-09 11:05:59 - select c1_0.id,c1_0.data_cotacao,c1_0.fator_sazonal,c1_0.mercado,c1_0.peso_variavel,c1_0.preco_maximo,c1_0.preco_medio,c1_0.preco_minimo,c1_0.propriedade_id,p1_0.id,p1_0.classificacao,p1_0.codigo,p1_0.embalagem,p1_0.peso,p1_0.produto_id,p2_0.id,p2_0.nome,p2_0.subgrupo_id,p1_0.status,p1_0.subvariedade,p1_0.unidade,p1_0.variedade,c1_0.users,c1_0.valor1,c1_0.valor10,c1_0.valor2,c1_0.valor3,c1_0.valor4,c1_0.valor5,c1_0.valor6,c1_0.valor7,c1_0.valor8,c1_0.valor9,c1_0.valor_comum from cotacao c1_0 join propriedade p1_0 on p1_0.id=c1_0.propriedade_id left join produto p2_0 on p2_0.id=p1_0.produto_id where c1_0.id=?
+2024-07-09 11:25:20 - Application shutdown requested.
+2024-07-09 11:25:20 - Pausing ProtocolHandler ["http-nio-5001"]
+2024-07-09 11:25:20 - Stopping service [Tomcat]
+2024-07-09 11:25:20 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-07-09 11:25:20 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-07-09 11:25:20 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-09 11:25:20 - Handling #sessionFactoryClosed from [org.hibernate.internal.SessionFactoryImpl@17173e5b] for TypeConfiguration
+2024-07-09 11:25:20 - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@65c59b8f] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@17173e5b]
+2024-07-09 11:25:20 - HikariPool-1 - Shutdown initiated...
+2024-07-09 11:25:20 - HikariPool-1 - Shutdown completed.

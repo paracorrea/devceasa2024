@@ -38,7 +38,9 @@ public class DevSecurityConfig {
                     .requestMatchers("/subgrupos/cadastrar").hasRole("EMPLOYEE")
                     .requestMatchers("/produtos/cadastrar").hasRole("EMPLOYEE")
                     .requestMatchers("/propriedades/cadastrar").hasRole("EMPLOYEE")
-                    .requestMatchers("/notas-fiscais/cadastrar").hasRole("EMPLOYEE")
+                    .requestMatchers("/notas/cadastrar").hasRole("EMPLOYEE")
+                    .requestMatchers("/notas/salvar").hasRole("EMPLOYEE")
+                    
                     .anyRequest().authenticated()
             )
             //.httpBasic(customizer -> customizer)

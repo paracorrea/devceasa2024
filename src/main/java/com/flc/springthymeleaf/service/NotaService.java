@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.flc.springthymeleaf.domain.Nota;
 import com.flc.springthymeleaf.repository.NotaRepository;
 
-import jakarta.validation.Valid;
+
 
 @Service
 public class NotaService {

@@ -1,194 +1,87 @@
+<!-- nota_cadastro.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-	rel="stylesheet">
-<title>Sistema DEVCEASA - Notas</title>
+    <meta charset="UTF-8">
+    <title>Cadastro de Nota Fiscal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-	<div th:replace="~{navbar :: menu-principal}"></div>
+<div th:replace="~{navbar :: menu-principal}"></div>
 
-	<div class="container">
-		<!-- Exibir mensagens de sucesso -->
-		<div th:if="${success}" class="alert alert-success" role="alert">
-			<span th:text="${success}"></span>
-		</div>
+<div class="container">
+    <h2>Cadastro de Nota Fiscal</h2>
+    <form th:action="@{/notas/salvar}" th:object="${nota}" method="post">
+        <!-- Outros campos aqui -->
 
-		<!-- Exibir mensagens de erro -->
-		<div th:if="${error}" class="alert alert-danger" role="alert">
-			<span th:text="${error}"></span>
-		</div>
+        <div class="form-group">
+            <label for="portaria">Portaria</label>
+            <select id="portaria" th:field="*{portaria}" class="form-control" required>
+                <option th:each="portaria : ${portarias}" th:value="${portaria}" th:text="${portaria.descricao}"></option>
+            </select>
+        </div>
 
-		<!-- Formulário de pesquisa -->
-		<form th:action="@{/notas/pesquisar}" method="get"
-			class="row g-3 align-items-end mb-3">
-			<div class="col-auto">
-				<label for="dataInicio" class="col-form-label"
-					style="font-size: 0.8rem;">Data Início:</label> <input type="date"
-					class="form-control form-control-sm" id="dataInicio"
-					name="dataInicio" th:value="${dataInicio}" required>
-			</div>
-			<div class="col-auto">
-				<label for="dataFim" class="col-form-label"
-					style="font-size: 0.8rem;">Data Fim:</label> <input type="date"
-					class="form-control form-control-sm" id="dataFim" name="dataFim"
-					th:value="${dataFim}" required>
-			</div>
-			<div class="col-auto">
-				<button type="submit" class="btn btn-primary btn-sm">Pesquisar</button>
-			</div>
-		</form>
+        <div class="form-group">
+            <label for="faixaHorario">Faixa de Horário</label>
+            <select id="faixaHorario" th:field="*{faixaHorario}" class="form-control" required>
+                <option th:each="faixa : ${faixasHorarios}" th:value="${faixa}" th:text="${faixa.descricao}"></option>
+            </select>
+        </div>
 
-		<!-- Formulário de cadastro -->
-		<form th:action="@{/notas/salvar}" th:object="${nota}" method="POST">
-			<!-- Exibir erros do formulário -->
-			<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-				role="alert">
-				<ul>
-					<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-				</ul>
-			</div>
+        <div class="form-group">
+            <label for="tipoVeiculo">Tipo de Veículo</label>
+            <select id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control" required>
+                <option th:each="tipo : ${tiposVeiculos}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="localDestino">Local de Destino</label>
+            <select id="localDestino" th:field="*{localDestino}" class="form-control" required>
+                <option th:each="local : ${locaisDestinos}" th:value="${local}" th:text="${local.descricao}"></option>
+            </select>
+        </div>
 
 			<div class="form-group">
-				<div class="row">
-					
-					<div class="col-md-4 align-self-end">
-						<input type="hidden" id="id" th:field="*{id}" />
-						<button type="submit" class="btn btn-primary btn-sm"
-							style="margin-top: 20px;">Cadastrar Nova Nota</button>
-						<a th:href="@{/notas/cadastrar}" class="btn btn-secondary btn-sm"
-							style="margin-top: 20px;">Voltar</a>
-					</div>
-				</div>
-				<br>
-				<br>
-			</div>
-		</form>
+            <label for="municipio">Municipio</label>
+            <select id="municipio" th:field="*{municipio}" class="form-control" required>
+                <option th:each="municipio : ${municipios}" th:value="${municipio}" th:text="${municipio.nome}"></option>
+            </select>
+        </div>
+        
 
-		<!-- Tabela de feiras -->
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Data Captura da Nota</th>
-					<th>Data Emissao da Nota</th>
-					<th>Número da Nota</th>
-					<th>Cnpj Origem</th>
-					<th>Cnpj Destino</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="nota : ${notaPage?.content}">
-					<td th:text="${nota.id}"></td>
-					<td th:text="${nota.dataCaptura}"></td>
-					<td th:text="${nota.dataEmissao}"></td>
-					<td th:text="${nota.numeroDaNotaFiscal}"></td>
-					<td th:text="${nota.cnpjEmissor}"></td>
-					<td th:text="${nota.cnpjDestinatario}"></td> 
-					<td>
-					
-<!-- 					<a -->
-<!-- 						th:href="@{/cotacoes/por-feira/{dataFeira}(dataFeira=${feira.dataFeira})}" -->
-<!-- 						class="btn btn-primary btn-sm">Visualizar Cotações</a> -->
+        <div class="form-group">
+            <label for="numeroDaNotaFiscal">Número da Nota Fiscal</label>
+            <input type="text" id="numeroDaNotaFiscal" th:field="*{numeroDaNotaFiscal}" class="form-control" required />
+        </div>
 
-<!-- 						<form th:action="@{/notas/salvar}" method="post" -->
-<!-- 							style="display: inline;"> -->
-<!-- 							<input type="hidden" name="id" th:value="${feira.id}" /> -->
-<!-- 							<button th:if="${feira.statusFeira.name() == 'ABERTA'}" -->
-<!-- 								class="btn btn-secondary btn-sm">Salvar Nota</button> -->
-<!-- 						</form> -->
-<!-- 						<form th:action="@{/feiras/publicar}" method="post" -->
-<!-- 							style="display: inline;"> -->
-<!-- 							<input type="hidden" name="id" th:value="${feira.id}" /> -->
-<!-- 							<button th:if="${feira.statusFeira.name() == 'FECHADA'}" -->
-<!-- 								class="btn btn-success btn-sm">Publicar Feira</button> -->
-<!-- 						</form> <a th:if="${feira.statusFeira.name() == 'PUBLICADA'}" -->
-<!-- 						th:href="@{/cotacoes/gerar-pdf(dataCotacao=${feira.dataFeira}, numeroFeira=${feira.numero})}" -->
-<!-- 						class="btn btn-info btn-sm">Gerar PDF</a> -->
-<!-- 						<button -->
-<!-- 							th:if="${feira.statusFeira.name() != 'ABERTA' && feira.statusFeira.name() != 'PUBLICADA'}" -->
-<!-- 							class="btn btn-danger btn-sm" -->
-<!-- 							th:onclick="'confirmarExclusao(' + ${feira.id} + ')'">Excluir</button> -->
-					</td>
-				</tr>
-			</tbody>
-		</table>
+        <div class="form-group">
+            <label for="dataCaptura">Data de Captura</label>
+            <input type="date" id="dataCaptura" th:field="*{dataCaptura}" class="form-control" required />
+        </div>
 
-		<!-- Paginação -->
-		<div th:if="${notaPage}">
-			<span th:if="${notaPage.hasPrevious()}"> <a
-				th:if="${dataInicio == null}"
-				th:href="@{/notas/cadastrar(page=${notaPage.number - 1})}">Anterior</a>
-				<a th:if="${dataInicio != null}"
-				th:href="@{/notas/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${notaPage.number - 1})}">Anterior</a>
-			</span> <span th:if="${notaPage.hasNext()}"> <a
-				th:if="${dataInicio == null}"
-				th:href="@{/notas/cadastrar(page=${notaPage.number + 1})}">Próxima</a>
-				<a th:if="${dataInicio != null}"
-				th:href="@{/notas/pesquisar(dataInicio=${dataInicio}, dataFim=${dataFim}, page=${notaPage.number + 1})}">Próxima</a>
-			</span>
-		</div>
-		<br>
-		<br>
-	</div>
+        <div class="form-group">
+            <label for="dataEmissao">Data de Emissão</label>
+            <input type="date" id="dataEmissao" th:field="*{dataEmissao}" class="form-control" />
+        </div>
 
-	<div class="footer1">
-		<footer th:insert="~{footer :: pie-pagina}" class="footer"></footer>
-	</div>
+        <div class="form-group">
+            <label for="cnpjEmissor">CNPJ Emissor</label>
+            <input type="text" id="cnpjEmissor" th:field="*{cnpjEmissor}" class="form-control" />
+        </div>
 
-	<!-- Modal de Confirmação -->
-	<div class="modal fade" id="confirmarExclusaoModal" tabindex="-1"
-		aria-labelledby="confirmarExclusaoModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="confirmarExclusaoModalLabel">Confirmar
-						Exclusão</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">Tem certeza de que deseja excluir esta
-					feira?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Cancelar</button>
-					<form id="formExcluirFeira" th:action="@{/feiras/excluir}"
-						method="post">
-						<input type="hidden" name="id" id="feiraIdParaExcluir">
-						<button type="submit" class="btn btn-danger">Excluir</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="form-group">
+            <label for="permissionario">Destinatário</label>
+            <select id="permissionario" th:field="*{permissionario}" class="form-control" required>
+            	<option th:each="permissionario : ${permissionarios}" th:value="${permissionario}" th:text="${permissionario.cnpj}"></option>
+            </select>
+            
+        </div>
 
-	<script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            console.log("Página carregada");
-        });
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 
-        function confirmarExclusao(feiraId) {
-            console.log("ID da feira para exclusão: " + feiraId);
-            document.getElementById('feiraIdParaExcluir').value = feiraId;
-            var confirmarExclusaoModal = new bootstrap.Modal(document.getElementById('confirmarExclusaoModal'));
-            confirmarExclusaoModal.show();
-        }
-
-        function showModal() {
-            var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-            modal.show();
-        }
-    </script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
