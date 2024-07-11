@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flc.springthymeleaf.domain.AuditLog;
 import com.flc.springthymeleaf.domain.Nota;
+import com.flc.springthymeleaf.domain.NotaFiscal;
 import com.flc.springthymeleaf.repository.AuditLogRepository;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -57,6 +58,8 @@ public class AuditAspect {
         System.out.println("Dados da nova nota: " + newData);
         // lógica de auditoria aqui
     }
+    
+  
     @Before("deletePointcut()")
     public void beforeDelete(JoinPoint joinPoint) throws JsonProcessingException {
         Object entity = joinPoint.getArgs()[0];

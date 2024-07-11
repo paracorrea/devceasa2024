@@ -1,4 +1,4 @@
-package com.flc.springthymeleaf.utilits;
+package com.flc.springthymeleaf.converter;
 
 import com.flc.springthymeleaf.domain.Permissionario;
 import com.flc.springthymeleaf.service.PermissionarioService;

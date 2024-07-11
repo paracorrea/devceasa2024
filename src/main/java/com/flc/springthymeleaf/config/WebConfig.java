@@ -6,8 +6,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.flc.springthymeleaf.utilits.StringToMercadoConverter;
-import com.flc.springthymeleaf.utilits.StringToPermissionarioConverter;
+import com.flc.springthymeleaf.converter.StringToMercadoConverter;
+import com.flc.springthymeleaf.converter.StringToPermissionarioConverter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

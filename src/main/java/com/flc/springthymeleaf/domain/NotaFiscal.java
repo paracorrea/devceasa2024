@@ -1,26 +1,19 @@
 package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
+import java.util.Map;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import com.flc.springthymeleaf.converter.JsonbConverter;
 
 @Entity
-@Table(name  = "notafiscal")
+@Table(name = "notafiscal")
 public class NotaFiscal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,55 +22,14 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "chave_acesso", unique = true, nullable = false)
-    @NotNull(message = "Chave de acesso não pode ser nula")
-    private String chaveAcesso;
+    @Convert(converter = JsonbConverter.class)
+    @Column(columnDefinition = "jsonb")
+    private Map<String, Object> notafiscal;
 
-    @Column(name = "numero", nullable = false)
-    @NotNull(message = "Número não pode ser nulo")
-    private String numero;
-
-    @Column(name = "serie", nullable = false)
-    @NotNull(message = "Série não pode ser nula")
-    private String serie;
-
-    @Column(name = "tipo", nullable = false)
-    @NotNull(message = "Tipo não pode ser nulo")
-    private String tipo;
-
-    @ManyToOne
-    @JoinColumn(name = "municipio_id")
-    @NotNull(message = "Município não pode ser nulo")
-    private Municipio municipio;
-
-    @ManyToOne
-    @JoinColumn(name = "mercado_id")
-    @NotNull(message = "Mercado não pode ser nulo")
-    private Mercado mercado;
-
-    @ManyToOne
-    @JoinColumn(name = "permissionario_cnpj")
-    @NotNull(message = "Permissionário não pode ser nulo")
-    private Permissionario permissionario;
-
-    @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "data_emissao", columnDefinition = "DATE")
-    @NotNull(message = "Campo não pode ser nulo")
-    private LocalDate dataEmissao = LocalDate.now() ;
-    
-    
-    @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "data_entrada", columnDefinition = "DATE")
-    @NotNull(message = "Campo não pode ser nulo")
-    private LocalDate dataEntrada = LocalDate.now();
-    
-   
-    
-
-
-    @OneToMany(mappedBy = "notaFiscal", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<ItemNotaFiscal> itens = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    public List<Map<String, Object>> getItens() {
+        return (List<Map<String, Object>>) notafiscal.get("itens");
+    }
 
     // Getters and Setters
     public Integer getId() {
@@ -88,84 +40,11 @@ public class NotaFiscal implements Serializable {
         this.id = id;
     }
 
-    public String getChaveAcesso() {
-        return chaveAcesso;
+    public Map<String, Object> getNotafiscal() {
+        return notafiscal;
     }
 
-    public void setChaveAcesso(String chaveAcesso) {
-        this.chaveAcesso = chaveAcesso;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getSerie() {
-        return serie;
-    }
-
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Municipio getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
-    }
-
-    public Mercado getMercado() {
-        return mercado;
-    }
-
-    public void setMercado(Mercado mercado) {
-        this.mercado = mercado;
-    }
-
-    public Permissionario getPermissionario() {
-        return permissionario;
-    }
-
-    public void setPermissionario(Permissionario permissionario) {
-        this.permissionario = permissionario;
-    }
-		
-
-	public LocalDate getDataEmissao() {
-		return dataEmissao;
-	}
-
-	public void setDataEmissao(LocalDate dataEmissao) {
-		this.dataEmissao = dataEmissao;
-	}
-
-	public LocalDate getDataEntrada() {
-		return dataEntrada;
-	}
-
-	public void setDataEntrada(LocalDate dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}
-
-	public List<ItemNotaFiscal> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemNotaFiscal> itens) {
-        this.itens = itens;
+    public void setNotafiscal(Map<String, Object> notafiscal) {
+        this.notafiscal = notafiscal;
     }
 }

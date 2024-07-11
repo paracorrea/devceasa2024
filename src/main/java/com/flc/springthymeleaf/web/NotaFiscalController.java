@@ -1,65 +1,53 @@
 package com.flc.springthymeleaf.web;
 
-import com.flc.springthymeleaf.domain.NotaFiscal;
-import com.flc.springthymeleaf.service.NotaFiscalService;
-import com.flc.springthymeleaf.service.MunicipioService;
-import com.flc.springthymeleaf.service.MercadoService;
-import com.flc.springthymeleaf.service.PermissionarioService;
-import com.flc.springthymeleaf.web.validator.NotaFiscalValidator;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.flc.springthymeleaf.domain.ItemNotaFiscal;
+import com.flc.springthymeleaf.domain.NotaFiscal;
+import com.flc.springthymeleaf.service.NotaFiscalService;
 
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/notas-fiscais")
+@RestController
 public class NotaFiscalController {
 
-    @Autowired
-    private NotaFiscalService notaFiscalService;
+    private final NotaFiscalService notaFiscalService;
 
-    @Autowired
-    private MunicipioService municipioService;
-
-    @Autowired
-    private MercadoService mercadoService;
-
-    @Autowired
-    private PermissionarioService permissionarioService;
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.addValidators(new NotaFiscalValidator(notaFiscalService));
+    public NotaFiscalController(NotaFiscalService notaFiscalService) {
+        this.notaFiscalService = notaFiscalService;
     }
 
-    @GetMapping("/cadastrar")
-    public String showForm(Model model) {
-        model.addAttribute("notaFiscal", new NotaFiscal());
-        model.addAttribute("municipios", municipioService.findAll());
-        model.addAttribute("mercados", mercadoService.findAll());
-        model.addAttribute("permissionarios", permissionarioService.findAll());
-        return "notafiscal/notas_fiscais_cadastro";
-    }
 
-    @PostMapping("/salvar")
-    public String saveNotaFiscal(@Valid @ModelAttribute("notaFiscal") NotaFiscal notaFiscal, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            model.addAttribute("municipios", municipioService.findAll());
-            model.addAttribute("mercados", mercadoService.findAll());
-            model.addAttribute("permissionarios", permissionarioService.findAll());
-            return "notafiscal/notas_fiscais_cadastro";
-        }
 
+    @PostMapping("/notas-fiscais/salvar")
+    public ResponseEntity<String> salvarNotaFiscal(@RequestBody NotaFiscal notaFiscal) {
         notaFiscalService.save(notaFiscal);
-        return "redirect:/notas-fiscais/cadastrar";
+        return ResponseEntity.ok("Nota Fiscal salva com sucesso");
     }
+    
+    
 }
+    
+
+   

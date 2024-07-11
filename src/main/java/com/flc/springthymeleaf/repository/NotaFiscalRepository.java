@@ -10,7 +10,7 @@ import com.flc.springthymeleaf.domain.NotaFiscal;
 @Repository
 public interface NotaFiscalRepository extends JpaRepository<NotaFiscal, Integer>{
 
-	boolean existsByChaveAcesso(String chaveAcesso);
+
 
 	//List<NotaFiscal> findByDataEntrada(LocalDate dataEntrada);
 
