@@ -21,7 +21,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-@Entity(name = "Nota")
+@Entity
 @Table(name = "nota")
 public class Nota {
 
@@ -35,7 +35,7 @@ public class Nota {
 	private LocalDate data = LocalDate.now();
 
 	@ManyToOne
-	@JoinColumn(name = "municipio_id::integer")
+	@JoinColumn(name = "municipio_id")
 	private Municipio municipio;
 	
 	@Enumerated(EnumType.STRING)

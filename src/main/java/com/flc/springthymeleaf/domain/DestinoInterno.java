@@ -19,9 +19,12 @@ public class DestinoInterno implements Serializable {
 	    
 	    
 	    private String codigoSimab;
-	    private String sigla;
+	    private String codigo;
 	    private String descricao;
-		public Integer getId() {
+	    private String segmento;
+		
+	    
+	    public Integer getId() {
 			return id;
 		}
 		public void setId(Integer id) {
@@ -33,11 +36,11 @@ public class DestinoInterno implements Serializable {
 		public void setCodigoSimab(String codigoSimab) {
 			this.codigoSimab = codigoSimab;
 		}
-		public String getSigla() {
-			return sigla;
+		public String getCodigo() {
+			return codigo;
 		}
-		public void setSigla(String sigla) {
-			this.sigla = sigla;
+		public void setCodigo(String codigo) {
+			this.codigo = codigo;
 		}
 		public String getDescricao() {
 			return descricao;
@@ -45,9 +48,11 @@ public class DestinoInterno implements Serializable {
 		public void setDescricao(String descricao) {
 			this.descricao = descricao;
 		}
-	    
-	    
-	    
-	    
+		public String getSegmento() {
+			return segmento;
+		}
+		public void setSegmento(String segmento) {
+			this.segmento = segmento;
+		}
 	    
 }
