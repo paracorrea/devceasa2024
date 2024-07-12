@@ -13,10 +13,10 @@ public interface NotaRepository  extends JpaRepository<Nota, Integer>{
 
 	
 
-	  @Query("SELECT f FROM Nota f WHERE f.dataCaptura BETWEEN :dataInicio AND :dataFim ORDER BY f.dataCaptura DESC")
+	  @Query("SELECT f FROM Nota f WHERE f.data BETWEEN :dataInicio AND :dataFim ORDER BY f.data DESC")
 	    Page<Nota> findByDataNotaBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable);
 
-	    @Query("SELECT f FROM Nota f ORDER BY f.dataCaptura DESC")
+	    @Query("SELECT f FROM Nota f ORDER BY f.data DESC")
 	    Page<Nota> findAll(Pageable pageable);
 	
 }

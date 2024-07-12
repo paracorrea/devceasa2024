@@ -25,143 +25,42 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "nota")
 public class Nota {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "numero_da_nota")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private String numeroDaNotaFiscal;
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data", columnDefinition = "DATE")
+	// @NotNull(message = "Campo não pode ser nulo")
+	private LocalDate data = LocalDate.now();
 
-    @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "data_captura", columnDefinition = "DATE")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private LocalDate dataCaptura;
+	@ManyToOne
+	@JoinColumn(name = "municipio_id::integer")
+	private Municipio municipio;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "portaria")
+	// @NotNull(message = "Campo não pode ser nulo")
+	private Portaria portaria;
 
-    @DateTimeFormat(iso = ISO.DATE)
-    @Column(name = "data_emissao", columnDefinition = "DATE")
-    private LocalDate dataEmissao;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "faixa_horario")
+	// @NotNull(message = "Campo não pode ser nulo")
+	private FaixaHorario faixaHorario;
 
-    @Column(name = "cnpj_emissor")
-    private String cnpjEmissor;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_veiculo")
+	// @NotNull(message = "Campo não pode ser nulo")
+	private TipoVeiculo tipoVeiculo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "portaria")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private Portaria portaria;
+	
+	@ManyToOne
+	@JoinColumn(name = "destino_id")
+	private DestinoInterno localDestino;
 
-    @ManyToOne
-    @JoinColumn(name = "permissionario_cnpj")
-   // @NotNull(message = "Permissionário não pode ser nulo")
-    private Permissionario permissionario;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "faixa_horario")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private FaixaHorario faixaHorario;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_veiculo")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private TipoVeiculo tipoVeiculo;
+	// Getters and Setters
+	
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "local_destino")
-    //@NotNull(message = "Campo não pode ser nulo")
-    private LocalDestino localDestino;
-
-    @ManyToOne
-    @JoinColumn(name = "municipio_codigo")
-    //@NotNull(message = "Município não pode ser nulo")
-    private Municipio municipio;
-
-    // Getters and Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNumeroDaNotaFiscal() {
-        return numeroDaNotaFiscal;
-    }
-
-    public void setNumeroDaNotaFiscal(String numeroDaNotaFiscal) {
-        this.numeroDaNotaFiscal = numeroDaNotaFiscal;
-    }
-
-    public LocalDate getDataCaptura() {
-        return dataCaptura;
-    }
-
-    public void setDataCaptura(LocalDate dataCaptura) {
-        this.dataCaptura = dataCaptura;
-    }
-
-    public LocalDate getDataEmissao() {
-        return dataEmissao;
-    }
-
-    public void setDataEmissao(LocalDate dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
-
-    public String getCnpjEmissor() {
-        return cnpjEmissor;
-    }
-
-    public void setCnpjEmissor(String cnpjEmissor) {
-        this.cnpjEmissor = cnpjEmissor;
-    }
-
-  
-    public Portaria getPortaria() {
-        return portaria;
-    }
-
-    public void setPortaria(Portaria portaria) {
-        this.portaria = portaria;
-    }
-
-    public Permissionario getPermissionario() {
-        return permissionario;
-    }
-
-    public void setPermissionario(Permissionario permissionario) {
-        this.permissionario = permissionario;
-    }
-
-    public FaixaHorario getFaixaHorario() {
-        return faixaHorario;
-    }
-
-    public void setFaixaHorario(FaixaHorario faixaHorario) {
-        this.faixaHorario = faixaHorario;
-    }
-
-    public TipoVeiculo getTipoVeiculo() {
-        return tipoVeiculo;
-    }
-
-    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
-        this.tipoVeiculo = tipoVeiculo;
-    }
-
-    public LocalDestino getLocalDestino() {
-        return localDestino;
-    }
-
-    public void setLocalDestino(LocalDestino localDestino) {
-        this.localDestino = localDestino;
-    }
-
-    public Municipio getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
-    }
 }
