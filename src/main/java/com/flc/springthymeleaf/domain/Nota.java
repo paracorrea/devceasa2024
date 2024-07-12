@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -34,6 +35,9 @@ public class Nota {
 	// @NotNull(message = "Campo não pode ser nulo")
 	private LocalDate data = LocalDate.now();
 
+	private BigDecimal valorTotalDaNota;
+	private BigDecimal valorTotalDosProdutos;
+	
 	@ManyToOne
 	@JoinColumn(name = "municipio_id")
 	private Municipio municipio;
@@ -58,7 +62,7 @@ public class Nota {
 	@JoinColumn(name = "destino_id")
 	private DestinoInterno localDestino;
 
-
+	
 
 	// Getters and Setters
 	
