@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MunicipioRepository extends JpaRepository<Municipio, Integer> {
+
+	Municipio findByIbge(String ibge);
 	
 	
 

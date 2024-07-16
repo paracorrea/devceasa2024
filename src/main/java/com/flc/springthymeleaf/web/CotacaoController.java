@@ -40,7 +40,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
-import enums.FatorSazonal;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
@@ -63,11 +63,7 @@ public class CotacaoController {
 		binder.addValidators(new CotacaoValidator(cotacaoService));
 	}
 	
-	@ModelAttribute("fatores")
-	public FatorSazonal[] getFatores() {
-		return FatorSazonal.values();
-	}
-	
+
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		

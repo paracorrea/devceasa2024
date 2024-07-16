@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flc.springthymeleaf.domain.Feira;
+import com.flc.springthymeleaf.enums.StatusFeira;
 import com.flc.springthymeleaf.service.FeiraService;
-import enums.StatusFeira;
+
 import jakarta.validation.Valid;
 
 @Controller

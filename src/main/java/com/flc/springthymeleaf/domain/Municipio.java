@@ -1,11 +1,14 @@
 package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Municipio implements Serializable {
@@ -22,7 +25,8 @@ public class Municipio implements Serializable {
     private String uf;
     private String nome;
 
- 
+    @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Nota> notas;
     
     // Getters and setters
    
@@ -71,7 +75,13 @@ public class Municipio implements Serializable {
         this.nome = nome;
     }
 
-	
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
 
     
 }

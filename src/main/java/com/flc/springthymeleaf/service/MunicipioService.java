@@ -28,6 +28,12 @@ public class MunicipioService {
 		// TODO Auto-generated method stub
 		return municipioRepository.findAll();
 	}
+
+	public Municipio findByIbge(String ibge) {
+		// TODO Auto-generated method stub
+		return municipioRepository.findByIbge(ibge);
+	}
+
 	
 	
 }

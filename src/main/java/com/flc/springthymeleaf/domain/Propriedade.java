@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -57,9 +58,9 @@ public class Propriedade implements Serializable {
     @Column(name = "embalagem", length = 25)
     private String embalagem;
 
-    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<ItemNotaFiscal> itensNotaFiscal = new ArrayList<>();
+//    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<ItemNotaFiscal> itensNotaFiscal = new ArrayList<>();
 
     @Column(columnDefinition = "bit default 0")
     private Boolean status = false;
@@ -74,6 +75,11 @@ public class Propriedade implements Serializable {
     @JsonIgnore
     private List<Cotacao> cotacoes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<ItemDeNota> itens;
+    
+       
     public Propriedade() {
     }
 
@@ -90,6 +96,8 @@ public class Propriedade implements Serializable {
         this.status = status;
         this.produto = produto;
     }
+    
+    // Getters and Setters
 
     public Integer getId() {
         return id;
@@ -179,11 +187,13 @@ public class Propriedade implements Serializable {
         this.cotacoes = cotacoes;
     }
 
-    public List<ItemNotaFiscal> getItensNotaFiscal() {
-        return Collections.unmodifiableList(itensNotaFiscal);
-    }
+	public List<ItemDeNota> getItensDeNota() {
+		return itens;
+	}
 
-    public void setItensNotaFiscal(List<ItemNotaFiscal> itensNotaFiscal) {
-        this.itensNotaFiscal = itensNotaFiscal;
-    }
+	public void setItensDeNota(List<ItemDeNota> itensDeNota) {
+		this.itens = itensDeNota;
+	}
+
+	
 }

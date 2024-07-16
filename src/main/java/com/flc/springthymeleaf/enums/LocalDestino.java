@@ -1,9 +1,14 @@
 package com.flc.springthymeleaf.enums;
 
 public enum LocalDestino {
-    GP4("GP4", "GP4"),
+	GP1("GP1", "GP1"),
+	GP3("GP3", "GP3"),
+	MC1("ML1", "ML1"),
+	MC2("ML2","ML2"),
+	MC3("ML3","ML3"),
+	GP4("GP4", "GP4"),
     GP2("GP2", "GP2"),
-    MLC("MLC", "390");
+    MLC("MLC", "MLC");
     // Continue com os outros locais de destino...
 
     private final String codigo;

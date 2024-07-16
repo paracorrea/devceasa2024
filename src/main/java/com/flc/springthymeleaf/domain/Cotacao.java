@@ -11,11 +11,10 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import enums.FatorSazonal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -111,11 +110,7 @@ public class Cotacao implements Serializable {
     @NotNull(message = "Aplicar cálculo antes de salvar")
     private BigDecimal precoMedio;
 
-    @Column(name = "fator_sazonal")
-    @Enumerated(EnumType.STRING)
-    private FatorSazonal fatorSazonal;
-
-    @Column(name = "valor_comum")
+   @Column(name = "valor_comum")
     private BigDecimal valorComum;
 
     @Column(name = "mercado")
@@ -253,14 +248,6 @@ public class Cotacao implements Serializable {
 
     public void setPrecoMedio(BigDecimal precoMedio) {
         this.precoMedio = precoMedio;
-    }
-
-    public FatorSazonal getFatorSazonal() {
-        return fatorSazonal;
-    }
-
-    public void setFatorSazonal(FatorSazonal fatorSazonal) {
-        this.fatorSazonal = fatorSazonal;
     }
 
     public Propriedade getPropriedade() {

@@ -157,18 +157,6 @@
 				</div>
 			</div>
 
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="fatorSazonal">Fator Sazonal</label> <select id="fatorSazonal" class="form-control" th:field="*{fatorSazonal}" th:classappend="${#fields.hasErrors('fatorSazonal')} ? 'is-invalid'">
-						<option value="">Selecione...</option>
-						<option th:each="fator : ${fatores}" th:value="${fator}" th:text="${fator.descricao}">Normal
-						</option>
-					</select>
-					<div class="invalid-feedback">
-						<span th:errors="*{fatorSazonal}"></span>
-					</div>
-				</div>
-			</div>
 
 			<div class="row">
 				<div class="col">

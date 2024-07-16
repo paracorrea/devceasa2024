@@ -80,4 +80,9 @@ public class PropriedadeService {
 			boolean resp = propRepo.existsByCodigo(codigo);
 			return resp;
 		}
+
+		public Propriedade findByCodigo(String codigo) {
+			// TODO Auto-generated method stub
+			return propRepo.findByCodigo(codigo);
+		}
 }

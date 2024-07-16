@@ -20,6 +20,8 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	List<Propriedade> findPropriedadePorCotacao();
 
 	 boolean existsByCodigo(String codigo);
+
+	Propriedade findByCodigo(String codigo);
 			
 
 }

@@ -1,9 +1,11 @@
 package com.flc.springthymeleaf.enums;
 
 public enum TipoVeiculo {
-    UP("UP", "ULTRA-PESADOS"),
-    CT("CT", "CARRETA"),
-    LV("LV", "LEVE");
+    UP("UP","Ultra-Pesados"),
+    CT("CT","Carreta"),
+    LV("LV","Leve"),
+    CG("CG","Caminhão de Carga"),
+    PD("PD","Pesado");
     // Continue com os outros tipos de veículo...
 
     private final String codigo;

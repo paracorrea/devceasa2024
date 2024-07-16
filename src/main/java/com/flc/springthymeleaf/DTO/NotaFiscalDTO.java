@@ -7,6 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Size;
 
 public class NotaFiscalDTO {
+	
+	// dados do emissor
+	
 	// @NotNull
 	@Size(min = 44, max = 44)
 	private String chaveAcesso;
@@ -20,22 +23,26 @@ public class NotaFiscalDTO {
 	// @NotNull
 	@Enumerated
 	private TipoDeNota tipo; // se entrada ou saida
+	
+	//@NotNull
+	private LocalDate dataEmissao; //
 
+	// @NotNull
+	private String cnpjEmissor;
+	
+	
 	// @NotNull
 	private MunicipioDTO municipio; // municipio origem
 
 	// @NotNull
 	private MercadoDTO mercado; // mercado interno
 
-	// @NotNull
-	private String cnpjEmissor;
+
 
 	// @NotNull
-	private PermissionarioDTO permissionario;
+	private PermissionarioDTO permissionario; // tabela de permissionários
 
-	//@NotNull
-	private LocalDate dataEmissao;
-
+	
 	//@NotNull
 	private LocalDate dataEntrada;
 

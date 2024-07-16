@@ -9,8 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.flc.springthymeleaf.domain.Feira;
+import com.flc.springthymeleaf.enums.StatusFeira;
 
-import enums.StatusFeira;
+
 
 public interface FeiraRepository extends JpaRepository<Feira, Integer>, PagingAndSortingRepository<Feira, Integer> {
 
