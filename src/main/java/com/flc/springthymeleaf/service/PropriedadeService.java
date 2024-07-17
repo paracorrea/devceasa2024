@@ -85,4 +85,9 @@ public class PropriedadeService {
 			// TODO Auto-generated method stub
 			return propRepo.findByCodigo(codigo);
 		}
+		
+		public List<Propriedade> findPropriedadesNotNull(){
+			return propRepo.findAllWithNonNullCodigo();
+			
+		}
 }

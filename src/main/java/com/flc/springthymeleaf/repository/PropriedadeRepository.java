@@ -24,4 +24,7 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	Propriedade findByCodigo(String codigo);
 			
 
+	 @Query("SELECT p FROM Propriedade p WHERE p.codigo IS NOT NULL")
+	    List<Propriedade> findAllWithNonNullCodigo();
+	
 }

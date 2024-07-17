@@ -1,6 +1,7 @@
 package com.flc.springthymeleaf.DTO;
 
 public class PropriedadeDTO {
+	
 	private Integer id;
 	private String codigo;
 	private ProdutoDTO produto;

@@ -68,10 +68,12 @@
             <div class="form-group">
                 <label for="propriedade">Propriedade</label> 
                 <select id="propriedade" th:field="*{itens[0].propriedade.id}" class="form-control" required>
-                    <option th:each="propriedade : ${propriedades}" th:value="${propriedade.id}" th:text="${propriedade.variedade}"></option>
+                    <option th:each="p : ${propriedades}" th:value="${p.id}" 
+                    th:text="${p.id} + ' - ' + ${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}"></option>
                 </select>
             </div>
 
+		
             <div class="form-group">
                 <label for="quantidade">Quantidade</label> 
                 <input type="number" id="quantidade" th:field="*{itens[0].quantidade}" class="form-control" required>

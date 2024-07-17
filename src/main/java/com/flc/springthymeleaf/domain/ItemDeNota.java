@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
@@ -42,7 +43,7 @@ public class ItemDeNota implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "propriedade_id")
-    @JsonBackReference
+    @JsonIgnore
     private Propriedade propriedade;
     
     @Column(name = "quantidade")

@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.web;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -65,7 +66,7 @@ public class NotaController {
 
 	@ModelAttribute("propriedades")
 	public List<Propriedade> listaPropriedades() {
-	    return propriedadeService.findAll();
+	    return propriedadeService.findPropriedadesNotNull();
 	}
 	@ModelAttribute("portarias")
 	public Portaria[] listaPortarias() {
@@ -125,15 +126,15 @@ public class NotaController {
 	    nota.setMunicipio(municipio);
 
 	    for (ItemDeNota item : nota.getItens()) {
-	        Propriedade propriedade = propriedadeService.findByCodigo(item.getPropriedade().getCodigo());
-	        if (propriedade == null) {
+	        Optional<Propriedade> optionalPropriedade = propriedadeService.findById(item.getPropriedade().getId());
+	        if (!optionalPropriedade.isPresent()) {
 	            result.rejectValue("itens", "error.nota", "Propriedade não encontrada.");
 	            Pageable pageable = PageRequest.of(0, 10);
 	            Page<Nota> notaPage = notaService.findAll(pageable);
 	            model.addAttribute("notaPage", notaPage);
 	            return "nota/nota_cadastro";
 	        }
-	        item.setPropriedade(propriedade);
+	        item.setPropriedade(optionalPropriedade.get());
 	        item.setNota(nota);  // Certifica que o item tem referência à nota
 	    }
 
