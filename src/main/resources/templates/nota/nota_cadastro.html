@@ -1,81 +1,89 @@
-<!-- nota_cadastro.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="UTF-8">
-<title>Cadastro de Nota Fiscal</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Cadastro de Nota Fiscal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<div th:replace="~{navbar :: menu-principal}"></div>
+    <div th:replace="~{navbar :: menu-principal}"></div>
 
-	<div class="container">
-		<h2>Cadastro de Nota Fiscal</h2>
-		<form th:action="@{/notas/salvar}" th:object="${nota}" method="post">
-			<!-- Outros campos aqui -->
+    <div class="container">
+        <h2>Cadastro de Nota Fiscal</h2>
+        <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post">
+            <!-- Agrupando os campos em colunas -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="portaria">Portaria</label>
+                        <select id="portaria" th:field="*{portaria}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma portaria</option>
+                            <option th:each="portaria : ${portarias}" th:value="${portaria}" th:text="${portaria}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" th:field="*{data}" class="form-control" required>
+                    </div>
+                </div>
+            </div>
 
-			<div class="form-group">
-				<label for="portaria">Portaria</label> <select id="portaria"
-					th:field="*{portaria}" class="form-control" required>
-					<option th:each="portaria : ${portarias}" th:value="${portaria}"
-						th:text="${portaria}"></option>
-				</select>
-			</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="faixaHorario">Faixa de Horário</label>
+                        <select id="faixaHorario" th:field="*{faixaHorario}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma faixa de horário</option>
+                            <option th:each="faixaHorario : ${faixasHorarios}" th:value="${faixaHorario}" th:text="${faixaHorario}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tipoVeiculo">Tipo de Veículo</label>
+                        <select id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control" required>
+                            <option value="" disabled selected>Selecione um tipo de veículo</option>
+                            <option th:each="tipoVeiculo : ${tiposVeiculos}" th:value="${tipoVeiculo}" th:text="${tipoVeiculo}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-			<div class="form-group">
-				<label for="data">Data</label> <input type="date" id="data"
-					th:field="*{data}" class="form-control" required>
-			</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="localDestino">Local de Destino</label>
+                        <select id="localDestino" th:field="*{localDestino}" class="form-control" required>
+                            <option value="" disabled selected>Selecione um local de destino</option>
+                            <option th:each="localDestino : ${locaisDestinos}" th:value="${localDestino}" th:text="${localDestino}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="municipio">Município</label>
+                        <select id="municipio" th:field="*{municipio.ibge}" class="form-control" required>
+                            <option value="" disabled selected>Selecione um município</option>
+                            <option th:each="municipio : ${municipios}" th:value="${municipio.ibge}" th:text="${municipio.nome}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-			<div class="form-group">
-				<label for="faixaHorario">Faixa de Horário</label> <select
-					id="faixaHorario" th:field="*{faixaHorario}" class="form-control"
-					required>
-					<option th:each="faixaHorario : ${faixasHorarios}"
-						th:value="${faixaHorario}" th:text="${faixaHorario}"></option>
-				</select>
-			</div>
-
-			<div class="form-group">
-				<label for="tipoVeiculo">Tipo de Veículo</label> <select
-					id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control"
-					required>
-					<option th:each="tipoVeiculo : ${tiposVeiculos}"
-						th:value="${tipoVeiculo}" th:text="${tipoVeiculo}"></option>
-				</select>
-			</div>
-
-			<div class="form-group">
-				<label for="localDestino">Local de Destino</label> <select
-					id="localDestino" th:field="*{localDestino}" class="form-control"
-					required>
-					<option th:each="localDestino : ${locaisDestinos}"
-						th:value="${localDestino}" th:text="${localDestino}"></option>
-				</select>
-			</div>
-
-			<select id="municipio" th:field="*{municipio.ibge}"
-				class="form-control" required>
-				<option th:each="municipio : ${municipios}"
-					th:value="${municipio.ibge}" th:text="${municipio.nome}"></option>
-			</select>
-
-	 <!-- Campos para um único produto (propriedade) -->
             <h3>Produtos</h3>
             <div class="form-group">
-                <label for="propriedade">Propriedade</label> 
+                <label for="propriedade">Propriedade</label>
                 <select id="propriedade" th:field="*{itens[0].propriedade.id}" class="form-control" required>
-                    <option th:each="p : ${propriedades}" th:value="${p.id}" 
-                    th:text="${p.id} + ' - ' + ${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}"></option>
+                    <option value="" disabled selected>Selecione uma propriedade</option>
+                    <option th:each="p : ${propriedades}" th:value="${p.id}" th:text="${p.id} + ' - ' + ${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}"></option>
                 </select>
             </div>
 
-		
             <div class="form-group">
-                <label for="quantidade">Quantidade</label> 
+                <label for="quantidade">Quantidade</label>
                 <input type="number" id="quantidade" th:field="*{itens[0].quantidade}" class="form-control" required>
             </div>
 
@@ -84,5 +92,14 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para limpar o formulário na carga da página
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('notaForm').reset();
+            document.querySelectorAll('select').forEach(select => {
+                select.selectedIndex = 0;
+            });
+        });
+    </script>
 </body>
 </html>

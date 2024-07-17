@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.service;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,8 @@ public class NotaService {
 	    }
 
 	
-	 public Page<Nota> findAll(Pageable pageable) {
-	        return notaRepository.findAll(pageable);
+	 public List<Nota> findAll() {
+	        return notaRepository.findAll();
 	    }
 
 

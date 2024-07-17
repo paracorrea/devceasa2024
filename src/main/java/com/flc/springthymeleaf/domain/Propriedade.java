@@ -11,6 +11,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -76,7 +77,7 @@ public class Propriedade implements Serializable {
     private List<Cotacao> cotacoes = new ArrayList<>();
 
     @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonManagedReference
     private List<ItemDeNota> itens;
     
        

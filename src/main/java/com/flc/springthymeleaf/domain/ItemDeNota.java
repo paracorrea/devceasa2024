@@ -37,13 +37,12 @@ public class ItemDeNota implements Serializable {
     @ManyToOne
     @JoinColumn(name = "nota_id")
     //@NotNull(message = "Nota fiscal não pode ser nula")
-    @JsonBackReference
+    @JsonIgnore
     private Nota nota;
 
     
     @ManyToOne
     @JoinColumn(name = "propriedade_id")
-    @JsonIgnore
     private Propriedade propriedade;
     
     @Column(name = "quantidade")
