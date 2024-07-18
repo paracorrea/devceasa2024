@@ -3,6 +3,7 @@ package com.flc.springthymeleaf.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
 
 @Entity
@@ -16,6 +17,7 @@ public class ItemDeNota implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "nota_id")
+    @JsonIgnore
     private Nota nota;
 
     @ManyToOne

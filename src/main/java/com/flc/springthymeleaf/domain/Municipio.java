@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -27,10 +28,9 @@ public class Municipio implements Serializable {
     private String uf;
     private String nome;
 
-    //@OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JsonBackReference
-    //private List<Nota> notas;
-    
+    @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Nota> notas;
     // Getters and setters
    
 
