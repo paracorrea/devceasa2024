@@ -3,14 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Nota Fiscal</title>
+    <title>Cadastro de Nota</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div th:replace="~{navbar :: menu-principal}"></div>
 
     <div class="container">
-        <h2>Cadastro de Nota Fiscal</h2>
+        <h2>Cadastro de Nota</h2>
         <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post">
             <!-- Agrupando os campos em colunas -->
             <div class="row">
@@ -74,19 +74,35 @@
             </div>
 
             <h3>Produtos</h3>
-            <div class="form-group">
-                <label for="propriedade">Propriedade</label>
-                <select id="propriedade" th:field="*{itens[0].propriedade.id}" class="form-control" required>
-                    <option value="" disabled selected>Selecione uma propriedade</option>
-                    <option th:each="p : ${propriedades}" th:value="${p.id}" th:text="${p.id} + ' - ' + ${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}"></option>
-                </select>
+            <div id="itensContainer">
+                <div class="item">
+                    <div class="form-group">
+                        <label for="propriedade">Propriedade</label>
+                        <select id="propriedade" th:field="*{itens[0].propriedade.id}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma propriedade</option>
+                            <option th:each="p : ${propriedades}" th:value="${p.id}" th:text="${p.id} + ' - ' + ${p.produto.nome} + ' - ' + ${p.codigo} + ' - ' + ${p.variedade}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" id="quantidade" th:field="*{itens[0].quantidade}" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unidadeMedida">Unidade de Medida</label>
+                        <select id="unidadeMedida" th:field="*{itens[0].unidadeMedida}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma unidade de medida</option>
+                            <option th:each="um : ${unidadesMedida}" th:value="${um}" th:text="${um}"></option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-danger" onclick="removeItem(this)">Remover Item</button>
+                    <hr>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="quantidade">Quantidade</label>
-                <input type="number" id="quantidade" th:field="*{itens[0].quantidade}" class="form-control" required>
-            </div>
-
+            <button type="button" class="btn btn-secondary" onclick="addItem()">Adicionar Item</button>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
@@ -100,6 +116,27 @@
                 select.selectedIndex = 0;
             });
         });
+
+        function addItem() {
+            var container = document.getElementById('itensContainer');
+            var newItem = container.firstElementChild.cloneNode(true);
+
+            newItem.querySelectorAll('input, select').forEach(input => {
+                input.value = '';
+                input.name = input.name.replace(/\[\d+\]/, '[' + container.childElementCount + ']');
+            });
+
+            container.appendChild(newItem);
+        }
+
+        function removeItem(button) {
+            var container = document.getElementById('itensContainer');
+            if (container.childElementCount > 1) {
+                button.closest('.item').remove();
+            } else {
+                alert('Não é possível remover todos os itens.');
+            }
+        }
     </script>
 </body>
 </html>

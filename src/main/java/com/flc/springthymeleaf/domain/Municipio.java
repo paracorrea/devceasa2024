@@ -3,6 +3,8 @@ package com.flc.springthymeleaf.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,8 +27,9 @@ public class Municipio implements Serializable {
     private String uf;
     private String nome;
 
-    @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Nota> notas;
+    //@OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JsonBackReference
+    //private List<Nota> notas;
     
     // Getters and setters
    
@@ -75,13 +78,11 @@ public class Municipio implements Serializable {
         this.nome = nome;
     }
 
-	public List<Nota> getNotas() {
-		return notas;
-	}
-
-	public void setNotas(List<Nota> notas) {
-		this.notas = notas;
-	}
+	/*
+	 * public List<Nota> getNotas() { return notas; }
+	 * 
+	 * public void setNotas(List<Nota> notas) { this.notas = notas; }
+	 */
 
     
 }

@@ -1,77 +1,49 @@
 package com.flc.springthymeleaf.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.flc.springthymeleaf.enums.FaixaHorario;
 import com.flc.springthymeleaf.enums.LocalDestino;
 import com.flc.springthymeleaf.enums.Portaria;
 import com.flc.springthymeleaf.enums.TipoVeiculo;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "nota")
-public class Nota {
+public class Nota implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    private static final long serialVersionUID = 1L;
 
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "data", columnDefinition = "DATE")
-	// @NotNull(message = "Campo não pode ser nulo")
-	private LocalDate data = LocalDate.now();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private BigDecimal valorTotalDaNota;
-	private BigDecimal valorTotalDosProdutos;
-	
-	@ManyToOne
-	@JoinColumn(name = "municipio_id")
-	private Municipio municipio;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "portaria")
-	// @NotNull(message = "Campo não pode ser nulo")
-	private Portaria portaria;
+    private LocalDate data;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "faixa_horario")
-	// @NotNull(message = "Campo não pode ser nulo")
-	private FaixaHorario faixaHorario;
+    @ManyToOne
+    @JoinColumn(name = "municipio_id")
+    private Municipio municipio;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_veiculo")
-	// @NotNull(message = "Campo não pode ser nulo")
-	private TipoVeiculo tipoVeiculo;
+    @Enumerated(EnumType.STRING)
+    private Portaria portaria;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "local_destino")
-	// @NotNull(message = "Campo não pode ser nulo")
-	private LocalDestino localDestino;
+    @Enumerated(EnumType.STRING)
+    private FaixaHorario faixaHorario;
+
+    @Enumerated(EnumType.STRING)
+    private TipoVeiculo tipoVeiculo;
+
+    @Enumerated(EnumType.STRING)
+    private LocalDestino localDestino;
 
     @OneToMany(mappedBy = "nota", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-    private List<ItemDeNota> itens = new ArrayList<>();
+    private List<ItemDeNota> itens;
+
+    // Getters and setters
+
 
 
     public void addItem(ItemDeNota item) {
@@ -95,21 +67,6 @@ public class Nota {
 		this.data = data;
 	}
 
-	public BigDecimal getValorTotalDaNota() {
-		return valorTotalDaNota;
-	}
-
-	public void setValorTotalDaNota(BigDecimal valorTotalDaNota) {
-		this.valorTotalDaNota = valorTotalDaNota;
-	}
-
-	public BigDecimal getValorTotalDosProdutos() {
-		return valorTotalDosProdutos;
-	}
-
-	public void setValorTotalDosProdutos(BigDecimal valorTotalDosProdutos) {
-		this.valorTotalDosProdutos = valorTotalDosProdutos;
-	}
 
 	public Municipio getMunicipio() {
 		return municipio;
@@ -158,10 +115,12 @@ public class Nota {
 	public List<ItemDeNota> getItens() {
 		return itens;
 	}
-
+	
+	
 	public void setItens(List<ItemDeNota> itens) {
 		this.itens = itens;
 	}
+	
 	
 
 	

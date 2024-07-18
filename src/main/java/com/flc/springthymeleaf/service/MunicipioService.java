@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,21 +20,21 @@ public class MunicipioService {
 		this.municipioRepository = municipioRepository;
 	}
 
-	public void save(Municipio municipio) {
-		
-		municipioRepository.save(municipio);
-	}
 
-	public List<Municipio> findAll() {
-		// TODO Auto-generated method stub
-		return municipioRepository.findAll();
-	}
+	
+	    public List<Municipio> findAll() {
+	        return municipioRepository.findAll();
+	    }
 
-	public Municipio findByIbge(String ibge) {
-		// TODO Auto-generated method stub
-		return municipioRepository.findByIbge(ibge);
-	}
+	    
+	    public Optional<Municipio> findById(Long id) {
+	        return municipioRepository.findById(id);
+	    }
 
+	    
+	    public Optional<Municipio> findByIbge(String ibge) {
+	        return Optional.ofNullable(municipioRepository.findByIbge(ibge));
+	    }
 	
 	
 }
