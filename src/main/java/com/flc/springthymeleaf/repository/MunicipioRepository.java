@@ -14,5 +14,13 @@ public interface MunicipioRepository extends JpaRepository<Municipio, Integer> {
     List<Municipio> findAll();
     Optional<Municipio> findById(Long id);
     Municipio findByIbge(String ibge);
+    
+    List<Municipio> findByNomeContaining(String nome);
+    List<Municipio> findByNomeContainingAndUf(String nome, String uf);
+    List<Municipio> findByUf(String uf);
+	List<Municipio> findByNomeContainingIgnoreCase(String nome);
+	List<Municipio> findByUfIgnoreCase(String uf);
+    
+    
 
 }

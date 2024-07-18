@@ -111,24 +111,16 @@ public class NotaController {
             item.setNota(nota);
         }
 
-        // Logs para depuração
+        // Log para depuração
         System.out.println("Nota pronta para salvar: " + nota);
         System.out.println("Municipio associado: " + nota.getMunicipio());
         for (ItemDeNota item : nota.getItens()) {
             System.out.println("Item: " + item);
         }
 
-        // Tentar salvar a nota novamente
-        try {
-            notaService.save(nota);
-            attr.addFlashAttribute("success", "Nota cadastrada com sucesso!");
-        } catch (Exception e) {
-            // Capturar e logar a exceção
-            System.err.println("Erro ao salvar a nota: " + e.getMessage());
-            e.printStackTrace();
-            attr.addFlashAttribute("error", "Erro ao salvar a nota. Verifique os logs para mais detalhes.");
-        }
-        
+        // Comentar a linha de salvamento
+        // notaService.save(nota);
+        attr.addFlashAttribute("success", "Nota preparada com sucesso! Verifique os logs para detalhes.");
         return "redirect:/notas/cadastrar";
     }
 
