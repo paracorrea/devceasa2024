@@ -37,12 +37,31 @@ function addItem() {
         </div>
     `;
     container.insertAdjacentHTML('beforeend', itemTemplate);
+    updateRemoveButtons();
 }
 
 function removeItem(button) {
     const item = button.closest('.item');
     const container = document.getElementById('itensContainer');
-    if (container.children.length > 1) {
-        container.removeChild(item);
+    container.removeChild(item);
+    if (container.children.length === 0) {
+        addItem();
     }
+    updateRemoveButtons();
 }
+
+function updateRemoveButtons() {
+    const items = document.querySelectorAll('#itensContainer .item');
+    items.forEach((item, index) => {
+        const removeButton = item.querySelector('.btn-danger');
+        if (index === 0 && items.length === 1) {
+            removeButton.disabled = true;
+        } else {
+            removeButton.disabled = false;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateRemoveButtons();
+});

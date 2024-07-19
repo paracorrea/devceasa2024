@@ -38,6 +38,7 @@ import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 
 
@@ -229,13 +230,14 @@ public class CotacaoController {
         String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         // Adiciona os dados ao PDF
-        document.add(new Paragraph("CENTRAIS DE ABASTECIMENTO DE CAMPINAS - SA").setFontSize(7));
-        document.add(new Paragraph("Formulário de Cotação - CEASA CAMPINAS - Boletim número: " + numeroFeira).setFontSize(7));
-        document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(7));
+        document.add(new Paragraph("CENTRAIS DE ABASTECIMENTO DE CAMPINAS - SA").setFontSize(11));
+        document.add(new Paragraph("Formulário de Cotação - CEASA CAMPINAS - Boletim número: " + numeroFeira).setFontSize(11));
+        document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(10).setHorizontalAlignment(HorizontalAlignment.CENTER));
+        
        
 
         // Define estilos para a tabela
-        Style cellStyle = new Style().setFontSize(5).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
+        Style cellStyle = new Style().setFontSize(8).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
         float[] columnWidths = {95f, 75f, 55f, 55f, 55f, 55f, 55f, 40f};
 
@@ -253,7 +255,8 @@ public class CotacaoController {
 
         String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Máximo", "Valor +Comum", "Mercado"};
         for (String header : headers) {
-            table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(6).setBold()).setBorder(Border.NO_BORDER));
+        	// cabeçalho da tabela com fonte 8
+            table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
         }
 
         String lastSubgrupo = null;
@@ -261,7 +264,8 @@ public class CotacaoController {
             String subgrupoAtual = cotacaoItem.getPropriedade().getProduto().getSubgrupo().getNome();
 
             if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
-                table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+                // texto do subgrupo com fonte 8
+            	table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
                 lastSubgrupo = subgrupoAtual;
             }
 
