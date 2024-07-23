@@ -1,53 +1,37 @@
-function searchMunicipios() {
-    const nome = document.getElementById('searchNome').value;
-    const ibge = document.getElementById('searchIbge').value;
-    const uf = document.getElementById('searchUf').value;
+function searchMunicipio() {
+    const nome = document.getElementById('municipioName').value;
+    const uf = document.getElementById('uf').value;
+    const codigo = document.getElementById('codigoIbge').value;
 
-    fetch(`/api/municipios?nome=${nome}&ibge=${ibge}&uf=${uf}`)
+    fetch(`/searchMunicipio?nome=${nome}&uf=${uf}&codigo=${codigo}`)
         .then(response => response.json())
-        .then(municipios => {
-            const searchResultsContainer = document.getElementById('searchResults');
-            searchResultsContainer.innerHTML = '';
-
-            municipios.forEach(municipio => {
-                const div = document.createElement('div');
-                div.classList.add('search-result-item');
-                div.innerHTML = `
-                    <p><strong>${municipio.nome}</strong> - ${municipio.uf} (IBGE: ${municipio.ibge})</p>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="selectMunicipio('${municipio.ibge}', '${municipio.nome}')">Selecionar</button>
-                `;
-                searchResultsContainer.appendChild(div);
+        .then(data => {
+            const resultsBody = document.getElementById('resultsBody');
+            resultsBody.innerHTML = '';
+            data.forEach(municipio => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${municipio.nome}</td><td>${municipio.uf}</td><td>${municipio.codigo}</td><td><button type="button" class="btn btn-primary" onclick="selectMunicipio('${municipio.codigo}', '${municipio.nome}')">Selecionar</button></td>`;
+                resultsBody.appendChild(row);
             });
         })
-        .catch(error => {
-            console.error('Erro ao buscar municípios:', error);
-        });
+        .catch(error => console.error('Error:', error));
+}
+
+function openModal() {
+    document.getElementById('municipioSearchModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('municipioSearchModal').style.display = 'none';
 }
 
 function selectMunicipio(ibge, nome) {
     const municipioSelect = document.getElementById('municipio');
-    let optionExists = false;
+    const option = document.createElement('option');
+    option.value = ibge;
+    option.text = `${ibge} - ${nome}`;
+    option.selected = true;
 
-    for (const option of municipioSelect.options) {
-        if (option.value === ibge) {
-            option.selected = true;
-            optionExists = true;
-            break;
-        }
-    }
-
-    if (!optionExists) {
-        const option = document.createElement('option');
-        option.value = ibge;
-        option.text = nome;
-        option.selected = true;
-        municipioSelect.appendChild(option);
-    }
-
-    console.log(`Município selecionado: ${nome} (IBGE: ${ibge})`);
-
-    // Fechar o modal
-    const modalElement = document.getElementById('searchMunicipioModal');
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    modal.hide();
+    municipioSelect.appendChild(option);
+    closeModal();
 }

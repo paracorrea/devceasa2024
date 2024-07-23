@@ -5,7 +5,9 @@ import com.flc.springthymeleaf.domain.Municipio;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -21,6 +23,7 @@ public interface MunicipioRepository extends JpaRepository<Municipio, Integer> {
 	List<Municipio> findByNomeContainingIgnoreCase(String nome);
 	List<Municipio> findByUfIgnoreCase(String uf);
     
-    
+	
+	   List<Municipio> findByNomeContainingIgnoreCaseAndUfContainingIgnoreCaseAndCodigoContainingIgnoreCase(String nome, String uf, String codigo);
+	}
 
-}

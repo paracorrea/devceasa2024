@@ -1,0 +1,34 @@
+<!-- Modal for Municipality Search -->
+<div id="municipioSearchModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Buscar Município</h2>
+        <form id="searchForm">
+            <label for="municipioName">Nome do Município:</label>
+            <input type="text" id="municipioName" name="municipioName" onkeyup="searchMunicipio()">
+            
+            <label for="uf">UF:</label>
+            <select id="uf" name="uf" onchange="searchMunicipio()">
+                <option value="">Selecione</option>
+                <option value="MG">MG</option>
+                <option value="SP">SP</option>
+                <!-- Adicione outras UFs conforme necessário -->
+            </select>
+
+            <label for="codigoIbge">Código IBGE:</label>
+            <input type="text" id="codigoIbge" name="codigoIbge" onkeyup="searchMunicipio()">
+        </form>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>UF</th>
+                    <th>Código IBGE</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Resultados da busca serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+</div>

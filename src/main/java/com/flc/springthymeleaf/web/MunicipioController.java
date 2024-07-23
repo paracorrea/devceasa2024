@@ -17,14 +17,14 @@ public class MunicipioController {
         this.municipioService = municipioService;
     }
 
-    @GetMapping("/api/municipios")
-    public List<Municipio> searchMunicipios(
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String ibge,
-            @RequestParam(required = false) String uf) {
-        return municipioService.searchMunicipios(nome, ibge, uf);
-    }
+    @GetMapping("/searchMunicipio")
+    public List<Municipio> searchMunicipio(
+            @RequestParam(required = false, defaultValue = "") String nome,
+            @RequestParam(required = false, defaultValue = "") String uf,
+            @RequestParam(required = false, defaultValue = "") String codigo) {
+        
+        return municipioService.searchMunicipios(nome, uf, codigo);
   
 }
-
+}
 

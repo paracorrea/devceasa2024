@@ -36,17 +36,10 @@ public class MunicipioService {
 	        return Optional.ofNullable(municipioRepository.findByIbge(ibge));
 	    }
 	
-	    public List<Municipio> searchMunicipios(String nome, String ibge, String uf) {
-	        if (nome != null && !nome.isEmpty()) {
-	            return municipioRepository.findByNomeContainingIgnoreCase(nome);
-	        } else if (ibge != null && !ibge.isEmpty()) {
-	            return List.of(municipioRepository.findByIbge(ibge));
-	        } else if (uf != null && !uf.isEmpty()) {
-	            return municipioRepository.findByUfIgnoreCase(uf);
-	        } else {
-	            return municipioRepository.findAll();
-	        }
+	    public List<Municipio> searchMunicipios(String nome, String uf, String codigo) {
+	        return municipioRepository.findByNomeContainingIgnoreCaseAndUfContainingIgnoreCaseAndCodigoContainingIgnoreCase(nome, uf, codigo);
 	    }
+	}
 
 	 
-}
+
