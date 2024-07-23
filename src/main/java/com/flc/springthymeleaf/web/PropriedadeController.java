@@ -139,4 +139,10 @@ public class PropriedadeController {
         model.addAttribute("propriedades", obj);
         return ResponseEntity.ok().body(obj);
     }
+    
+    @GetMapping("/propriedades/search")
+    @ResponseBody
+    public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
+        return propriedadeService.searchByQuery(query);
+    }
 }

@@ -1,37 +1,36 @@
-/**
- * função para iterar várias propriedades para uma nota
- */
-
 function addItem() {
     const container = document.getElementById('itensContainer');
     const itemIndex = container.children.length;
     const itemTemplate = `
         <div class="item row mb-3">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label for="propriedade">Propriedade</label>
-                    <select id="propriedade-${itemIndex}" name="itens[${itemIndex}].propriedade.id" class="form-control" required>
-                        <option value="" disabled selected>Selecione uma propriedade</option>
-                        ${Array.from(document.querySelectorAll('#propriedade option')).map(option => `<option value="${option.value}">${option.text}</option>`).join('')}
-                    </select>
+                    <label for="propriedade-${itemIndex}">Propriedade</label>
+                    <div class="input-group">
+                        <input type="text" id="searchPropriedade-${itemIndex}" class="form-control" placeholder="Digite o código ou nome da variedade" oninput="searchPropriedades(${itemIndex})">
+                        <select id="propriedade-${itemIndex}" name="itens[${itemIndex}].propriedade.id" class="form-control form-control-wide" required>
+                            <option value="" disabled selected>Selecione uma propriedade</option>
+                            ${Array.from(document.querySelectorAll('#propriedade-0 option')).map(option => `<option value="${option.value}">${option.text}</option>`).join('')}
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-1 offset-md-1">
                 <div class="form-group">
                     <label for="quantidade-${itemIndex}">Quantidade</label>
-                    <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control" required>
+                    <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" required>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2 offset-md-2">
                 <div class="form-group">
                     <label for="unidadeMedida-${itemIndex}">Unidade de Medida</label>
                     <select id="unidadeMedida-${itemIndex}" name="itens[${itemIndex}].unidadeMedida" class="form-control" required>
                         <option value="" disabled selected>Selecione uma unidade de medida</option>
-                        ${Array.from(document.querySelectorAll('#unidadeMedida option')).map(option => `<option value="${option.value}">${option.text}</option>`).join('')}
+                        ${Array.from(document.querySelectorAll('#unidadeMedida-0 option')).map(option => `<option value="${option.value}">${option.text}</option>`).join('')}
                     </select>
                 </div>
             </div>
-            <div class="col-md-1 d-flex align-items-end">
+            <div class="col-md-2 d-flex align-items-end">
                 <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(this)">x</button>
             </div>
         </div>

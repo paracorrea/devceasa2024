@@ -26,5 +26,8 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 
 	 @Query("SELECT p FROM Propriedade p WHERE p.codigo IS NOT NULL")
 	    List<Propriedade> findAllWithNonNullCodigo();
+
+	List<Propriedade> findByCodigoContainingOrVariedadeContainingOrProdutoNomeContaining(String query, String query2,
+			String query3);
 	
 }

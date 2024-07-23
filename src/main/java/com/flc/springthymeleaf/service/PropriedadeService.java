@@ -90,4 +90,9 @@ public class PropriedadeService {
 			return propRepo.findAllWithNonNullCodigo();
 			
 		}
+
+		public List<Propriedade> searchByQuery(String query) {
+			// TODO Auto-generated method stub
+			return propRepo.findByCodigoContainingOrVariedadeContainingOrProdutoNomeContaining(query, query, query);
+}
 }

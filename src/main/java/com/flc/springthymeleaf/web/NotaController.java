@@ -119,7 +119,7 @@ public class NotaController {
         }
 
         // Comentar a linha de salvamento
-        // notaService.save(nota);
+        notaService.save(nota);
         attr.addFlashAttribute("success", "Nota preparada com sucesso! Verifique os logs para detalhes.");
         return "redirect:/notas/cadastrar";
     }
