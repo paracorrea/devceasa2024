@@ -40,7 +40,13 @@
                     </td>
                     <td>
                         <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-primary btn-sm">Editar</a>
-                        <a th:href="@{/notas/excluir/{id}(id=${nota.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta nota?');">Excluir</a>
+                        
+                       
+ 						<form th:action="@{/notas/excluir/{id}(id=${nota.id})}" method="post">
+    					<button type="submit"   class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta nota?');">Excluir</button>
+						</form>                   
+                    
+                    
                     </td>
                 </tr>
             </tbody>

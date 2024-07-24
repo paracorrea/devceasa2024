@@ -23,5 +23,6 @@ public interface NotaRepository  extends JpaRepository<Nota, Integer>, PagingAnd
 	    Page<Nota> findAll(Pageable pageable);
 	    
 	    
+	    
 	
 }

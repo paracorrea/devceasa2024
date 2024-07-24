@@ -5,11 +5,13 @@ package com.flc.springthymeleaf.web;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -150,11 +152,30 @@ public class NotaController {
         return "nota/nota_editar";
     }
     
-    @GetMapping("/excluir/{id}")
-    public String excluirNota(@PathVariable Integer id) {
-        notaService.deleteById(id);
-        return "redirect:/notas";
+    // Mapeamento para requisições POST
+    @PostMapping("/notas/excluir/{id}")
+    public String excluirNotaPost(@PathVariable("id") Integer id, RedirectAttributes attr) {
+        return excluirNota(id, attr);
     }
+
+    // Mapeamento para requisições DELETE
+    @DeleteMapping("/notas/excluir/{id}")
+    public String excluirNotaDelete(@PathVariable("id") Integer id, RedirectAttributes attr) {
+        return excluirNota(id, attr);
+    }
+
+    private String excluirNota(Integer id, RedirectAttributes attr) {
+        try {
+            notaService.deleteById(id);
+            attr.addFlashAttribute("success", "Nota excluída com sucesso!");
+        } catch (DataIntegrityViolationException e) {
+            attr.addFlashAttribute("error", "Erro ao excluir a nota. A nota possui itens associados.");
+        } catch (Exception e) {
+            attr.addFlashAttribute("error", "Erro ao excluir a nota: " + e.getMessage());
+        }
+        return "redirect:/notas/listar";
+    }
+
 
 }
 

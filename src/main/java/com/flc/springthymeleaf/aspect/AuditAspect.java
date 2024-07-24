@@ -6,6 +6,10 @@ import com.flc.springthymeleaf.domain.AuditLog;
 import com.flc.springthymeleaf.domain.Nota;
 import com.flc.springthymeleaf.domain.NotaFiscal;
 import com.flc.springthymeleaf.repository.AuditLogRepository;
+import com.flc.springthymeleaf.repository.NotaFiscalRepository;
+import com.flc.springthymeleaf.repository.NotaRepository;
+import com.flc.springthymeleaf.service.NotaService;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -21,11 +25,16 @@ import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Aspect
-@Component
+//@Component
 public class AuditAspect {
 
     @Autowired
     private AuditLogRepository auditLogRepository;
+
+    @Autowired
+    private NotaRepository notaRepository;
+
+   
 
     private ObjectMapper objectMapper;
 
@@ -56,14 +65,31 @@ public class AuditAspect {
 
     @Before("deletePointcut()")
     public void beforeDelete(JoinPoint joinPoint) {
-        Object entity = joinPoint.getArgs()[0];
-        try {
-            AuditLog auditLog = createAuditLog(entity, "DELETE");
-            auditLog.setOldData(objectMapper.writeValueAsString(entity));
-            auditLogRepository.save(auditLog);
-            logger.info("LOGG: Auditoria DELETE registrada para entidade: " + entity.getClass().getSimpleName());
-        } catch (JsonProcessingException e) {
-            logger.severe("Erro ao serializar dados para auditoria: " + e.getMessage());
+        Object arg = joinPoint.getArgs()[0];
+        Object entity = null;
+
+        if (arg instanceof Integer) {
+            Integer id = (Integer) arg;
+            if (joinPoint.getSignature().getDeclaringType().equals(NotaService.class)) {
+                entity = notaRepository.findById(id).orElse(null);
+            } else if (joinPoint.getSignature().getDeclaringType().equals(NotaService.class)) {
+                entity = notaRepository.findById(id).orElse(null);
+            }
+        } else {
+            entity = arg;
+        }
+
+        if (entity != null) {
+            try {
+                AuditLog auditLog = createAuditLog(entity, "DELETE");
+                auditLog.setOldData(objectMapper.writeValueAsString(entity));
+                auditLogRepository.save(auditLog);
+                logger.info("LOGG: Auditoria DELETE registrada para entidade: " + entity.getClass().getSimpleName());
+            } catch (JsonProcessingException e) {
+                logger.severe("Erro ao serializar dados para auditoria: " + e.getMessage());
+            }
+        } else {
+            logger.severe("Entidade não encontrada para exclusão.");
         }
     }
 
@@ -112,3 +138,5 @@ public class AuditAspect {
         }
     }
 }
+
+

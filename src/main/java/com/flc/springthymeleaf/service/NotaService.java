@@ -10,9 +10,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.flc.springthymeleaf.domain.ItemDeNota;
 import com.flc.springthymeleaf.domain.Municipio;
 import com.flc.springthymeleaf.domain.Nota;
+import com.flc.springthymeleaf.repository.ItemDeNotaRepository;
 import com.flc.springthymeleaf.repository.NotaRepository;
+
+import jakarta.transaction.Transactional;
 
 
 
@@ -21,8 +25,12 @@ public class NotaService {
 
 	private final NotaRepository notaRepository;
 	
-	 public NotaService(NotaRepository notaRepository) {
+	private final ItemDeNotaRepository itemDeNotaRepository;
+	
+	
+	 public NotaService(NotaRepository notaRepository, ItemDeNotaRepository itemDeNotaRepository) {
 	        this.notaRepository = notaRepository;
+			this.itemDeNotaRepository = itemDeNotaRepository;
     }
 	
 	
@@ -44,8 +52,16 @@ public class NotaService {
 		return notaRepository.findById(id);
 	}
 
-	public void deleteById(Integer id) {
-		notaRepository.deleteById(id);
-	}
+	@Transactional
+    public void deleteById(Integer id) {
+        Nota nota = notaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Nota não encontrada"));
+
+        for (ItemDeNota item : nota.getItens()) {
+            itemDeNotaRepository.delete(item);
+        }
+
+        notaRepository.delete(nota);
+    }
 	
 }

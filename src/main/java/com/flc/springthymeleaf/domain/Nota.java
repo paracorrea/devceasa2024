@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.flc.springthymeleaf.enums.FaixaHorario;
 import com.flc.springthymeleaf.enums.LocalDestino;
 import com.flc.springthymeleaf.enums.Portaria;
@@ -12,6 +14,7 @@ import com.flc.springthymeleaf.enums.TipoVeiculo;
 import jakarta.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Nota implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,6 +42,8 @@ public class Nota implements Serializable {
     private LocalDestino localDestino;
 
     @OneToMany(mappedBy = "nota", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    @JsonIgnoreProperties("nota")
     private List<ItemDeNota> itens;
 
     // Getters and setters

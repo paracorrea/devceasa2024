@@ -3,21 +3,24 @@ package com.flc.springthymeleaf.domain;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ItemDeNota implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "nota_id")
-    @JsonIgnore
+    @JsonBackReference
     private Nota nota;
 
     @ManyToOne
@@ -29,11 +32,11 @@ public class ItemDeNota implements Serializable {
     @Enumerated(EnumType.STRING)
     private UnidadeMedida unidadeMedida;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
