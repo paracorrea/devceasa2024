@@ -18,7 +18,7 @@ function addItem() {
             <div class="col-md-1 offset-md-1">
                 <div class="form-group">
                     <label for="quantidade-${itemIndex}">Quantidade</label>
-                    <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" required>
+                    <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" step="any" required>
                 </div>
             </div>
             <div class="col-md-2 offset-md-2">
