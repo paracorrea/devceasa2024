@@ -5,12 +5,16 @@ package com.flc.springthymeleaf.web;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.flc.springthymeleaf.domain.ItemDeNota;
 import com.flc.springthymeleaf.domain.Municipio;
@@ -86,14 +90,21 @@ public class NotaController {
 
     @PostMapping("/notas/salvar")
     public String salvarNota(@Valid @ModelAttribute("nota") Nota nota, BindingResult result, RedirectAttributes attr) {
+        // Log para depuração
+        System.out.println("Iniciando o salvamento da nota");
+
         if (result.hasErrors()) {
+            // Log para depuração
+            System.out.println("Erro de validação encontrado: " + result.getAllErrors());
             return "nota/nota_cadastro";
         }
 
         // Buscar o municipio pelo IBGE para garantir que é uma entidade gerenciada
-        Municipio municipio = municipioService.findByIbge(nota.getMunicipio().getIbge()).orElse(null);
+        Municipio municipio = municipioService.findById(nota.getMunicipio().getId()).orElse(null);
         if (municipio == null) {
             result.rejectValue("municipio", "error.nota", "Município não encontrado.");
+            // Log para depuração
+            System.out.println("Município não encontrado: " + nota.getMunicipio().getIbge());
             return "nota/nota_cadastro";
         }
         nota.setMunicipio(municipio);
@@ -105,6 +116,8 @@ public class NotaController {
             Propriedade propriedade = propriedadeService.findById(item.getPropriedade().getId()).orElse(null);
             if (propriedade == null) {
                 result.rejectValue("itens", "error.nota", "Propriedade não encontrada.");
+                // Log para depuração
+                System.out.println("Propriedade não encontrada: " + item.getPropriedade().getId());
                 return "nota/nota_cadastro";
             }
             item.setPropriedade(propriedade);
@@ -118,13 +131,30 @@ public class NotaController {
             System.out.println("Item: " + item);
         }
 
-        // Comentar a linha de salvamento
+        // Salvar a nota
         notaService.save(nota);
         attr.addFlashAttribute("success", "Nota preparada com sucesso! Verifique os logs para detalhes.");
         return "redirect:/notas/cadastrar";
     }
+    @GetMapping("/notas/listar")
+    public String listarNotas(Model model, @RequestParam(defaultValue = "0") int page) {
+        Page<Nota> notas = notaService.findAll(PageRequest.of(page, 10));
+        model.addAttribute("notas", notas);
+        return "nota/nota_listagem";
+    }
 
-
+    @GetMapping("/notas/editar/{id}")
+    public String editarNota(@PathVariable Integer id, Model model) {
+        Nota nota = notaService.findById(id).orElseThrow(() -> new IllegalArgumentException("Nota inválida: " + id));
+        model.addAttribute("nota", nota);
+        return "nota/nota_editar";
+    }
+    
+    @GetMapping("/excluir/{id}")
+    public String excluirNota(@PathVariable Integer id) {
+        notaService.deleteById(id);
+        return "redirect:/notas";
+    }
 
 }
 

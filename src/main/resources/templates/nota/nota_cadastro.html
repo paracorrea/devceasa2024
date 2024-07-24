@@ -31,6 +31,7 @@
 
     <div class="container">
         <h2 class="titulo">Cadastro de Nota Fiscal</h2>
+
         <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post">
             <div class="row">
                 <div class="col-md-6">
@@ -71,13 +72,13 @@
                         </select>
                     </div>
                 </div>
-                  <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="municipio">Município</label>
                         <div class="input-group">
-                            <select id="municipio" th:field="*{municipio.ibge}" class="form-control" required>
+                            <select id="municipio" th:field="*{municipio.id}" class="form-control" required>
                                 <option value="" disabled selected>Selecione um município</option>
-                                <option th:each="municipio : ${municipios}" th:value="${municipio.ibge}" th:text="${municipio.ibge} + ' - ' +${municipio.nome}"></option>
+                                <option th:each="municipio : ${municipios}" th:value="${municipio.id}" th:text="${municipio.ibge} + ' - ' + ${municipio.nome}"></option>
                             </select>
                             <button type="button" onclick="openModal()">Buscar Município</button>
                         </div>
@@ -126,15 +127,15 @@
         </form>
     </div>
 
-<!-- modal de municipio -->
- <div id="municipioSearchModal" class="modal">
+    <!-- modal de municipio -->
+    <div id="municipioSearchModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Buscar Município</h2>
             <form id="searchForm">
                 <label for="municipioName">Nome do Município:</label>
                 <input type="text" id="municipioName" name="municipioName" onkeyup="searchMunicipio()">
-                
+
                 <label for="uf">UF:</label>
                 <select id="uf" name="uf" onchange="searchMunicipio()">
                     <option value="">Selecione</option>
@@ -163,10 +164,9 @@
                     <option value="MA">MA</option>
                     <option value="PI">PI</option>
                     <option value="RN">RN</option>
-                    <option value="SP">SP</option>
                     <option value="RR">RR</option>
                     <option value="SE">SE</option>
-                    
+
                     <!-- Adicione outras UFs conforme necessário -->
                 </select>
 
@@ -191,14 +191,14 @@
             </div>
         </div>
     </div>
-<!-- fim do modal  -->
+    <!-- fim do modal  -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/script/nota/clearForm.js"></script>
     <script src="/script/nota/itemManagement.js"></script>
     <script src="/script/nota/propriedadeSearch.js"></script>
     <script src="/script/nota/municipioSearch.js"></script>
-   <script>
+    <script>
         function openModal() {
             document.getElementById('municipioSearchModal').style.display = 'block';
         }
@@ -207,10 +207,11 @@
             document.getElementById('municipioSearchModal').style.display = 'none';
         }
 
-        function selectMunicipio(ibge, nome) {
+        function selectMunicipio(id, nome, ibge) {
             const municipioSelect = document.getElementById('municipio');
+            municipioSelect.innerHTML = ''; // Limpar opções anteriores
             const option = document.createElement('option');
-            option.value = ibge;
+            option.value = id; // Usando o ID em vez do código IBGE
             option.text = `${ibge} - ${nome}`;
             option.selected = true;
 
@@ -218,7 +219,5 @@
             closeModal();
         }
     </script>
- 
-
 </body>
 </html>

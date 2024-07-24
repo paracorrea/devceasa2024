@@ -39,6 +39,13 @@ public class MunicipioService {
 	    public List<Municipio> searchMunicipios(String nome, String uf, String codigo) {
 	        return municipioRepository.findByNomeContainingIgnoreCaseAndUfContainingIgnoreCaseAndCodigoContainingIgnoreCase(nome, uf, codigo);
 	    }
+
+
+
+		public Optional<Municipio> findById(Integer id) {
+			// TODO Auto-generated method stub
+			return municipioRepository.findById(id);
+		}
 	}
 
 	 
