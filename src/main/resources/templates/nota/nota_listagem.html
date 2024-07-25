@@ -21,6 +21,7 @@
                     <th>Local de Destino</th>
                     <th>Município</th>
                     <th>Itens</th>
+                    <th>Peso da Nota (Kg)</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -32,14 +33,16 @@
                     <td th:text="${nota.faixaHorario}">Manhã</td>
                     <td th:text="${nota.tipoVeiculo}">Caminhão</td>
                     <td th:text="${nota.localDestino}">CEASA</td>
-                    <td th:text="${nota.municipio.nome}">Belo Horizonte</td>
+                    <td th:text="${nota.municipio.nome} + ' - ' + ${nota.municipio.uf} ">Belo Horizonte</td>
+                    
                     <td>
                         <ul>
                             <li th:each="item : ${nota.itens}" th:text="${item.propriedade.produto.nome} + '  ' + ${item.propriedade.variedade} + ' - ' + ${item.quantidade} + ' ' + ${item.unidadeMedida}"></li>
                         </ul>
                     </td>
+                    <td th:text="${nota.pesoTotal}">""</td>
                     <td>
-                        <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-primary btn-sm">Editar</a>
+                        <!-- <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-primary btn-sm">Editar</a>- -->
                         
                        
  						<form th:action="@{/notas/excluir/{id}(id=${nota.id})}" method="post">

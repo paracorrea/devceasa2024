@@ -32,7 +32,7 @@
     <div class="container">
         <h2 class="titulo">Cadastro de Nota Fiscal</h2>
 
-        <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post">
+        <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post" onsubmit="showPesoModal(event)">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -80,7 +80,7 @@
                                 <option value="" disabled selected>Selecione um município</option>
                                 <option th:each="municipio : ${municipios}" th:value="${municipio.id}" th:text="${municipio.ibge} + ' - ' + ${municipio.nome}"></option>
                             </select>
-                            <button type="button" onclick="openModal()">Buscar Município</button>
+                            <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
                         </div>
                     </div>
                 </div>
@@ -123,75 +123,13 @@
             </div>
             <button type="button" class="btn btn-secondary" onclick="addItem()">Adicionar Item</button>
             <br><br>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary" onclick="showPesoModal(event)">Enviar</button>
         </form>
     </div>
 
-    <!-- modal de municipio -->
-    <div id="municipioSearchModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Buscar Município</h2>
-            <form id="searchForm">
-                <label for="municipioName">Nome do Município:</label>
-                <input type="text" id="municipioName" name="municipioName" onkeyup="searchMunicipio()">
-
-                <label for="uf">UF:</label>
-                <select id="uf" name="uf" onchange="searchMunicipio()">
-                    <option value="">Selecione</option>
-                    <option value="MG">MG</option>
-                    <option value="SP">SP</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RS">RS</option>
-                    <option value="SC">SC</option>
-                    <option value="PR">PR</option>
-                    <option value="ES">ES</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="GO">GO</option>
-                    <option value="DF">DF</option>
-                    <option value="TO">TO</option>
-                    <option value="RO">RO</option>
-                    <option value="AM">AM</option>
-                    <option value="PA">PA</option>
-                    <option value="AC">AC</option>
-                    <option value="BA">BA</option>
-                    <option value="PE">PE</option>
-                    <option value="AL">AL</option>
-                    <option value="PB">PB</option>
-                    <option value="CE">CE</option>
-                    <option value="AP">AP</option>
-                    <option value="MA">MA</option>
-                    <option value="PI">PI</option>
-                    <option value="RN">RN</option>
-                    <option value="RR">RR</option>
-                    <option value="SE">SE</option>
-
-                    <!-- Adicione outras UFs conforme necessário -->
-                </select>
-
-                <label for="codigoIbge">Código IBGE:</label>
-                <input type="text" id="codigoIbge" name="codigoIbge" onkeyup="searchMunicipio()">
-            </form>
-            <table id="resultsTable">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>UF</th>
-                        <th>Código IBGE</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody id="resultsBody">
-                    <!-- Resultados da busca serão inseridos aqui -->
-                </tbody>
-            </table>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal()">Fechar</button>
-            </div>
-        </div>
-    </div>
-    <!-- fim do modal  -->
+    <!-- Inclusão dos modais -->
+    <div th:replace="municipioSearchModal :: municipioSearchModal"></div>
+    <div th:replace="pesoTotalModal :: pesoTotalModal"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/script/nota/clearForm.js"></script>
@@ -199,11 +137,11 @@
     <script src="/script/nota/propriedadeSearch.js"></script>
     <script src="/script/nota/municipioSearch.js"></script>
     <script>
-        function openModal() {
+        function openMunicipioModal() {
             document.getElementById('municipioSearchModal').style.display = 'block';
         }
 
-        function closeModal() {
+        function closeMunicipioModal() {
             document.getElementById('municipioSearchModal').style.display = 'none';
         }
 
@@ -216,7 +154,27 @@
             option.selected = true;
 
             municipioSelect.appendChild(option);
-            closeModal();
+            closeMunicipioModal();
+        }
+
+        function showPesoModal(event) {
+            event.preventDefault();
+            document.getElementById('pesoTotalModal').style.display = 'block';
+        }
+
+        function closePesoModal() {
+            document.getElementById('pesoTotalModal').style.display = 'none';
+        }
+
+        function submitForm() {
+            const pesoTotal = document.getElementById('pesoTotal').value;
+            const pesoTotalField = document.createElement('input');
+            pesoTotalField.type = 'hidden';
+            pesoTotalField.name = 'pesoTotal';
+            pesoTotalField.value = pesoTotal;
+            document.getElementById('notaForm').appendChild(pesoTotalField);
+
+            document.getElementById('notaForm').submit();
         }
     </script>
 </body>

@@ -218,10 +218,11 @@ public class CotacaoController {
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
 
-        // Ordena a lista de cotacoes primeiro por subgrupo e depois por produto dentro de cada subgrupo
+        // Ordena a lista de cotacoes primeiro por subgrupo, depois por produto dentro de cada subgrupo e por variedade
         Collections.sort(cotacaoResults, Comparator
                 .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
-                .thenComparing(c -> c.getPropriedade().getProduto().getNome()));
+                .thenComparing(c -> c.getPropriedade().getProduto().getNome())
+                .thenComparing(c -> c.getPropriedade().getVariedade()));
 
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);
@@ -234,8 +235,6 @@ public class CotacaoController {
         document.add(new Paragraph("Formulário de Cotação - CEASA CAMPINAS - Boletim número: " + numeroFeira).setFontSize(11));
         document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(10).setHorizontalAlignment(HorizontalAlignment.CENTER));
         
-       
-
         // Define estilos para a tabela
         Style cellStyle = new Style().setFontSize(8).setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER);
 
@@ -255,7 +254,7 @@ public class CotacaoController {
 
         String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Máximo", "Valor +Comum", "Mercado"};
         for (String header : headers) {
-        	// cabeçalho da tabela com fonte 8
+            // cabeçalho da tabela com fonte 8
             table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
         }
 
@@ -265,7 +264,7 @@ public class CotacaoController {
 
             if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
                 // texto do subgrupo com fonte 8
-            	table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+                table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
                 lastSubgrupo = subgrupoAtual;
             }
 
@@ -295,7 +294,7 @@ public class CotacaoController {
                 addCell(table, subvariedade, cellStyle);
                 addCell(table, classificacao, cellStyle);
                 addCell(table, valorMinimo, cellStyle);
-               // addCell(table, valorMedio, cellStyle);
+                // addCell(table, valorMedio, cellStyle);
                 addCell(table, valorMaximo, cellStyle);
                 addCell(table, valorMaisComum, cellStyle);
                 addCell(table, mercado, cellStyle);
@@ -348,6 +347,7 @@ public class CotacaoController {
     private void addCell(Table table, String content, Style style) {
         table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
     }
+
 
 	
 	

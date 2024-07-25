@@ -46,7 +46,9 @@ public class Nota implements Serializable {
     @JsonIgnoreProperties("nota")
     private List<ItemDeNota> itens;
 
-    // Getters and setters
+   
+    @Column(name="peso_total")
+    private Double pesoTotal;
 
 
 
@@ -107,7 +109,6 @@ public class Nota implements Serializable {
 	}
 
 	
-
 	public LocalDestino getLocalDestino() {
 		return localDestino;
 	}
@@ -123,6 +124,12 @@ public class Nota implements Serializable {
 	
 	public void setItens(List<ItemDeNota> itens) {
 		this.itens = itens;
+	}
+	public Double getPesoTotal() {
+		return pesoTotal;
+	}
+	public void setPesoTotal(Double pesoTotal) {
+		this.pesoTotal = pesoTotal;
 	}
 	
 	
