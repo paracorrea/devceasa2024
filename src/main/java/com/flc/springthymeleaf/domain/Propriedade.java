@@ -76,7 +76,7 @@ public class Propriedade implements Serializable {
     @JsonIgnore
     private List<Cotacao> cotacoes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<ItemDeNota> itens;
     
