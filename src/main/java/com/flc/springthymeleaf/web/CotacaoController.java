@@ -196,7 +196,12 @@ public class CotacaoController {
     @GetMapping("/cotacoes/por-feira/{dataFeira}")
     public String pesquisarCotacoesPorFeira(@PathVariable("dataFeira") @DateTimeFormat(iso = ISO.DATE) LocalDate dataFeira, Model model) {
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(dataFeira);
-        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
+        Collections.sort(cotacaoResults, Comparator
+                .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
+                .thenComparing(c -> c.getPropriedade().getProduto().getNome())
+                .thenComparing(c -> c.getPropriedade().getVariedade())
+                .thenComparing(c -> c.getPropriedade().getSubvariedade())
+                .thenComparing(c -> c.getPropriedade().getClassificacao()));
         
         // Adiciona a data formatada para exibição no template (opcional, se necessário)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -222,7 +227,9 @@ public class CotacaoController {
         Collections.sort(cotacaoResults, Comparator
                 .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
                 .thenComparing(c -> c.getPropriedade().getProduto().getNome())
-                .thenComparing(c -> c.getPropriedade().getVariedade()));
+                .thenComparing(c -> c.getPropriedade().getVariedade())
+                .thenComparing(c -> c.getPropriedade().getSubvariedade())
+                .thenComparing(c -> c.getPropriedade().getClassificacao()));
 
         PdfWriter writer = new PdfWriter(response.getOutputStream());
         PdfDocument pdf = new PdfDocument(writer);
@@ -252,10 +259,10 @@ public class CotacaoController {
 
         Table table = new Table(scaledColumnWidths);
 
-        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor Máximo", "Valor +Comum", "Mercado"};
+        String[] headers = {"Produto", "Variedade", "SubVariedade", "Classificação", "Valor Mínimo", "Valor +Comum",  "Valor Máximo","Mercado"};
         for (String header : headers) {
             // cabeçalho da tabela com fonte 8
-            table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+            table.addHeaderCell(new Cell().add(new Paragraph(header).setFontSize(8)).setBorder(Border.NO_BORDER));
         }
 
         String lastSubgrupo = null;
@@ -264,7 +271,7 @@ public class CotacaoController {
 
             if (!Objects.equals(lastSubgrupo, subgrupoAtual)) {
                 // texto do subgrupo com fonte 8
-                table.addCell(new Cell(1, headers.length).add(new Paragraph("Subgrupo: " + subgrupoAtual).setFontSize(8).setBold()).setBorder(Border.NO_BORDER));
+                table.addCell(new Cell(1, headers.length).add(new Paragraph(subgrupoAtual).setFontSize(8)).setBorder(Border.NO_BORDER));
                 lastSubgrupo = subgrupoAtual;
             }
 
@@ -295,8 +302,9 @@ public class CotacaoController {
                 addCell(table, classificacao, cellStyle);
                 addCell(table, valorMinimo, cellStyle);
                 // addCell(table, valorMedio, cellStyle);
-                addCell(table, valorMaximo, cellStyle);
+                
                 addCell(table, valorMaisComum, cellStyle);
+                addCell(table, valorMaximo, cellStyle);
                 addCell(table, mercado, cellStyle);
             } else {
                 document.add(new Paragraph("Data: [Data não disponível]"));

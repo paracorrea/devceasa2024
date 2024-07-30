@@ -230,13 +230,17 @@
 						<span th:errors="*{precoMinimo}"></span>
 					</div>
 				</div>
-				<div class="col">
-					<label for="precoMedio">Preco Médio</label> <input type="text"
-						class="form-control" id="precoMedio" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{precoMedio}" required
-						th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
+				
+
+			<div class="col">
+					<label for="valorComum">Preco Comum</label> <input type="text"
+						class="form-control" id="valorComum" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{valorComum}" required
+						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
+
+
 					<div class="invalid-feedback">
-						<span th:errors="*{precoMedio}"></span>
+						<span th:errors="*{valorComum}"></span>
 					</div>
 				</div>
 
@@ -250,18 +254,16 @@
 					</div>
 				</div>
 
-				<div class="col">
-					<label for="valorComum">Preco Comum</label> <input type="text"
-						class="form-control" id="valorComum" data-mask="#.##0,00"
-						data-mask-reverse="true" th:field="*{valorComum}" required
-						th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
-
-
+			 <div class="col">
+					<label for="precoMedio">Preco Médio</label> <input type="text"
+						class="form-control" id="precoMedio" data-mask="#.##0,00"
+						data-mask-reverse="true" th:field="*{precoMedio}" required
+						th:classappend="${#fields.hasErrors('precoMedio')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
-						<span th:errors="*{valorComum}"></span>
+						<span th:errors="*{precoMedio}"></span>
 					</div>
-				</div>
-
+				</div> 
+				
 				<input type="hidden" id="valorComumAnterior"
 					name="valorComumAnterior" value="${valorComumAnterior}" /> <input
 					type="hidden" id="mercado" name="mercado" value="${mercado}" />
