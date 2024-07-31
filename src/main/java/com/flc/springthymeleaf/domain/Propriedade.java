@@ -68,7 +68,7 @@ public class Propriedade implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "produto_id")
-    @JsonIgnore
+    @JsonManagedReference
     @NotNull(message = "Campo não pode ser nullo")
     private Produto produto;
 

@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -54,14 +56,11 @@ public class CotacaoController {
 	
 	@Autowired
 	private CotacaoService cotacaoService;
-	
 	@Autowired
 	private PropriedadeService propriedadeService;
-	
-		@InitBinder
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-			
-		binder.addValidators(new CotacaoValidator(cotacaoService));
+			binder.addValidators(new CotacaoValidator(cotacaoService));
 	}
 	
 
@@ -73,6 +72,12 @@ public class CotacaoController {
 		return listaCotados;
 	}
 		
+	@GetMapping("/cotacoes/pesquisar")
+    public String pesquisar(Model model) {
+        model.addAttribute("dataCotacao", LocalDate.now());
+        return "cotacao/pesquisa_propriedade";
+    }
+	
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
 	@ResponseBody
 	public ResponseEntity<Cotacao> buscarCotacaoAnterior(
@@ -93,13 +98,33 @@ public class CotacaoController {
 	}
 		 
 	@GetMapping("/cotacoes/cadastrar")
-	public String cadastrar(Cotacao cotacao, Model model) {
+	public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, LocalDate data,  Model model) {
 		
-		List<Propriedade> listaCotados = listarCotados();
+		
+		Propriedade propriedade = propriedadeService.findById1(propriedadeId);
+		
+		Long propId = Long.valueOf(propriedadeId);
+		Cotacao ultimaCotacao = cotacaoService.buscarCotacaoAnterior1(propId, data);
+		
 		LocalDate dataCotacao = LocalDate.now();
 		model.addAttribute("dataCotacao", dataCotacao);
-		model.addAttribute("cotacoes", listaCotados);
-		return "cotacao/cotacao_cadastro";
+		model.addAttribute("cotacoes", ultimaCotacao);
+		
+		Cotacao cotacao = new Cotacao();
+		
+		
+		 if (ultimaCotacao != null) {
+	            cotacao.setPrecoMinimo(ultimaCotacao.getPrecoMinimo());
+	            cotacao.setPrecoMedio(ultimaCotacao.getPrecoMedio());
+	            cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
+	            cotacao.setValorComum(ultimaCotacao.getValorComum());
+	        }
+		
+		
+		 cotacao.setPropriedade(propriedade);
+	     cotacao.setDataCotacao(LocalDate.now());
+	     model.addAttribute("cotacao", cotacao);
+	     return "cotacao/cotacao_cadastro";
 	}
 	
 	@PostMapping("/cotacoes/salvar")

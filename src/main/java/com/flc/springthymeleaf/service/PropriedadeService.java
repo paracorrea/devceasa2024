@@ -81,10 +81,6 @@ public class PropriedadeService {
 			return resp;
 		}
 
-		public Propriedade findByCodigo(String codigo) {
-			// TODO Auto-generated method stub
-			return propRepo.findByCodigo(codigo);
-		}
 		
 		public List<Propriedade> findPropriedadesNotNull(){
 			return propRepo.findAllWithNonNullCodigo();
@@ -95,4 +91,17 @@ public class PropriedadeService {
 			// TODO Auto-generated method stub
 			return propRepo.findByCodigoContainingOrVariedadeContainingOrProdutoNomeContaining(query, query, query);
 }
+
+		 public Propriedade findByCodigo(String codigo) {
+		        return propRepo.findByCodigo(codigo);
+		    }
+
+		    public List<Propriedade> findByProdutoNome(String nome) {
+		        return propRepo.findByProdutoNomeContaining(nome);
+		    }
+
+			public Propriedade findById1(Integer propriedadeId) {
+				// TODO Auto-generated method stub
+				return propRepo.findById1(propriedadeId);
+			}
 }

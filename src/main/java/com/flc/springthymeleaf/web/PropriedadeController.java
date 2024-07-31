@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -145,4 +146,34 @@ public class PropriedadeController {
     public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
         return propriedadeService.searchByQuery(query);
     }
+    
+    
+    
+    @GetMapping("/searchPropertyByCode")
+    public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
+        Propriedade propriedade = propriedadeService.findByCodigo(code);
+        if (propriedade != null) {
+            return ResponseEntity.ok(propriedade);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
+        }
+    }
+
+    @GetMapping("/searchPropertyByProductName")
+    public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {
+        List<Propriedade> propriedades = propriedadeService.findByProdutoNome(productName);
+        return ResponseEntity.ok(propriedades);
+    }
+    
+    @GetMapping("/propriedades/testar")
+    public String pesquisar(Propriedade propriedade, Model model) {
+        
+    	
+        return "nota/pesquisa";
+    }
+  
 }
+    
+
+
+

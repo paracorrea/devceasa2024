@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -45,7 +46,7 @@ public class Produto implements Serializable {
     private Subgrupo subgrupo;
 
     @OneToMany(mappedBy = "produto", cascade = { CascadeType.ALL })
-    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+    @JsonBackReference
     private List<Propriedade> propriedades = new ArrayList<>();
 
     // Getters and Setters

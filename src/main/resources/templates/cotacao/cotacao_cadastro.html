@@ -1,75 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.tymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-	rel="stylesheet">
-<link th:href="@{/css/myStyle.css}" rel="stylesheet">
-<title>Sistema DEVCEASA</title>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
+	<title>Sistema DEVCEASA</title>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 
 <body>
 
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
 
-
-
 	<div class="container">
 
 		<div th:replace="~{alert}"></div>
-
 		<br>
 		<div class="meu-hr">
-
 			<p>Cotação de produtos</p>
-
 		</div>
-
 
 		<form
 			th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}"
 			th:object="${cotacao}" method="POST">
 
 			<div th:replace="~{validacao :: validacao}"></div>
-
-			<div class="form-row">
-				<div class="form-group col-md-8">
-					<label for="propriedade">Produto/Propriedade</label> <select
-						id="propriedade" class="form-control" th:field="*{propriedade}"
-						onchange="limparCampos(); buscarCotacaoAnterior()">
-						<option value="">Selecione...</option>
-						<option th:each="p : ${cotados}" th:data-peso="${p.peso}"
-							th:value="${p.id}"
-							th:text="${p.produto.nome} + ' - ' + 
-            ${p.codigo} + ' - ' + ${p.variedade}  + '  ' + 
-            ${p.subvariedade} + '  ' + ${p.classificacao}  + '  ' + 
-            ${p.unidade} + '  ' + ${p.peso} + '   ' + 
-            ${p.embalagem}">
-						</option>
-					</select>
-					<div class="input-group-append">
-						<span class="input-group-text">ou</span>
-					</div>
-					<input type="text" class="form-control" id="codigoPesquisa"
-						placeholder="Pesquisar por código" oninput="filtrarPorCodigo()">
-				</div>
-			</div>
-
-			<div>
-				<p id="selecaoAtual">Seleção Atual:</p>
-			</div>
+			
+			<!-- Data da Cotacao aqui -->
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="dataCotacao">Data da Cotação</label> <input type="date"
@@ -80,9 +42,46 @@
 					</div>
 				</div>
 			</div>
-			<!-- 
- <button type="button" class="btn btn-primary" onclick="buscarCotacaoAnterior()">Buscar Cotação Anterior</button>
- -->
+
+			<!-- Novo campo de pesquisa de propriedade por código -->
+            <div class="form-group">
+                <label for="propertyCode">Código da Propriedade:</label>
+                <input type="text" id="propertyCode" class="form-control" placeholder="Digite o código da propriedade">
+            </div>
+
+            <!-- Novo campo de pesquisa de propriedade por nome de produto -->
+            <div class="form-group">
+                <label for="productName">Nome do Produto:</label>
+                <input type="text" id="productName" class="form-control" placeholder="Digite o nome do produto">
+                <button type="button" class="btn btn-secondary" id="searchProductButton">Pesquisar</button>
+            </div>
+
+            <!-- Resultados da Pesquisa -->
+            <div id="searchResults">
+                <!-- Resultados da pesquisa serão carregados aqui -->
+            </div>
+
+            <!-- Campos ocultos para armazenar os valores da propriedade selecionada -->
+            <input type="hidden" id="selectedPropertyId" th:field="*{propriedade.id}">
+            <input type="hidden" id="selectedPropertyCodigo" th:field="*{propriedade.codigo}">
+            <input type="hidden" id="selectedPropertyVariedade" th:field="*{propriedade.variedade}">
+            <input type="hidden" id="selectedPropertySubvariedade" th:field="*{propriedade.subvariedade}">
+            <input type="hidden" id="selectedPropertyClassificacao" th:field="*{propriedade.classificacao}">
+            <input type="hidden" id="selectedPropertyUnidade" th:field="*{propriedade.unidade}">
+            <input type="hidden" id="selectedPropertyPeso" th:field="*{propriedade.peso}">
+            <input type="hidden" id="selectedPropertyEmbalagem" th:field="*{propriedade.embalagem}">
+            <input type="hidden" id="selectedPropertyProdutoNome" th:field="*{propriedade.produto.nome}">
+
+            <!-- Campo de seleção de propriedade atualizado -->
+         
+
+            <div>
+                <p id="selecaoAtual">Seleção Atual:</p>
+            </div>
+
+			
+			
+	
 			<div class="row">
 
 				<div class="col ">
@@ -287,7 +286,81 @@
 		</form>
 	</div>
 
+   
 
+    <script>
+        $(document).ready(function() {
+            $('#propertyCode').on('input', function() {
+                let code = $(this).val();
+                if (code.length > 0) {
+                    $.ajax({
+                        url: '/searchPropertyByCode',
+                        method: 'GET',
+                        data: { code: code },
+                        success: function(data) {
+                            if (!data) {
+                                $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                            } else {
+                                $('#selectedPropertyId').val(data.id);
+                                $('#selectedPropertyCodigo').val(data.codigo);
+                                $('#selectedPropertyVariedade').val(data.variedade);
+                                $('#selectedPropertySubvariedade').val(data.subvariedade);
+                                $('#selectedPropertyClassificacao').val(data.classificacao);
+                                $('#selectedPropertyUnidade').val(data.unidade);
+                                $('#selectedPropertyPeso').val(data.peso);
+                                $('#selectedPropertyEmbalagem').val(data.embalagem);
+                                $('#selectedPropertyProdutoNome').val(data.produto.nome);
+                                $('#searchResults').html('<p>Propriedade encontrada: ' + data.codigo + ' - ' + data.produto.nome + ' ' + data.variedade + ' ' + data.subvariedade + '</p>');
+                            }
+                        },
+                        error: function() {
+                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                        }
+                    });
+                }
+            });
+
+            $('#searchProductButton').click(function() {
+                let productName = $('#productName').val();
+                if (productName.length > 0) {
+                    $.ajax({
+                        url: '/searchPropertyByProductName',
+                        method: 'GET',
+                        data: { productName: productName },
+                        success: function(data) {
+                            if (data.length === 0) {
+                                $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                            } else {
+                                let resultsHtml = '<ul>';
+                                data.forEach(function(item) {
+                                    resultsHtml += '<li><a href="#" class="select-property" data-id="' + item.id + '" data-codigo="' + item.codigo + '" data-variedade="' + item.variedade + '" data-subvariedade="' + item.subvariedade + '" data-classificacao="' + item.classificacao + '" data-unidade="' + item.unidade + '" data-peso="' + item.peso + '" data-embalagem="' + item.embalagem + '" data-produto-nome="' + item.produto.nome + '">' + item.codigo + ' - ' + item.produto.nome + ' ' + item.variedade + ' ' + item.subvariedade + '</a></li>';
+                                });
+                                resultsHtml += '</ul>';
+                                $('#searchResults').html(resultsHtml);
+
+                                $('.select-property').click(function(e) {
+                                    e.preventDefault();
+                                    $('#selectedPropertyId').val($(this).data('id'));
+                                    $('#selectedPropertyCodigo').val($(this).data('codigo'));
+                                    $('#selectedPropertyVariedade').val($(this).data('variedade'));
+                                    $('#selectedPropertySubvariedade').val($(this).data('subvariedade'));
+                                    $('#selectedPropertyClassificacao').val($(this).data('classificacao'));
+                                    $('#selectedPropertyUnidade').val($(this).data('unidade'));
+                                    $('#selectedPropertyPeso').val($(this).data('peso'));
+                                    $('#selectedPropertyEmbalagem').val($(this).data('embalagem'));
+                                    $('#selectedPropertyProdutoNome').val($(this).data('produto-nome'));
+                                    $('#searchResults').html('<p>Propriedade selecionada: ' + $(this).data('codigo') + ' - ' + $(this).data('produto-nome') + ' ' + $(this).data('variedade') + ' ' + $(this).data('subvariedade') + '</p>');
+                                });
+                            }
+                        },
+                        error: function() {
+                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 
