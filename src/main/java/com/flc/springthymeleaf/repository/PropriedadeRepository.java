@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Propriedade;
@@ -21,7 +22,8 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 
 	 boolean existsByCodigo(String codigo);
 
-	Propriedade findByCodigo(String codigo);
+	 @Query("SELECT p FROM Propriedade p WHERE LOWER(p.codigo) = LOWER(:codigo)")
+	    Propriedade findByCodigoIgnoreCase(@Param("codigo") String codigo);
 			
 
 	 @Query("SELECT p FROM Propriedade p WHERE p.codigo IS NOT NULL")
@@ -30,8 +32,8 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	List<Propriedade> findByCodigoContainingOrVariedadeContainingOrProdutoNomeContaining(String query, String query2,
 			String query3);
 
-	 @Query("SELECT p FROM Propriedade p JOIN p.produto pr WHERE pr.nome LIKE %:nome%")
-	List<Propriedade> findByProdutoNomeContaining(String nome);
+	@Query("SELECT p FROM Propriedade p WHERE LOWER(p.produto.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
+	List<Propriedade> findByProdutoNomeContainingIgnoreCase(@Param("nome") String nome);
 
 	
 }

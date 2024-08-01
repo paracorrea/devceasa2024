@@ -12,26 +12,92 @@
 <body>
     <div class="container">
         <h1>Pesquisa de Propriedade</h1>
-        <form th:action="@{/cotacoes/cadastrar}" method="GET">
-            <div class="form-group">
-                <label for="dataCotacao">Data da Cotação:</label>
-                <input type="date" id="dataCotacao" name="data" class="form-control" th:value="${dataCotacao}" required>
-            </div>
-            <div class="form-group">
-                <label for="propertyCode">Código da Propriedade:</label>
-                <input type="text" id="propertyCode" class="form-control" placeholder="Digite o código da propriedade">
-            </div>
-            <div class="form-group">
-                <label for="productName">Nome do Produto:</label>
-                <input type="text" id="productName" class="form-control" placeholder="Digite o nome do produto">
-                <button type="button" class="btn btn-secondary" id="searchProductButton">Pesquisar</button>
-            </div>
-            <div id="searchResults">
-                <!-- Resultados da pesquisa serão carregados aqui -->
-            </div>
-            <input type="hidden" id="selectedPropertyId" name="propriedadeId">
-            <button type="submit" class="btn btn-primary" id="selectPropertyButton" disabled>Selecionar Propriedade</button>
-        </form>
+          <div th:if="${success}" class="alert alert-success" role="alert">
+            <p th:text="${success}"></p>
+        </div>
+        
+ <form th:action="@{/cotacoes/cadastrar}" method="GET">
+    <div class="form-group">
+        <label for="dataCotacao">Data da Cotação:</label>
+        <input type="date" id="dataCotacao" name="data" class="form-control" th:value="${dataCotacao}" required>
     </div>
+    <div class="form-group">
+        <label for="propertyCode">Código da Propriedade:</label>
+        <input type="text" id="propertyCode" class="form-control" placeholder="Digite o código da propriedade">
+    </div>
+    <div class="form-group">
+        <label for="productName">Nome do Produto:</label>
+        <input type="text" id="productName" class="form-control" placeholder="Digite o nome do produto">
+        <button type="button" class="btn btn-secondary" id="searchProductButton">Pesquisar</button>
+    </div>
+    <div id="searchResults">
+        <!-- Resultados da pesquisa serão carregados aqui -->
+    </div>
+    <input type="hidden" id="propriedadeId" name="propriedadeId">
+    <button type="submit" class="btn btn-primary" id="selectPropertyButton" disabled>Selecionar Propriedade</button>
+</form>
+</div>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $('#propertyCode').on('input', function() {
+            let code = $(this).val();
+            if (code.length > 0) {
+                $.ajax({
+                    url: '/searchPropertyByCode',
+                    method: 'GET',
+                    data: { code: code },
+                    success: function(data) {
+                        if (!data) {
+                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                        } else {
+                            $('#propriedadeId').val(data.id); // Set the hidden input value
+                            $('#searchResults').html('<p>Propriedade encontrada: ' + data.codigo + ' - ' + data.produto.nome + ' ' + data.variedade + ' ' + data.subvariedade + '</p>');
+                            $('#selectPropertyButton').prop('disabled', false);
+                            console.log('propriedadeId set to:', data.id); // Log for debugging
+                        }
+                    },
+                    error: function() {
+                        $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                    }
+                });
+            }
+        });
+
+        $('#searchProductButton').click(function() {
+            let productName = $('#productName').val();
+            if (productName.length > 0) {
+                $.ajax({
+                    url: '/searchPropertyByProductName',
+                    method: 'GET',
+                    data: { productName: productName },
+                    success: function(data) {
+                        if (data.length === 0) {
+                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                        } else {
+                            let resultsHtml = '<ul>';
+                            data.forEach(function(item) {
+                                resultsHtml += '<li><a href="#" class="select-property" data-id="' + item.id + '">' + item.codigo + ' - ' + item.produto.nome + ' ' + item.variedade + ' ' + item.subvariedade + '</a></li>';
+                            });
+                            resultsHtml += '</ul>';
+                            $('#searchResults').html(resultsHtml);
+
+                            $('.select-property').click(function(e) {
+                                e.preventDefault();
+                                $('#propriedadeId').val($(this).data('id')); // Set the hidden input value
+                                $('#searchResults').html('<p>Propriedade selecionada: ' + $(this).text() + '</p>');
+                                $('#selectPropertyButton').prop('disabled', false);
+                                console.log('propriedadeId set to:', $(this).data('id')); // Log for debugging
+                            });
+                        }
+                    },
+                    error: function() {
+                        $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
+                    }
+                });
+            }
+        });
+    });
+</script>
+ 
 </body>
 </html>

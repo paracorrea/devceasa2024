@@ -93,11 +93,11 @@ public class PropriedadeService {
 }
 
 		 public Propriedade findByCodigo(String codigo) {
-		        return propRepo.findByCodigo(codigo);
+		        return propRepo.findByCodigoIgnoreCase(codigo);
 		    }
 
 		    public List<Propriedade> findByProdutoNome(String nome) {
-		        return propRepo.findByProdutoNomeContaining(nome);
+		        return propRepo.findByProdutoNomeContainingIgnoreCase(nome);
 		    }
 
 			

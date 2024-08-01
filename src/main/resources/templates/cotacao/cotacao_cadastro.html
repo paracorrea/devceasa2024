@@ -21,6 +21,10 @@
 
 		<div th:replace="~{alert}"></div>
 		<br>
+		
+		   <div th:if="${success}" class="alert alert-success" role="alert">
+            <p th:text="${success}"></p>
+        </div>
 		<div class="meu-hr">
 			<p>Cotação de produtos</p>
 		</div>
@@ -28,6 +32,22 @@
 		<form
 			th:action="${cotacao.id == null} ? @{/cotacoes/salvar} : @{/cotacoes/editar}"
 			th:object="${cotacao}" method="POST">
+			
+			
+			
+			
+		  <!-- Campos ocultos para armazenar os valores da propriedade selecionada -->
+    <input type="hidden" id="propriedadeId" th:field="*{propriedade.id}">
+    <input type="hidden" id="selectedPropertyCodigo" th:field="*{propriedade.codigo}">
+    <input type="hidden" id="selectedPropertyVariedade" th:field="*{propriedade.variedade}">
+    <input type="hidden" id="selectedPropertySubvariedade" th:field="*{propriedade.subvariedade}">
+    <input type="hidden" id="selectedPropertyClassificacao" th:field="*{propriedade.classificacao}">
+    <input type="hidden" id="selectedPropertyUnidade" th:field="*{propriedade.unidade}">
+    <input type="hidden" id="selectedPropertyPeso" th:field="*{propriedade.peso}">
+    <input type="hidden" id="selectedPropertyEmbalagem" th:field="*{propriedade.embalagem}">
+    <input type="hidden" id="selectedPropertyProdutoNome" th:field="*{propriedade.produto.nome}">
+    
+    
 
 			<div th:replace="~{validacao :: validacao}"></div>
 			
@@ -43,16 +63,7 @@
 				</div>
 			</div>
 
-            <!-- Campos ocultos para armazenar os valores da propriedade selecionada -->
-            <input type="hidden" id="selectedPropertyId" th:field="*{propriedade.id}">
-            <input type="hidden" id="selectedPropertyCodigo" th:field="*{propriedade.codigo}">
-            <input type="hidden" id="selectedPropertyVariedade" th:field="*{propriedade.variedade}">
-            <input type="hidden" id="selectedPropertySubvariedade" th:field="*{propriedade.subvariedade}">
-            <input type="hidden" id="selectedPropertyClassificacao" th:field="*{propriedade.classificacao}">
-            <input type="hidden" id="selectedPropertyUnidade" th:field="*{propriedade.unidade}">
-            <input type="hidden" id="selectedPropertyPeso" th:field="*{propriedade.peso}">
-            <input type="hidden" id="selectedPropertyEmbalagem" th:field="*{propriedade.embalagem}">
-            <input type="hidden" id="selectedPropertyProdutoNome" th:field="*{propriedade.produto.nome}">
+            
 
             <!-- Campo de seleção de propriedade atualizado -->
          
@@ -258,7 +269,7 @@
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
 					<button type="submit" class="btn btn-primary btn-sm"
-						onclick="calcularMercado()">Salvar</button>
+						>Salvar</button>
 				</div>
 			</div>
 		</form>
