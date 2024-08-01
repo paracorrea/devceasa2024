@@ -100,8 +100,5 @@ public class PropriedadeService {
 		        return propRepo.findByProdutoNomeContaining(nome);
 		    }
 
-			public Propriedade findById1(Integer propriedadeId) {
-				// TODO Auto-generated method stub
-				return propRepo.findById1(propriedadeId);
-			}
+			
 }

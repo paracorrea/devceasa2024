@@ -141,23 +141,7 @@ public class PropriedadeController {
         return ResponseEntity.ok().body(obj);
     }
     
-    @GetMapping("/propriedades/search")
-    @ResponseBody
-    public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
-        return propriedadeService.searchByQuery(query);
-    }
-    
-    
-    
-    @GetMapping("/searchPropertyByCode")
-    public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
-        Propriedade propriedade = propriedadeService.findByCodigo(code);
-        if (propriedade != null) {
-            return ResponseEntity.ok(propriedade);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
-        }
-    }
+   
 
     @GetMapping("/searchPropertyByProductName")
     public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {

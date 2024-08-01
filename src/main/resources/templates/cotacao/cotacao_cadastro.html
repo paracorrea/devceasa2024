@@ -43,24 +43,6 @@
 				</div>
 			</div>
 
-			<!-- Novo campo de pesquisa de propriedade por código -->
-            <div class="form-group">
-                <label for="propertyCode">Código da Propriedade:</label>
-                <input type="text" id="propertyCode" class="form-control" placeholder="Digite o código da propriedade">
-            </div>
-
-            <!-- Novo campo de pesquisa de propriedade por nome de produto -->
-            <div class="form-group">
-                <label for="productName">Nome do Produto:</label>
-                <input type="text" id="productName" class="form-control" placeholder="Digite o nome do produto">
-                <button type="button" class="btn btn-secondary" id="searchProductButton">Pesquisar</button>
-            </div>
-
-            <!-- Resultados da Pesquisa -->
-            <div id="searchResults">
-                <!-- Resultados da pesquisa serão carregados aqui -->
-            </div>
-
             <!-- Campos ocultos para armazenar os valores da propriedade selecionada -->
             <input type="hidden" id="selectedPropertyId" th:field="*{propriedade.id}">
             <input type="hidden" id="selectedPropertyCodigo" th:field="*{propriedade.codigo}">
@@ -75,30 +57,26 @@
             <!-- Campo de seleção de propriedade atualizado -->
          
 
-            <div>
-                <p id="selecaoAtual">Seleção Atual:</p>
-            </div>
-
+               <div>
+         			   <p id="selecaoAtual" th:text="'Seleção Atual: ' + ${cotacao.propriedade.codigo} + ' - ' + ${cotacao.propriedade.produto.nome} + ' ' + ${cotacao.propriedade.variedade} + ' ' + ${cotacao.propriedade.subvariedade}">Seleção Atual:</p>
+       		 </div>
 			
 			
 	
 			<div class="row">
 
-				<div class="col ">
-					<label for="valor1">Valor cotado(1)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor1"
-						data-mask-reverse="true" th:field="*{valor1}" required
-						th:classappend="${#fields.hasErrors('valor1')} ? 'is-invalid'" />
-
-					<div class="invalid-feedback">
-						<span th:errors="*{valor1}"></span>
-					</div>
-				</div>
+				 <div class="col">
+                    <label for="valor1">Valor Cotado (1)</label>
+                    <input type="text" class="form-control valor" id="valor1" th:field="*{valor1}"  required />
+                    <div class="invalid-feedback">
+                        <span th:errors="*{valor1}"></span>
+                    </div>
+                </div>
 
 				<div class="col">
 					<label for="valor2">Valor cotado(2)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor2"
-						data-mask-reverse="true" th:field="*{valor2}" required
+						 class="form-control valor" id="valor2" data-mask="#.##0,00" data-mask-reverse="true" 
+						 th:field="*{valor2}" required
 						th:classappend="${#fields.hasErrors('valor2')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -113,8 +91,8 @@
 
 				<div class="col">
 					<label for="valor3">Valor cotado(3)</label> <input type="text"
-						class="form-control valor-com-virgula" id="valor3"
-						data-mask-reverse="true" th:field="*{valor3}" required
+						 class="form-control valor" id="valor3" data-mask="#.##0,00"
+						 th:field="*{valor3}" required
 						th:classappend="${#fields.hasErrors('valor3')} ? 'is-invalid'" />
 
 					<div class="invalid-feedback">
@@ -286,7 +264,11 @@
 		</form>
 	</div>
 
-   
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $('.valor').mask('#.##0,00', { reverse: true });
+    });
+</script>
 
     <script>
         $(document).ready(function() {
@@ -382,7 +364,7 @@
 			document.getElementById("precoMaximo").value = "";
 			document.getElementById("valorComum").value = "";
 
-			buscarCotacaoAnterior();
+			
 
 		}
 	

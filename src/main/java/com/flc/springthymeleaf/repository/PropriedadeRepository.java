@@ -33,7 +33,5 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	 @Query("SELECT p FROM Propriedade p JOIN p.produto pr WHERE pr.nome LIKE %:nome%")
 	List<Propriedade> findByProdutoNomeContaining(String nome);
 
-	 @Query("SELECT p FROM Propriedade p WHERE p.id = ?1")
-	Propriedade findById1(Integer propriedadeId);
 	
 }

@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.web;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -10,9 +11,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +55,8 @@ import jakarta.validation.Valid;
 @Controller
 public class CotacaoController {
 
-	//private static final Logger logger = LoggerFactory.getLogger(Cotacao.class);
+	 private static final Logger LOGGER = Logger.getLogger(CotacaoController.class.getName());
+
 	
 	@Autowired
 	private CotacaoService cotacaoService;
@@ -71,7 +75,11 @@ public class CotacaoController {
 		Collections.sort(listaCotados, (p1, p2) -> p1.getProduto().getNome().compareToIgnoreCase(p2.getProduto().getNome()));
 		return listaCotados;
 	}
-		
+	
+	
+	
+	
+	
 	@GetMapping("/cotacoes/pesquisar")
     public String pesquisar(Model model) {
         model.addAttribute("dataCotacao", LocalDate.now());
@@ -82,7 +90,7 @@ public class CotacaoController {
 	@ResponseBody
 	public ResponseEntity<Cotacao> buscarCotacaoAnterior(
 	         
-	        @RequestParam Long propriedadeId,
+	        @RequestParam Integer propriedadeId,
 	        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCotacao) {
 
 		
@@ -97,36 +105,88 @@ public class CotacaoController {
 	    }
 	}
 		 
-	@GetMapping("/cotacoes/cadastrar")
-	public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, LocalDate data,  Model model) {
-		
-		
-		Propriedade propriedade = propriedadeService.findById1(propriedadeId);
-		
-		Long propId = Long.valueOf(propriedadeId);
-		Cotacao ultimaCotacao = cotacaoService.buscarCotacaoAnterior1(propId, data);
-		
-		LocalDate dataCotacao = LocalDate.now();
-		model.addAttribute("dataCotacao", dataCotacao);
-		model.addAttribute("cotacoes", ultimaCotacao);
-		
-		Cotacao cotacao = new Cotacao();
-		
-		
-		 if (ultimaCotacao != null) {
-	            cotacao.setPrecoMinimo(ultimaCotacao.getPrecoMinimo());
-	            cotacao.setPrecoMedio(ultimaCotacao.getPrecoMedio());
-	            cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
-	            cotacao.setValorComum(ultimaCotacao.getValorComum());
+	 @GetMapping("/cotacoes/cadastrar")
+	    public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, @RequestParam("data") LocalDate data, Model model) {
+	        Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
+	        
+	        if (propriedadeOpt.isPresent()) {
+	            Propriedade propriedade = propriedadeOpt.get();
+	            Cotacao ultimaCotacao = cotacaoService.buscarCotacaoAnterior1(propriedadeId, data);
+
+	            Cotacao cotacao = new Cotacao();
+	            if (ultimaCotacao != null) {
+	            	
+	            	 cotacao.setValor1(formatToReais(ultimaCotacao.getValor1()));
+	                 cotacao.setValor2(formatToReais(ultimaCotacao.getValor2()));
+	                 cotacao.setValor3(formatToReais(ultimaCotacao.getValor3()));
+	                 cotacao.setValor4(formatToReais(ultimaCotacao.getValor4()));
+	                 cotacao.setValor5(formatToReais(ultimaCotacao.getValor5()));
+	                 cotacao.setValor6(formatToReais(ultimaCotacao.getValor6()));
+	                 cotacao.setValor7(formatToReais(ultimaCotacao.getValor7()));
+	                 cotacao.setValor8(formatToReais(ultimaCotacao.getValor8()));
+	                 cotacao.setValor9(formatToReais(ultimaCotacao.getValor9()));
+	                 cotacao.setValor10(formatToReais(ultimaCotacao.getValor10()));
+	            	cotacao.setPesoVariavel(ultimaCotacao.getPesoVariavel());
+	            
+	                cotacao.setPrecoMinimo(ultimaCotacao.getPrecoMinimo());
+	                cotacao.setPrecoMedio(ultimaCotacao.getPrecoMedio());
+	                cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
+	                cotacao.setValorComum(ultimaCotacao.getValorComum());
+	                
+	                LOGGER.info("Última cotação: " + ultimaCotacao.toString());
+	                logCotacaoValues("Última cotação", ultimaCotacao);
+	            }
+
+	            cotacao.setPropriedade(propriedade);
+	            cotacao.setDataCotacao(LocalDate.now());
+
+	            model.addAttribute("dataCotacao", LocalDate.now());
+	            model.addAttribute("cotacao", cotacao);
+	            model.addAttribute("ultimaCotacao", ultimaCotacao);
+	            
+	            LOGGER.info("Propriedade selecionada: " + propriedade.toString());
+	            logCotacaoValues("Cotação atual", cotacao);
+	            return "cotacao/cotacao_cadastro";
+	        } else {
+	            // Caso a propriedade não seja encontrada, redirecionar ou mostrar uma mensagem de erro
+	            model.addAttribute("error", "Propriedade não encontrada.");
+	            return "error";
 	        }
-		
-		
-		 cotacao.setPropriedade(propriedade);
-	     cotacao.setDataCotacao(LocalDate.now());
-	     model.addAttribute("cotacao", cotacao);
-	     return "cotacao/cotacao_cadastro";
-	}
+	    }
 	
+	 private void logCotacaoValues(String prefix, Cotacao cotacao) {
+	        LOGGER.info(prefix + " - PrecoMinimo: " + cotacao.getPrecoMinimo());
+	        LOGGER.info(prefix + " - PrecoMedio: " + cotacao.getPrecoMedio());
+	        LOGGER.info(prefix + " - PrecoMaximo: " + cotacao.getPrecoMaximo());
+	        LOGGER.info(prefix + " - ValorComum: " + cotacao.getValorComum());
+	        LOGGER.info(prefix + " - Valor1: " + cotacao.getValor1());
+	        LOGGER.info(prefix + " - Valor2: " + cotacao.getValor2());
+	        LOGGER.info(prefix + " - Valor3: " + cotacao.getValor3());
+	        LOGGER.info(prefix + " - Valor4: " + cotacao.getValor4());
+	        LOGGER.info(prefix + " - Valor5: " + cotacao.getValor5());
+	        LOGGER.info(prefix + " - Valor6: " + cotacao.getValor6());
+	        LOGGER.info(prefix + " - Valor7: " + cotacao.getValor7());
+	        LOGGER.info(prefix + " - Valor8: " + cotacao.getValor8());
+	        LOGGER.info(prefix + " - Valor9: " + cotacao.getValor9());
+	        LOGGER.info(prefix + " - Valor10: " + cotacao.getValor10());
+	    }
+	
+	 
+	 private BigDecimal formatDecimal(BigDecimal value) {
+	        if (value != null) {
+	            return value.setScale(2, RoundingMode.HALF_UP);
+	        }
+	        return null;
+	    }
+	 
+	   private BigDecimal formatToReais(BigDecimal value) {
+	        if (value != null) {
+	            return value.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+	        }
+	        return null;
+	    }
+	
+	 
 	@PostMapping("/cotacoes/salvar")
 	public String salvar(@Valid @ModelAttribute Cotacao cotacao, Model model,BindingResult result, RedirectAttributes attr ) {
 		
@@ -142,7 +202,7 @@ public class CotacaoController {
 	        }
 		 
 		if (result.hasErrors()) {
-			return "cotacao/cotacao_cadastro";
+			return "cotacao/pesquisa_propriedade";
 		}
 		
 		cotacaoService.insert(cotacao);
@@ -383,5 +443,21 @@ public class CotacaoController {
 
 
 	
-	
+    @GetMapping("/propriedades/search")
+    @ResponseBody
+    public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
+        return propriedadeService.searchByQuery(query);
+    }
+    
+    
+    
+    @GetMapping("/searchPropertyByCode")
+    public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
+        Propriedade propriedade = propriedadeService.findByCodigo(code);
+        if (propriedade != null) {
+            return ResponseEntity.ok(propriedade);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
+        }
+    }
 }

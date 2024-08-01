@@ -25,9 +25,9 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 	List<Cotacao> findByDataCotacao(LocalDate selectedDate);
 
 	Optional<Cotacao> findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(
-	        Long propriedadeId, LocalDate dataCotacao);
+	        Integer propriedadeId, LocalDate dataCotacao);
 	
 	Optional<Cotacao> findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(
-	            Long propriedadeId, LocalDate dataCotacao);
+	            Integer propriedadeId, LocalDate dataCotacao);
 	
 }
