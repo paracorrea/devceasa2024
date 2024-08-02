@@ -83,7 +83,7 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/pesquisar")
     public String pesquisar(Model model) {
         model.addAttribute("dataCotacao", LocalDate.now());
-        return "cotacao/pesquisa_propriedade";
+        return "cotacao/cotacao_pesquisar";
     }
 	
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
@@ -206,12 +206,14 @@ public class CotacaoController {
 
 	       if (cotacao.getDataCotacao() != null && cotacao.getPropriedade() != null &&
 	               cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
-	           result.rejectValue("dataCotacao", "error.cotacao", "Já existe uma cotação para a mesma propriedade na mesma data.");
+	    	   		attr.addFlashAttribute("fail", "A cotação não foi salva pois já existe uma cotação deste produto para este dia, selecione outro produto para cotar");
+	    	   		return "redirect:/cotacoes/pesquisar";
 	       }
 
 	       if (result.hasErrors()) {
 	           LOGGER.info("Erros de validação ao salvar cotação: " + result.toString());
-	           return "cotacao/cotacao_cadastro";
+	           attr.addFlashAttribute("Erros de validação ao salvar cotação: " + result.toString());
+	           return "cotacao/cotacao_pesquisar";
 	       }
 
 	       cotacaoService.insert(cotacao);

@@ -22,8 +22,12 @@
 		<div th:replace="~{alert}"></div>
 		<br>
 		
-		   <div th:if="${success}" class="alert alert-success" role="alert">
+		   <div th:if="${success}" class="alert alert-error" role="alert">
             <p th:text="${success}"></p>
+        </div>
+        
+        <div th:if="${fail}" class="alert alert-error" role="alert">
+            <p th:text="${fail}"></p>
         </div>
 		<div class="meu-hr">
 			<p>Cotação de produtos</p>
@@ -37,6 +41,7 @@
 			
 			
 		  <!-- Campos ocultos para armazenar os valores da propriedade selecionada -->
+		  
     <input type="hidden" id="propriedadeId" th:field="*{propriedade.id}">
     <input type="hidden" id="selectedPropertyCodigo" th:field="*{propriedade.codigo}">
     <input type="hidden" id="selectedPropertyVariedade" th:field="*{propriedade.variedade}">
@@ -69,7 +74,12 @@
          
 
                <div>
-         			   <p id="selecaoAtual" th:text="'Seleção Atual: ' + ${cotacao.propriedade.codigo} + ' - ' + ${cotacao.propriedade.produto.nome} + ' ' + ${cotacao.propriedade.variedade} + ' ' + ${cotacao.propriedade.subvariedade}">Seleção Atual:</p>
+         			   <p id="selecaoAtual" th:text="'Seleção Atual: ' + ${cotacao.propriedade.codigo} + ' - ' 
+         			   + ${cotacao.propriedade.produto.nome} + ' ' + ${cotacao.propriedade.variedade} + ' ' 
+         			   + ${cotacao.propriedade.subvariedade}+ ' ' 
+         			   + ${cotacao.propriedade.classificacao} + ' '
+         			   + ${cotacao.propriedade.peso} + ' '
+         			   + ${cotacao.propriedade.unidade}">Seleção Atual:</p>
        		 </div>
 			
 			
@@ -269,7 +279,7 @@
 				<div class="col">
 					<br> <input type="hidden" id="id" th:field="*{id}" />
 					<button type="submit" class="btn btn-primary btn-sm"
-						>Salvar</button>
+						onclick="calcularMercado()">Salvar</button>
 				</div>
 			</div>
 		</form>
@@ -281,79 +291,7 @@
     });
 </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#propertyCode').on('input', function() {
-                let code = $(this).val();
-                if (code.length > 0) {
-                    $.ajax({
-                        url: '/searchPropertyByCode',
-                        method: 'GET',
-                        data: { code: code },
-                        success: function(data) {
-                            if (!data) {
-                                $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-                            } else {
-                                $('#selectedPropertyId').val(data.id);
-                                $('#selectedPropertyCodigo').val(data.codigo);
-                                $('#selectedPropertyVariedade').val(data.variedade);
-                                $('#selectedPropertySubvariedade').val(data.subvariedade);
-                                $('#selectedPropertyClassificacao').val(data.classificacao);
-                                $('#selectedPropertyUnidade').val(data.unidade);
-                                $('#selectedPropertyPeso').val(data.peso);
-                                $('#selectedPropertyEmbalagem').val(data.embalagem);
-                                $('#selectedPropertyProdutoNome').val(data.produto.nome);
-                                $('#searchResults').html('<p>Propriedade encontrada: ' + data.codigo + ' - ' + data.produto.nome + ' ' + data.variedade + ' ' + data.subvariedade + '</p>');
-                            }
-                        },
-                        error: function() {
-                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-                        }
-                    });
-                }
-            });
-
-            $('#searchProductButton').click(function() {
-                let productName = $('#productName').val();
-                if (productName.length > 0) {
-                    $.ajax({
-                        url: '/searchPropertyByProductName',
-                        method: 'GET',
-                        data: { productName: productName },
-                        success: function(data) {
-                            if (data.length === 0) {
-                                $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-                            } else {
-                                let resultsHtml = '<ul>';
-                                data.forEach(function(item) {
-                                    resultsHtml += '<li><a href="#" class="select-property" data-id="' + item.id + '" data-codigo="' + item.codigo + '" data-variedade="' + item.variedade + '" data-subvariedade="' + item.subvariedade + '" data-classificacao="' + item.classificacao + '" data-unidade="' + item.unidade + '" data-peso="' + item.peso + '" data-embalagem="' + item.embalagem + '" data-produto-nome="' + item.produto.nome + '">' + item.codigo + ' - ' + item.produto.nome + ' ' + item.variedade + ' ' + item.subvariedade + '</a></li>';
-                                });
-                                resultsHtml += '</ul>';
-                                $('#searchResults').html(resultsHtml);
-
-                                $('.select-property').click(function(e) {
-                                    e.preventDefault();
-                                    $('#selectedPropertyId').val($(this).data('id'));
-                                    $('#selectedPropertyCodigo').val($(this).data('codigo'));
-                                    $('#selectedPropertyVariedade').val($(this).data('variedade'));
-                                    $('#selectedPropertySubvariedade').val($(this).data('subvariedade'));
-                                    $('#selectedPropertyClassificacao').val($(this).data('classificacao'));
-                                    $('#selectedPropertyUnidade').val($(this).data('unidade'));
-                                    $('#selectedPropertyPeso').val($(this).data('peso'));
-                                    $('#selectedPropertyEmbalagem').val($(this).data('embalagem'));
-                                    $('#selectedPropertyProdutoNome').val($(this).data('produto-nome'));
-                                    $('#searchResults').html('<p>Propriedade selecionada: ' + $(this).data('codigo') + ' - ' + $(this).data('produto-nome') + ' ' + $(this).data('variedade') + ' ' + $(this).data('subvariedade') + '</p>');
-                                });
-                            }
-                        },
-                        error: function() {
-                            $('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+   
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 
