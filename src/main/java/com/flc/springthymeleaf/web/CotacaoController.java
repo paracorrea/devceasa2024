@@ -51,12 +51,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 
-
 @Controller
 public class CotacaoController {
 
 	 private static final Logger LOGGER = Logger.getLogger(CotacaoController.class.getName());
-
+	
+	 private BigDecimal valorComumAnterior = null; 
+	 private BigDecimal valorComumAtual = new BigDecimal(0); 
 	
 	@Autowired
 	private CotacaoService cotacaoService;
@@ -96,12 +97,19 @@ public class CotacaoController {
 		
 	    Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior1(propriedadeId, dataCotacao);
 
+	    
+	    
 	    if (cotacaoAnterior != null) {
 	       
 	    	//BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
+	    	
 	    	return ResponseEntity.ok(cotacaoAnterior);
 	    } else {
-	        return ResponseEntity.notFound().build();
+	    	
+	    	
+	    	return ResponseEntity.notFound().build();
+	        
+	        
 	    }
 	}
 		 
@@ -127,6 +135,9 @@ public class CotacaoController {
 	            Cotacao cotacao = new Cotacao();
 	            if (ultimaCotacao != null) {
 	            	
+	            	
+	            	 valorComumAnterior=ultimaCotacao.getValorComum();
+	            	 
 	            	 cotacao.setValor1(ultimaCotacao.getValor1());
 	                 cotacao.setValor2(ultimaCotacao.getValor2());
 	                 cotacao.setValor3(ultimaCotacao.getValor3());
@@ -144,9 +155,10 @@ public class CotacaoController {
 	                cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
 	                cotacao.setValorComum(ultimaCotacao.getValorComum());
 	                
+	                LOGGER.info("Último Valor Comum: " + valorComumAnterior);
 	                LOGGER.info("Última cotação: " + ultimaCotacao.toString());
 	                logCotacaoValues("Última cotação", ultimaCotacao);
-	            }
+	            } 
 
 	            cotacao.setPropriedade(propriedade);
 	            cotacao.setDataCotacao(LocalDate.now());
@@ -161,6 +173,7 @@ public class CotacaoController {
 	        } else {
 	            // Caso a propriedade não seja encontrada, redirecionar ou mostrar uma mensagem de erro
 	            model.addAttribute("error", "Propriedade não encontrada.");
+	            
 	            return "error";
 	        }
 	    }
@@ -183,16 +196,6 @@ public class CotacaoController {
 	    }
 	
 	 
-	
-	 
-	   private BigDecimal formatToReais(BigDecimal value) {
-	        if (value != null) {
-	            return value.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-	        }
-	        return null;
-	    }
-	
-	 
 	   @PostMapping("/cotacoes/salvar")
 	   public String salvar(@Valid @ModelAttribute Cotacao cotacao, BindingResult result, Model model, RedirectAttributes attr) {
 	       LocalDate dataAtual = LocalDate.now();
@@ -200,6 +203,12 @@ public class CotacaoController {
 	       LOGGER.info("Salvando cotação: " + cotacao.toString());
 	       LOGGER.info("Propriedade: " + cotacao.getPropriedade());
 
+	       valorComumAtual = cotacao.getValorComum();
+	       LOGGER.info("Valor Comum anterior: " + valorComumAnterior);
+	       LOGGER.info("Valor Comum atual: " + valorComumAtual);
+	       
+	       
+	       
 	       if (cotacao.getDataCotacao().isAfter(dataAtual)) {
 	           result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve ser menor ou igual à data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
 	       }
@@ -216,6 +225,19 @@ public class CotacaoController {
 	           return "cotacao/cotacao_pesquisar";
 	       }
 
+	      
+	       if (valorComumAnterior != null) {
+	           if (valorComumAtual.compareTo(valorComumAnterior) > 0) {
+	               cotacao.setMercado("MFI"); // Mercado Forte
+	           } else if (valorComumAtual.compareTo(valorComumAnterior) < 0) {
+	               cotacao.setMercado("MFR"); // Mercado Ruim
+	           } else {
+	               cotacao.setMercado("ME"); // Mercado Estável
+	           }
+	       } else {
+	           cotacao.setMercado("MV"); // Mercado Vazio (sem cotação anterior)
+	       }
+	       
 	       cotacaoService.insert(cotacao);
 	       attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
 	       return "redirect:/cotacoes/pesquisar";

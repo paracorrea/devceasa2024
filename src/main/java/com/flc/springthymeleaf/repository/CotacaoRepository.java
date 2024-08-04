@@ -6,9 +6,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 
 import com.flc.springthymeleaf.domain.Cotacao;
+
+import jakarta.persistence.QueryHint;
 
 public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 	
@@ -24,10 +27,12 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 
 	List<Cotacao> findByDataCotacao(LocalDate selectedDate);
 
-	Optional<Cotacao> findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(
-	        Integer propriedadeId, LocalDate dataCotacao);
 	
-	Optional<Cotacao> findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(
-	            Integer propriedadeId, LocalDate dataCotacao);
+	 @Query(value = "SELECT * FROM cotacao c WHERE c.propriedade_id = :propriedadeId AND c.data_cotacao <= :dataCotacao ORDER BY c.data_cotacao DESC LIMIT 1", nativeQuery = true)
+	    @QueryHints({ @QueryHint(name = "org.hibernate.cacheable", value = "false") })
+	    Optional<Cotacao> findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(
+	        @Param("propriedadeId") Integer propriedadeId,
+	        @Param("dataCotacao") LocalDate dataCotacao);
+	
 	
 }

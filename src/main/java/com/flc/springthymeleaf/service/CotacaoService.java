@@ -65,14 +65,7 @@ public class CotacaoService {
 
 	}
 
-	public Cotacao buscarCotacaoAnterior(Integer propriedadeId, LocalDate dataCotacao) {
-		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepo
-				.findTopByPropriedadeIdAndDataCotacaoBeforeOrderByDataCotacaoDesc(propriedadeId, dataCotacao);
-
-		return cotacaoAnteriorOptional.orElse(null);
-	}
-
-	public Cotacao buscarCotacaoAnterior1(Integer propriedadeId, LocalDate dataCotacao) {
+		public Cotacao buscarCotacaoAnterior1(Integer propriedadeId, LocalDate dataCotacao) {
 		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepo
 				.findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(propriedadeId, dataCotacao);
 
