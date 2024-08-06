@@ -72,5 +72,7 @@ public class CotacaoService {
 		return cotacaoAnteriorOptional.orElse(null);
 	}
 
-	
+		  public List<Cotacao> findByPropriedadeIdAndDataCotacaoBetween(Integer propriedadeId, LocalDate dataInicio, LocalDate dataFim) {
+		        return cotacaoRepo.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
+		    }
 }

@@ -31,8 +31,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.flc.springthymeleaf.domain.Cotacao;
+import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.CotacaoService;
+import com.flc.springthymeleaf.service.FeiraService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 import com.flc.springthymeleaf.web.validator.CotacaoValidator;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -59,8 +61,12 @@ public class CotacaoController {
 	 private BigDecimal valorComumAnterior = null; 
 	 private BigDecimal valorComumAtual = new BigDecimal(0); 
 	
+	 
+	 
 	@Autowired
 	private CotacaoService cotacaoService;
+	@Autowired
+	private FeiraService feiraService;
 	@Autowired
 	private PropriedadeService propriedadeService;
 	@InitBinder
@@ -83,8 +89,7 @@ public class CotacaoController {
 	
 	@GetMapping("/cotacoes/pesquisar")
     public String pesquisar(Model model) {
-        model.addAttribute("dataCotacao", LocalDate.now());
-        return "cotacao/cotacao_pesquisar";
+          return "cotacao/cotacao_pesquisar";
     }
 	
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
@@ -114,25 +119,28 @@ public class CotacaoController {
 	}
 		 
 	 @GetMapping("/cotacoes/cadastrar")
-	    public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, @RequestParam("data") LocalDate data, Model model) {
+	    public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, Model model) {
 
-		 	LOGGER.info("Recebido propriedadeId: " + propriedadeId + ", data: " + data);
+		 	LOGGER.info("Recebido propriedadeId em cotacoes/cadastrar: " + propriedadeId);
 		 	
-		 	 if (propriedadeId == null) {
-		         LOGGER.info("propriedadeId está nulo!");
-		     }
-		     if (data == null) {
-		         LOGGER.info("data está nulo!");
-		     }
-		 	
-		 	
-		 	Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
 	        
+		 	  if (propriedadeId == null) {
+		 	        LOGGER.info("propriedadeId está nulo!");
+		 	  }
+		 	
+		 	
+		 	  Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
+		 	 
+		 	 
 	        if (propriedadeOpt.isPresent()) {
-	            Propriedade propriedade = propriedadeOpt.get();
-	            Cotacao ultimaCotacao = cotacaoService.buscarCotacaoAnterior1(propriedadeId, data);
+	           
+	        	
+	        	Propriedade propriedade = propriedadeOpt.get();
+	            LocalDate dataCotacao = obterDataUltimaFeiraAberta();
+	            Cotacao ultimaCotacao = cotacaoService.buscarCotacaoAnterior1(propriedadeId, dataCotacao);
 
 	            Cotacao cotacao = new Cotacao();
+	           
 	            if (ultimaCotacao != null) {
 	            	
 	            	
@@ -158,12 +166,14 @@ public class CotacaoController {
 	                LOGGER.info("Último Valor Comum: " + valorComumAnterior);
 	                LOGGER.info("Última cotação: " + ultimaCotacao.toString());
 	                logCotacaoValues("Última cotação", ultimaCotacao);
-	            } 
+	            } else {
+	            	valorComumAnterior=null;
+	            }
 
 	            cotacao.setPropriedade(propriedade);
-	            cotacao.setDataCotacao(LocalDate.now());
+	            cotacao.setDataCotacao(dataCotacao);
 
-	            model.addAttribute("dataCotacao", LocalDate.now());
+	            model.addAttribute("dataCotacao", dataCotacao);
 	            model.addAttribute("cotacao", cotacao);
 	            model.addAttribute("ultimaCotacao", ultimaCotacao);
 	            
@@ -248,6 +258,9 @@ public class CotacaoController {
 		
 		Cotacao cotacao = cotacaoService.findById(id);
 		BigDecimal peso = cotacao.getPropriedade().getPeso();
+		
+		valorComumAnterior = cotacao.getValorComum();
+		
 		System.out.println("Propriedade Peso: " + peso);
 		model.addAttribute("peso",peso );
 		model.addAttribute("cotacao",cotacao);
@@ -258,17 +271,32 @@ public class CotacaoController {
 	@PostMapping("/cotacoes/editar") 
 	public String editar (@Valid Cotacao cotacao, BindingResult result, RedirectAttributes attr) {
 		
-		
+		valorComumAtual = cotacao.getValorComum();
 		LocalDate dataAtual = LocalDate.now();
 		
 		if (cotacao.getDataCotacao().isAfter(dataAtual)) {
 		    	result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve menor ou igual a data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
 	   } 	
 	 
-		
+	
 		if (result.hasErrors()) {
 			return "cotacao/cotacao_editar";
 		}
+		
+		LOGGER.info("Valor Comum Anterior - em cotacao Editar: "+valorComumAnterior);
+		LOGGER.info("Valor Comum Atual - em cotacao Editar: " + valorComumAtual);
+		
+		if (valorComumAnterior != null) {
+	           if (valorComumAtual.compareTo(valorComumAnterior) > 0) {
+	               cotacao.setMercado("MFI"); // Mercado Forte
+	           } else if (valorComumAtual.compareTo(valorComumAnterior) < 0) {
+	               cotacao.setMercado("MFR"); // Mercado Ruim
+	           } else {
+	               cotacao.setMercado("ME"); // Mercado Estável
+	           }
+	       } else {
+	           cotacao.setMercado("MV"); // Mercado Vazio (sem cotação anterior)
+	       }
 		
 		cotacaoService.update(cotacao);
 		attr.addFlashAttribute("success", "Cotação editada com sucesso");
@@ -501,5 +529,25 @@ public class CotacaoController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
         }
+    }
+
+    private LocalDate obterDataUltimaFeiraAberta() {
+        Optional<Feira> ultimaFeiraAberta = feiraService.obterUltimaFeiraAberta();
+        return ultimaFeiraAberta.map(Feira::getDataFeira).orElse(LocalDate.now());
+    }
+
+    @GetMapping("/cotacoes/relatorios")
+    public String relatorios() {
+    	return "cotacao/relatorio_cotacoes";
+    }
+    
+    @GetMapping("/cotacoes/relatorio")
+    public String relatorioCotacoes(@RequestParam("propriedadeId") Integer propriedadeId,
+                                    @RequestParam("dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
+                                    @RequestParam("dataFim") @DateTimeFormat(iso = ISO.DATE) LocalDate dataFim,
+                                    Model model) {
+        List<Cotacao> cotacoes = cotacaoService.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
+        model.addAttribute("cotacoes", cotacoes);
+        return "redirect:/cotacoes/relatorios";
     }
 }

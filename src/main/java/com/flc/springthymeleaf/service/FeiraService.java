@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.flc.springthymeleaf.domain.Feira;
+import com.flc.springthymeleaf.enums.StatusFeira;
 import com.flc.springthymeleaf.repository.FeiraRepository;
 
 @Service
@@ -57,4 +58,9 @@ public class FeiraService {
         Long maxNumero = feiraRepository.findMaxNumero();
         return maxNumero != null ? maxNumero : 0;
     }
+
+	public Optional<Feira> obterUltimaFeiraAberta() {
+		// TODO Auto-generated method stub
+		 return feiraRepository.findFirstByStatusFeiraOrderByDataFeiraDesc(StatusFeira.ABERTA);
+	}
 }

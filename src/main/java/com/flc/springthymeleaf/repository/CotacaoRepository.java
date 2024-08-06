@@ -34,5 +34,9 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 	        @Param("propriedadeId") Integer propriedadeId,
 	        @Param("dataCotacao") LocalDate dataCotacao);
 	
+	    @Query("SELECT c FROM Cotacao c WHERE c.propriedade.id = :propriedadeId AND c.dataCotacao BETWEEN :dataInicio AND :dataFim")
+	    List<Cotacao> findByPropriedadeIdAndDataCotacaoBetween(@Param("propriedadeId") Integer propriedadeId, 
+	                                                            @Param("dataInicio") LocalDate dataInicio, 
+	                                                            @Param("dataFim") LocalDate dataFim);
 	
 }
