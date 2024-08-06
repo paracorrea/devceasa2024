@@ -52,7 +52,7 @@
             let code = $(this).val();
             if (code.length > 0) {
                 $.ajax({
-                    url: '/searchPropertyByCode',
+                    url: '/cotacoes/searchPropertyByCode',
                     method: 'GET',
                     data: { code: code },
                     success: function(data) {
@@ -76,7 +76,7 @@
             let productName = $('#productName').val();
             if (productName.length > 0) {
                 $.ajax({
-                    url: '/searchPropertyByProductName',
+                    url: '/cotacoes/searchPropertyByProductName',
                     method: 'GET',
                     data: { productName: productName },
                     success: function(data) {

@@ -100,5 +100,7 @@ public class PropriedadeService {
 		        return propRepo.findByProdutoNomeContainingIgnoreCase(nome);
 		    }
 
-			
+		    public List<Propriedade> findByProdutoNome1(String nome){
+		    	return propRepo.findByProdutoNome(nome);
+		    }
 }

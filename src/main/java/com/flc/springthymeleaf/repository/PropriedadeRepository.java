@@ -35,5 +35,5 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	@Query("SELECT p FROM Propriedade p WHERE LOWER(p.produto.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")
 	List<Propriedade> findByProdutoNomeContainingIgnoreCase(@Param("nome") String nome);
 
-	
+	 List<Propriedade> findByProdutoNome(String nome);
 }

@@ -1,28 +1,32 @@
 /**
  * calcularValores.js
  */
-
 function calcularValores() {
     var valores = [];
     var camposValidos = true;
 
     for (var i = 1; i <= 10; i++) {
         var campoId = 'valor' + i;
-        var valor = document.getElementById(campoId).value;
+        var campoElement = document.getElementById(campoId);
+        if (campoElement) {
+            var valor = campoElement.value;
 
-        if (valor !== '') {
-            if (!validarNumero(valor, campoId)) {
-                camposValidos = false;
-                break;
+            if (valor !== '') {
+                if (!validarNumero(valor, campoId)) {
+                    camposValidos = false;
+                    break;
+                }
+
+                valores.push(parseFloat(valor.replace(',', '.')));
             }
-
-            valores.push(parseFloat(valor.replace(',', '.')));
         }
     }
 
     if (camposValidos) {
-        var pesoDaCotacaoSelecionada = parseFloat(document.getElementById('selectedPropertyPeso').value.replace(',', '.'));
-        var pesoVariavel = parseFloat(document.getElementById('pesoVariavel').value.replace(',', '.'));
+        var pesoElement = document.getElementById('selectedPropertyPeso');
+        var pesoDaCotacaoSelecionada = pesoElement ? parseFloat(pesoElement.value.replace(',', '.')) : 1;
+        var pesoVariavelElement = document.getElementById('pesoVariavel');
+        var pesoVariavel = pesoVariavelElement ? parseFloat(pesoVariavelElement.value.replace(',', '.')) : NaN;
 
         if (!isNaN(pesoVariavel)) {
             pesoDaCotacaoSelecionada = pesoVariavel;
@@ -61,10 +65,12 @@ function calcularValores() {
             alert('Alerta: Nenhum valor modal encontrado.');
         } else {
             alert('Valor Modal: ' + valorModal.toFixed(2));
-
             document.getElementById('valorComum').value = valorModal.toFixed(2).replace('.', ',');
         }
     }
+	console.log("Valores: ", valores);
+	console.log("Peso da Cotação Selecionada: ", pesoDaCotacaoSelecionada);
+	console.log("Peso Variável: ", pesoVariavel);
 }
 
 function validarNumero(valor, campoId) {

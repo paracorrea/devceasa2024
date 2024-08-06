@@ -476,17 +476,26 @@ public class CotacaoController {
 
 
 	
-    @GetMapping("/propriedades/search")
+    @GetMapping("/cotacoes/search")
     @ResponseBody
     public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
         return propriedadeService.searchByQuery(query);
     }
     
+    @GetMapping("/cotacoes/searchPropertyByProductName")
+    public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {
+        List<Propriedade> propriedades = propriedadeService.findByProdutoNome(productName);
+        
+        return ResponseEntity.ok(propriedades);
+    }
     
     
-    @GetMapping("/searchPropertyByCode")
+    
+    @GetMapping("/cotacoes/searchPropertyByCode")
     public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
-        Propriedade propriedade = propriedadeService.findByCodigo(code);
+       
+    	String codigoTrimmed = code.trim();
+    	Propriedade propriedade = propriedadeService.findByCodigo(codigoTrimmed);
         if (propriedade != null) {
             return ResponseEntity.ok(propriedade);
         } else {

@@ -25,6 +25,7 @@ public class ItemDeNota implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "propriedade_id")
+    @JsonBackReference
     private Propriedade propriedade;
 
     private Double quantidade;

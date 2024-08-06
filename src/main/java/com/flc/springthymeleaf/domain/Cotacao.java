@@ -10,7 +10,7 @@ import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,7 +47,7 @@ public class Cotacao implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "propriedade_id")
     @NotNull(message = "Selecione uma produto/propriedade")
-    @JsonBackReference
+    @JsonIgnore
     private Propriedade propriedade;
 
     private String users;

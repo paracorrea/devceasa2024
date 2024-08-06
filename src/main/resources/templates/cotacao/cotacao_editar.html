@@ -174,19 +174,20 @@
 					</div>
 				</div>
 				<div class="col">
-					<label for="precoMaximo">Preco Máximo</label>
-					<input type="text" class="form-control" id="precoMaximo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMaximo}" required th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
-					<div class="invalid-feedback">
-						<span th:errors="*{precoMaximo}"></span>
-					</div>
-				</div>
-				<div class="col">
 					<label for="valorComum">Preco Comum</label>
 					<input type="text" class="form-control" id="valorComum" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valorComum}" required th:classappend="${#fields.hasErrors('valorComum')} ? 'is-invalid'" />
 					<div class="invalid-feedback">
 						<span th:errors="*{valorComum}"></span>
 					</div>
 				</div>
+				<div class="col">
+					<label for="precoMaximo">Preco Máximo</label>
+					<input type="text" class="form-control" id="precoMaximo" data-mask="#.##0,00" data-mask-reverse="true" th:field="*{precoMaximo}" required th:classappend="${#fields.hasErrors('precoMaximo')} ? 'is-invalid'" />
+					<div class="invalid-feedback">
+						<span th:errors="*{precoMaximo}"></span>
+					</div>
+				</div>
+
 				<input type="hidden" id="valorComumAnterior" name="valorComumAnterior" value="${valorComumAnterior}" />
 				<input type="hidden" id="mercado" name="mercado" value="${mercado}" />
 				<div class="col">

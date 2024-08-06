@@ -143,11 +143,13 @@ public class PropriedadeController {
     
    
 
-    @GetMapping("/searchPropertyByProductName")
-    public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {
-        List<Propriedade> propriedades = propriedadeService.findByProdutoNome(productName);
-        return ResponseEntity.ok(propriedades);
-    }
+	/*
+	 * @GetMapping("/searchPropertyByProductName") public
+	 * ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam
+	 * String productName) { List<Propriedade> propriedades =
+	 * propriedadeService.findByProdutoNome(productName); return
+	 * ResponseEntity.ok(propriedades); }
+	 */
     
     @GetMapping("/propriedades/testar")
     public String pesquisar(Propriedade propriedade, Model model) {
