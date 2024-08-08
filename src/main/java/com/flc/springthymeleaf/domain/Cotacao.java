@@ -55,7 +55,7 @@ public class Cotacao implements Serializable {
     @Column(name = "valor1")
     @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     @NotNull(message = "Campo não pode ser nulo")
-    @Digits(integer = 10, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
+    @DecimalMin(value = "0.0", inclusive = false, message = "O valor deve ser maior ou igual a 0")
     private BigDecimal valor1;
 
     @Column(name = "valor2")
@@ -63,7 +63,7 @@ public class Cotacao implements Serializable {
     @NotNull(message = "Campo não pode ser nulo")
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor deve ser maior ou igual a 0")
     private BigDecimal valor2;
-
+    
     @Column(name = "valor3")
     @NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
     @NotNull(message = "Campo não pode ser nulo")

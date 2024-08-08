@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -59,8 +60,8 @@ public class FeiraService {
         return maxNumero != null ? maxNumero : 0;
     }
 
-	public Optional<Feira> obterUltimaFeiraAberta() {
-		// TODO Auto-generated method stub
-		 return feiraRepository.findFirstByStatusFeiraOrderByDataFeiraDesc(StatusFeira.ABERTA);
-	}
+    public Optional<Feira> obterUltimaFeiraAberta() {
+        Page<Feira> page = feiraRepository.findFirstByStatusFeiraOrderByDataFeiraDesc(StatusFeira.ABERTA, PageRequest.of(0, 1));
+        return page.stream().findFirst();
+    }
 }

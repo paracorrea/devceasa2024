@@ -2,7 +2,6 @@ package com.flc.springthymeleaf.web;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -10,7 +9,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -177,8 +175,8 @@ public class CotacaoController {
 	            model.addAttribute("cotacao", cotacao);
 	            model.addAttribute("ultimaCotacao", ultimaCotacao);
 	            
-	            LOGGER.info("Propriedade selecionada: " + propriedade.toString());
-	            logCotacaoValues("Cotação atual", cotacao);
+	            LOGGER.info("Propriedade selecionada: " + propriedade.getProduto().getNome() + " " + propriedade.getCodigo() + " " + propriedade.getVariedade());
+	            //logCotacaoValues("Cotação atual", cotacao);
 	            return "cotacao/cotacao_cadastro";
 	        } else {
 	            // Caso a propriedade não seja encontrada, redirecionar ou mostrar uma mensagem de erro
@@ -210,8 +208,7 @@ public class CotacaoController {
 	   public String salvar(@Valid @ModelAttribute Cotacao cotacao, BindingResult result, Model model, RedirectAttributes attr) {
 	       LocalDate dataAtual = LocalDate.now();
 
-	       LOGGER.info("Salvando cotação: " + cotacao.toString());
-	       LOGGER.info("Propriedade: " + cotacao.getPropriedade());
+
 
 	       valorComumAtual = cotacao.getValorComum();
 	       LOGGER.info("Valor Comum anterior: " + valorComumAnterior);
@@ -248,6 +245,7 @@ public class CotacaoController {
 	           cotacao.setMercado("MV"); // Mercado Vazio (sem cotação anterior)
 	       }
 	       
+	       LOGGER.info("Salvando cotação: " + cotacao.getPropriedade().getProduto().getNome()+ " "+ cotacao.getPropriedade().getCodigo());
 	       cotacaoService.insert(cotacao);
 	       attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
 	       return "redirect:/cotacoes/pesquisar";
@@ -261,7 +259,6 @@ public class CotacaoController {
 		
 		valorComumAnterior = cotacao.getValorComum();
 		
-		System.out.println("Propriedade Peso: " + peso);
 		model.addAttribute("peso",peso );
 		model.addAttribute("cotacao",cotacao);
 				
@@ -298,6 +295,7 @@ public class CotacaoController {
 	           cotacao.setMercado("MV"); // Mercado Vazio (sem cotação anterior)
 	       }
 		
+		 LOGGER.info("Alterada uma cotacao: " + cotacao.getPropriedade().getProduto().getNome()+ " "+ cotacao.getPropriedade().getCodigo());
 		cotacaoService.update(cotacao);
 		attr.addFlashAttribute("success", "Cotação editada com sucesso");
 		
@@ -308,7 +306,7 @@ public class CotacaoController {
 	public String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
 
 		
-		
+			
 			cotacaoService.delete(id);
 			attr.addFlashAttribute("success","Cotação excluída com sucesso");		
 			return "redirect:/cotacoes/por-data";
@@ -536,18 +534,5 @@ public class CotacaoController {
         return ultimaFeiraAberta.map(Feira::getDataFeira).orElse(LocalDate.now());
     }
 
-    @GetMapping("/cotacoes/relatorios")
-    public String relatorios() {
-    	return "cotacao/relatorio_cotacoes";
-    }
-    
-    @GetMapping("/cotacoes/relatorio")
-    public String relatorioCotacoes(@RequestParam("propriedadeId") Integer propriedadeId,
-                                    @RequestParam("dataInicio") @DateTimeFormat(iso = ISO.DATE) LocalDate dataInicio,
-                                    @RequestParam("dataFim") @DateTimeFormat(iso = ISO.DATE) LocalDate dataFim,
-                                    Model model) {
-        List<Cotacao> cotacoes = cotacaoService.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
-        model.addAttribute("cotacoes", cotacoes);
-        return "redirect:/cotacoes/relatorios";
-    }
+   
 }

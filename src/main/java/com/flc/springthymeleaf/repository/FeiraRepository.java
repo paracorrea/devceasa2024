@@ -44,5 +44,6 @@ public interface FeiraRepository extends JpaRepository<Feira, Integer>, PagingAn
 	Optional<Feira> findFirstByOrderByDataFeiraDesc();
 	
 	@Query("SELECT f FROM Feira f WHERE f.statusFeira = :status ORDER BY f.dataFeira DESC")
-	Optional<Feira> findFirstByStatusFeiraOrderByDataFeiraDesc(@Param("status") StatusFeira status);
+	Page<Feira> findFirstByStatusFeiraOrderByDataFeiraDesc(@Param("status") StatusFeira status, Pageable pageable);
+
 }
