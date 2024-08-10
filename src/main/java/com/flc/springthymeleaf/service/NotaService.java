@@ -2,16 +2,13 @@ package com.flc.springthymeleaf.service;
 
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.flc.springthymeleaf.domain.ItemDeNota;
-import com.flc.springthymeleaf.domain.Municipio;
 import com.flc.springthymeleaf.domain.Nota;
 import com.flc.springthymeleaf.repository.ItemDeNotaRepository;
 import com.flc.springthymeleaf.repository.NotaRepository;

@@ -28,7 +28,7 @@ public class FeiraValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		Feira feira = (Feira) target;
+		//Feira feira = (Feira) target;
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataFeira", "a Data não pode ser nulla");
 

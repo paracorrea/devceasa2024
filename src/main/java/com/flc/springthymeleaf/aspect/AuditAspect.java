@@ -1,14 +1,8 @@
 package com.flc.springthymeleaf.aspect;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flc.springthymeleaf.domain.AuditLog;
-import com.flc.springthymeleaf.domain.Nota;
-import com.flc.springthymeleaf.domain.NotaFiscal;
-import com.flc.springthymeleaf.repository.AuditLogRepository;
-import com.flc.springthymeleaf.repository.NotaFiscalRepository;
-import com.flc.springthymeleaf.repository.NotaRepository;
-import com.flc.springthymeleaf.service.NotaService;
+import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,12 +11,15 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flc.springthymeleaf.domain.AuditLog;
+import com.flc.springthymeleaf.repository.AuditLogRepository;
+import com.flc.springthymeleaf.repository.NotaRepository;
+import com.flc.springthymeleaf.service.NotaService;
 
 import jakarta.persistence.Id;
-import java.lang.reflect.Field;
-import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 @Aspect
 //@Component

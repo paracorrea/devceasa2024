@@ -1,6 +1,27 @@
 package com.flc.springthymeleaf.web;
 
-import com.flc.springthymeleaf.domain.Cotacao;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.service.ProdutoService;
@@ -8,28 +29,11 @@ import com.flc.springthymeleaf.service.PropriedadeService;
 import com.flc.springthymeleaf.web.validator.PropriedadeValidator;
 
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 public class PropriedadeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(Cotacao.class);
+    private static final Logger logger = LoggerFactory.getLogger(Propriedade.class);
 
     @Autowired
     private PropriedadeService propriedadeService;
@@ -91,8 +95,12 @@ public class PropriedadeController {
 
     @PostMapping("/propriedades/editar")
     public String editar(@Valid Propriedade propriedade, BindingResult result, RedirectAttributes attr) {
-        propriedadeService.update(propriedade);
+        
+    	
+    	logger.info("Propriedade alterada com sucesso: " + propriedade.getId());
+    	propriedadeService.update(propriedade);
         attr.addFlashAttribute("success", "Propriedade editada com sucesso");
+       
         return "redirect:/propriedades/cadastrar";
     }
 

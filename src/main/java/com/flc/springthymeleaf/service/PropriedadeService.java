@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.repository.PropriedadeRepository;
 import com.flc.springthymeleaf.service.exceptions.DataIntegrityException;
-import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
 
 @Service
 @Transactional(readOnly=false)
