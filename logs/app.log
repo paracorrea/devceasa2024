@@ -1441,3 +1441,25 @@ jakarta.persistence.NonUniqueResultException: query did not return a unique resu
 2024-08-08 14:28:02 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-08-08 14:28:02 - HikariPool-1 - Shutdown initiated...
 2024-08-08 14:28:02 - HikariPool-1 - Shutdown completed.
+2024-08-12 16:08:50 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-12 16:08:50 - Starting SpringThymeleafApplicationTests using Java 17.0.7 with PID 6576 (started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-12 16:08:50 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:08:51 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-12 16:08:51 - Finished Spring Data repository scanning in 116 ms. Found 16 JPA repository interfaces.
+2024-08-12 16:08:52 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-12 16:08:52 - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-08-12 16:08:52 - HHH000406: Using bytecode reflection optimizer
+2024-08-12 16:08:52 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-12 16:08:52 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-12 16:08:54 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-12 16:08:54 - HikariPool-1 - Starting...
+2024-08-12 16:08:54 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f63909f
+2024-08-12 16:08:54 - HikariPool-1 - Start completed.
+2024-08-12 16:08:54 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-12 16:08:55 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-12 16:08:56 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-12 16:08:56 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f5743d9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@17a17af5, org.springframework.security.web.context.SecurityContextHolderFilter@5e8b5e7d, org.springframework.security.web.header.HeaderWriterFilter@55bd9d1, org.springframework.security.web.authentication.logout.LogoutFilter@320d98f5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7efaa137, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4b96b0bd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77de3401, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b54ae72, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@694c23e4, org.springframework.security.web.access.ExceptionTranslationFilter@35dc4303, org.springframework.security.web.access.intercept.AuthorizationFilter@3d872a12]
+2024-08-12 16:08:56 - Started SpringThymeleafApplicationTests in 6.633 seconds (process running for 7.739)
+2024-08-12 16:08:57 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-12 16:08:57 - HikariPool-1 - Shutdown initiated...
+2024-08-12 16:08:57 - HikariPool-1 - Shutdown completed.

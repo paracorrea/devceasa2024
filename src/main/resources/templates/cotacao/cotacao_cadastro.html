@@ -197,17 +197,17 @@
                 <input type="hidden" id="valorComumAnterior" name="valorComumAnterior" value="${valorComumAnterior}" /> 
                 <input type="hidden" id="mercado" name="mercado" value="${mercado}" />
 
-                <div class="col">
+               <!--  <div class="col">
                     <br>
                     <button type="button" class="btn btn-primary" onclick="calcularValores()">Calcular Valores</button>
-                </div>
+                </div> -->
             </div>
 
             <div class="row">
                 <div class="col">
                     <br> 
                     <input type="hidden" id="id" th:field="*{id}" />
-                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                    <button type="submit" class="btn btn-primary btn-sm" onclick="calcularValores()">Salvar</button>
                 </div>
             </div>
         </form>
