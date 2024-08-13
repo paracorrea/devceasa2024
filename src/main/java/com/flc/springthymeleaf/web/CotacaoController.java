@@ -177,13 +177,10 @@ public class CotacaoController {
 	            
 	            LOGGER.info("Propriedade selecionada: " + propriedade.getProduto().getNome() + " " + propriedade.getCodigo() + " " + propriedade.getVariedade());
 	            //logCotacaoValues("Cotação atual", cotacao);
-	            return "cotacao/cotacao_cadastro";
-	        } else {
-	            // Caso a propriedade não seja encontrada, redirecionar ou mostrar uma mensagem de erro
-	            model.addAttribute("error", "Propriedade não encontrada.");
-	            
-	            return "error";
+	           
+	       
 	        }
+	        return "cotacao/cotacao_cadastro";
 	    }
 	
 	 private void logCotacaoValues(String prefix, Cotacao cotacao) {

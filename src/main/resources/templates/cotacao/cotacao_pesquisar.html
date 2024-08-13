@@ -55,21 +55,15 @@
 		$(document)
 				.ready(
 						function() {
-							$('#propertyCode')
-									.on(
-											'input',
-											function() {
+							$('#propertyCode').focus();
+						    $('#propertyCode').on('input',function() {
 												let code = $(this).val();
 												if (code.length > 0) {
-													$
-															.ajax({
+													$.ajax({
 																url : '/cotacoes/searchPropertyByCode',
 																method : 'GET',
-																data : {
-																	code : code
-																},
-																success : function(
-																		data) {
+																data : {code : code},
+																success : function(data) {
 																	if (!data) {
 																		$(
 																				'#searchResults')
