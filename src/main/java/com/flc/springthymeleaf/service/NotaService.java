@@ -15,8 +15,6 @@ import com.flc.springthymeleaf.repository.NotaRepository;
 
 import jakarta.transaction.Transactional;
 
-
-
 @Service
 public class NotaService {
 
@@ -30,8 +28,7 @@ public class NotaService {
 			this.itemDeNotaRepository = itemDeNotaRepository;
     }
 	
-	
-	public Page<Nota> findAll(Pageable pageable) {
+		public Page<Nota> findAll(Pageable pageable) {
 	        return notaRepository.findAll(pageable);
     }
 

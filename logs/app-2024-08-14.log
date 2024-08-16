@@ -1,0 +1,159 @@
+2024-08-14 13:14:05 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-14 13:14:05 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 5440 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-14 13:14:05 - No active profile set, falling back to 1 default profile: "default"
+2024-08-14 13:14:05 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-14 13:14:05 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-14 13:14:06 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-14 13:14:06 - Finished Spring Data repository scanning in 92 ms. Found 14 JPA repository interfaces.
+2024-08-14 13:14:07 - Tomcat initialized with port 5001 (http)
+2024-08-14 13:14:07 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-14 13:14:07 - Starting service [Tomcat]
+2024-08-14 13:14:07 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-14 13:14:07 - Initializing Spring embedded WebApplicationContext
+2024-08-14 13:14:07 - Root WebApplicationContext: initialization completed in 2036 ms
+2024-08-14 13:14:07 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-14 13:14:07 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-14 13:14:07 - HHH000026: Second-level cache disabled
+2024-08-14 13:14:08 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-14 13:14:08 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-14 13:14:08 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-14 13:14:09 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-14 13:14:09 - HikariPool-1 - Starting...
+2024-08-14 13:14:10 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1064d9e0
+2024-08-14 13:14:10 - HikariPool-1 - Start completed.
+2024-08-14 13:14:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-14 13:14:10 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-14 13:14:11 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-14 13:14:11 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-14 13:14:12 - LiveReload server is running on port 35729
+2024-08-14 13:14:12 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-14 13:14:12 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-14 13:14:12 - Started SpringThymeleafApplication in 7.773 seconds (process running for 8.441)
+2024-08-14 13:14:19 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-14 13:14:19 - Initializing Servlet 'dispatcherServlet'
+2024-08-14 13:14:19 - Completed initialization in 1 ms
+2024-08-14 13:14:53 - Recebido propriedadeId em cotacoes/cadastrar: 145
+2024-08-14 13:14:53 - Último Valor Comum: 10.00
+2024-08-14 13:14:53 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@2fae5447
+2024-08-14 13:14:53 - Última cotação - PrecoMinimo: 9.44
+2024-08-14 13:14:53 - Última cotação - PrecoMedio: 10.00
+2024-08-14 13:14:53 - Última cotação - PrecoMaximo: 10.56
+2024-08-14 13:14:53 - Última cotação - ValorComum: 10.00
+2024-08-14 13:14:53 - Última cotação - Valor1: 170.00
+2024-08-14 13:14:53 - Última cotação - Valor2: 180.00
+2024-08-14 13:14:53 - Última cotação - Valor3: 180.00
+2024-08-14 13:14:53 - Última cotação - Valor4: 190.00
+2024-08-14 13:14:53 - Última cotação - Valor5: null
+2024-08-14 13:14:53 - Última cotação - Valor6: null
+2024-08-14 13:14:53 - Última cotação - Valor7: null
+2024-08-14 13:14:53 - Última cotação - Valor8: null
+2024-08-14 13:14:53 - Última cotação - Valor9: null
+2024-08-14 13:14:53 - Última cotação - Valor10: null
+2024-08-14 13:14:53 - Propriedade selecionada: PERA PRIP PACK TRIUMPH
+2024-08-14 13:15:04 - Valor Comum anterior: 10.00
+2024-08-14 13:15:04 - Valor Comum atual: 10.00
+2024-08-14 13:15:04 - Salvando cotação: PERA PRIP
+2024-08-14 13:15:48 - Recebido propriedadeId em cotacoes/cadastrar: 330
+2024-08-14 13:15:48 - Último Valor Comum: 20.00
+2024-08-14 13:15:48 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@59c57084
+2024-08-14 13:15:48 - Última cotação - PrecoMinimo: 16.67
+2024-08-14 13:15:48 - Última cotação - PrecoMedio: 20.00
+2024-08-14 13:15:48 - Última cotação - PrecoMaximo: 23.33
+2024-08-14 13:15:48 - Última cotação - ValorComum: 20.00
+2024-08-14 13:15:48 - Última cotação - Valor1: 5.00
+2024-08-14 13:15:48 - Última cotação - Valor2: 6.00
+2024-08-14 13:15:48 - Última cotação - Valor3: 7.00
+2024-08-14 13:15:48 - Última cotação - Valor4: 6.00
+2024-08-14 13:15:48 - Última cotação - Valor5: null
+2024-08-14 13:15:48 - Última cotação - Valor6: null
+2024-08-14 13:15:48 - Última cotação - Valor7: null
+2024-08-14 13:15:48 - Última cotação - Valor8: null
+2024-08-14 13:15:48 - Última cotação - Valor9: null
+2024-08-14 13:15:48 - Última cotação - Valor10: null
+2024-08-14 13:15:48 - Propriedade selecionada: LOURO LOU 
+2024-08-14 13:16:08 - Valor Comum anterior: 20.00
+2024-08-14 13:16:08 - Valor Comum atual: 20.00
+2024-08-14 13:16:09 - Salvando cotação: LOURO LOU
+2024-08-14 13:16:37 - Recebido propriedadeId em cotacoes/cadastrar: 330
+2024-08-14 13:16:37 - Último Valor Comum: 20.00
+2024-08-14 13:16:37 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@bdb70b0
+2024-08-14 13:16:37 - Última cotação - PrecoMinimo: 16.67
+2024-08-14 13:16:37 - Última cotação - PrecoMedio: 20.00
+2024-08-14 13:16:37 - Última cotação - PrecoMaximo: 23.33
+2024-08-14 13:16:37 - Última cotação - ValorComum: 20.00
+2024-08-14 13:16:37 - Última cotação - Valor1: 5.00
+2024-08-14 13:16:37 - Última cotação - Valor2: 6.00
+2024-08-14 13:16:37 - Última cotação - Valor3: 7.00
+2024-08-14 13:16:37 - Última cotação - Valor4: 6.00
+2024-08-14 13:16:37 - Última cotação - Valor5: null
+2024-08-14 13:16:37 - Última cotação - Valor6: null
+2024-08-14 13:16:37 - Última cotação - Valor7: null
+2024-08-14 13:16:37 - Última cotação - Valor8: null
+2024-08-14 13:16:37 - Última cotação - Valor9: null
+2024-08-14 13:16:37 - Última cotação - Valor10: null
+2024-08-14 13:16:37 - Propriedade selecionada: LOURO LOU 
+2024-08-14 13:16:51 - Valor Comum anterior: 20.00
+2024-08-14 13:16:51 - Valor Comum atual: 23.33
+2024-08-14 13:16:51 - Salvando cotação: LOURO LOU
+2024-08-14 13:17:30 - Recebido propriedadeId em cotacoes/cadastrar: 33
+2024-08-14 13:17:30 - Último Valor Comum: 4.00
+2024-08-14 13:17:30 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@656cdc84
+2024-08-14 13:17:30 - Última cotação - PrecoMinimo: 3.50
+2024-08-14 13:17:30 - Última cotação - PrecoMedio: 4.00
+2024-08-14 13:17:30 - Última cotação - PrecoMaximo: 4.50
+2024-08-14 13:17:30 - Última cotação - ValorComum: 4.00
+2024-08-14 13:17:30 - Última cotação - Valor1: 70.00
+2024-08-14 13:17:30 - Última cotação - Valor2: 80.00
+2024-08-14 13:17:30 - Última cotação - Valor3: 90.00
+2024-08-14 13:17:30 - Última cotação - Valor4: 80.00
+2024-08-14 13:17:30 - Última cotação - Valor5: null
+2024-08-14 13:17:30 - Última cotação - Valor6: null
+2024-08-14 13:17:30 - Última cotação - Valor7: null
+2024-08-14 13:17:30 - Última cotação - Valor8: null
+2024-08-14 13:17:30 - Última cotação - Valor9: null
+2024-08-14 13:17:30 - Última cotação - Valor10: null
+2024-08-14 13:17:30 - Propriedade selecionada: ABACATE ABAR FORTUNA
+2024-08-14 13:20:10 - Recebido propriedadeId em cotacoes/cadastrar: 30
+2024-08-14 13:20:10 - Último Valor Comum: 5.00
+2024-08-14 13:20:10 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@f6f3e7a
+2024-08-14 13:20:10 - Última cotação - PrecoMinimo: 4.50
+2024-08-14 13:20:10 - Última cotação - PrecoMedio: 5.13
+2024-08-14 13:20:10 - Última cotação - PrecoMaximo: 6.00
+2024-08-14 13:20:10 - Última cotação - ValorComum: 5.00
+2024-08-14 13:20:10 - Última cotação - Valor1: 90.00
+2024-08-14 13:20:10 - Última cotação - Valor2: 100.00
+2024-08-14 13:20:10 - Última cotação - Valor3: 120.00
+2024-08-14 13:20:10 - Última cotação - Valor4: 100.00
+2024-08-14 13:20:10 - Última cotação - Valor5: null
+2024-08-14 13:20:10 - Última cotação - Valor6: null
+2024-08-14 13:20:10 - Última cotação - Valor7: null
+2024-08-14 13:20:10 - Última cotação - Valor8: null
+2024-08-14 13:20:10 - Última cotação - Valor9: null
+2024-08-14 13:20:10 - Última cotação - Valor10: null
+2024-08-14 13:20:10 - Propriedade selecionada: ABACATE ABAB BREDA
+2024-08-14 13:20:35 - Valor Comum anterior: 5.00
+2024-08-14 13:20:35 - Valor Comum atual: 6.50
+2024-08-14 13:20:35 - Salvando cotação: ABACATE ABAB
+2024-08-14 13:22:30 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-14 13:22:30 - Starting SpringThymeleafApplicationTests using Java 21.0.4 with PID 8900 (started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-14 13:22:30 - No active profile set, falling back to 1 default profile: "default"
+2024-08-14 13:22:30 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-14 13:22:31 - Finished Spring Data repository scanning in 90 ms. Found 14 JPA repository interfaces.
+2024-08-14 13:22:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-14 13:22:31 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-14 13:22:31 - HHH000026: Second-level cache disabled
+2024-08-14 13:22:32 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-14 13:22:32 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-14 13:22:32 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-14 13:22:33 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-14 13:22:33 - HikariPool-1 - Starting...
+2024-08-14 13:22:33 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7afac89a
+2024-08-14 13:22:33 - HikariPool-1 - Start completed.
+2024-08-14 13:22:33 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-14 13:22:34 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-14 13:22:34 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-14 13:22:34 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-14 13:22:35 - Started SpringThymeleafApplicationTests in 5.936 seconds (process running for 6.909)
+2024-08-14 13:22:36 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-14 13:22:36 - HikariPool-1 - Shutdown initiated...
+2024-08-14 13:22:36 - HikariPool-1 - Shutdown completed.

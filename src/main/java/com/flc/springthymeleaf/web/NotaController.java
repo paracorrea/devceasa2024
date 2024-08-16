@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flc.springthymeleaf.domain.ItemDeNota;
@@ -176,6 +179,32 @@ public class NotaController {
         return "redirect:/notas/listar";
     }
 
+    @GetMapping("/notas/search")
+    @ResponseBody
+    public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
+        return propriedadeService.searchByQuery(query);
+    }
+    
+    @GetMapping("/notas/searchPropertyByProductName")
+    public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {
+        List<Propriedade> propriedades = propriedadeService.findByProdutoNome(productName);
+        
+        return ResponseEntity.ok(propriedades);
+    }
+    
+    
+    
+    @GetMapping("/notas/searchPropertyByCode")
+    public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
+       
+    	String codigoTrimmed = code.trim();
+    	Propriedade propriedade = propriedadeService.findByCodigo(codigoTrimmed);
+        if (propriedade != null) {
+            return ResponseEntity.ok(propriedade);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
+        }
+    }
 
 }
 
