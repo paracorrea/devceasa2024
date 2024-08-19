@@ -1,320 +1,266 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<meta charset="UTF-8">
-<title>Cadastro de Nota Fiscal</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<style>
-.titulo {
-	font-size: 1.5em;
-	margin-bottom: 20px;
-}
-
-.subtitulo {
-	font-size: 1.25em;
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-
-.search-icon {
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-.form-control-wide {
-	width: 100%;
-}
-
-.form-control-small {
-	width: auto;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Cadastro de Nota Fiscal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .titulo {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .subtitulo {
+            font-size: 1.25em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .form-group-inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            flex-wrap: wrap; /* Permite que os elementos quebrem a linha quando necessário */
+        }
+        .form-control-small {
+            width: 150px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        .property-result {
+            font-size: 0.75rem;
+            width: 300px;
+            padding-left: 10px;
+        }
+        .btn-danger {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        label {
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+        .col-md-2-right {
+            margin-left: auto;
+        }
+        @media (max-width: 768px) {
+            .form-group-inline {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .property-result {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-	<div th:replace="~{navbar :: menu-principal}"></div>
+    <div th:replace="~{navbar :: menu-principal}"></div>
 
-	<div class="container">
-		<h2 class="titulo">Cadastro de Nota Fiscal</h2>
+    <div class="container">
+        <h2 class="titulo">Cadastro de Nota Fiscal</h2>
 
-		<form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}"
-			method="post" onsubmit="showPesoModal(event)">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="portaria">Portaria</label> <select id="portaria"
-							th:field="*{portaria}" class="form-control" required>
-							<option value="" disabled selected>Selecione uma
-								portaria</option>
-							<option th:each="portaria : ${portarias}" th:value="${portaria}"
-								th:text="${portaria}"></option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="data">Data</label> <input type="date" id="data"
-							th:field="*{data}" class="form-control" required>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="faixaHorario">Faixa de Horário</label> <select
-							id="faixaHorario" th:field="*{faixaHorario}" class="form-control"
-							required>
-							<option value="" disabled selected>Selecione uma faixa
-								de horário</option>
-							<option th:each="faixaHorario : ${faixasHorarios}"
-								th:value="${faixaHorario}" th:text="${faixaHorario}"></option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="tipoVeiculo">Tipo de Veículo</label> <select
-							id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control"
-							required>
-							<option value="" disabled selected>Selecione um tipo de
-								veículo</option>
-							<option th:each="tipoVeiculo : ${tiposVeiculos}"
-								th:value="${tipoVeiculo}" th:text="${tipoVeiculo}"></option>
-						</select>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="localDestino">Local de Destino</label> <select
-							id="localDestino" th:field="*{localDestino}" class="form-control"
-							required>
-							<option value="" disabled selected>Selecione um local de
-								destino</option>
-							<option th:each="localDestino : ${locaisDestinos}"
-								th:value="${localDestino}" th:text="${localDestino}"></option>
-						</select>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="municipio">Município</label>
-						<div class="input-group">
-							<select id="municipio" th:field="*{municipio.id}"
-								class="form-control" required>
-								<option value="" disabled selected>Selecione um
-									município</option>
-								<option th:each="municipio : ${municipios}"
-									th:value="${municipio.id}"
-									th:text="${municipio.ibge} + ' - ' + ${municipio.nome}"></option>
-							</select>
-							<button type="button" onclick="openMunicipioModal()">Buscar
-								Município</button>
-						</div>
-					</div>
-				</div>
-			</div>
+        <form id="notaForm" th:action="@{/notas/salvar}" th:object="${nota}" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="portaria">Portaria</label>
+                        <select id="portaria" th:field="*{portaria}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma portaria</option>
+                            <option th:each="portaria : ${portarias}" th:value="${portaria}" th:text="${portaria}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" th:field="*{data}" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="faixaHorario">Faixa de Horário</label>
+                        <select id="faixaHorario" th:field="*{faixaHorario}" class="form-control" required>
+                            <option value="" disabled selected>Selecione uma faixa de horário</option>
+                            <option th:each="faixaHorario : ${faixasHorarios}" th:value="${faixaHorario}" th:text="${faixaHorario}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoVeiculo">Tipo de Veículo</label>
+                        <select id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control" required>
+                            <option value="" disabled selected>Selecione um tipo de veículo</option>
+                            <option th:each="tipoVeiculo : ${tiposVeiculos}" th:value="${tipoVeiculo}" th:text="${tipoVeiculo}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="localDestino">Local de Destino</label>
+                        <select id="localDestino" th:field="*{localDestino}" class="form-control" required>
+                            <option value="" disabled selected>Selecione um local de destino</option>
+                            <option th:each="localDestino : ${locaisDestinos}" th:value="${localDestino}" th:text="${localDestino}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="municipio">Município</label>
+                        <div class="input-group">
+                            <select id="municipio" th:field="*{municipio.id}" class="form-control" required>
+                                <option value="" disabled selected>Selecione um município</option>
+                                <option th:each="municipio : ${municipios}" th:value="${municipio.id}" th:text="${municipio.ibge} + ' - ' + ${municipio.nome}"></option>
+                            </select>
+                            <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<h3 class="subtitulo">Produtos:</h3>
-			<div id="itensContainer">
-				<div class="item row mb-3">
+            <h3 class="subtitulo">Produtos</h3>
+            <div id="itensContainer">
+                <div class="item row mb-3">
+                    <div class="col-md-4 form-group-inline">
+                        <label for="propertyCode-0">Código:</label>
+                        <input type="text" id="propertyCode-0" class="form-control form-control-small" placeholder="Digite o código da propriedade">
+                        <div id="propertyResult-0" class="property-result" readonly></div>
+                        <input type="hidden" id="propriedadeId-0" name="itens[0].propriedade.id">
+                    </div>
+                    <div class="col-md-2 form-group-inline" style="margin-left: 15px;">
+                        <label for="quantidade-0">Quantidade</label>
+                        <input type="number" id="quantidade-0" name="itens[0].quantidade" class="form-control form-control-small" step="any" required>
+                    </div>
+                    <div class="col-md-3 form-group-inline" style="margin-left: 15px;">
+                        <label for="unidadeMedida-0">Unidade de Medida</label>
+                        <select id="unidadeMedida-0" name="itens[0].unidadeMedida" class="form-control form-control-small" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option th:each="um : ${unidadesMedida}" th:value="${um}" th:text="${um}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-md-2-right d-flex align-items-center" style="margin-left: 15px;">
+                        <button type="button" class="btn btn-danger btn-sm remove-item">x</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary add-item" onclick="addItem()">Adicionar Item</button>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 
-					<div class="form-group">
-						<label for="propertyCode">Código da Propriedade:</label> <input
-							type="text" id="propertyCode" class="form-control"
-							placeholder="Digite o código da propriedade">
-					</div>
-					<div class="form-group">
-						<label for="productName">Nome do Produto:</label> <input
-							type="text" id="productName" class="form-control"
-							placeholder="Digite o nome do produto">
-						<button type="button" class="btn btn-secondary"
-							id="searchProductButton">Pesquisar</button>
-					</div>
-					<div id="searchResults">
-						<!-- Resultados da pesquisa serão carregados aqui -->
-					</div>
-					<input type="hidden" id="propriedadeId"
-						name="itens[0].propriedade.id">
-					<button type="button" class="btn btn-primary"
-						id="selectPropertyButton" disabled>Selecionar Propriedade</button>
+    <!-- Inclusão dos modais -->
+    <div th:replace="municipioSearchModal :: municipioSearchModal"></div>
+    <div th:replace="pesoTotalModal :: pesoTotalModal"></div>
 
-					<div class="col-md-1 offset-md-1">
-						<div class="form-group">
-							<label for="quantidade-0">Quantidade</label> <input type="number"
-								id="quantidade-0" name="itens[0].quantidade"
-								class="form-control form-control-small" step="any" required>
-						</div>
-					</div>
-					<div class="col-md-2 offset-md-2">
-						<div class="form-group">
-							<label for="unidadeMedida-0">Unidade de Medida</label> <select
-								id="unidadeMedida-0" name="itens[0].unidadeMedida"
-								class="form-control" required>
-								<option value="" disabled selected>Selecione uma
-									unidade de medida</option>
-								<option th:each="um : ${unidadesMedida}" th:value="${um}"
-									th:text="${um}"></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-2 d-flex align-items-end">
-						<button type="button" class="btn btn-danger btn-sm"
-							onclick="removeItem(this)">x</button>
-					</div>
-				</div>
-			</div>
-			<button type="button" class="btn btn-secondary" onclick="addItem()">Adicionar
-				Item</button>
-			<br>
-			<br>
-			<button type="submit" class="btn btn-primary"
-				onclick="showPesoModal(event)">Enviar</button>
-		</form>
-	</div>
+    <script>
+        function openMunicipioModal() {
+            document.getElementById('municipioSearchModal').style.display = 'block';
+        }
 
-	<!-- Inclusão dos modais -->
-	<div th:replace="municipioSearchModal :: municipioSearchModal"></div>
-	<div th:replace="pesoTotalModal :: pesoTotalModal"></div>
+        function closeMunicipioModal() {
+            document.getElementById('municipioSearchModal').style.display = 'none';
+        }
 
-	
+        function selectMunicipio(id, nome, ibge) {
+            const municipioSelect = document.getElementById('municipio');
+            municipioSelect.innerHTML = ''; // Limpar opções anteriores
+            const option = document.createElement('option');
+            option.value = id; // Usando o ID em vez do código IBGE
+            option.text = `${ibge} - ${nome}`;
+            option.selected = true;
 
-	<script>
-		function openMunicipioModal() {
-			document.getElementById('municipioSearchModal').style.display = 'block';
-		}
+            municipioSelect.appendChild(option);
+            closeMunicipioModal();
+        }
 
-		function closeMunicipioModal() {
-			document.getElementById('municipioSearchModal').style.display = 'none';
-		}
+        $(document).ready(function() {
+            let itemIndex = 0;
 
-		function selectMunicipio(id, nome, ibge) {
-			const municipioSelect = document.getElementById('municipio');
-			municipioSelect.innerHTML = ''; // Limpar opções anteriores
-			const option = document.createElement('option');
-			option.value = id; // Usando o ID em vez do código IBGE
-			option.text = `${ibge} - ${nome}`;
-			option.selected = true;
+            function searchPropertyByCode(index) {
+                let code = $(`#propertyCode-${index}`).val();
+                if (code.length > 0) {
+                    $.ajax({
+                        url: '/notas/searchPropertyByCode',
+                        method: 'GET',
+                        data: { code: code },
+                        success: function(data) {
+                            if (!data) {
+                                $(`#propertyResult-${index}`).text('Nenhuma propriedade encontrada.');
+                            } else {
+                                $(`#propertyResult-${index}`).text(`${data.codigo} - ${data.produto.nome} ${data.variedade} ${data.subvariedade} ${data.classificacao} ${data.peso} ${data.unidade}`);
+                                $(`#propriedadeId-${index}`).val(data.id);
+                            }
+                        },
+                        error: function() {
+                            $(`#propertyResult-${index}`).text('Nenhuma propriedade encontrada.');
+                        }
+                    });
+                }
+            }
 
-			municipioSelect.appendChild(option);
-			closeMunicipioModal();
-		}
+            // Bind event to first item
+            $('#propertyCode-0').on('input', function() {
+                searchPropertyByCode(0);
+            });
 
-		function showPesoModal(event) {
-			event.preventDefault();
-			document.getElementById('pesoTotalModal').style.display = 'block';
-		}
+            // Add new item function
+            function addItem() {
+                itemIndex++;
+                const newItem = `
+                    <div class="item row mb-3">
+                        <div class="col-md-4 form-group-inline">
+                            <label for="propertyCode-${itemIndex}">Código:</label>
+                            <input type="text" id="propertyCode-${itemIndex}" class="form-control form-control-small" placeholder="Digite o código da propriedade">
+                            <div id="propertyResult-${itemIndex}" class="property-result" readonly></div>
+                            <input type="hidden" id="propriedadeId-${itemIndex}" name="itens[${itemIndex}].propriedade.id">
+                        </div>
+                        <div class="col-md-2 form-group-inline" style="margin-left: 15px;">
+                            <label for="quantidade-${itemIndex}">Quantidade</label>
+                            <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" step="any" required>
+                        </div>
+                        <div class="col-md-3 form-group-inline" style="margin-left: 15px;">
+                            <label for="unidadeMedida-${itemIndex}">Unidade de Medida</label>
+                            <select id="unidadeMedida-${itemIndex}" name="itens[${itemIndex}].unidadeMedida" class="form-control form-control-small" required>
+                                <option value="" disabled selected>Selecione</option>
+                                ${$('#unidadeMedida-0').html()}
+                            </select>
+                        </div>
+                        <div class="col-md-1 col-md-2-right d-flex align-items-center" style="margin-left: 15px;">
+                            <button type="button" class="btn btn-danger btn-sm remove-item">x</button>
+                        </div>
+                    </div>`;
+                $('#itensContainer').append(newItem);
 
-		function closePesoModal() {
-			document.getElementById('pesoTotalModal').style.display = 'none';
-		}
+                // Bind event to new item
+                $(`#propertyCode-${itemIndex}`).on('input', function() {
+                    searchPropertyByCode(itemIndex);
+                });
 
-		function submitForm() {
-			const pesoTotal = document.getElementById('pesoTotal').value;
-			const pesoTotalField = document.createElement('input');
-			pesoTotalField.type = 'hidden';
-			pesoTotalField.name = 'pesoTotal';
-			pesoTotalField.value = pesoTotal;
-			document.getElementById('notaForm').appendChild(pesoTotalField);
+                updateRemoveButtons();
+            }
 
-			document.getElementById('notaForm').submit();
-		}
+            // Add item event
+            $('.add-item').on('click', function() {
+                addItem();
+            });
 
-		function searchPropriedades(itemIndex) {
-			const query = document
-					.getElementById(`searchPropriedade-${itemIndex}`).value
-					.toLowerCase();
-			const select = document.getElementById(`propriedade-${itemIndex}`);
-			const options = select.options;
+            // Remove item event
+            $('#itensContainer').on('click', '.remove-item', function() {
+                $(this).closest('.item').remove();
+                updateRemoveButtons();
+            });
 
-			for (let i = 1; i < options.length; i++) {
-				const text = options[i].text.toLowerCase();
-				if (text.includes(query)) {
-					options[i].style.display = '';
-				} else {
-					options[i].style.display = 'none';
-				}
-			}
-		}
-		
-		
-	</script>
-	
-		<script th:inline="javascript">
-		$(document)
-			.ready(
-				function() {
-				  $('#propertyCode').focus();
-				  $('#propertyCode').on('input',
-						  function() {
-							let code = $(this).val();
-							if (code.length > 0) {
-								$.ajax({url : '/notas/searchPropertyByCode',
-									method : 'GET',	data : {code : code},
-									success : 
-										function(data) {
-											if (!data) {$('#searchResults')
-												.html(
-												'<p>Nenhuma propriedade encontrada.</p>');
-												} else {
-													$('#propriedadeId')
-													.val(data.id); // Set the hidden input value
-													$('#searchResults').html('<p>Propriedade encontrada: '
-														+ data.codigo+ ' - '
-														+ data.produto.nome+ ' '
-														+ data.variedade+ ' '
-														+ data.subvariedade+ ' '
-														+ data.classificacao+ ' '
-														+ data.peso+ ' '
-														+ data.unidade+ '</p>');
-														$('#selectPropertyButton').prop('disabled',false);
-														console.log('propriedadeId set to:',
-																	data.id); // Log for debugging
-														}
-													},
-													error : function() {$('#searchResults').html(
-																	'<p>Nenhuma propriedade encontrada.</p>');
-																}
-															});
-												}
-											});
+            function updateRemoveButtons() {
+                const items = $('#itensContainer .item');
+                items.each(function(index, item) {
+                    const removeButton = $(item).find('.remove-item');
+                    removeButton.prop('disabled', items.length === 1);
+                });
+            }
 
-			$('#searchProductButton').click(
-				function() {let productName = $('#productName').val();
-						if (productName.length > 0) {$.ajax({
-							url : '/notas/searchPropertyByProductName',
-							method : 'GET',data : {productName : productName},
-								success : function(	data) {
-								if (data.length === 0) {$('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-															} else {
-																	let resultsHtml = '<ul>';
-																	data.forEach(function(
-																				item) {
-																				resultsHtml += '<li><a href="#" class="select-property" data-id="' + item.id + '">'
-																				+ item.codigo+ ' - '
-																				+ item.produto.nome+ ' '+ item.variedade+ ' '
-																				+ item.subvariedade+ ' '+ item.classificacao+ ' '
-																				+ item.peso+ ' '+ item.unidade+ '</a></li>';
-																				});
-																		resultsHtml += '</ul>';
-																		$('#searchResults').html(resultsHtml);
-
-																		$('.select-property').click(
-																			function(e) {e.preventDefault();
-																							$('#propriedadeId').val($(this).data('id')); // Set the hidden input value
-																							$('#searchResults').html('<p>Propriedade selecionada: '+ $(this).text()+ '</p>');
-																							$('#selectPropertyButton').prop('disabled',false);
-																							console.log('propriedadeId set to:',$(this).data('id')); // Log for debugging
-																						});
-																	}
-																},
-																error : function() {$('#searchResults').html('<p>Nenhuma propriedade encontrada.</p>');
-																}
-															});
-												}
-											});
-						});
-	</script>
-	
-	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/script/nota/clearForm.js"></script>
-	<script src="/script/nota/itemManagement.js"></script>
-	<script src="/script/nota/municipioSearch.js"></script>
+            updateRemoveButtons();
+        });
+    </script>
+    <script src="/script/nota/clearForm.js"></script>
+    <script src="/script/nota/municipioSearch.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

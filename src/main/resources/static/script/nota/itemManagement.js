@@ -5,14 +5,8 @@ function addItem() {
         <div class="item row mb-3">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="propriedade-${itemIndex}">Propriedade</label>
-                    <div class="input-group">
-                        <input type="text" id="searchPropriedade-${itemIndex}" class="form-control" placeholder="Digite o código ou nome da variedade" oninput="searchPropriedades(${itemIndex})">
-                        <select id="propriedade-${itemIndex}" name="itens[${itemIndex}].propriedade.id" class="form-control form-control-wide" required>
-                            <option value="" disabled selected>Selecione uma propriedade</option>
-                            ${Array.from(document.querySelectorAll('#propriedade-0 option')).map(option => `<option value="${option.value}">${option.text}</option>`).join('')}
-                        </select>
-                    </div>
+                    <label for="propertyCode-${itemIndex}">Código da Propriedade</label>
+                    <input type="text" id="propertyCode-${itemIndex}" class="form-control" placeholder="Digite o código da propriedade" required>
                 </div>
             </div>
             <div class="col-md-1 offset-md-1">

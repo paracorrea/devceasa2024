@@ -1,6 +1,4 @@
-/**
- * Arquivo de limpeza dos formularios
- */
+// clearForm.js - Arquivo de limpeza dos formularios
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Set the date field to today's date
@@ -18,8 +16,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     while (itensContainer.children.length > 1) {
         itensContainer.removeChild(itensContainer.lastChild);
     }
-    const firstItem = itensContainer.firstChild;
-    firstItem.querySelector('#propriedade').selectedIndex = 0;
-    firstItem.querySelector('#quantidade').value = '';
-    firstItem.querySelector('#unidadeMedida').selectedIndex = 0;
+    const firstItem = itensContainer.firstElementChild;
+    firstItem.querySelector('input[id^="propertyCode"]').value = '';
+    firstItem.querySelector('input[id^="quantidade"]').value = '';
+    firstItem.querySelector('select[id^="unidadeMedida"]').selectedIndex = 0;
 });
