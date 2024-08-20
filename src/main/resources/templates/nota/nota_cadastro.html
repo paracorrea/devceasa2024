@@ -41,7 +41,7 @@
                         <label for="tipoVeiculo">Tipo de Veículo</label>
                         <select id="tipoVeiculo" th:field="*{tipoVeiculo}" class="form-control" required>
                             <option value="" disabled selected>Selecione um tipo de veículo</option>
-                            <option th:each="tipoVeiculo : ${tiposVeiculos}" th:value="${tipoVeiculo}" th:text="${tipoVeiculo}"></option>
+                            <option th:each="tipoVeiculo : ${tiposVeiculos}" th:value="${tipoVeiculo.split(' - ')[0]}" th:text="${tipoVeiculo}"></option>
                         </select>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <label for="localDestino">Local de Destino</label>
                         <select id="localDestino" th:field="*{localDestino}" class="form-control" required>
                             <option value="" disabled selected>Selecione um local de destino</option>
-                            <option th:each="localDestino : ${locaisDestinos}" th:value="${localDestino}" th:text="${localDestino}"></option>
+                            <option th:each="localDestino : ${locaisDestinos}" th:value="${localDestino.split(' - ')[0]}" th:text="${localDestino}"></option>
                         </select>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         <div class="input-group">
                             <select id="municipio" th:field="*{municipio.id}" class="form-control" required>
                                 <option value="" disabled selected>Selecione um município</option>
-                                <option th:each="municipio : ${municipios}" th:value="${municipio.id}" th:text="${municipio.ibge} + ' - ' + ${municipio.nome}"></option>
+                                <option th:each="municipio : ${municipios}" th:value="${municipio.id}" th:text="${municipio.nome} + ' - ' + ${municipio.uf}"></option>
                             </select>
                             <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
                         </div>

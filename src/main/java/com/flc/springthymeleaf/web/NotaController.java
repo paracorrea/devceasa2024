@@ -2,7 +2,9 @@
 package com.flc.springthymeleaf.web;
 
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -71,13 +73,19 @@ public class NotaController {
     }
 
     @ModelAttribute("tiposVeiculos")
-    public TipoVeiculo[] listaTiposVeiculos() {
-        return TipoVeiculo.values();
+    public List<String> listaTiposVeiculos() {
+        return Arrays.stream(TipoVeiculo.values())
+                     .map(tv -> tv.getCodigo() + " - " + tv.getDescricao())
+                     .collect(Collectors.toList());
     }
 
     @ModelAttribute("locaisDestinos")
-    public LocalDestino[] listaLocaisDestinos() {
-        return LocalDestino.values();
+    public List<String> listaLocaisDestinos() {
+    	
+  
+        return Arrays.stream(LocalDestino.values())
+        		.map(ld -> ld.getCodigo() + " - " + ld.getDescricao())
+        		.collect(Collectors.toList());
     }
 
     @ModelAttribute("unidadesMedida")
