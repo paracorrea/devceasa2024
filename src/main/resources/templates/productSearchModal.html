@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- templates/modais/productSearchModal.html -->
+<div th:fragment="productSearchModal">
+    <div id="productSearchModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductSearchModal()">&times;</span>
+            <h2>Buscar Produto</h2>
+            <form id="searchProductForm">
+                <label for="productName">Nome do Produto:</label>
+                <input type="text" id="productName" name="productName" onkeyup="searchProductByName()">
+            </form>
+            <table id="productResultsTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="productResultsBody">
+                    <!-- Resultados da busca serão inseridos aqui -->
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeProductSearchModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

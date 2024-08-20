@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.titulo {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.subtitulo {
+    font-size: 1.25em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-control-wide {
+    width: 100%;
+}
+
+.form-control-small {
+    width: auto;
+}
+
+.form-group-inline > label {
+    white-space: nowrap;
+}
+
+.property-result {
+    font-size: 0.8em;
+    color: #555;
+    padding-left: 10px;
+}
