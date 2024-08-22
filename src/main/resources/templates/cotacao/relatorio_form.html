@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerar Relatório de Cotações</title>
+</head>
+<body>
+    <h2>Gerar Relatório de Cotações</h2>
+    <form action="/cotacoes/gerar-relatorio" method="post" enctype="multipart/form-data">
+        <label for="file">Escolha o arquivo CSV:</label>
+        <input type="file" id="file" name="file" accept=".csv" required>
+        <br><br>
+        <button type="submit">Gerar Relatório</button>
+    </form>
+</body>
+</html>

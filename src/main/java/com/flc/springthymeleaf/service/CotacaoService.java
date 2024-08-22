@@ -1,14 +1,18 @@
 package com.flc.springthymeleaf.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.repository.CotacaoRepository;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
@@ -19,6 +23,10 @@ public class CotacaoService {
 
 	@Autowired
 	private CotacaoRepository cotacaoRepo;
+	
+	
+	
+	
 
 	public Cotacao insert(Cotacao obj) {
 		return cotacaoRepo.save(obj);
@@ -75,4 +83,6 @@ public class CotacaoService {
 		  public List<Cotacao> findByPropriedadeIdAndDataCotacaoBetween(Integer propriedadeId, LocalDate dataInicio, LocalDate dataFim) {
 		        return cotacaoRepo.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
 		    }
+
+		
 }

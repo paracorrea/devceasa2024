@@ -1,12 +1,16 @@
 package com.flc.springthymeleaf.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -27,7 +31,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.flc.springthymeleaf.DTO.RelatorioMensalDto;
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.domain.Propriedade;
@@ -353,7 +360,10 @@ public class CotacaoController {
         return "cotacao/cotacao_por_feira";
     }
     
-    @GetMapping("/cotacoes/gerar-pdf")
+   
+    
+    
+	@GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
                          @RequestParam("numeroFeira") Long numeroFeira,
                          Cotacao cotacao, HttpServletResponse response) throws IOException {

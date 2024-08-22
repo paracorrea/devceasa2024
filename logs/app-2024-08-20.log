@@ -1,0 +1,327 @@
+2024-08-20 07:53:33 - [THYMELEAF][http-nio-5001-exec-6][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 07:53:33 - [THYMELEAF][http-nio-5001-exec-6][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 07:53:33 - [THYMELEAF][http-nio-5001-exec-6][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 07:55:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 07:55:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 07:55:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:43:04 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-20 08:43:04 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 08:43:04 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 08:43:04 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-20 08:43:04 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-20 08:43:05 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 08:43:05 - Finished Spring Data repository scanning in 88 ms. Found 14 JPA repository interfaces.
+2024-08-20 08:43:06 - Tomcat initialized with port 5001 (http)
+2024-08-20 08:43:06 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:43:06 - Starting service [Tomcat]
+2024-08-20 08:43:06 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 08:43:06 - Initializing Spring embedded WebApplicationContext
+2024-08-20 08:43:06 - Root WebApplicationContext: initialization completed in 1818 ms
+2024-08-20 08:43:06 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 08:43:06 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20 08:43:06 - HHH000026: Second-level cache disabled
+2024-08-20 08:43:06 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 08:43:06 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 08:43:06 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 08:43:08 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 08:43:08 - HikariPool-1 - Starting...
+2024-08-20 08:43:08 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@49633cf0
+2024-08-20 08:43:08 - HikariPool-1 - Start completed.
+2024-08-20 08:43:08 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:43:08 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20 08:43:09 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 08:43:09 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 08:43:10 - LiveReload server is running on port 35729
+2024-08-20 08:43:10 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:43:10 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 08:43:10 - Started SpringThymeleafApplication in 6.772 seconds (process running for 7.416)
+2024-08-20 08:43:16 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 08:43:16 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 08:43:16 - Completed initialization in 1 ms
+2024-08-20 08:43:19 - [THYMELEAF][http-nio-5001-exec-4][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:43:19 - [THYMELEAF][http-nio-5001-exec-4][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:43:19 - [THYMELEAF][http-nio-5001-exec-4][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:46:29 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 08:46:29 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:46:29 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:46:29 - HikariPool-1 - Shutdown initiated...
+2024-08-20 08:46:29 - HikariPool-1 - Shutdown completed.
+2024-08-20 08:46:29 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 08:46:29 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 08:46:30 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 08:46:30 - Finished Spring Data repository scanning in 45 ms. Found 14 JPA repository interfaces.
+2024-08-20 08:46:30 - Tomcat initialized with port 5001 (http)
+2024-08-20 08:46:30 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:46:30 - Starting service [Tomcat]
+2024-08-20 08:46:30 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 08:46:30 - Initializing Spring embedded WebApplicationContext
+2024-08-20 08:46:30 - Root WebApplicationContext: initialization completed in 481 ms
+2024-08-20 08:46:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 08:46:30 - HHH000026: Second-level cache disabled
+2024-08-20 08:46:30 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 08:46:30 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 08:46:30 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 08:46:30 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 08:46:30 - HikariPool-2 - Starting...
+2024-08-20 08:46:30 - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@7bfcea16
+2024-08-20 08:46:30 - HikariPool-2 - Start completed.
+2024-08-20 08:46:30 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:46:31 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 08:46:31 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 08:46:31 - LiveReload server is running on port 35729
+2024-08-20 08:46:31 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:46:31 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 08:46:31 - Started SpringThymeleafApplication in 1.511 seconds (process running for 208.404)
+2024-08-20 08:46:31 - Condition evaluation unchanged
+2024-08-20 08:49:54 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 08:49:54 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:49:54 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:49:54 - HikariPool-2 - Shutdown initiated...
+2024-08-20 08:49:54 - HikariPool-2 - Shutdown completed.
+2024-08-20 08:49:55 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 08:49:55 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 08:49:55 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 08:49:55 - Finished Spring Data repository scanning in 40 ms. Found 14 JPA repository interfaces.
+2024-08-20 08:49:55 - Tomcat initialized with port 5001 (http)
+2024-08-20 08:49:55 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:49:55 - Starting service [Tomcat]
+2024-08-20 08:49:55 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 08:49:55 - Initializing Spring embedded WebApplicationContext
+2024-08-20 08:49:55 - Root WebApplicationContext: initialization completed in 412 ms
+2024-08-20 08:49:55 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 08:49:55 - HHH000026: Second-level cache disabled
+2024-08-20 08:49:55 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 08:49:55 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 08:49:55 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 08:49:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 08:49:55 - HikariPool-3 - Starting...
+2024-08-20 08:49:55 - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@71dbff18
+2024-08-20 08:49:55 - HikariPool-3 - Start completed.
+2024-08-20 08:49:55 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:49:56 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 08:49:56 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 08:49:56 - LiveReload server is running on port 35729
+2024-08-20 08:49:56 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:49:56 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 08:49:56 - Started SpringThymeleafApplication in 1.297 seconds (process running for 413.394)
+2024-08-20 08:49:56 - Condition evaluation unchanged
+2024-08-20 08:50:00 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 08:50:00 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 08:50:00 - Completed initialization in 5 ms
+2024-08-20 08:50:01 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:50:01 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:50:01 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:58:35 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 08:58:35 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:58:35 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:58:35 - HikariPool-3 - Shutdown initiated...
+2024-08-20 08:58:35 - HikariPool-3 - Shutdown completed.
+2024-08-20 08:58:36 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 08:58:36 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 08:58:36 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 08:58:36 - Finished Spring Data repository scanning in 37 ms. Found 14 JPA repository interfaces.
+2024-08-20 08:58:36 - Tomcat initialized with port 5001 (http)
+2024-08-20 08:58:36 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:58:36 - Starting service [Tomcat]
+2024-08-20 08:58:36 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 08:58:36 - Initializing Spring embedded WebApplicationContext
+2024-08-20 08:58:36 - Root WebApplicationContext: initialization completed in 396 ms
+2024-08-20 08:58:36 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 08:58:36 - HHH000026: Second-level cache disabled
+2024-08-20 08:58:36 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 08:58:36 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 08:58:36 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 08:58:36 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 08:58:36 - HikariPool-4 - Starting...
+2024-08-20 08:58:36 - HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@75760064
+2024-08-20 08:58:36 - HikariPool-4 - Start completed.
+2024-08-20 08:58:36 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:58:37 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 08:58:37 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 08:58:37 - LiveReload server is running on port 35729
+2024-08-20 08:58:37 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:58:37 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 08:58:37 - Started SpringThymeleafApplication in 1.247 seconds (process running for 934.316)
+2024-08-20 08:58:37 - Condition evaluation unchanged
+2024-08-20 08:59:15 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 08:59:15 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:59:15 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:59:15 - HikariPool-4 - Shutdown initiated...
+2024-08-20 08:59:15 - HikariPool-4 - Shutdown completed.
+2024-08-20 08:59:15 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 08:59:15 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 08:59:16 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 08:59:16 - Finished Spring Data repository scanning in 37 ms. Found 14 JPA repository interfaces.
+2024-08-20 08:59:16 - Tomcat initialized with port 5001 (http)
+2024-08-20 08:59:16 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:59:16 - Starting service [Tomcat]
+2024-08-20 08:59:16 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 08:59:16 - Initializing Spring embedded WebApplicationContext
+2024-08-20 08:59:16 - Root WebApplicationContext: initialization completed in 394 ms
+2024-08-20 08:59:16 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 08:59:16 - HHH000026: Second-level cache disabled
+2024-08-20 08:59:16 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 08:59:16 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 08:59:16 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 08:59:16 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 08:59:16 - HikariPool-5 - Starting...
+2024-08-20 08:59:16 - HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@35c42cdd
+2024-08-20 08:59:16 - HikariPool-5 - Start completed.
+2024-08-20 08:59:16 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 08:59:17 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 08:59:17 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 08:59:17 - LiveReload server is running on port 35729
+2024-08-20 08:59:17 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 08:59:17 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 08:59:17 - Started SpringThymeleafApplication in 1.212 seconds (process running for 974.209)
+2024-08-20 08:59:17 - Condition evaluation unchanged
+2024-08-20 08:59:20 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 08:59:20 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 08:59:20 - Completed initialization in 3 ms
+2024-08-20 08:59:21 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:59:21 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 08:59:21 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:00:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:00:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:00:42 - [THYMELEAF][http-nio-5001-exec-9][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:01:47 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:01:47 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:01:47 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:07:18 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:07:18 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:07:18 - [THYMELEAF][http-nio-5001-exec-2][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:22 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:22 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:22 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:40 - [THYMELEAF][http-nio-5001-exec-5][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:40 - [THYMELEAF][http-nio-5001-exec-5][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:09:40 - [THYMELEAF][http-nio-5001-exec-5][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:09 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 09:15:09 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:09 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:15:09 - HikariPool-5 - Shutdown initiated...
+2024-08-20 09:15:09 - HikariPool-5 - Shutdown completed.
+2024-08-20 09:15:09 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 09:15:09 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 09:15:09 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 09:15:09 - Finished Spring Data repository scanning in 44 ms. Found 14 JPA repository interfaces.
+2024-08-20 09:15:09 - Tomcat initialized with port 5001 (http)
+2024-08-20 09:15:09 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:09 - Starting service [Tomcat]
+2024-08-20 09:15:09 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 09:15:09 - Initializing Spring embedded WebApplicationContext
+2024-08-20 09:15:09 - Root WebApplicationContext: initialization completed in 493 ms
+2024-08-20 09:15:09 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 09:15:09 - HHH000026: Second-level cache disabled
+2024-08-20 09:15:09 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 09:15:09 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 09:15:09 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 09:15:10 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 09:15:10 - HikariPool-6 - Starting...
+2024-08-20 09:15:10 - HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@397f134f
+2024-08-20 09:15:10 - HikariPool-6 - Start completed.
+2024-08-20 09:15:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:15:10 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 09:15:10 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 09:15:10 - LiveReload server is running on port 35729
+2024-08-20 09:15:10 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:10 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 09:15:10 - Started SpringThymeleafApplication in 1.508 seconds (process running for 1927.718)
+2024-08-20 09:15:10 - Condition evaluation unchanged
+2024-08-20 09:15:10 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 09:15:10 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 09:15:10 - Completed initialization in 1 ms
+2024-08-20 09:15:10 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:10 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:10 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:23 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:23 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:23 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:24 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 09:15:24 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:24 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:15:24 - HikariPool-6 - Shutdown initiated...
+2024-08-20 09:15:24 - HikariPool-6 - Shutdown completed.
+2024-08-20 09:15:24 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 09:15:24 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 09:15:24 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 09:15:24 - Finished Spring Data repository scanning in 35 ms. Found 14 JPA repository interfaces.
+2024-08-20 09:15:24 - Tomcat initialized with port 5001 (http)
+2024-08-20 09:15:24 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:24 - Starting service [Tomcat]
+2024-08-20 09:15:24 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 09:15:25 - Initializing Spring embedded WebApplicationContext
+2024-08-20 09:15:25 - Root WebApplicationContext: initialization completed in 347 ms
+2024-08-20 09:15:25 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 09:15:25 - HHH000026: Second-level cache disabled
+2024-08-20 09:15:25 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 09:15:25 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 09:15:25 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 09:15:25 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 09:15:25 - HikariPool-7 - Starting...
+2024-08-20 09:15:25 - HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@aeb170
+2024-08-20 09:15:25 - HikariPool-7 - Start completed.
+2024-08-20 09:15:25 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:15:25 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 09:15:25 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 09:15:25 - LiveReload server is running on port 35729
+2024-08-20 09:15:25 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:15:25 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 09:15:25 - Started SpringThymeleafApplication in 1.169 seconds (process running for 1942.864)
+2024-08-20 09:15:25 - Condition evaluation unchanged
+2024-08-20 09:15:35 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 09:15:35 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 09:15:35 - Completed initialization in 2 ms
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:15:36 - [THYMELEAF][http-nio-5001-exec-3][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:24:58 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-08-20 09:24:58 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:24:58 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:24:58 - HikariPool-7 - Shutdown initiated...
+2024-08-20 09:24:58 - HikariPool-7 - Shutdown completed.
+2024-08-20 09:24:58 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 13420 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-08-20 09:24:58 - No active profile set, falling back to 1 default profile: "default"
+2024-08-20 09:24:58 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20 09:24:58 - Finished Spring Data repository scanning in 48 ms. Found 14 JPA repository interfaces.
+2024-08-20 09:24:58 - Tomcat initialized with port 5001 (http)
+2024-08-20 09:24:58 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:24:58 - Starting service [Tomcat]
+2024-08-20 09:24:58 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-20 09:24:58 - Initializing Spring embedded WebApplicationContext
+2024-08-20 09:24:58 - Root WebApplicationContext: initialization completed in 515 ms
+2024-08-20 09:24:59 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20 09:24:59 - HHH000026: Second-level cache disabled
+2024-08-20 09:24:59 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20 09:24:59 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-08-20 09:24:59 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-08-20 09:24:59 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20 09:24:59 - HikariPool-8 - Starting...
+2024-08-20 09:24:59 - HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@2fc78560
+2024-08-20 09:24:59 - HikariPool-8 - Start completed.
+2024-08-20 09:24:59 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20 09:24:59 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-08-20 09:24:59 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-08-20 09:24:59 - LiveReload server is running on port 35729
+2024-08-20 09:24:59 - Starting ProtocolHandler ["http-nio-5001"]
+2024-08-20 09:24:59 - Tomcat started on port 5001 (http) with context path '/'
+2024-08-20 09:24:59 - Started SpringThymeleafApplication in 1.57 seconds (process running for 2517.054)
+2024-08-20 09:24:59 - Condition evaluation unchanged
+2024-08-20 09:25:00 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20 09:25:00 - Initializing Servlet 'dispatcherServlet'
+2024-08-20 09:25:00 - Completed initialization in 1 ms
+2024-08-20 09:25:00 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "municipioSearchModal :: municipioSearchModal" found in template nota/nota_cadastro, line 104, col 10. Please use the complete syntax of fragment expressions instead ("~{municipioSearchModal :: municipioSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:25:00 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "pesoTotalModal :: pesoTotalModal" found in template nota/nota_cadastro, line 105, col 10. Please use the complete syntax of fragment expressions instead ("~{pesoTotalModal :: pesoTotalModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:25:00 - [THYMELEAF][http-nio-5001-exec-1][nota/nota_cadastro] Deprecated unwrapped fragment expression "productSearchModal :: productSearchModal" found in template nota/nota_cadastro, line 106, col 10. Please use the complete syntax of fragment expressions instead ("~{productSearchModal :: productSearchModal}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-08-20 09:31:28 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:33:00 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:33:40 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:35:15 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:35:31 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:35:35 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:36:10 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:36:10 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
+2024-08-20 09:36:10 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: No enum constant com.flc.springthymeleaf.enums.LocalDestino.MC3]
