@@ -119,13 +119,13 @@ public class RelatorioMensalController {
 
         // Criar tabela
         Table table = new Table(columnWidths);
-        DeviceRgb customColor = new DeviceRgb(35, 107, 54); // RGB para verde
-        DeviceRgb alternateRowColor = new DeviceRgb(173, 216, 230); // RGB para azul claro
+        DeviceRgb customColorGreen = new DeviceRgb(35, 107, 54); // RGB para verde
+        DeviceRgb alternateRowColorBlueLigth = new DeviceRgb(173, 216, 230); // RGB para azul claro
 
         // Cabeçalho - Primeira célula "Produtos" e os meses nas colunas seguintes
         Cell headerCell = new Cell();
         headerCell.add(new Paragraph("Produtos").setFontSize(10).setBold().setFontColor(ColorConstants.WHITE));
-        headerCell.setBackgroundColor(customColor); // Definindo a cor de fundo
+        headerCell.setBackgroundColor(customColorGreen); // Definindo a cor de fundo
         headerCell.setBorder(Border.NO_BORDER);
         table.addHeaderCell(headerCell);
 
@@ -137,29 +137,51 @@ public class RelatorioMensalController {
 
             Cell monthHeaderCell = new Cell();
             monthHeaderCell.add(new Paragraph(monthName + "/" + year).setFontSize(10).setBold().setFontColor(ColorConstants.WHITE));
-            monthHeaderCell.setBackgroundColor(customColor); // Definindo a cor de fundo
+            monthHeaderCell.setBackgroundColor(customColorGreen); // Definindo a cor de fundo
             monthHeaderCell.setBorder(Border.NO_BORDER);
             table.addHeaderCell(monthHeaderCell);
         }
 
+        
         // Adicionar os produtos e suas médias
         for (int i = 0; i < relatorio.size(); i++) {
             RelatorioMensalDto dto = relatorio.get(i);
 
             // Determinar a cor de fundo da linha
-            DeviceRgb rowColor = (i % 2 == 0) ? (DeviceRgb) ColorConstants.WHITE : alternateRowColor;
+            DeviceRgb rowColorBlue = (i % 2 == 0) ? (DeviceRgb) ColorConstants.WHITE : alternateRowColorBlueLigth;
 
-            // Primeira célula da linha (nome do produto)
-            Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome() + " - " + dto.getPropriedade().getVariedade() + " - " +dto.getPropriedade().getSubvariedade()).setFontSize(8));
-            productCell.setBackgroundColor(rowColor);
-            productCell.setBorder(Border.NO_BORDER);
-            table.addCell(productCell);
+           // Primeira célula da linha (nome do produto)
+           
+         
+           if (dto.getPropriedade().getSubvariedade() == null || dto.getPropriedade().getSubvariedade().trim().isEmpty()) {
+        	    Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome() 
+        	    												+ "  " + dto.getPropriedade().getVariedade()+" "
+        	    												+dto.getPropriedade().getSubvariedade() +" "
+        	    												+ dto.getPropriedade().getClassificacao())
+        	    												.setFontSize(8));
+        	   
+        	    productCell.setBackgroundColor(rowColorBlue);
+                productCell.setBorder(Border.NO_BORDER);
+                table.addCell(productCell);
+           
+           } else {
+        	   Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome() 
+						+ "  " + dto.getPropriedade().getVariedade() 
+						+"\n"+dto.getPropriedade().getSubvariedade()+" "
+						+ dto.getPropriedade().getClassificacao())
+						.setFontSize(8));
+        	   productCell.setBackgroundColor(rowColorBlue);
+               productCell.setBorder(Border.NO_BORDER);
+               table.addCell(productCell);
+           }
+            
+         
 
             // Colunas das médias
             for (String mes : mesesOrdenados) {
                 BigDecimal media = dto.getMediasPorMes().get(mes);
                 Cell mediaCell = new Cell().add(new Paragraph(media != null ? media.toString() : "N/A").setFontSize(10));
-                mediaCell.setBackgroundColor(rowColor);
+                mediaCell.setBackgroundColor(rowColorBlue);
                 mediaCell.setBorder(Border.NO_BORDER);
                 table.addCell(mediaCell);
             }

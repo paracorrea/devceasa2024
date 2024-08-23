@@ -25,38 +25,36 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Grupo
+                        Cadastro
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Cadastro</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/grupos/listar}">Listagem</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Novo Grupo</a></li>
+                       <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Novo Subgrupo</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Novo Produto</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Nova Propriedade</a></li>
+                       
+                       
+                       
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Subgrupo
+                        Listagem
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Cadastro</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/subgrupos/listar}">Listagem</a></li>
+                         <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/grupos/listar}">Listagem de Grupo</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/subgrupos/listar}">Listagem de Subgrupo</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/listar}">Listagem de Produto</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/listar}">Listagem de Propriedade</a></li>
                     </ul>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Produto
+                        Relatórios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Cadastro</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/listar}">Listagem</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Propriedade
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Cadastro</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/listar}">Listagem</a></li>
+                         <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/relatorio-mensal}">Média Mensal Valor Comum </a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
