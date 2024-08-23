@@ -200,8 +200,6 @@ public class NotaController {
         return ResponseEntity.ok(propriedades);
     }
     
-    
-    
     @GetMapping("/notas/searchPropertyByCode")
     public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
        

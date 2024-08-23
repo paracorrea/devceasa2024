@@ -1,19 +1,16 @@
 package com.flc.springthymeleaf.web;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -31,10 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.flc.springthymeleaf.DTO.RelatorioMensalDto;
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.domain.Propriedade;
@@ -52,8 +46,6 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
-
-
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
@@ -61,12 +53,10 @@ import jakarta.validation.Valid;
 @Controller
 public class CotacaoController {
 
-	 private static final Logger LOGGER = Logger.getLogger(CotacaoController.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CotacaoController.class.getName());
 	
-	 private BigDecimal valorComumAnterior = null; 
-	 private BigDecimal valorComumAtual = new BigDecimal(0); 
-	
-	 
+	private BigDecimal valorComumAnterior = null; 
+	private BigDecimal valorComumAtual = new BigDecimal(0); 
 	 
 	@Autowired
 	private CotacaoService cotacaoService;
@@ -75,11 +65,11 @@ public class CotacaoController {
 	@Autowired
 	private PropriedadeService propriedadeService;
 	@InitBinder
+	 
 	public void initBinder(WebDataBinder binder) {
 			binder.addValidators(new CotacaoValidator(cotacaoService));
 	}
 	
-
 	@ModelAttribute("cotados")
 	public List<Propriedade> listarCotados() {
 		
@@ -88,13 +78,14 @@ public class CotacaoController {
 		return listaCotados;
 	}
 	
-	
-	
-	
-	
 	@GetMapping("/cotacoes/pesquisar")
     public String pesquisar(Model model) {
-          return "cotacao/cotacao_pesquisar";
+          
+		return "cotacao/cotacao_pesquisar";
+        // call the folowings endpoints  
+		// "/cotacoes/searchPropertyByCode" - for search properties by codigo
+		// "/cotacoes/searchPropertyByProductName" for search properties by name of product
+		// "/cotacoes/cadastrar" - in form 
     }
 	
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")
@@ -104,40 +95,30 @@ public class CotacaoController {
 	        @RequestParam Integer propriedadeId,
 	        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataCotacao) {
 
-		
-	    Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior1(propriedadeId, dataCotacao);
-
+		   	Cotacao cotacaoAnterior = cotacaoService.buscarCotacaoAnterior1(propriedadeId, dataCotacao);
 	    
-	    
-	    if (cotacaoAnterior != null) {
+		   		if (cotacaoAnterior != null) {
 	       
-	    	//BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
-	    	
-	    	return ResponseEntity.ok(cotacaoAnterior);
-	    } else {
-	    	
-	    	
-	    	return ResponseEntity.notFound().build();
-	        
-	        
-	    }
-	}
+		   			//BigDecimal valorMinimoAnterior = cotacaoAnterior.getPrecoMinimo();
+		   			return ResponseEntity.ok(cotacaoAnterior);
+		   		} else {
+		   			return ResponseEntity.notFound().build();
+		   		}
+			}
+
 		 
 	 @GetMapping("/cotacoes/cadastrar")
-	    public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, Model model) {
+	 public String cadastrar(@RequestParam("propriedadeId") Integer propriedadeId, Model model) {
 
 		 	LOGGER.info("Recebido propriedadeId em cotacoes/cadastrar: " + propriedadeId);
-		 	
-	        
+
 		 	  if (propriedadeId == null) {
 		 	        LOGGER.info("propriedadeId está nulo!");
 		 	  }
 		 	
-		 	
 		 	  Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
-		 	 
-		 	 
-	        if (propriedadeOpt.isPresent()) {
+	 	 
+		 	  if (propriedadeOpt.isPresent()) {
 	           
 	        	
 	        	Propriedade propriedade = propriedadeOpt.get();
@@ -147,8 +128,7 @@ public class CotacaoController {
 	            Cotacao cotacao = new Cotacao();
 	           
 	            if (ultimaCotacao != null) {
-	            	
-	            	
+	            		            	
 	            	 valorComumAnterior=ultimaCotacao.getValorComum();
 	            	 
 	            	 cotacao.setValor1(ultimaCotacao.getValor1());
@@ -161,12 +141,11 @@ public class CotacaoController {
 	                 cotacao.setValor8(ultimaCotacao.getValor8());
 	                 cotacao.setValor9(ultimaCotacao.getValor9());
 	                 cotacao.setValor10(ultimaCotacao.getValor10());
-	            	cotacao.setPesoVariavel(ultimaCotacao.getPesoVariavel());
-	            
-	                cotacao.setPrecoMinimo(ultimaCotacao.getPrecoMinimo());
-	                cotacao.setPrecoMedio(ultimaCotacao.getPrecoMedio());
-	                cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
-	                cotacao.setValorComum(ultimaCotacao.getValorComum());
+	                 cotacao.setPesoVariavel(ultimaCotacao.getPesoVariavel());
+	                 cotacao.setPrecoMinimo(ultimaCotacao.getPrecoMinimo());
+	                 cotacao.setPrecoMedio(ultimaCotacao.getPrecoMedio());
+	                 cotacao.setPrecoMaximo(ultimaCotacao.getPrecoMaximo());
+	                 cotacao.setValorComum(ultimaCotacao.getValorComum());
 	                
 	                LOGGER.info("Último Valor Comum: " + valorComumAnterior);
 	                LOGGER.info("Última cotação: " + ultimaCotacao.toString());
@@ -175,19 +154,19 @@ public class CotacaoController {
 	            	valorComumAnterior=null;
 	            }
 
-	            cotacao.setPropriedade(propriedade);
-	            cotacao.setDataCotacao(dataCotacao);
+	            	cotacao.setPropriedade(propriedade);
+	            	cotacao.setDataCotacao(dataCotacao);
 
-	            model.addAttribute("dataCotacao", dataCotacao);
-	            model.addAttribute("cotacao", cotacao);
-	            model.addAttribute("ultimaCotacao", ultimaCotacao);
+	            	model.addAttribute("dataCotacao", dataCotacao);
+	            	model.addAttribute("cotacao", cotacao);
+	            	model.addAttribute("ultimaCotacao", ultimaCotacao);
 	            
-	            LOGGER.info("Propriedade selecionada: " + propriedade.getProduto().getNome() + " " + propriedade.getCodigo() + " " + propriedade.getVariedade());
-	            //logCotacaoValues("Cotação atual", cotacao);
+	            	LOGGER.info("Propriedade selecionada: " + propriedade.getProduto().getNome() + " " + propriedade.getCodigo() + " " + propriedade.getVariedade());
+	            	//logCotacaoValues("Cotação atual", cotacao);
 	           
 	       
 	        }
-	        return "cotacao/cotacao_cadastro";
+		 	  	return "cotacao/cotacao_cadastro";
 	    }
 	
 	 private void logCotacaoValues(String prefix, Cotacao cotacao) {
@@ -210,22 +189,19 @@ public class CotacaoController {
 	 
 	   @PostMapping("/cotacoes/salvar")
 	   public String salvar(@Valid @ModelAttribute Cotacao cotacao, BindingResult result, Model model, RedirectAttributes attr) {
-	       LocalDate dataAtual = LocalDate.now();
-
-
-
+	      
+		   LocalDate dataAtual = LocalDate.now();
 	       valorComumAtual = cotacao.getValorComum();
+	       
 	       LOGGER.info("Valor Comum anterior: " + valorComumAnterior);
 	       LOGGER.info("Valor Comum atual: " + valorComumAtual);
-	       
-	       
 	       
 	       if (cotacao.getDataCotacao().isAfter(dataAtual)) {
 	           result.rejectValue("dataCotacao", "error.cotacao", "A data da cotação deve ser menor ou igual à data atual. Data atual: " + dataAtual + ", Data informada: " + cotacao.getDataCotacao());
 	       }
 
 	       if (cotacao.getDataCotacao() != null && cotacao.getPropriedade() != null &&
-	               cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
+	               	cotacaoService.existeCotacaoComMesmaDataECategoria(cotacao)) {
 	    	   		attr.addFlashAttribute("fail", "A cotação não foi salva pois já existe uma cotação deste produto para este dia, selecione outro produto para cotar");
 	    	   		return "redirect:/cotacoes/pesquisar";
 	       }
@@ -235,7 +211,6 @@ public class CotacaoController {
 	           attr.addFlashAttribute("Erros de validação ao salvar cotação: " + result.toString());
 	           return "cotacao/cotacao_pesquisar";
 	       }
-
 	      
 	       if (valorComumAnterior != null) {
 	           if (valorComumAtual.compareTo(valorComumAnterior) > 0) {
@@ -249,7 +224,7 @@ public class CotacaoController {
 	           cotacao.setMercado("MV"); // Mercado Vazio (sem cotação anterior)
 	       }
 	       
-	       LOGGER.info("Salvando cotação: " + cotacao.getPropriedade().getProduto().getNome()+ " "+ cotacao.getPropriedade().getCodigo());
+	      
 	       cotacaoService.insert(cotacao);
 	       attr.addFlashAttribute("success", "Cotação cadastrada com sucesso");
 	       return "redirect:/cotacoes/pesquisar";
@@ -309,34 +284,26 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/excluir/{id}")
 	public String excluir(@PathVariable("id") Integer id, RedirectAttributes attr) {
 
-		
-			
 			cotacaoService.delete(id);
 			attr.addFlashAttribute("success","Cotação excluída com sucesso");		
 			return "redirect:/cotacoes/por-data";
 		} 
 	
-	
 	@GetMapping("/cotacoes/listar")
 	public String findAll(ModelMap model) {
-		
-		
 		
 		List<Cotacao> list = cotacaoService.findAll();
 		model.addAttribute("cotacoes",list);
 		
 		return "cotacao/cotacao_listar";
-	
-
 	}
 	
     @GetMapping("/cotacoes/por-data")
     public String pesquisarCotacoesPorData(@ModelAttribute("cotacao") Cotacao cotacao, Model model) {
-        LocalDate selectedDate = cotacao.getDataCotacao();
+
+    	LocalDate selectedDate = cotacao.getDataCotacao();
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-       
         Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
-        
         model.addAttribute("cotacaoResults", cotacaoResults);
         return "cotacao/cotacao_listagemdata";
     }
@@ -355,14 +322,9 @@ public class CotacaoController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dataFeiraFormatada = dataFeira.format(formatter);
         model.addAttribute("dataFeiraFormatada", dataFeiraFormatada);
-
         model.addAttribute("cotacaoResults", cotacaoResults);
         return "cotacao/cotacao_por_feira";
     }
-    
-   
-    
-    
 	@GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
                          @RequestParam("numeroFeira") Long numeroFeira,
@@ -373,7 +335,25 @@ public class CotacaoController {
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
+        List<Propriedade> requiredProperties = propriedadeService.findPropriedadePorCotacao(); // Adjust this method to fetch properties with status=true
+        // Extract the properties from cotacaoResults
+        List<Propriedade> quotedProperties = cotacaoResults.stream()
+                                                           .map(Cotacao::getPropriedade)
+                                                           .collect(Collectors.toList());
 
+        // Find the missing properties
+        List<Propriedade> missingProperties = requiredProperties.stream()
+                                                                .filter(prop -> !quotedProperties.contains(prop))
+                                                                .collect(Collectors.toList());
+
+        if (!missingProperties.isEmpty()) {
+            // Show a message or handle the missing properties
+            System.out.println("Warning: The following properties were not quoted:");
+            for (Propriedade prop : missingProperties) {
+            	LOGGER.info("Cotação faltante: "+prop.getProduto().getNome() + " - " + prop.getVariedade());
+            }
+            // You can also create a pop-up or return a message to the user interface here
+        }
         // Ordena a lista de cotacoes primeiro por subgrupo, depois por produto dentro de cada subgrupo e por variedade
         Collections.sort(cotacaoResults, Comparator
                 .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
@@ -389,7 +369,7 @@ public class CotacaoController {
         String dataCabecalho = dataCotacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         // Adiciona os dados ao PDF
-        document.add(new Paragraph("CENTRAIS DE ABASTECIMENTO DE CAMPINAS - SA").setFontSize(11));
+        document.add(new Paragraph("CENTRAIS DE ABASTECIMENTO DE CAMPINAS - SA").setFontSize(12).setBold());
         document.add(new Paragraph("Formulário de Cotação - CEASA CAMPINAS - Boletim número: " + numeroFeira).setFontSize(11));
         document.add(new Paragraph("Cotação Realizada em: " + dataCabecalho).setFontSize(10).setHorizontalAlignment(HorizontalAlignment.CENTER));
         
@@ -507,8 +487,6 @@ public class CotacaoController {
         table.addCell(new Cell().add(new Paragraph(content).addStyle(style)));
     }
 
-
-	
     @GetMapping("/cotacoes/search")
     @ResponseBody
     public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
@@ -521,8 +499,6 @@ public class CotacaoController {
         
         return ResponseEntity.ok(propriedades);
     }
-    
-    
     
     @GetMapping("/cotacoes/searchPropertyByCode")
     public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
@@ -540,6 +516,5 @@ public class CotacaoController {
         Optional<Feira> ultimaFeiraAberta = feiraService.obterUltimaFeiraAberta();
         return ultimaFeiraAberta.map(Feira::getDataFeira).orElse(LocalDate.now());
     }
-
    
 }
