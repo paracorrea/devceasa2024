@@ -328,7 +328,7 @@ public class CotacaoController {
 	@GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
                          @RequestParam("numeroFeira") Long numeroFeira,
-                         Cotacao cotacao, HttpServletResponse response) throws IOException {
+                         Cotacao cotacao, HttpServletResponse response, Model model) throws IOException {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=cotacao.pdf");
 
@@ -349,10 +349,16 @@ public class CotacaoController {
         if (!missingProperties.isEmpty()) {
             // Show a message or handle the missing properties
             System.out.println("Warning: The following properties were not quoted:");
+           
+            StringBuilder missingPropsHtml = new StringBuilder();
+           
             for (Propriedade prop : missingProperties) {
             	LOGGER.info("Cotação faltante: "+prop.getProduto().getNome() + " - " + prop.getVariedade());
+            	   missingPropsHtml.append("<li>")
+                   .append(prop.getProduto().getNome()).append(" - ")
+                   .append(prop.getVariedade()).append("</li>");
             }
-            // You can also create a pop-up or return a message to the user interface here
+            model.addAttribute("missingPropsHtml", missingPropsHtml.toString());
         }
         // Ordena a lista de cotacoes primeiro por subgrupo, depois por produto dentro de cada subgrupo e por variedade
         Collections.sort(cotacaoResults, Comparator
