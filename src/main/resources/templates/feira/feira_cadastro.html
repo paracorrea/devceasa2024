@@ -104,6 +104,7 @@
 							<button th:if="${feira.statusFeira.name() == 'ABERTA'}"
 								class="btn btn-secondary btn-sm">Encerrar feira</button>
 						</form>
+						
 						<form th:action="@{/feiras/publicar}" method="post"
 							style="display: inline;">
 							<input type="hidden" name="id" th:value="${feira.id}" />

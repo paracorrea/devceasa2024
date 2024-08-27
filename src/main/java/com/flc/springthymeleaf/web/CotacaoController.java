@@ -310,8 +310,22 @@ public class CotacaoController {
 
     @GetMapping("/cotacoes/por-feira/{dataFeira}")
     public String pesquisarCotacoesPorFeira(@PathVariable("dataFeira") @DateTimeFormat(iso = ISO.DATE) LocalDate dataFeira, Model model) {
-        List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(dataFeira);
-        Collections.sort(cotacaoResults, Comparator
+       
+    	List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(dataFeira);
+        
+    	// Listar propriedades Não cotadas 
+    	List<Propriedade> requiredProperties = propriedadeService.findPropriedadePorCotacao(); // Adjust this method to fetch properties with status=true
+		// Extract the properties from cotacaoResults
+		List<Propriedade> quotedProperties = cotacaoResults.stream()
+                                                        .map(Cotacao::getPropriedade)
+                                                        .collect(Collectors.toList());
+
+		// Find the missing properties
+		List<Propriedade> missingProperties = requiredProperties.stream()
+                                                             .filter(prop -> !quotedProperties.contains(prop))
+                                                             .collect(Collectors.toList());
+		
+                Collections.sort(cotacaoResults, Comparator
                 .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
                 .thenComparing(c -> c.getPropriedade().getProduto().getNome())
                 .thenComparing(c -> c.getPropriedade().getVariedade())
@@ -323,8 +337,36 @@ public class CotacaoController {
         String dataFeiraFormatada = dataFeira.format(formatter);
         model.addAttribute("dataFeiraFormatada", dataFeiraFormatada);
         model.addAttribute("cotacaoResults", cotacaoResults);
+        
+
+		if (!missingProperties.isEmpty()) {
+			// Show a message or handle the missing properties
+			LOGGER.info("Warning: The following properties were not quoted:");
+        
+			StringBuilder missingPropsHtml = new StringBuilder();
+        
+         for (Propriedade prop : missingProperties) {
+        	 
+        	 String formattedPeso = String.format("%.2f", prop.getPeso());
+         	LOGGER.info("Cotação faltante: "+prop.getProduto().getNome() + " - " + prop.getVariedade()+ " - " + prop.getSubvariedade());
+         	   missingPropsHtml.append("<li>")
+         	   	.append(prop.getId()).append(" - ")
+               	.append(prop.getCodigo()).append(" - ") 
+               	.append(prop.getProduto().getNome()).append(" ")
+                .append(prop.getVariedade()).append(" ")
+                .append(prop.getSubvariedade()).append(" ")
+                .append(prop.getClassificacao()).append(" ")
+                .append(prop.getEmbalagem()).append(" ")
+                .append(formattedPeso).append(" Kilos ")
+                .append("</li>");
+         }
+         model.addAttribute("missing", missingPropsHtml.toString());
+     }
+        
         return "cotacao/cotacao_por_feira";
     }
+  
+    
 	@GetMapping("/cotacoes/gerar-pdf")
     public void gerarPdf(@RequestParam("dataCotacao") @DateTimeFormat(iso = ISO.DATE) LocalDate dataCotacao,
                          @RequestParam("numeroFeira") Long numeroFeira,
@@ -335,31 +377,7 @@ public class CotacaoController {
         // Certifique-se de carregar a lista de cotacoes usando o mesmo serviço utilizado na pesquisa
         LocalDate selectedDate = dataCotacao;
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-        List<Propriedade> requiredProperties = propriedadeService.findPropriedadePorCotacao(); // Adjust this method to fetch properties with status=true
-        // Extract the properties from cotacaoResults
-        List<Propriedade> quotedProperties = cotacaoResults.stream()
-                                                           .map(Cotacao::getPropriedade)
-                                                           .collect(Collectors.toList());
-
-        // Find the missing properties
-        List<Propriedade> missingProperties = requiredProperties.stream()
-                                                                .filter(prop -> !quotedProperties.contains(prop))
-                                                                .collect(Collectors.toList());
-
-        if (!missingProperties.isEmpty()) {
-            // Show a message or handle the missing properties
-            System.out.println("Warning: The following properties were not quoted:");
-           
-            StringBuilder missingPropsHtml = new StringBuilder();
-           
-            for (Propriedade prop : missingProperties) {
-            	LOGGER.info("Cotação faltante: "+prop.getProduto().getNome() + " - " + prop.getVariedade());
-            	   missingPropsHtml.append("<li>")
-                   .append(prop.getProduto().getNome()).append(" - ")
-                   .append(prop.getVariedade()).append("</li>");
-            }
-            model.addAttribute("missingPropsHtml", missingPropsHtml.toString());
-        }
+       
         // Ordena a lista de cotacoes primeiro por subgrupo, depois por produto dentro de cada subgrupo e por variedade
         Collections.sort(cotacaoResults, Comparator
                 .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())

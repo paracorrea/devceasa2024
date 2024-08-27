@@ -101,6 +101,8 @@
         </td>
        
        
+       
+       
         <td sec:authorize="hasRole('ROLE_ADMIN')">
        	
 		<a type="button" class="delete" title="Excluir" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">
@@ -110,16 +112,24 @@
         
     </tr>
 </tbody>
+
 		</table>
 
 
-		<a class="inicio" th:href="@{/}">INICIO</a>
+		<a class="inicio" th:href="@{/feiras/cadastrar}">Retornar para feira</a>
 	</div>
 
 	<!-- Adicione links de paginação ou outros elementos conforme necessário -->
 
 
+<div>
 
+	<h5 class="missing" id="missingLabel">Lista de produtos não cotados:</h5>
+	
+	      <div class="missing">
+      		  <ul th:utext="${missing}"></ul>
+      </div>
+</div>
 
 
 
