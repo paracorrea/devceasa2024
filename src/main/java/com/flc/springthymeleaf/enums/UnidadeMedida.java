@@ -4,5 +4,9 @@ public enum UnidadeMedida {
     KILO,
     UNIDADE,
     TONELADA,
-    CAIXA
+    GRAMA,
+    DUZIA,
+    MACO
+   
+    
 }

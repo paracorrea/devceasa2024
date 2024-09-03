@@ -1,20 +1,17 @@
 package com.flc.springthymeleaf.repository;
 
-import java.time.LocalDate;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.flc.springthymeleaf.domain.Nota;
+import com.flc.springthymeleaf.domain.Embalagem;
 
-public interface EmbalagemRepository  extends JpaRepository<Nota, Integer>, PagingAndSortingRepository<Nota, Integer> {
 
-	  @Query("SELECT f FROM Nota f WHERE f.data BETWEEN :dataInicio AND :dataFim ORDER BY f.data DESC")
-	    Page<Nota> findByDataNotaBetween(LocalDate dataInicio, LocalDate dataFim, Pageable pageable);
+public interface EmbalagemRepository  extends JpaRepository<Embalagem, Integer>, PagingAndSortingRepository<Embalagem, Integer> {
 
-	    @Query("SELECT f FROM Nota f ORDER BY f.data DESC")
-	    Page<Nota> findAll(Pageable pageable);
+	
+	    Page<Embalagem> findAll(Pageable pageable);
 }

@@ -2,8 +2,14 @@ package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import com.flc.springthymeleaf.enums.TipoEmbalagem;
+import com.flc.springthymeleaf.enums.UnidadeMedida;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,13 +27,16 @@ public class Embalagem implements Serializable {
     @Column(name = "codigo", length = 10, unique = true)
     private String codigo;
    
-    @Column(name = "tipo", length = 30 )
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoEmbalagem tipoEmbalagem;
     
     @Column(name = "peso", precision = 10, scale = 1)
     @Digits(integer = 10, fraction = 1, message = "O valor deve ter no máximo 10 dígitos inteiros e 1 decimal")
     private BigDecimal peso;
 
+    @Enumerated(EnumType.STRING)
+    private UnidadeMedida unidadeMedida;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -36,9 +45,7 @@ public class Embalagem implements Serializable {
 		return codigo;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
+
 
 	public BigDecimal getPeso() {
 		return peso;
@@ -52,19 +59,27 @@ public class Embalagem implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 
 	public void setPeso(BigDecimal peso) {
 		this.peso = peso;
 	}
    
+	public UnidadeMedida getUnidadeMedida() {
+		return unidadeMedida;
+	}
+
+	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
+	}
+
+	public TipoEmbalagem getTipoEmbalagem() {
+		return tipoEmbalagem;
+	}
+
+	public void setTipoEmbalagem(TipoEmbalagem tipoEmbalagem) {
+		this.tipoEmbalagem = tipoEmbalagem;
+	}
     
     
-    
-    
-    
-    
-	
 }
