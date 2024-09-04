@@ -22,6 +22,7 @@ import com.flc.springthymeleaf.service.EmbalagemService;
 
 import jakarta.validation.Valid;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -41,10 +42,9 @@ public class EmbalagemController {
     }
     
     @GetMapping("/embalagens")
-    public String listarEmbalagens(@RequestParam(defaultValue = "0") int page, Model model) {
-    	  int pageSize = 10;  // Número de itens por página
-          Pageable pageable = PageRequest.of(page, pageSize);
-        Page<Embalagem> embalagens = embalagemService.findAll(pageable);
+    public String listarEmbalagens( Model model) {
+    	
+        List<Embalagem> embalagens = embalagemService.findAll();
         model.addAttribute("embalagens", embalagens);
         return "embalagem/embalagem_lista";
     }
@@ -64,9 +64,9 @@ public class EmbalagemController {
         
         try {
             // Verifica se a embalagem existe no banco (baseado no ID)
-            if (embalagem.getId() != null && embalagemService.findById(embalagem.getId()).isPresent()) {
+            if (embalagem.getId() != null ) {
                 // Realiza um update
-                embalagemService.salvarEmbalagem(embalagem);
+                embalagemService.atualizarAtributos(embalagem);
             } else {
                 // Realiza um insert
                 embalagemService.salvarEmbalagem(embalagem);
@@ -97,4 +97,6 @@ public class EmbalagemController {
         attr.addFlashAttribute("success", "Embalagem excluída com sucesso!");
         return "redirect:/embalagens";
     }
+    
+    
 }

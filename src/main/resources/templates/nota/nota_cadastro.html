@@ -82,12 +82,12 @@
                         <input type="number" id="quantidade-0" name="itens[0].quantidade" class="form-control form-control-small" step="any" required>
                     </div>
                     <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
-                        <label for="unidadeMedida-0">Unidade:</label>
-                        <select id="unidadeMedida-0" name="itens[0].unidadeMedida" class="form-control form-control-small" required>
-                            <option value="" disabled selected>Selecione</option>
-                            <option th:each="um : ${unidadesMedida}" th:value="${um}" th:text="${um}"></option>
-                        </select>
-                    </div>
+    <label for="embalagem-0">Embalagem:</label>
+    <select id="embalagem-0" name="itens[0].embalagem.id" class="form-control form-control-small" required>
+        <option value="" disabled selected>Selecione</option>
+        <option th:each="embalagem : ${embalagens}" th:value="${embalagem.id}" th:text="${embalagem.codigo} + ' - ' + ${embalagem.tipoEmbalagem} + ' (' + ${embalagem.peso} + 'kg)'"></option>
+    </select>
+</div>
                     <div class="col-md-1 d-flex align-items-center" >
                         <button type="button" class="btn btn-danger btn-sm remove-item" style="margin-left: 20px;">x</button>
                     </div>
@@ -156,7 +156,6 @@
                 searchPropertyByCode(0);
             });
 
-            // Add new item function
             function addItem() {
                 itemIndex++;
                 const newItem = `
@@ -172,10 +171,10 @@
                             <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" step="any" required>
                         </div>
                         <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
-                            <label for="unidadeMedida-${itemIndex}">Unidade:</label>
-                            <select id="unidadeMedida-${itemIndex}" name="itens[${itemIndex}].unidadeMedida" class="form-control form-control-small" required>
+                            <label for="embalagem-${itemIndex}">Embalagem:</label>
+                            <select id="embalagem-${itemIndex}" name="itens[${itemIndex}].embalagem.id" class="form-control form-control-small" required>
                                 <option value="" disabled selected>Selecione</option>
-                                ${$('#unidadeMedida-0').html()}
+                                ${$('#embalagem-0').html()} <!-- Replicando o conteúdo de embalagem -->
                             </select>
                         </div>
                         <div class="col-md-1 d-flex align-items-center" style="margin-left: 20px;">
@@ -191,7 +190,6 @@
 
                 updateRemoveButtons();
             }
-
             // Add item event
             $('.add-item').on('click', function() {
                 addItem();

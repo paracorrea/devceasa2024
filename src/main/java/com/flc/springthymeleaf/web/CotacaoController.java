@@ -289,21 +289,18 @@ public class CotacaoController {
 			return "redirect:/cotacoes/por-data";
 		} 
 	
-	@GetMapping("/cotacoes/listar")
-	public String findAll(ModelMap model) {
-		
-		List<Cotacao> list = cotacaoService.findAll();
-		model.addAttribute("cotacoes",list);
-		
-		return "cotacao/cotacao_listar";
-	}
-	
+
     @GetMapping("/cotacoes/por-data")
     public String pesquisarCotacoesPorData(@ModelAttribute("cotacao") Cotacao cotacao, Model model) {
 
     	LocalDate selectedDate = cotacao.getDataCotacao();
         List<Cotacao> cotacaoResults = cotacaoService.getCotationsByDate(selectedDate);
-        Collections.sort(cotacaoResults, Comparator.comparing(c -> c.getPropriedade().getProduto().getSubgrupo().getNome()));
+        Collections.sort(cotacaoResults, Comparator
+                .comparing((Cotacao c) -> c.getPropriedade().getProduto().getSubgrupo().getNome())
+                .thenComparing(c -> c.getPropriedade().getProduto().getNome())
+                .thenComparing(c -> c.getPropriedade().getVariedade())
+                .thenComparing(c -> c.getPropriedade().getSubvariedade())
+                .thenComparing(c -> c.getPropriedade().getClassificacao()));
         model.addAttribute("cotacaoResults", cotacaoResults);
         return "cotacao/cotacao_listagemdata";
     }

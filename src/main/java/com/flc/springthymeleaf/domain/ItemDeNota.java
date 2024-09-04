@@ -1,7 +1,10 @@
 package com.flc.springthymeleaf.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -29,9 +32,14 @@ public class ItemDeNota implements Serializable {
     private Propriedade propriedade;
 
     private Double quantidade;
-
-    @Enumerated(EnumType.STRING)
-    private UnidadeMedida unidadeMedida;
+    
+    @ManyToOne
+    @JoinColumn(name = "embalagem_id", nullable = false)  // Relacionamento com Embalagem
+    private Embalagem embalagem;
+    
+    @Column(name = "pesoItem", precision = 10, scale = 1)
+    @Digits(integer = 10, fraction = 1, message = "O valor deve ter no máximo 10 dígitos inteiros e 1 decimal")
+    private BigDecimal pesoItem;
 
 	public Integer getId() {
 		return id;
@@ -65,13 +73,28 @@ public class ItemDeNota implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public UnidadeMedida getUnidadeMedida() {
-		return unidadeMedida;
+	public Embalagem getEmbalagem() {
+		return embalagem;
 	}
 
-	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-		this.unidadeMedida = unidadeMedida;
+	
+	public void setEmbalagem(Embalagem embalagem) {
+		this.embalagem = embalagem;
 	}
+
+	public BigDecimal getPesoItem() {
+		return pesoItem;
+	}
+
+	public void setPesoItem(BigDecimal pesoItem) {
+		this.pesoItem = pesoItem;
+	}
+
+
+
+	
+
+
 
     // Getters and setters
     

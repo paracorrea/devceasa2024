@@ -20,8 +20,7 @@
                     <th>Tipo de Veículo</th>
                     <th>Local de Destino</th>
                     <th>Município</th>
-                    <th>Itens</th>
-                    <th>Peso da Nota (Kg)</th>
+                    <th>Itens: Código - Produto - Variedade - Subvariedade - Classificação - Quantidade - Tipo de Embalagem - Unidade</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -37,10 +36,17 @@
                     
                     <td>
                         <ul>
-                            <li th:each="item : ${nota.itens}" th:text="${item.propriedade.produto.nome} + '  ' + ${item.propriedade.variedade} + ' - ' + ${item.quantidade} + ' ' + ${item.unidadeMedida}"></li>
+                            <li th:each="item : ${nota.itens}" th:text="
+                             ${item.propriedade.codigo} + ' '
+                            +  ${item.propriedade.produto.nome} + ' - '
+                            +  ${item.propriedade.variedade} + ' - '
+                            +  ${item.propriedade.subvariedade} + ' - '
+                            +  ${item.propriedade.classificacao} + ' - '
+                            + ${item.quantidade} + ' - ' + ${item.embalagem.tipoEmbalagem} + ' - ' 
+                            + ${item.embalagem.peso} + ' - ' + ${item.embalagem.unidadeMedida}" ></li>
                         </ul>
                     </td>
-                    <td th:text="${nota.pesoTotal}">""</td>
+                    <!--  <td th:text="${item.pesoItem}">""</td>-->
                     <td>
                         <!-- <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-primary btn-sm">Editar</a>- -->
                         

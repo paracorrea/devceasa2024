@@ -3,8 +3,10 @@ package com.flc.springthymeleaf.service;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,8 @@ public class EmbalagemService {
 		}
 
 
-		public Page<Embalagem> findAll(Pageable pageable) {
-			return embalagemRepository.findAll(pageable);
+		public List<Embalagem> findAll() {
+			return embalagemRepository.findAll();
 			
 		}
 		
@@ -49,5 +51,23 @@ public class EmbalagemService {
 			embalagemRepository.deleteById(id);
 		}
 		
+		public void atualizarAtributos(Embalagem embalagemAtualizada) {
+		    // Busca a embalagem existente pelo código (ou ID)
+		    Embalagem embalagemExistente = embalagemRepository.findByCodigo(embalagemAtualizada.getCodigo())
+		        .orElseThrow(() -> new IllegalArgumentException("Embalagem não encontrada"));
+
+		    if (!embalagemExistente.getCodigo().equals(embalagemAtualizada.getCodigo())) {
+		        throw new DataIntegrityViolationException("Erro: Alteração do código não é permitida.");
+		    }
+		    // Atualiza apenas os atributos desejados (sem alterar o código)
+		    embalagemExistente.setPeso(embalagemAtualizada.getPeso());
+		    embalagemExistente.setTipoEmbalagem(embalagemAtualizada.getTipoEmbalagem());
+		    embalagemExistente.setUnidadeMedida(embalagemAtualizada.getUnidadeMedida());
+
+		    // Salva a embalagem atualizada
+		    embalagemRepository.save(embalagemExistente);
+		}
+
+	
 		
 }

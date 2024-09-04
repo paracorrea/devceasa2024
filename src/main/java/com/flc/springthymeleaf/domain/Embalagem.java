@@ -45,8 +45,6 @@ public class Embalagem implements Serializable {
 		return codigo;
 	}
 
-
-
 	public BigDecimal getPeso() {
 		return peso;
 	}
@@ -56,10 +54,8 @@ public class Embalagem implements Serializable {
 	}
 
 	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+		this.codigo = codigo != null ? codigo.toUpperCase() : null;
 	}
-
-	
 
 	public void setPeso(BigDecimal peso) {
 		this.peso = peso;

@@ -68,24 +68,18 @@
 			<thead>
 				<tr>
 					<th>Data da Cotação</th>
-					
 					<th>Produto</th>
 					<th>Subgrupo</th>
-					
-					
-					
 					<th>Variedade</th>
 					<th>Subvar.</th>
 					<th>Classif.</th>
-					
 					<th>Peso Alterado</th>
-					<!-- Verificar se vai inserir os outros campos -->
 					<th>Preço Mínimo</th>
 					<th>Preço Comum</th>
 					<th>Preço Máximo</th>
 					<th>Mercado</th>
-					<th>Editar</th>
-					<th>Excluir</th>
+					<th>Editar/Excluir</th>
+					
 
 
 					<!-- Adicione mais colunas conforme necessário -->
@@ -107,36 +101,27 @@
 					<td th:text="${cotacao.precoMaximo}"></td>
 					<td th:text="${cotacao.mercado}"></td>
 
-					 <td>
-            <a type="button" class="edit" title="Editar"
-                th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-        </td>
-       
-       
-        <td sec:authorize="hasRole('ROLE_ADMIN')">
+      				 <td >
        	
-		<a type="button" class="delete" title="Excluir" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">
-		<i class="bi bi-trash3"></i></a> 
+						<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('ROLE_MANAGER')" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }" 
+							onclick="return confirm('Tem certeza que deseja excluir esta cotação?');"><i class="bi bi-trash3"></i></a> 
         
-        </td>
+        			
+            			<a type="button" class="edit" title="Editar"
+              				sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
+                			<i class="bi bi-pencil-square"></i>
+            			</a>
+        			</td>
+       
+       
+       
+  
         
-    </tr>
-</tbody>
+   			 </tr>
+			</tbody>
 		</table>
-
-
-		
+	
 	</div>
-
-	<!-- Adicione links de paginação ou outros elementos conforme necessário -->
-
-
-
-
-
-
 
 </body>
 </html>

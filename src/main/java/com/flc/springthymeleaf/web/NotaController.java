@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.flc.springthymeleaf.domain.Embalagem;
 import com.flc.springthymeleaf.domain.ItemDeNota;
 import com.flc.springthymeleaf.domain.Municipio;
 import com.flc.springthymeleaf.domain.Nota;
@@ -32,6 +33,7 @@ import com.flc.springthymeleaf.enums.LocalDestino;
 import com.flc.springthymeleaf.enums.Portaria;
 import com.flc.springthymeleaf.enums.TipoVeiculo;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
+import com.flc.springthymeleaf.service.EmbalagemService;
 import com.flc.springthymeleaf.service.MunicipioService;
 import com.flc.springthymeleaf.service.NotaService;
 import com.flc.springthymeleaf.service.PropriedadeService;
@@ -44,14 +46,21 @@ public class NotaController {
     private final NotaService notaService;
     private final MunicipioService municipioService;
     private final PropriedadeService propriedadeService;
+    private EmbalagemService embalagemService;
 
     public NotaController(NotaService notaService, MunicipioService municipioService, 
-                          PropriedadeService propriedadeService) {
+                          PropriedadeService propriedadeService, EmbalagemService embalagemService) {
         this.notaService = notaService;
         this.municipioService = municipioService;
         this.propriedadeService = propriedadeService;
+        this.embalagemService = embalagemService;
     }
 
+    @ModelAttribute("embalagens")
+    public List<Embalagem> listaEmbalagens() {
+        return embalagemService.findAll();
+    }
+    
     @ModelAttribute("municipios")
     public List<Municipio> listaMunicipios() {
         return municipioService.findAll();
@@ -88,10 +97,7 @@ public class NotaController {
         		.collect(Collectors.toList());
     }
 
-    @ModelAttribute("unidadesMedida")
-    public UnidadeMedida[] listaUnidadesMedida() {
-        return UnidadeMedida.values();
-    }
+  
 
     @GetMapping("/notas/cadastrar")
     public String cadastrar(Model model) {
@@ -123,7 +129,7 @@ public class NotaController {
         nota.setMunicipio(municipio);
 
         // Remover itens não preenchidos e buscar propriedades do banco
-        nota.getItens().removeIf(item -> item.getPropriedade() == null || item.getQuantidade() == null || item.getUnidadeMedida() == null);
+        nota.getItens().removeIf(item -> item.getPropriedade() == null || item.getQuantidade() == null || item.getEmbalagem() == null );
 
         for (ItemDeNota item : nota.getItens()) {
             Propriedade propriedade = propriedadeService.findById(item.getPropriedade().getId()).orElse(null);

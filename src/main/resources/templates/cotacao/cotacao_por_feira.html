@@ -27,9 +27,7 @@
 	<div class="container">
 
 		<div class="form-group row">
-
 			<div class="col-sm-5">
-
 				<div class="col-sm-5">
 					<br>
 					<div class="meu-hr">
@@ -38,13 +36,8 @@
 						<hr>
 					</div>
 					<div th:replace="~{alert}"></div>
-					
-
-
 				</div>
-
 			</div>
-
 		</div>
 
 		<div class="meu-hr">Resultados da Pesquisa</div>
@@ -56,22 +49,16 @@
 					
 					<th>Produto</th>
 					<th>Subgrupo</th>
-					
-					
-					
 					<th>Variedade</th>
 					<th>Subvar.</th>
 					<th>Classif.</th>
-					
 					<th>Peso Alterado</th>
-					<!-- Verificar se vai inserir os outros campos -->
 					<th>Preço Mínimo</th>
-					
 					<th>Preço Comum</th>
 					<th>Preço Máximo</th>
 					<th>Mercado</th>
-					<th>Editar</th>
-					<th>Excluir</th>
+					<th>Editar/Excluir</th>
+					
 
 
 					<!-- Adicione mais colunas conforme necessário -->
@@ -79,11 +66,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="cotacao : ${cotacaoResults}">
-					 <td th:text="${#temporals.format(cotacao.dataCotacao, 'dd-MM-yyyy')}"></td>
+					<td th:text="${#temporals.format(cotacao.dataCotacao, 'dd-MM-yyyy')}"></td>
 					<td th:text="${cotacao.propriedade.produto.nome}"></td>
-					
 					<td th:text="${cotacao.propriedade.produto.subgrupo.nome}"></td>
-					
 					<td th:text="${cotacao.propriedade.variedade}"></td>
 					<td th:text="${cotacao.propriedade.subvariedade}"></td>
 					<td th:text="${cotacao.propriedade.classificacao}"></td>
@@ -93,27 +78,25 @@
 					<td th:text="${cotacao.precoMaximo}"></td>
 					<td th:text="${cotacao.mercado}"></td>
 
-					 <td>
-            <a type="button" class="edit" title="Editar"
-                th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-        </td>
-       
-       
-       
-       
-        <td sec:authorize="hasRole('ROLE_ADMIN')">
+					
+					 <td >
        	
-		<a type="button" class="delete" title="Excluir" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }">
-		<i class="bi bi-trash3"></i></a> 
+						<a type="button" class="delete" title="Excluir" sec:authorize="hasRole('ROLE_MANAGER')" th:href="@{/cotacoes/excluir/{id} (id=${cotacao.id}) }" 
+							onclick="return confirm('Tem certeza que deseja excluir esta cotação?');"><i class="bi bi-trash3"></i></a> 
         
-        </td>
-        
-    </tr>
-</tbody>
+        			
+            			<a type="button" class="edit" title="Editar"
+              				sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cotacoes/editar/{id} (id=${cotacao.id}) }">
+                			<i class="bi bi-pencil-square"></i>
+            			</a>
+        			</td>
+       
+       
 
-		</table>
+    		</tr>
+		</tbody>
+
+	</table>
 
 
 		<a class="inicio" th:href="@{/feiras/cadastrar}">Retornar para feira</a>
