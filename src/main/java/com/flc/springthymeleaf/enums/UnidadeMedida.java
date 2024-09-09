@@ -5,8 +5,6 @@ public enum UnidadeMedida {
     UNIDADE,
     TONELADA,
     GRAMA,
-    DUZIA,
-    MACO
+    DUZIA
    
-    
 }

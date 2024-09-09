@@ -1,13 +1,17 @@
 package com.flc.springthymeleaf.enums;
 
 public enum TipoEmbalagem {
+	
+	BANDEJA,
 	CAIXA,
-	SACO,
+	DUZIA,
+	UNIDADE,
+	ENGRADADO,
+	GRADE,
 	MACO,
 	PACOTE,
-	BANDEJA,
-	POTE,
-	ENGRADADO,
-	DUZIA,
+	SACO
+	
+	
 	
 }

@@ -101,9 +101,9 @@
     </div>
 
     <!-- Inclusão dos modais -->
-    <div th:replace="municipioSearchModal :: municipioSearchModal"></div>
-    <div th:replace="pesoTotalModal :: pesoTotalModal"></div>
-    <div th:replace="productSearchModal :: productSearchModal"></div>
+    <div th:replace="~{municipioSearchModal :: municipioSearchModal}"></div>
+    <div th:replace="~{pesoTotalModal :: pesoTotalModal}"></div>
+    <div th:replace="~{productSearchModal :: productSearchModal}"></div>
 
     <script>
         function openMunicipioModal() {
