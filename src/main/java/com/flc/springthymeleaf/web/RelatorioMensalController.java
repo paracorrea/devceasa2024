@@ -30,8 +30,11 @@ import com.flc.springthymeleaf.service.RelatorioCotacaoMensalService;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfPage;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -93,7 +96,40 @@ public class RelatorioMensalController {
         PageSize pageSize = PageSize.A4.rotate(); // Define o modo landscape
         Document document = new Document(pdf, pageSize);
 
-        // Obter e ordenar os meses
+        // Adicionar o título
+        Paragraph titulo = new Paragraph("CEASA CAMPINAS")
+            .setFontSize(26)       // Define o tamanho da fonte
+            .setBold() 
+            .setFontColor(new DeviceRgb(0, 100, 0))  // Verde escuro
+            .setTextAlignment(com.itextpdf.layout.property.TextAlignment.LEFT) // Alinha o título ao centro
+            .setMarginBottom(1);   // Define o espaço inferior (margem)
+        document.add(titulo);
+
+     
+        PdfPage pdfPage = pdf.getFirstPage();  // Obtém a primeira página
+        PdfCanvas canvas = new PdfCanvas(pdfPage);
+
+        // Desenhar uma linha horizontal abaixo do título
+        float xStart = 33 ;    // Início da linha no eixo X
+        float xEnd = pageSize.getWidth() - 400 ;  // Fim da linha no eixo X (ajusta conforme necessário)
+        float yPosition = pageSize.getHeight() - 80;  // Posição Y logo abaixo do título (ajustável)
+        
+        canvas.setLineWidth(2f)  // Define a espessura da linha
+              .moveTo(xStart, yPosition)  // Ponto inicial da linha
+              .lineTo(xEnd, yPosition)    // Ponto final da linha
+              .setStrokeColor(new DeviceRgb(0, 100, 0))  // Cor verde escuro
+              .stroke();  // Desenha a linha
+
+        
+        // Adicionar outras informações abaixo do título
+        Paragraph subtitulo = new Paragraph("EVOLUÇÃO DOS PREÇOS DOS PRINCIPAIS PRODUTOS NA CEASA/CAMPINAS (R$/kg)")
+            .setFontSize(9)        // Define o tamanho da fonte para o subtítulo
+            .setTextAlignment(com.itextpdf.layout.property.TextAlignment.LEFT) // Alinha o subtítulo ao centro
+            .setMarginBottom(3)   // Define o espaço inferior (margem)
+        	.setMarginTop(12);
+        document.add(subtitulo);
+
+        // Obter e ordenar os meses (como no código anterior)
         List<String> mesesOrdenados = relatorio.get(0).getMediasPorMes().keySet().stream()
             .sorted((m1, m2) -> {
                 String[] parts1 = m1.split("-");
@@ -103,9 +139,9 @@ public class RelatorioMensalController {
                 int year2 = Integer.parseInt(parts2[0]);
                 int month2 = Integer.parseInt(parts2[1]);
                 if (year1 != year2) {
-                    return Integer.compare(year2, year1); // ordena por ano, descendente
+                    return Integer.compare(year1, year2); // ordena por ano, crescente
                 } else {
-                    return Integer.compare(month2, month1); // ordena por mês, descendente
+                    return Integer.compare(month1, month2); // ordena por mês, crescente
                 }
             })
             .collect(Collectors.toList());
@@ -142,7 +178,6 @@ public class RelatorioMensalController {
             table.addHeaderCell(monthHeaderCell);
         }
 
-        
         // Adicionar os produtos e suas médias
         for (int i = 0; i < relatorio.size(); i++) {
             RelatorioMensalDto dto = relatorio.get(i);
@@ -150,32 +185,14 @@ public class RelatorioMensalController {
             // Determinar a cor de fundo da linha
             DeviceRgb rowColorBlue = (i % 2 == 0) ? (DeviceRgb) ColorConstants.WHITE : alternateRowColorBlueLigth;
 
-           // Primeira célula da linha (nome do produto)
-           
-         
-           if (dto.getPropriedade().getSubvariedade() == null || dto.getPropriedade().getSubvariedade().trim().isEmpty()) {
-        	    Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome() 
-        	    												+ "  " + dto.getPropriedade().getVariedade()+" "
-        	    												+dto.getPropriedade().getSubvariedade() +" "
-        	    												+ dto.getPropriedade().getClassificacao())
-        	    												.setFontSize(8));
-        	   
-        	    productCell.setBackgroundColor(rowColorBlue);
-                productCell.setBorder(Border.NO_BORDER);
-                table.addCell(productCell);
-           
-           } else {
-        	   Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome() 
-						+ "  " + dto.getPropriedade().getVariedade() 
-						+"\n"+dto.getPropriedade().getSubvariedade()+" "
-						+ dto.getPropriedade().getClassificacao())
-						.setFontSize(8));
-        	   productCell.setBackgroundColor(rowColorBlue);
-               productCell.setBorder(Border.NO_BORDER);
-               table.addCell(productCell);
-           }
-            
-         
+            // Primeira célula da linha (nome do produto)
+            Cell productCell = new Cell().add(new Paragraph(dto.getPropriedade().getProduto().getNome()
+                + "  " + dto.getPropriedade().getVariedade()  + "  " 
+                + (dto.getPropriedade().getSubvariedade())
+                + " " + dto.getPropriedade().getClassificacao()).setFontSize(8));
+            productCell.setBackgroundColor(rowColorBlue);
+            productCell.setBorder(Border.NO_BORDER);
+            table.addCell(productCell);
 
             // Colunas das médias
             for (String mes : mesesOrdenados) {
@@ -186,8 +203,15 @@ public class RelatorioMensalController {
                 table.addCell(mediaCell);
             }
         }
-
+        
+        Paragraph fonte = new Paragraph("Fonte: CEASA/Campinas - Sistema DEVCEASA")
+                .setFontSize(6)       // Define o tamanho da fonte
+                .setFontColor(ColorConstants.BLACK)
+                .setTextAlignment(com.itextpdf.layout.property.TextAlignment.LEFT) // Alinha o título ao centro
+                .setMarginBottom(1);   // Define o espaço inferior (margem)
+       
         document.add(table);
+        document.add(fonte);
         document.close();
     }
 

@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.flc.springthymeleaf.enums.TipoEmbalagem;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
@@ -13,6 +14,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Digits;
 
 @Entity
@@ -36,6 +38,9 @@ public class Embalagem implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private UnidadeMedida unidadeMedida;
+    
+    @ManyToMany(mappedBy = "embalagens")
+    private List<Propriedade> propriedades;
     
 	public Integer getId() {
 		return id;
@@ -75,6 +80,14 @@ public class Embalagem implements Serializable {
 
 	public void setTipoEmbalagem(TipoEmbalagem tipoEmbalagem) {
 		this.tipoEmbalagem = tipoEmbalagem;
+	}
+
+	public List<Propriedade> getPropriedades() {
+		return propriedades;
+	}
+
+	public void setPropriedades(List<Propriedade> propriedades) {
+		this.propriedades = propriedades;
 	}
     
     

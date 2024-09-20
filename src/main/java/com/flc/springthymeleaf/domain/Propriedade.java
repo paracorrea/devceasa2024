@@ -19,6 +19,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
@@ -55,8 +57,13 @@ public class Propriedade implements Serializable {
     @Digits(integer = 6, fraction = 3, message = "O valor deve ter no máximo 10 dígitos inteiros e 3 decimais")
     private BigDecimal peso;
 
-    @Column(name = "embalagem", length = 25)
-    private String embalagem;
+    @ManyToMany
+    @JoinTable(
+        name = "propriedade_embalagem",
+        joinColumns = @JoinColumn(name = "propriedade_id"),
+        inverseJoinColumns = @JoinColumn(name = "embalagem_id")
+    )
+    private List<Embalagem> embalagens;
 
 //    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
 //    @JsonIgnore
@@ -80,11 +87,11 @@ public class Propriedade implements Serializable {
     private List<ItemDeNota> itens;
     
        
-    public Propriedade() {
+    public Propriedade() { 
     }
 
     public Propriedade(Integer id, String codigo, String variedade, String subvariedade, String classificacao, String unidade,
-                       BigDecimal peso, String embalagem, Boolean status, Produto produto) {
+                       BigDecimal peso, Boolean status, Produto produto) {
         this.id = id;
         this.codigo = codigo;
         this.variedade = variedade;
@@ -92,7 +99,7 @@ public class Propriedade implements Serializable {
         this.classificacao = classificacao;
         this.unidade = unidade;
         this.peso = peso;
-        this.embalagem = embalagem;
+        
         this.status = status;
         this.produto = produto;
     }
@@ -155,12 +162,12 @@ public class Propriedade implements Serializable {
         this.peso = peso;
     }
 
-    public String getEmbalagem() {
-        return embalagem;
+    public List<Embalagem> getEmbalagem() {
+        return embalagens;
     }
 
-    public void setEmbalagem(String embalagem) {
-        this.embalagem = embalagem;
+    public void setEmbalagem(List<Embalagem> embalagens) {
+        this.embalagens = embalagens;
     }
 
     public Boolean getStatus() {
