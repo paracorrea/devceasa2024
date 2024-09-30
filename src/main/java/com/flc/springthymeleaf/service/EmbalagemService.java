@@ -68,6 +68,12 @@ public class EmbalagemService {
 		    embalagemRepository.save(embalagemExistente);
 		}
 
+
+		public List<Embalagem> findAllById(List<Integer> embalagemIds) {
+			// TODO Auto-generated method stub
+			return embalagemRepository.findAllById(embalagemIds);
+		}
+
 	
 		
 }

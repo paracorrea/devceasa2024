@@ -162,11 +162,11 @@ public class Propriedade implements Serializable {
         this.peso = peso;
     }
 
-    public List<Embalagem> getEmbalagem() {
+    public List<Embalagem> getEmbalagens() {
         return embalagens;
     }
 
-    public void setEmbalagem(List<Embalagem> embalagens) {
+    public void setEmbalagens(List<Embalagem> embalagens) {
         this.embalagens = embalagens;
     }
 

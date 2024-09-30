@@ -2,14 +2,11 @@ package com.flc.springthymeleaf.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.flc.springthymeleaf.enums.UnidadeMedida;
+
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

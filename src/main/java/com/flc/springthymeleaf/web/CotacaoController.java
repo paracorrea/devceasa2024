@@ -353,7 +353,7 @@ public class CotacaoController {
                 .append(prop.getVariedade()).append(" ")
                 .append(prop.getSubvariedade()).append(" ")
                 .append(prop.getClassificacao()).append(" ")
-                .append(prop.getEmbalagem()).append(" ")
+                .append(prop.getEmbalagens()).append(" ")
                 .append(formattedPeso).append(" Kilos ")
                 .append("</li>");
          }

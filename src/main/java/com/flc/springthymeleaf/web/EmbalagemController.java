@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +15,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flc.springthymeleaf.domain.Embalagem;
+import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.enums.TipoEmbalagem;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
 import com.flc.springthymeleaf.service.EmbalagemService;
+import com.flc.springthymeleaf.service.PropriedadeService;
 
 import jakarta.validation.Valid;
 
@@ -30,6 +35,9 @@ public class EmbalagemController {
 
     @Autowired
     private EmbalagemService embalagemService;
+    
+    @Autowired
+    private PropriedadeService propriedadeService;
 
     @ModelAttribute("unidades")
     public UnidadeMedida[] listaUnidadesMedida() {
@@ -49,6 +57,53 @@ public class EmbalagemController {
         return "embalagem/embalagem_lista";
     }
 
+    @GetMapping("/embalagens/pesquisar")
+    public String pesquisar(Model model) {
+    	return "embalagem/embalagem_pesquisar_propriedade";
+    }
+    @GetMapping("/embalagens/associar")
+    public String associarEmbalagemComPropriedade(@RequestParam("propriedadeId") Integer propriedadeId, Model model) {
+        Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
+
+        if (propriedadeOpt.isPresent()) {
+            Propriedade propriedade = propriedadeOpt.get();
+
+            // Carregar as embalagens e associá-las à propriedade
+            List<Embalagem> embalagens = embalagemService.findAll();
+            model.addAttribute("propriedade", propriedade);
+            model.addAttribute("embalagens", embalagens);
+        }
+
+        return "embalagem/embalagem_propriedade";
+    }
+    
+    @PostMapping("/embalagens/associar")
+    public String salvarAssociacaoEmbalagens(@RequestParam("propriedadeId") Integer propriedadeId, 
+                                             @RequestParam("embalagens") List<Integer> embalagemIds,
+                                             RedirectAttributes redirectAttributes) {
+        // Buscar a propriedade
+        Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
+        if (propriedadeOpt.isPresent()) {
+            Propriedade propriedade = propriedadeOpt.get();
+
+            // Buscar as embalagens selecionadas
+            List<Embalagem> embalagensSelecionadas = embalagemService.findAllById(embalagemIds);
+            
+            // Associar as embalagens à propriedade
+            propriedade.setEmbalagens(embalagensSelecionadas);
+            
+            // Salvar a propriedade com as novas embalagens associadas
+            propriedadeService.insert(propriedade);
+
+            // Adicionar mensagem de sucesso
+            redirectAttributes.addFlashAttribute("success", "Embalagens associadas com sucesso!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Propriedade não encontrada.");
+        }
+
+        return "redirect:/embalagens";
+    }
+    
     @GetMapping("/embalagens/nova")
     public String novaEmbalagem(@RequestParam(defaultValue = "0") int page, Model model) {
         model.addAttribute("embalagem", new Embalagem());
@@ -98,5 +153,28 @@ public class EmbalagemController {
         return "redirect:/embalagens";
     }
     
+    @GetMapping("/embalagens/search")
+    @ResponseBody
+    public List<Propriedade> searchPropriedades(@RequestParam("query") String query) {
+        return propriedadeService.searchByQuery(query);
+    }
     
+    @GetMapping("/embalagens/searchPropertyByProductName")
+    public ResponseEntity<List<Propriedade>> searchPropertyByProductName(@RequestParam String productName) {
+        List<Propriedade> propriedades = propriedadeService.findByProdutoNome(productName);
+        
+        return ResponseEntity.ok(propriedades);
+    }
+    
+    @GetMapping("/embalagens/searchPropertyByCode")
+    public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
+       
+    	String codigoTrimmed = code.trim();
+    	Propriedade propriedade = propriedadeService.findByCodigo(codigoTrimmed);
+        if (propriedade != null) {
+            return ResponseEntity.ok(propriedade);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
+        }
+}
 }

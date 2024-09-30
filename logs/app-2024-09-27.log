@@ -1,0 +1,81 @@
+2024-09-27 14:08:15 - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-27 14:08:15 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 11472 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-09-27 14:08:15 - No active profile set, falling back to 1 default profile: "default"
+2024-09-27 14:08:15 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-27 14:08:15 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-27 14:08:16 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-27 14:08:16 - Finished Spring Data repository scanning in 99 ms. Found 15 JPA repository interfaces.
+2024-09-27 14:08:17 - Tomcat initialized with port 5001 (http)
+2024-09-27 14:08:17 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-09-27 14:08:17 - Starting service [Tomcat]
+2024-09-27 14:08:17 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-27 14:08:17 - Initializing Spring embedded WebApplicationContext
+2024-09-27 14:08:17 - Root WebApplicationContext: initialization completed in 1935 ms
+2024-09-27 14:08:18 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-27 14:08:18 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-27 14:08:18 - HHH000026: Second-level cache disabled
+2024-09-27 14:08:18 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-27 14:08:18 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-09-27 14:08:18 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-27 14:08:19 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-27 14:08:19 - HikariPool-1 - Starting...
+2024-09-27 14:08:20 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6dd6d519
+2024-09-27 14:08:20 - HikariPool-1 - Start completed.
+2024-09-27 14:08:20 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-27 14:08:20 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-27 14:08:21 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-09-27 14:08:21 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-09-27 14:08:22 - LiveReload server is running on port 35729
+2024-09-27 14:08:22 - Starting ProtocolHandler ["http-nio-5001"]
+2024-09-27 14:08:22 - Tomcat started on port 5001 (http) with context path '/'
+2024-09-27 14:08:22 - Started SpringThymeleafApplication in 7.282 seconds (process running for 7.92)
+2024-09-30 07:50:03 - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-30 07:50:03 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 5060 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-09-30 07:50:03 - No active profile set, falling back to 1 default profile: "default"
+2024-09-30 07:50:03 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-30 07:50:03 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-30 07:50:04 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-30 07:50:04 - Finished Spring Data repository scanning in 86 ms. Found 15 JPA repository interfaces.
+2024-09-30 07:50:05 - Tomcat initialized with port 5001 (http)
+2024-09-30 07:50:05 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-09-30 07:50:05 - Starting service [Tomcat]
+2024-09-30 07:50:05 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-30 07:50:05 - Initializing Spring embedded WebApplicationContext
+2024-09-30 07:50:05 - Root WebApplicationContext: initialization completed in 1738 ms
+2024-09-30 07:50:05 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-30 07:50:05 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-30 07:50:05 - HHH000026: Second-level cache disabled
+2024-09-30 07:50:06 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-30 07:50:06 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-09-30 07:50:06 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-30 07:50:07 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-30 07:50:07 - HikariPool-1 - Starting...
+2024-09-30 07:50:07 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1ad0deed
+2024-09-30 07:50:07 - HikariPool-1 - Start completed.
+2024-09-30 07:50:07 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-30 07:50:08 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-30 07:50:09 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-09-30 07:50:09 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-09-30 07:50:09 - Unable to start LiveReload server
+2024-09-30 07:50:09 - Starting ProtocolHandler ["http-nio-5001"]
+2024-09-30 07:50:09 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-09-30 07:50:09 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-30 07:50:09 - HikariPool-1 - Shutdown initiated...
+2024-09-30 07:50:09 - HikariPool-1 - Shutdown completed.
+2024-09-30 07:50:09 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-09-30 07:50:09 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 5001 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 5001 or configure this application to listen on another port.
+
