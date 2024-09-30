@@ -28,11 +28,12 @@
                         Cadastro
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Novo Grupo</a></li>
-                       <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Novo Subgrupo</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Novo Produto</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Nova Propriedade</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/embalagens}">Nova Embalagem</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Novo grupo</a></li>
+                       <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Novo pubgrupo</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Novo produto</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Nova propriedade</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/embalagens}">Nova embalagem</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/embalagens/pesquisar}">Associar embalagens</a></li>
                        
                        
                        

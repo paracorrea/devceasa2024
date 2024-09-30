@@ -82,10 +82,7 @@ public class CotacaoController {
     public String pesquisar(Model model) {
           
 		return "cotacao/cotacao_pesquisar";
-        // call the folowings endpoints  
-		// "/cotacoes/searchPropertyByCode" - for search properties by codigo
-		// "/cotacoes/searchPropertyByProductName" for search properties by name of product
-		// "/cotacoes/cadastrar" - in form 
+        
     }
 	
 	@GetMapping("/cotacoes/buscar-cotacao-anterior")

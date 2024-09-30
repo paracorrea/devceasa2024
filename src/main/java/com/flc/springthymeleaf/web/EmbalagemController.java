@@ -70,8 +70,11 @@ public class EmbalagemController {
 
             // Carregar as embalagens e associá-las à propriedade
             List<Embalagem> embalagens = embalagemService.findAll();
+            List<Embalagem> embalagensAssociadas = propriedade.getEmbalagens();
+            
             model.addAttribute("propriedade", propriedade);
             model.addAttribute("embalagens", embalagens);
+            model.addAttribute("embalagensAssociadas", embalagensAssociadas);
         }
 
         return "embalagem/embalagem_propriedade";

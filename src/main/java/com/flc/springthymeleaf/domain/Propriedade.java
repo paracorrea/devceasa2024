@@ -63,6 +63,7 @@ public class Propriedade implements Serializable {
         joinColumns = @JoinColumn(name = "propriedade_id"),
         inverseJoinColumns = @JoinColumn(name = "embalagem_id")
     )
+    @JsonIgnore // Ignorar a serialização reversa para evitar ciclos
     private List<Embalagem> embalagens;
 
 //    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)

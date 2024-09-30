@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.flc.springthymeleaf.enums.TipoEmbalagem;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
 
@@ -40,6 +41,7 @@ public class Embalagem implements Serializable {
     private UnidadeMedida unidadeMedida;
     
     @ManyToMany(mappedBy = "embalagens")
+    @JsonIgnore
     private List<Propriedade> propriedades;
     
 	public Integer getId() {
