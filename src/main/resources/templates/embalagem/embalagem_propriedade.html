@@ -13,10 +13,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 <body>
+
+   <div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
+   
+   
     <div class="container">
-        <h2>Selecionar Propriedade e Embalagens</h2>
-        
-        <div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
+               
+     
         
          <div th:if="${success}" class="alert alert-success" role="alert">
             <p th:text="${success}"></p>
@@ -27,19 +30,20 @@
         </div>
         
         <div class="meu-hr">
-            <p>Embalagem e Propriedade</p>
+            <p></p>
         </div>
         <!-- Propriedade Selection -->
-        <h4>Selecionar Embalagens</h4>
-       <form action="#" method="post" th:action="@{/embalagens/associar}">
+        <h4>Embalagens para produto</h4>
+      
+      	 <form action="#" method="post" th:action="@{/embalagens/associar}">
    				 <input type="hidden" id="propriedadeId" th:name="propriedadeId" th:value="${propriedade.id}">
   					<div>
-            		   <p id="selecaoAtual" th:text="${propriedade.codigo} + ' - ' + ${propriedade.produto.nome} + ' ' 
+            		   <p id="selecaoAtual" th:utext="  '<strong>Produto:</strong> ' +${propriedade.codigo} + ' - ' + ${propriedade.produto.nome} + ' ' 
             		   + ${propriedade.variedade} + ' ' + ${propriedade.subvariedade}
             		   +		    ' ' + ${propriedade.classificacao} + ' ' + ${propriedade.peso} + ' ' + ${propriedade.unidade}">Seleção Atual:</p>
-          		  </div>
+          		  	</div>
     <!-- Embalagens Selection -->
-
+ <p> <strong>Lista de embalagens:</strong></p>
 <div class="row">
     <div class="col-md-6">
         <div class="overflow-auto" style="max-height: 300px;">
@@ -50,6 +54,7 @@
                     th:value="${embalagem.id}"
                     th:id="'embalagem-' + ${embalagem.id}"
                     th:checked="${#lists.contains(embalagensAssociadas, embalagem)}" />
+                	
                 <label class="form-check-label" th:for="'embalagem-' + ${embalagem.id}"
                     th:text="${embalagem.codigo} + ' - ' + 
                              ${embalagem.tipoEmbalagem} + ' - ' + 

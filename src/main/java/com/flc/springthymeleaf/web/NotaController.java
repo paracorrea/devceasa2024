@@ -3,7 +3,9 @@ package com.flc.springthymeleaf.web;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -56,10 +58,10 @@ public class NotaController {
         this.embalagemService = embalagemService;
     }
 
-    @ModelAttribute("embalagens")
-    public List<Embalagem> listaEmbalagens() {
-        return embalagemService.findAll();
-    }
+	/*
+	 * @ModelAttribute("embalagens") public List<Embalagem> listaEmbalagens() {
+	 * return embalagemService.findAll(); }
+	 */
     
     @ModelAttribute("municipios")
     public List<Municipio> listaMunicipios() {
@@ -208,14 +210,19 @@ public class NotaController {
     
     @GetMapping("/notas/searchPropertyByCode")
     public ResponseEntity<?> searchPropertyByCode(@RequestParam String code) {
-       
-    	String codigoTrimmed = code.trim();
-    	Propriedade propriedade = propriedadeService.findByCodigo(codigoTrimmed);
-        if (propriedade != null) {
-            return ResponseEntity.ok(propriedade);
-        } else {
+        Propriedade propriedade = propriedadeService.findByCodigo(code.trim());
+
+        if (propriedade == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Propriedade não encontrada.");
         }
+
+        List<Embalagem> embalagensAssociadas = embalagemService.findByPropriedadeId(propriedade.getId());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("propriedade", propriedade);
+        response.put("embalagens", embalagensAssociadas);
+
+        return ResponseEntity.ok(response);
     }
 
 }

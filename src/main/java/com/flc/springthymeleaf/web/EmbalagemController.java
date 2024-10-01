@@ -27,6 +27,8 @@ import com.flc.springthymeleaf.service.PropriedadeService;
 
 import jakarta.validation.Valid;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,11 +51,15 @@ public class EmbalagemController {
         return TipoEmbalagem.values();
     }
     
-    @GetMapping("/embalagens")
-    public String listarEmbalagens( Model model) {
+    @GetMapping("/embalagens/listar")
+    public String listarEmbalagens( Model model, Embalagem embalagem) {
     	
-        List<Embalagem> embalagens = embalagemService.findAll();
-        model.addAttribute("embalagens", embalagens);
+        List<Embalagem> embalagensResults = embalagemService.findAll();
+        Collections.sort(embalagensResults, Comparator
+        		.comparing((Embalagem e) -> e.getCodigo())
+        		.thenComparing(e -> e.getCodigo()));
+        
+        model.addAttribute("embalagens", embalagensResults);
         return "embalagem/embalagem_lista";
     }
 
@@ -104,7 +110,7 @@ public class EmbalagemController {
             redirectAttributes.addFlashAttribute("error", "Propriedade não encontrada.");
         }
 
-        return "redirect:/embalagens";
+        return "redirect:/embalagens/listar";
     }
     
     @GetMapping("/embalagens/nova")
@@ -135,7 +141,7 @@ public class EmbalagemController {
             return "embalagem/embalagem_cadastro";
         }
 
-        return "redirect:/embalagens";
+        return "redirect:/embalagens/listar";
     }
    
     @GetMapping("/embalagens/editar/{id}")
@@ -145,7 +151,7 @@ public class EmbalagemController {
             model.addAttribute("embalagem", embalagemOpt.get());
             return "embalagem/embalagem_cadastro";
         } else {
-            return "redirect:/embalagens";
+            return "redirect:/embalagens/listar";
         }
     }
 

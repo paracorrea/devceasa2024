@@ -74,6 +74,12 @@ public class EmbalagemService {
 			return embalagemRepository.findAllById(embalagemIds);
 		}
 
+
+		public List<Embalagem> findByPropriedadeId(Integer id) {
+			// TODO Auto-generated method stub
+			return embalagemRepository.findEmbalagemByPropriedadeId(id);
+		}
+
 	
 		
 }

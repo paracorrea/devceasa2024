@@ -136,12 +136,24 @@
                         url: '/notas/searchPropertyByCode',
                         method: 'GET',
                         data: { code: code },
-                        success: function(data) {
-                            if (!data) {
+                        success: function(response) {
+                            if (!response || !response.propriedade) {
                                 $(`#propertyResult-${index}`).text('Nenhuma propriedade encontrada.');
                             } else {
-                                $(`#propertyResult-${index}`).text(`${data.codigo} - ${data.produto.nome} ${data.variedade} ${data.subvariedade} ${data.classificacao} ${data.peso} ${data.unidade}`);
-                                $(`#propriedadeId-${index}`).val(data.id);
+                                const propriedade = response.propriedade;
+                                const embalagens = response.embalagens;
+
+                                $(`#propertyResult-${index}`).text(`${propriedade.codigo} - ${propriedade.produto.nome} ${propriedade.variedade} ${propriedade.subvariedade} ${propriedade.classificacao} ${propriedade.peso} ${propriedade.unidade}`);
+                                $(`#propriedadeId-${index}`).val(propriedade.id);
+
+                                // Limpar e preencher o select de embalagens com as embalagens associadas à propriedade
+                                const embalagemSelect = $(`#embalagem-${index}`);
+                                embalagemSelect.empty(); // Limpa as opções anteriores
+                                embalagemSelect.append('<option value="" disabled selected>Selecione</option>'); // Adiciona a opção default
+
+                                embalagens.forEach(function(embalagem) {
+                                    embalagemSelect.append(`<option value="${embalagem.id}">${embalagem.codigo} - ${embalagem.tipoEmbalagem} (${embalagem.peso}kg)</option>`);
+                                });
                             }
                         },
                         error: function() {
@@ -150,6 +162,7 @@
                     });
                 }
             }
+
 
             // Bind event to first item
             $('#propertyCode-0').on('input', function() {
