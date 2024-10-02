@@ -116,13 +116,13 @@ public class EmbalagemController {
     @GetMapping("/embalagens/nova")
     public String novaEmbalagem(@RequestParam(defaultValue = "0") int page, Model model) {
         model.addAttribute("embalagem", new Embalagem());
-        return "embalagem/embalagem_cadastro";
+        return "embalagem/embalagem_lista";
     }
 
     @PostMapping("/embalagens/salvar")
     public String salvarEmbalagem(@Valid @ModelAttribute("embalagem") Embalagem embalagem, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()) {
-            return "embalagem/embalagem_cadastro";
+            return "embalagem/embalagem_lista";
         }
 
         
@@ -138,7 +138,7 @@ public class EmbalagemController {
             attr.addFlashAttribute("success", "Embalagem salva com sucesso!");
         } catch (DataIntegrityViolationException e) {
             attr.addFlashAttribute("error", "Erro: Código já existe.");
-            return "embalagem/embalagem_cadastro";
+            return "redirect:/embalagens/listar";
         }
 
         return "redirect:/embalagens/listar";
@@ -149,7 +149,7 @@ public class EmbalagemController {
         Optional<Embalagem> embalagemOpt = embalagemService.findById(id);
         if (embalagemOpt.isPresent()) {
             model.addAttribute("embalagem", embalagemOpt.get());
-            return "embalagem/embalagem_cadastro";
+            return "embalagem/embalagem_lista";
         } else {
             return "redirect:/embalagens/listar";
         }
@@ -159,7 +159,7 @@ public class EmbalagemController {
     public String excluirEmbalagem(@PathVariable("id") Integer id, RedirectAttributes attr) {
         embalagemService.excluirEmbalagem(id);
         attr.addFlashAttribute("success", "Embalagem excluída com sucesso!");
-        return "redirect:/embalagens";
+        return "redirect:/embalagens/listar";
     }
     
     @GetMapping("/embalagens/search")

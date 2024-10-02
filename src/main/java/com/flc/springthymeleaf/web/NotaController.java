@@ -2,10 +2,12 @@
 package com.flc.springthymeleaf.web;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -165,11 +167,35 @@ public class NotaController {
     }
 
     @GetMapping("/notas/editar/{id}")
-    public String editarNota(@PathVariable Integer id, Model model) {
-        Nota nota = notaService.findById(id).orElseThrow(() -> new IllegalArgumentException("Nota inválida: " + id));
-        model.addAttribute("nota", nota);
-        return "nota/nota_editar";
+    public String editarNota(@PathVariable("id") Integer id, Model model) {
+        Optional<Nota> notaOpt = notaService.findById(id);
+
+        if (notaOpt.isPresent()) {
+            Nota nota = notaOpt.get();
+            model.addAttribute("nota", nota);
+            
+            // Preencher os dados adicionais
+            model.addAttribute("portarias", listaPortarias());
+            model.addAttribute("faixasHorarios", listaFaixasHorarios());
+            model.addAttribute("tiposVeiculos", listaTiposVeiculos());
+            model.addAttribute("locaisDestinos", listaLocaisDestinos());
+            model.addAttribute("municipios", listaMunicipios());
+
+            // Para cada item da nota, busque as embalagens associadas à propriedade
+            List<Embalagem> embalagensAssociadas = new ArrayList<>();
+            for (ItemDeNota item : nota.getItens()) {
+                List<Embalagem> embalagens = embalagemService.findByPropriedadeId(item.getPropriedade().getId());
+                embalagensAssociadas.addAll(embalagens); // Adiciona as embalagens à lista
+            }
+
+            model.addAttribute("embalagens", embalagensAssociadas);
+
+            return "nota/nota_editar";
+        } else {
+            return "redirect:/notas/listar";
+        }
     }
+
     
     // Mapeamento para requisições POST
     @PostMapping("/notas/excluir/{id}")

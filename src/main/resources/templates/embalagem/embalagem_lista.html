@@ -30,7 +30,8 @@
 
 	<div class="container mt-4">
 		<h2>Sistema de embalagens para produtos</h2>
-
+		<div th:replace="~{alert}"></div>
+<form th:action="@{/embalagens/salvar}" method="post">
 		<table class="table table-striped table-bordered table-sm">
 			<thead class="table-dark">
 				<tr>
@@ -45,7 +46,7 @@
 			<tbody>
 				<!-- Linha para Inserção de Nova Embalagem -->
 				<tr>
-					<form th:action="@{/embalagens/salvar}" method="post">
+					
 						<td><input type="text" name="codigo" class="form-control" placeholder="Novo Código" required></td>
 						<td>
 							<select name="tipoEmbalagem" class="form-select" required>
@@ -63,11 +64,11 @@
 						<td>
 							<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 						</td>
-					</form>
+					
 				</tr>
 			</tbody>
 		</table>
-
+</form>
 		<!-- Tabela com Scroll para as embalagens -->
 		<div class="scrollable-table">
 			<table class="table table-striped table-bordered table-sm">
