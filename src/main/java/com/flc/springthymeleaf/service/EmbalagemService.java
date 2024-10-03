@@ -80,6 +80,14 @@ public class EmbalagemService {
 			return embalagemRepository.findEmbalagemByPropriedadeId(id);
 		}
 
+
+		public boolean isEmbalagemAssociada(Integer id) {
+			// TODO Auto-generated method stub
+			 // Verificar se a embalagem está associada a alguma propriedade
+		    Embalagem embalagem = embalagemRepository.findById(id).orElseThrow(() -> new RuntimeException("Embalagem não encontrada"));
+		    return !embalagem.getPropriedades().isEmpty();  // Verifica se a lista de propriedades está vazia
+		}
+
 	
 		
 }

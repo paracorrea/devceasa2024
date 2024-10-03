@@ -107,7 +107,7 @@ public class EmbalagemController {
             // Adicionar mensagem de sucesso
             redirectAttributes.addFlashAttribute("success", "Embalagens associadas com sucesso!");
         } else {
-            redirectAttributes.addFlashAttribute("error", "Propriedade não encontrada.");
+            redirectAttributes.addFlashAttribute("fail", "Propriedade não encontrada.");
         }
 
         return "redirect:/embalagens/listar";
@@ -137,7 +137,7 @@ public class EmbalagemController {
             }
             attr.addFlashAttribute("success", "Embalagem salva com sucesso!");
         } catch (DataIntegrityViolationException e) {
-            attr.addFlashAttribute("error", "Erro: Código já existe.");
+            attr.addFlashAttribute("fail", "Erro: Código já existe.");
             return "redirect:/embalagens/listar";
         }
 
@@ -157,8 +157,18 @@ public class EmbalagemController {
 
     @GetMapping("/embalagens/excluir/{id}")
     public String excluirEmbalagem(@PathVariable("id") Integer id, RedirectAttributes attr) {
-        embalagemService.excluirEmbalagem(id);
-        attr.addFlashAttribute("success", "Embalagem excluída com sucesso!");
+        try {
+            // Verificar se a embalagem está associada a alguma propriedade
+            boolean isAssociated = embalagemService.isEmbalagemAssociada(id);
+            if (isAssociated) {
+                attr.addFlashAttribute("fail", "A embalagem não pode ser excluída porque está associada a uma ou mais propriedades.");
+            } else {
+                embalagemService.excluirEmbalagem(id);
+                attr.addFlashAttribute("success", "Embalagem excluída com sucesso!");
+            }
+        } catch (Exception e) {
+            attr.addFlashAttribute("fail", "Erro ao tentar excluir a embalagem.");
+        }
         return "redirect:/embalagens/listar";
     }
     
