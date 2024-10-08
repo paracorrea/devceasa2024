@@ -10,7 +10,8 @@ public enum TipoEmbalagem {
 	GRADE,
 	MACO,
 	PACOTE,
-	SACO
+	SACO,
+	KILO
 	
 	
 	

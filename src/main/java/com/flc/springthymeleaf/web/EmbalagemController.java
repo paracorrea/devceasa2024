@@ -106,11 +106,13 @@ public class EmbalagemController {
 
             // Adicionar mensagem de sucesso
             redirectAttributes.addFlashAttribute("success", "Embalagens associadas com sucesso!");
+            return "redirect:/embalagens/pesquisar";
         } else {
             redirectAttributes.addFlashAttribute("fail", "Propriedade não encontrada.");
+             return "redirect:/embalagens/pesquisar";
         }
 
-        return "redirect:/embalagens/listar";
+       
     }
     
     @GetMapping("/embalagens/nova")
@@ -121,8 +123,9 @@ public class EmbalagemController {
 
     @PostMapping("/embalagens/salvar")
     public String salvarEmbalagem(@Valid @ModelAttribute("embalagem") Embalagem embalagem, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()) {
-            return "embalagem/embalagem_lista";
+       
+    	if (result.hasErrors()) {
+            return "redirect:/embalagens/pesquisar";
         }
 
         
@@ -136,12 +139,13 @@ public class EmbalagemController {
                 embalagemService.salvarEmbalagem(embalagem);
             }
             attr.addFlashAttribute("success", "Embalagem salva com sucesso!");
+            return "redirect:/embalagens/listar";
         } catch (DataIntegrityViolationException e) {
             attr.addFlashAttribute("fail", "Erro: Código já existe.");
             return "redirect:/embalagens/listar";
         }
 
-        return "redirect:/embalagens/listar";
+     
     }
    
     @GetMapping("/embalagens/editar/{id}")
