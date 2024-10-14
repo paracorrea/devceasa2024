@@ -76,7 +76,14 @@ public class EmbalagemController {
 
             // Carregar as embalagens e associá-las à propriedade
             List<Embalagem> embalagens = embalagemService.findAll();
+            Collections.sort(embalagens, (e1, e2) -> e1.getCodigo()
+            		.compareToIgnoreCase(e2.getCodigo()));
+            
+            
             List<Embalagem> embalagensAssociadas = propriedade.getEmbalagens();
+            Collections.sort(embalagensAssociadas, (e1, e2) -> e1.getCodigo()
+            		.compareToIgnoreCase(e2.getCodigo()));
+            
             
             model.addAttribute("propriedade", propriedade);
             model.addAttribute("embalagens", embalagens);
