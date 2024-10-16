@@ -62,6 +62,12 @@ public class EmbalagemController {
         model.addAttribute("embalagens", embalagensResults);
         return "embalagem/embalagem_lista";
     }
+    
+    @GetMapping("/embalagens/{id}/propriedades")
+    @ResponseBody
+    public List<Propriedade> listarPropriedadesPorEmbalagem(@PathVariable("id") Integer id) {
+        return propriedadeService.findPropriedadesByEmbalagemId(id); // Implementar o método no service
+    }
 
     @GetMapping("/embalagens/pesquisar")
     public String pesquisar(Model model) {

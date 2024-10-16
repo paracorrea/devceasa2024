@@ -22,5 +22,6 @@ public interface EmbalagemRepository  extends JpaRepository<Embalagem, Integer>,
 
 		@Query("SELECT e FROM Embalagem e JOIN e.propriedades p WHERE p.id = :propriedadeId")
 		List<Embalagem> findEmbalagemByPropriedadeId(@Param("propriedadeId") Integer propriedadeId);
-
+		
+	
 }

@@ -102,5 +102,7 @@ public class PropriedadeService {
 		    public List<Propriedade> findByProdutoNome1(String nome){
 		    	return propRepo.findByProdutoNome(nome);
 		    }
-
+		    public List<Propriedade> findPropriedadesByEmbalagemId(Integer id) {
+		        return propRepo.findPropriedadesByEmbalagemId(id);
+		    }
 }

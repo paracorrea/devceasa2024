@@ -36,4 +36,7 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	List<Propriedade> findByProdutoNomeContainingIgnoreCase(@Param("nome") String nome);
 
 	 List<Propriedade> findByProdutoNome(String nome);
+	 
+	 @Query("SELECT p FROM Propriedade p JOIN p.embalagens e WHERE e.id = :id")
+	 List<Propriedade> findPropriedadesByEmbalagemId(@Param("id") Integer id);
 }
