@@ -200,6 +200,9 @@
                 $(`#propertyCode-${itemIndex}`).on('input', function() {
                     searchPropertyByCode(itemIndex);
                 });
+                
+                // Focar automaticamente no campo Código do novo item
+                $(`#propertyCode-${itemIndex}`).focus();
 
                 updateRemoveButtons();
             }
@@ -292,6 +295,14 @@ function selectProduct(codigo, id, variedade, subvariedade) {
     closeProductSearchModal();
 }
 
+</script>
+<script th:inline="javascript">
+    window.onload = function() {
+        const portariaField = document.getElementById("portaria");
+        if (portariaField) {
+            portariaField.focus();
+        }
+    };
 </script>
     <script src="/script/nota/clearForm.js"></script>
     <script src="/script/nota/municipioSearch.js"></script>
