@@ -2,6 +2,8 @@
 package com.flc.springthymeleaf.web;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -42,6 +44,7 @@ import com.flc.springthymeleaf.service.MunicipioService;
 import com.flc.springthymeleaf.service.NotaService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -67,8 +70,13 @@ public class NotaController {
     
     @ModelAttribute("municipios")
     public List<Municipio> listaMunicipios() {
-        return municipioService.findAll();
+        return municipioService.findAll().stream()
+            .filter(municipio -> municipio.getCodigo() != null 
+                && municipio.getNome() != null
+               )
+            .collect(Collectors.toList());
     }
+
 
     @ModelAttribute("propriedades")
     public List<Propriedade> listaPropriedades() {
@@ -88,7 +96,7 @@ public class NotaController {
     @ModelAttribute("tiposVeiculos")
     public List<String> listaTiposVeiculos() {
         return Arrays.stream(TipoVeiculo.values())
-                     .map(tv -> tv.getCodigo() + " - " + tv.getDescricao())
+                     .map(tv -> tv.getCodigo() + " - " + tv.getDescricao() + " - "+ tv.getCargaMinima() + " - "+ tv.getCargaMaxima())
                      .collect(Collectors.toList());
     }
 
@@ -102,13 +110,16 @@ public class NotaController {
     }
 
   
-
     @GetMapping("/notas/cadastrar")
     public String cadastrar(Model model) {
-        Nota nota = new Nota();
-        nota.setItens(List.of(new ItemDeNota())); // Adiciona um item vazio para a nota
-        model.addAttribute("nota", nota);
-        return "nota/nota_cadastro";
+    	   
+    	    
+    	        Nota nota = new Nota();
+    	        nota.setItens(List.of(new ItemDeNota())); // Adiciona um item vazio para a nota
+    	        model.addAttribute("nota", nota);
+    	        return "nota/nota_cadastro";
+    	
+
     }
 
     @PostMapping("/notas/salvar")
@@ -116,11 +127,18 @@ public class NotaController {
         // Log para depuração
         System.out.println("Iniciando o salvamento da nota");
 
+        
+        
         if (result.hasErrors()) {
             // Log para depuração
             System.out.println("Erro de validação encontrado: " + result.getAllErrors());
             return "nota/nota_cadastro";
         }
+       
+        System.out.println("sessão da nota salva: " + nota.getData());  // Log para verificar a data da nota que foi salva
+        
+        // Verifica se a data foi alterada pelo usuário e salva na sessão
+      
 
         // Buscar o municipio pelo IBGE para garantir que é uma entidade gerenciada
         Municipio municipio = municipioService.findById(nota.getMunicipio().getId()).orElse(null);
