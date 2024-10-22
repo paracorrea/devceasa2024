@@ -46,6 +46,9 @@ public class Nota implements Serializable {
     @JsonIgnoreProperties("nota")
     private List<ItemDeNota> itens;
 
+    @ManyToOne
+    @JoinColumn(name = "controle_portaria_id")
+    private ControlePortaria controlePortaria;
    
     @Column(name="peso_total")
     private Double pesoTotal;
@@ -130,6 +133,12 @@ public class Nota implements Serializable {
 	}
 	public void setPesoTotal(Double pesoTotal) {
 		this.pesoTotal = pesoTotal;
+	}
+	public ControlePortaria getControlePortaria() {
+		return controlePortaria;
+	}
+	public void setControlePortaria(ControlePortaria controlePortaria) {
+		this.controlePortaria = controlePortaria;
 	}
 	
 	

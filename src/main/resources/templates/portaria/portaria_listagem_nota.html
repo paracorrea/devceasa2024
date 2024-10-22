@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Notas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table td, .table th {
+            font-size: 0.65rem;  /* Reduzindo o tamanho da fonte */
+            vertical-align: middle;  /* Alinhando o conteúdo no meio */
+        }
+        .btn-sm {
+            font-size: 0.50rem;  /* Botões menores */
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .pagination {
+            justify-content: center; /* Centraliza a paginação */
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{navbar :: menu-principal}"></div>
+
+    <div class="container mt-4">
+        <h2 class="mb-3">Notas</h2>
+
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Portaria</th>
+                    <th>Data</th>
+                    <th>Faixa de Horário</th>
+                    <th>Tipo de Veículo</th>
+                    <th>Local de Destino</th>
+                    <th>Município</th>
+                    <th>Itens (Detalhes)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nota : ${notas.content}">
+                    <td th:text="${nota.id}">1</td>
+                    <td th:text="${nota.portaria}">Portaria 1</td>
+                    <td th:text="${nota.data}">2023-07-24</td>
+                    <td th:text="${nota.faixaHorario}">Manhã</td>
+                    <td th:text="${nota.tipoVeiculo}">Caminhão</td>
+                    <td th:text="${nota.localDestino}">CEASA</td>
+                    <td th:text="${nota.municipio.nome} + ' - ' + ${nota.municipio.uf}">Belo Horizonte</td>
+                    <td>
+                        <ul >
+                            <li th:each="item : ${nota.itens}" th:text="
+                             ${item.propriedade.produto.nome} + ' - ' +
+                             ${item.propriedade.variedade} + ' - ' +
+                             ${item.propriedade.subvariedade} + ' - ' +
+                             ${item.propriedade.classificacao} + ' - Quantidade:' +
+                             ${item.quantidade} + ' - ' +
+                             ${item.embalagem.tipoEmbalagem} + ' de ' +
+                             ${item.embalagem.peso} + ' ' +
+                             ${item.embalagem.unidadeMedida}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <form th:action="@{/notas/excluir/{id}(id=${nota.id})}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta nota?');">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav aria-label="Navegação de páginas">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${notas.hasPrevious()} ? '' : 'disabled'">
+                    <a class="page-link" th:href="@{/notas/listar(page=${notas.number - 1})}" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, notas.totalPages - 1)}" th:classappend="${notas.number == i} ? 'active'">
+                    <a class="page-link" th:href="@{/notas/listar(page=${i})}" th:text="${i + 1}">1</a>
+                </li>
+                <li class="page-item" th:classappend="${notas.hasNext()} ? '' : 'disabled'">
+                    <a class="page-link" th:href="@{/notas/listar(page=${notas.number + 1})}" aria-label="Próximo">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

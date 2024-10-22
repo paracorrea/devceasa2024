@@ -2,6 +2,7 @@ package com.flc.springthymeleaf.service;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -57,5 +58,15 @@ public class NotaService {
 
         notaRepository.delete(nota);
     }
+
+	public Page<Nota> findNotasByData(LocalDate dataDaSessao, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return notaRepository.findAllByData(dataDaSessao, pageable);
+	}
+
+	public List<Nota> findNotasByDataAndNoControlePortaria(LocalDate dataDaSessao) {
+		// TODO Auto-generated method stub
+		return notaRepository.findNotasByDataAndNoControlePortaria(dataDaSessao);
+	}
 	
 }
