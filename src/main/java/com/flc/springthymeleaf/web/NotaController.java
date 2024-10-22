@@ -146,6 +146,7 @@ public class NotaController {
             result.rejectValue("municipio", "error.nota", "Município não encontrado.");
             // Log para depuração
             System.out.println("Município não encontrado: " + nota.getMunicipio().getIbge());
+            attr.addFlashAttribute("fail", "Município não encontrado!");
             return "nota/nota_cadastro";
         }
         nota.setMunicipio(municipio);
@@ -174,7 +175,7 @@ public class NotaController {
 
         // Salvar a nota
         notaService.save(nota);
-        attr.addFlashAttribute("success", "Nota preparada com sucesso! Verifique os logs para detalhes.");
+        attr.addFlashAttribute("success", "Nota salva com sucesso!");
         return "redirect:/notas/cadastrar";
     }
     @GetMapping("/notas/listar")

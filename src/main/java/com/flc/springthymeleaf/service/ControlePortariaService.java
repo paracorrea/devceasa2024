@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.flc.springthymeleaf.domain.ControlePortaria;
@@ -23,7 +24,7 @@ public class ControlePortariaService {
     private NotaRepository notaRepository;
 
     public List<ControlePortaria> findAll() {
-        return controlePortariaRepository.findAll();
+        return controlePortariaRepository.findAll(Sort.by(Sort.Direction.DESC, "dataDaSessao"));
     }
 
     public ControlePortaria abrirSessaoDiaria() {

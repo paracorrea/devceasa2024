@@ -71,27 +71,49 @@
                 </thead>
                 <tbody>
                     <tr th:each="portaria : ${portarias}">
-                        <td th:text="${portaria.dataDaSessao}"></td>
+                        <td th:text="${#temporals.format(portaria.dataDaSessao, 'dd-MM-yyyy')}"></td>
                         <td th:text="${portaria.totalNotas}"></td>
                         <td th:text="${#numbers.formatDecimal(portaria.totalPeso, 1, 'DEFAULT', 2, 'DEFAULT')} + ' Kilos'"></td>
                         <td th:text="${portaria.statusSessao}"></td>
                          <td>
-   							 <form th:action="@{/portarias/iniciar-digitalizacao/{id}(id=${portaria.id})}" method="post">
+   							 <form th:action="@{/portarias/iniciar-digitalizacao/{id}(id=${portaria.id})}" sec:authorize="hasRole('EMPLOYEE')" method="post">
     						    <button type="submit" th:if="${portaria.statusSessao.name() == 'ABERTA'}" class="btn btn-primary btn-sm">
         				 		   Iniciar Digitação
        							 </button>
     						</form>
-						</td>
-						<td>
-   							<form th:action="@{/portarias/iniciar-analise/{id}(id=${portaria.id})}" method="post">
+							<form th:action="@{/notas/cadastrar}"  sec:authorize="hasRole('MANAGER')">
+   								 <button type="submit" th:if="${portaria.statusSessao.name() == 'EM_DIGITACAO'}" class="btn btn-primary btn-sm" >
+   								
+     							   Digitar Notas
+   								 </button>
+							</form>
+						
+   							<form th:action="@{/portarias/iniciar-analise/{id}(id=${portaria.id})}" sec:authorize="hasRole('ADMIN')" method="post">
       							<button type="submit" th:if="${portaria.statusSessao.name() == 'EM_DIGITACAO'}" class="btn btn-warning btn-sm">
             						Iniciar Análise
       							</button>
     						</form>
-						</td>
-                        <td>
-                            <a th:href="@{/portarias/notas(data=${portaria.dataDaSessao})}">Ver Notas</a>
-                            <a th:href="@{/portarias/excluir/{id}(id=${portaria.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta sessão?');">Excluir</a>
+						
+                        
+                            <a th:href="@{/portarias/notas(data=${portaria.dataDaSessao})}"  class="btn btn-info btn-info" >Ver Notas</a>
+                        
+                         
+                            <a th:href="@{/portarias/excluir/{id}(id=${portaria.id})}" sec:authorize="hasRole('ADMIN')" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta sessão?');">Excluir</a>
+                           
+
+                        
+                        	<form th:action="@{/portarias/editar-status/{id}(id=${portaria.id}, status=${portaria.statusSessao})} " sec:authorize="hasRole('ADMIN')"> 
+                        	<button type="submit" class="btn btn-warning btn-sm">Editar Status</button>
+   						
+                        		<select name="novoStatus" Class="form-select">
+                        			    <option value="ABERTA" th:selected="${portaria.statusSessao == 'ABERTA'}">Aberta</option>
+         								<option value="EM_DIGITACAO" th:selected="${portaria.statusSessao == 'EM_DIGITACAO'}">Em Digitação</option>
+            							<option value="EM_ANALISE" th:selected="${portaria.statusSessao == 'EM_ANALISE'}">Em Análise</option>
+            							<option value="COM_PENDENCIA" th:selected="${portaria.statusSessao == 'COM_PENDENCIA'}">Com Pendência</option>
+            							<option value="CONCLUIDA" th:selected="${portaria.statusSessao == 'CONCLUIDA'}">Concluída</option>
+       							 </select>
+       						  </form>	
+          
                         </td>
                     </tr>
                 </tbody>

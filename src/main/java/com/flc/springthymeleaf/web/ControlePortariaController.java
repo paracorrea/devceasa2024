@@ -188,9 +188,45 @@ public class ControlePortariaController {
 
             attr.addFlashAttribute("success", "Portaria excluída com sucesso.");
         } else {
-            attr.addFlashAttribute("error", "Portaria não encontrada.");
+            attr.addFlashAttribute("fail", "Portaria não encontrada.");
         }
 
+        return "redirect:/portarias/listar";
+    }
+    
+    @GetMapping("/portarias/editar-status/{id}")
+    public String editarStatus(@PathVariable("id") Integer id,
+    						@RequestParam String novoStatus, 
+    						RedirectAttributes attr) {
+        // Busque a sessão pelo ID e altere o status
+        
+    	System.out.println("Status recebido: "+novoStatus.toString());
+    	
+    	Optional<ControlePortaria> sessao = controlePortariaService.findById(id);
+    	 
+    	
+    	if (sessao.isPresent()) {
+              ControlePortaria portaria = sessao.get();
+        
+              
+              
+              portaria.setStatusSessao(StatusSessao.valueOf(novoStatus));
+              
+             System.out.println("ver status com get :" +portaria.getStatusSessao().toString());
+             
+             if (portaria.getStatusSessao().toString()=="EM_DIGITACAO" || portaria.getStatusSessao().toString()=="ABERTA" ) {
+            	  portaria.setTotalNotas(0);
+                  portaria.setTotalPeso(0.0);
+             }
+              
+            
+              attr.addFlashAttribute("success", "Portaria excluída com sucesso.");
+              
+              controlePortariaService.save(portaria);
+    	  } else {
+    		  attr.addFlashAttribute("fail", "Portaria não encontrada.");
+    	  }
+    		  
         return "redirect:/portarias/listar";
     }
 }
