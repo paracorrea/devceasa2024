@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.flc.springthymeleaf.domain.ControlePortaria;
 import com.flc.springthymeleaf.domain.Embalagem;
 import com.flc.springthymeleaf.domain.ItemDeNota;
 import com.flc.springthymeleaf.domain.Municipio;
@@ -37,8 +39,10 @@ import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.enums.FaixaHorario;
 import com.flc.springthymeleaf.enums.LocalDestino;
 import com.flc.springthymeleaf.enums.Portaria;
+import com.flc.springthymeleaf.enums.StatusSessao;
 import com.flc.springthymeleaf.enums.TipoVeiculo;
 import com.flc.springthymeleaf.enums.UnidadeMedida;
+import com.flc.springthymeleaf.service.ControlePortariaService;
 import com.flc.springthymeleaf.service.EmbalagemService;
 import com.flc.springthymeleaf.service.MunicipioService;
 import com.flc.springthymeleaf.service.NotaService;
@@ -54,13 +58,15 @@ public class NotaController {
     private final MunicipioService municipioService;
     private final PropriedadeService propriedadeService;
     private EmbalagemService embalagemService;
+    private ControlePortariaService controlePortariaService;
 
     public NotaController(NotaService notaService, MunicipioService municipioService, 
-                          PropriedadeService propriedadeService, EmbalagemService embalagemService) {
+                          PropriedadeService propriedadeService, EmbalagemService embalagemService, ControlePortariaService controlePortariaService) {
         this.notaService = notaService;
         this.municipioService = municipioService;
         this.propriedadeService = propriedadeService;
         this.embalagemService = embalagemService;
+        this.controlePortariaService = controlePortariaService;
     }
 
 	/*
@@ -71,12 +77,10 @@ public class NotaController {
     @ModelAttribute("municipios")
     public List<Municipio> listaMunicipios() {
         return municipioService.findAll().stream()
-            .filter(municipio -> municipio.getCodigo() != null 
-                && municipio.getNome() != null
-               )
+            .filter(municipio -> municipio.getCodigo() != null && municipio.getNome() != null)
+            .sorted(Comparator.comparing(Municipio::getNome))  // Ordena por nome
             .collect(Collectors.toList());
     }
-
 
     @ModelAttribute("propriedades")
     public List<Propriedade> listaPropriedades() {
@@ -116,13 +120,25 @@ public class NotaController {
     	    
     	        Nota nota = new Nota();
     	        nota.setItens(List.of(new ItemDeNota())); // Adiciona um item vazio para a nota
+    	       
+    	        System.out.println("Data da digitacao aberta: "+ findDataSessaoEmDigitacao());
+    	       
+    	        LocalDate datadigitacao = findDataSessaoEmDigitacao();
+    	        nota.setData(findDataSessaoEmDigitacao());
+    	        
+    	        model.addAttribute("datadigitacao", datadigitacao);
     	        model.addAttribute("nota", nota);
     	        return "nota/nota_cadastro";
     	
 
     }
 
-    @PostMapping("/notas/salvar")
+    private LocalDate findDataSessaoEmDigitacao() {
+    	  Optional<ControlePortaria> portariaControleOpt = controlePortariaService.findByStatus(StatusSessao.EM_DIGITACAO);
+    	    return portariaControleOpt.map(ControlePortaria::getDataDaSessao).orElse(LocalDate.now());
+	}
+
+	@PostMapping("/notas/salvar")
     public String salvarNota(@Valid @ModelAttribute("nota") Nota nota, BindingResult result, RedirectAttributes attr) {
         // Log para depuração
         System.out.println("Iniciando o salvamento da nota");
@@ -174,6 +190,9 @@ public class NotaController {
         }
 
         // Salvar a nota
+        
+        LocalDate dataDigitacao = findDataSessaoEmDigitacao();
+        nota.setData(dataDigitacao);
         notaService.save(nota);
         attr.addFlashAttribute("success", "Nota salva com sucesso!");
         return "redirect:/notas/cadastrar";
@@ -269,6 +288,6 @@ public class NotaController {
 
         return ResponseEntity.ok(response);
     }
-
+   
 }
 

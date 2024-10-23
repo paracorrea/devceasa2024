@@ -2,8 +2,12 @@ package com.flc.springthymeleaf.web;
 
 import com.flc.springthymeleaf.domain.Municipio;
 import com.flc.springthymeleaf.service.MunicipioService;
+
+import org.apache.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,5 +30,7 @@ public class MunicipioController {
         return municipioService.searchMunicipios(nome, uf, codigo);
   
 }
+   
+    
 }
 

@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // Set the date field to today's date
     const today = new Date().toISOString().split('T')[0];
-    document.getElementById('data').value = today;
+    document.getElementById('data').value = 0;
 
     // Clear form fields
     document.getElementById('portaria').selectedIndex = 0;

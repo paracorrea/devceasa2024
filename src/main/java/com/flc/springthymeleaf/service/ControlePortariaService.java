@@ -73,6 +73,11 @@ public class ControlePortariaService {
 		controlePortariaRepository.delete(portaria);
 	}
 
+	public Optional<ControlePortaria> findByStatus(StatusSessao statusSessao) {
+		
+		return controlePortariaRepository.findByStatusSessao(statusSessao);
+	}
+
     
     
     // Lógica de atualização de total de notas, peso e status pode ser adicionada aqui
