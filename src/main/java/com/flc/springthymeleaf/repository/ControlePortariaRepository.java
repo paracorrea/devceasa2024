@@ -3,6 +3,7 @@ package com.flc.springthymeleaf.repository;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +22,7 @@ public interface ControlePortariaRepository
 	
 	ControlePortaria findByDataDaSessao(LocalDate hoje);
 
-	Optional<ControlePortaria> findByStatusSessao(StatusSessao statusSessao);
+	List<ControlePortaria> findByStatusSessao(StatusSessao statusSessao);
 
 	
 

@@ -73,7 +73,7 @@ public class ControlePortariaService {
 		controlePortariaRepository.delete(portaria);
 	}
 
-	public Optional<ControlePortaria> findByStatus(StatusSessao statusSessao) {
+	public List<ControlePortaria> findByStatus(StatusSessao statusSessao) {
 		
 		return controlePortariaRepository.findByStatusSessao(statusSessao);
 	}

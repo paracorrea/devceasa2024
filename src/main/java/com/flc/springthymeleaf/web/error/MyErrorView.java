@@ -25,9 +25,24 @@ public class MyErrorView implements ErrorViewResolver {
 					model.addObject("message", "A url para a página '" + map.get("path")+ "'não existe.");
 					break;
 				case 500:
-					model.addObject("error", "Ocorreu um erro interno no servidor");
-					model.addObject("message", "Ocorreu um erro inexperado, tente mais tarde.");
-					break;
+					
+				
+				    model.addObject("error", "Ocorreu um erro interno no servidor");
+
+				    // Captura a exceção gerada
+				    Throwable throwable = (Throwable) request.getAttribute("jakarta.servlet.error.exception");
+				    Throwable rootCause = throwable.getCause();
+				    if (rootCause != null && rootCause instanceof IllegalStateException) {
+				        model.addObject("message", rootCause.getMessage());
+				    } else {
+				        model.addObject("message", "Erro inesperado: " + throwable.getClass().getName());
+				    }
+				  
+				    break;
+					
+					
+					
+				
 				default:
 					model.addObject("error", map.get("error"));
 					model.addObject("message", map.get("message"));

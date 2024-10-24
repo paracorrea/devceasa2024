@@ -78,33 +78,33 @@
    							 
    							 <form th:action="@{/portarias/iniciar-digitalizacao/{id}(id=${portaria.id})}" sec:authorize="hasRole('EMPLOYEE')" method="post">
     						    <button type="submit" th:if="${portaria.statusSessao.name() == 'ABERTA'}" class="btn btn-primary btn-sm">
-        				 		   Digitar
+        				 		   Em Digitação
        							 </button>
     						</form>
 							<form th:action="@{/notas/cadastrar}"  sec:authorize="hasRole('MANAGER')">
    								 <button type="submit" th:if="${portaria.statusSessao.name() == 'EM_DIGITACAO'}" class="btn btn-primary btn-sm" >
-   								   Digitar
+   								   Nova Nota
    								 </button>
 							</form>
-							<form th:action="@{/portarias/iniciar-analise/{id}(id=${portaria.id})}" sec:authorize="hasRole('ADMIN')" method="post">
+							<form th:action="@{/portarias/iniciar-analise/{id}(id=${portaria.id})}" sec:authorize="hasRole('EMPLOYEE')" method="post">
       							<button type="submit" th:if="${portaria.statusSessao.name() == 'EM_DIGITACAO'}" class="btn btn-warning btn-sm">
-            						Iniciar Análise
+            						Finalizar Digitação
       							</button>
     						</form>
 						    
 						    	
                             
                             <form th:action="@{/portarias/editar-status/{id}(id=${portaria.id}, status=${portaria.statusSessao})}" sec:authorize="hasRole('ADMIN')" style="display: flex; align-items: center;">
-   							 	<select name="novoStatus" class="form-select" style="margin-right: 10px;">
-     						  	 <option value="ABERTA" th:selected="${portaria.statusSessao == 'ABERTA'}">Aberta</option>
-      						 	 <option value="EM_DIGITACAO" th:selected="${portaria.statusSessao == 'EM_DIGITACAO'}">Em Digitação</option>
-      							 <option value="EM_ANALISE" th:selected="${portaria.statusSessao == 'EM_ANALISE'}">Em Análise</option>
-       							 <option value="COM_PENDENCIA" th:selected="${portaria.statusSessao == 'COM_PENDENCIA'}">Com Pendência</option>
-       						 	 <option value="CONCLUIDA" th:selected="${portaria.statusSessao == 'CONCLUIDA'}">Concluída</option>
-   							 	</select>
+   							 <select name="novoStatus" class="form-select" style="margin-right: 10px;">
+   								 <option value="ABERTA" th:selected="${portaria.statusSessao.name() == 'ABERTA'}">Aberta</option>
+  								  <option value="EM_DIGITACAO" th:selected="${portaria.statusSessao.name() == 'EM_DIGITACAO'}">Em Digitação</option>
+  								  <option value="EM_ANALISE" th:selected="${portaria.statusSessao.name() == 'EM_ANALISE'}">Em Análise</option>
+   							 	 <option value="COM_PENDENCIA" th:selected="${portaria.statusSessao.name() == 'COM_PENDENCIA'}">Com Pendência</option>
+   								 <option value="CONCLUIDA" th:selected="${portaria.statusSessao.name() == 'CONCLUIDA'}">Concluída</option>
+							</select>
     							<button type="submit" class="btn btn-warning btn-sm">Alterar Status</button>
 							</form>
-       						  <a th:href="@{/portarias/excluir/{id}(id=${portaria.id})}" sec:authorize="hasRole('ADMIN')" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta sessão?');">Excluir</a>
+       						  <a th:href="@{/portarias/excluir/{id}(id=${portaria.id})}" sec:authorize="hasRole('ADMIN')" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta sessão? - A exclusão da sessão não excuirá nenhuma nota!');">Excluir</a>
                         </td>
                     </tr>
                 </tbody>

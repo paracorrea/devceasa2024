@@ -48,6 +48,7 @@ import com.flc.springthymeleaf.service.MunicipioService;
 import com.flc.springthymeleaf.service.NotaService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 
+import jakarta.persistence.NonUniqueResultException;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -123,20 +124,37 @@ public class NotaController {
     	       
     	        System.out.println("Data da digitacao aberta: "+ findDataSessaoEmDigitacao());
     	       
+    	        try {
+    	        	
+    	        
     	        LocalDate datadigitacao = findDataSessaoEmDigitacao();
     	        nota.setData(findDataSessaoEmDigitacao());
     	        
     	        model.addAttribute("datadigitacao", datadigitacao);
     	        model.addAttribute("nota", nota);
-    	        return "nota/nota_cadastro";
+    	        
+    	        } catch (IllegalStateException e) {
+    	            model.addAttribute("error", e.getMessage());
+    	            return "error"; // Página personalizada de erro
+    	        }   
+    	            return "nota/nota_cadastro";
     	
 
     }
 
     private LocalDate findDataSessaoEmDigitacao() {
-    	  Optional<ControlePortaria> portariaControleOpt = controlePortariaService.findByStatus(StatusSessao.EM_DIGITACAO);
-    	    return portariaControleOpt.map(ControlePortaria::getDataDaSessao).orElse(LocalDate.now());
-	}
+       
+            List<ControlePortaria> portarias = controlePortariaService.findByStatus(StatusSessao.EM_DIGITACAO);
+            if (portarias.size() > 1) {
+            	throw new IllegalStateException("Há mais de uma portaria com status 'EM DIGITACAO'.<br> Verifique e feche outras sessões com o status 'EM_DIGITACAO', antes de digitar uma nova Nota!");
+            }
+            return portarias.stream()
+                            .findFirst()
+                            .map(ControlePortaria::getDataDaSessao)
+                            .orElseThrow(() -> new IllegalStateException("Nenhuma sessão com status 'EM_DIGITACAO' encontrada."));
+       
+       
+    }
 
 	@PostMapping("/notas/salvar")
     public String salvarNota(@Valid @ModelAttribute("nota") Nota nota, BindingResult result, RedirectAttributes attr) {
@@ -199,7 +217,7 @@ public class NotaController {
     }
     @GetMapping("/notas/listar")
     public String listarNotas(Model model, @RequestParam(defaultValue = "0") int page) {
-        Page<Nota> notas = notaService.findAll(PageRequest.of(page, 10));
+        Page<Nota> notas = notaService.findAll(PageRequest.of(page, 50));
         model.addAttribute("notas", notas);
         return "nota/nota_listagem";
     }

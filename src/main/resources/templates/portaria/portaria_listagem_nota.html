@@ -43,8 +43,9 @@
             <tbody>
                 <tr th:each="nota : ${notas.content}">
                     <td th:text="${nota.id}">1</td>
+                    
                     <td th:text="${nota.portaria}">Portaria 1</td>
-                    <td th:text="${nota.data}">2023-07-24</td>
+                    <td th:text="${#temporals.format(nota.data, 'dd-MM-yyyy')}">2023-07-24</td>
                     <td th:text="${nota.faixaHorario}">Manhã</td>
                     <td th:text="${nota.tipoVeiculo}">Caminhão</td>
                     <td th:text="${nota.localDestino}">CEASA</td>
