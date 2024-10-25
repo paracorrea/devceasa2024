@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.web;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +21,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flc.springthymeleaf.DTO.ProdutoPesoDTO;
 import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Subgrupo;
+import com.flc.springthymeleaf.service.ItemDeNotaService;
 import com.flc.springthymeleaf.service.ProdutoService;
 import com.flc.springthymeleaf.service.SubgrupoService;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
@@ -37,6 +42,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private SubgrupoService subService;
+	
+	@Autowired
+	private ItemDeNotaService itemDeNotaService;
 	
 	
 	@InitBinder
@@ -244,5 +252,19 @@ public class ProdutoController {
 	            return ResponseEntity.notFound().build();
 	        }
 	    }
+	 
+	 @GetMapping("produtos/graficos")
+	 public String mostrarGraficoProdutos(Model model) throws Exception {
+	     LocalDate startDate = LocalDate.of(2024, 10, 18);
+	     LocalDate endDate = LocalDate.of(2024, 10, 26);
+
+	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
+	     
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
+	     
+	     model.addAttribute("produtosDTO", produtosJson);
+	     return "produto/grafico_produtos";
+	 }
 }
 	

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gráfico de Rosca</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        #myDoughnutChart {
+            width: 400px;
+            height: 400px;
+        }
+        .chartjs-datalabel {
+            font-size: 12px; /* Ajuste o tamanho da fonte conforme necessário */
+            color: #000000; /* Cor preta */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myDoughnutChart"></canvas>
+    <script th:inline="javascript">
+        var data = /*[[${produtosDTO}]]*/ '[[${produtosDTO}]]';
+
+        var parsedData = JSON.parse(data);
+        var labels = parsedData.map(item => item.produto);
+        var values = parsedData.map(item => item.totalPeso);
+
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Gráfico de Rosca dos Produtos'
+                },
+                plugins: {
+                    datalabels: {
+                        color: '#000000',
+                        font: {
+                            size: 12, /* Tamanho ajustado */
+                            weight: 'bold'
+                        },
+                        formatter: function(value, context) {
+                            return value.toLocaleString('pt-BR') + ' Kilos';
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+</body>
+</html>

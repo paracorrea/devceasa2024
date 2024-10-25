@@ -41,15 +41,14 @@ import com.flc.springthymeleaf.enums.LocalDestino;
 import com.flc.springthymeleaf.enums.Portaria;
 import com.flc.springthymeleaf.enums.StatusSessao;
 import com.flc.springthymeleaf.enums.TipoVeiculo;
-import com.flc.springthymeleaf.enums.UnidadeMedida;
+
 import com.flc.springthymeleaf.service.ControlePortariaService;
 import com.flc.springthymeleaf.service.EmbalagemService;
 import com.flc.springthymeleaf.service.MunicipioService;
 import com.flc.springthymeleaf.service.NotaService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 
-import jakarta.persistence.NonUniqueResultException;
-import jakarta.servlet.http.HttpSession;
+
 import jakarta.validation.Valid;
 
 @Controller

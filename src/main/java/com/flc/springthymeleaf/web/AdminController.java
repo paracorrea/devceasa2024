@@ -1,6 +1,8 @@
 package com.flc.springthymeleaf.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import com.flc.springthymeleaf.service.UserService;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Controller
 public class AdminController {
@@ -19,6 +22,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    private static final Logger LOGGER = Logger.getLogger(AdminController.class.getName());
+   
+    
     @GetMapping("/admin/users")
     public String showUserManagement(Model model) {
         model.addAttribute("users", userService.findAllUsers());
@@ -40,13 +46,25 @@ public class AdminController {
             authorities.add(new Authority(role, user));
         }
         user.setAuthorities(authorities);
+       
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+        LOGGER.info("Usuário Salvo: " + user.getUsername());
+        LOGGER.info("Criado por: " + authentication.getName());
+        
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
 
     @GetMapping("/admin/users/edit/{username}")
     public String showEditUserForm(@PathVariable String username, Model model) {
-        User user = userService.findUserByUsername(username);
+        
+    	User user = userService.findUserByUsername(username);
+       
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário Editado: " + user.getUsername());
+        LOGGER.info("Editado por: " + authentication.getName());
+      
         model.addAttribute("user", user);
         return "admin/user-form";
     }
@@ -62,7 +80,11 @@ public class AdminController {
             authorities.add(new Authority(role, existingUser));
         }
         existingUser.setAuthorities(authorities);
-
+       
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário Editado e salvo: " + user.getUsername());
+        LOGGER.info("Editado e salvo por: " + authentication.getName());
+       
         userService.saveUser(existingUser);
         return "redirect:/admin/users";
     }
@@ -75,6 +97,11 @@ public class AdminController {
             authorities.add(new Authority(newRole, user));
         }
         user.setAuthorities(authorities);
+       
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário adicionada regra: " + user.getUsername());
+        LOGGER.info("Alterado por: " + authentication.getName());
+        
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
@@ -84,6 +111,11 @@ public class AdminController {
         User user = userService.findUserByUsername(username);
         Set<Authority> authorities = user.getAuthorities();
         authorities.removeIf(authority -> authority.getAuthority().equals(roleToRemove));
+        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário removida regra: " + user.getUsername());
+        LOGGER.info(" Removido por " + authentication.getName());
+        
         user.setAuthorities(authorities);
         userService.saveUser(user);
         return "redirect:/admin/users";
@@ -93,6 +125,11 @@ public class AdminController {
     public String toggleUserStatus(@RequestParam("username") String username) {
         User user = userService.findUserByUsername(username);
         user.setEnabled(user.getEnabled() == 1 ? 0L : 1L);
+       
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário alterado sua regra: " + user.getUsername());
+        LOGGER.info("Alterada regra por " + authentication.getName());
+        
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
@@ -108,6 +145,11 @@ public class AdminController {
                                      @RequestParam("newPassword") String newPassword) {
         User user = userService.findUserByUsername(username);
         user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info("Usuário alterado sua senha: " + user.getUsername());
+        LOGGER.info("Alterada senha por " + authentication.getName());
+        
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
