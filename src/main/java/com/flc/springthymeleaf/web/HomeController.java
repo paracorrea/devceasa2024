@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 	
-	@GetMapping("/")
-	public String pageStart(Model model) {
-		
-		
-		
-		model.addAttribute("text", " benvindo");
-		
-		return "indexpage";
-	}
+	/* Desativado - 
+	 * @GetMapping("/") public String pageStart(Model model) {
+	 * 
+	 * 
+	 * 
+	 * model.addAttribute("text", " benvindo");
+	 * 
+	 * return "indexpage"; }
+	 */
 
 }

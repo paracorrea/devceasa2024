@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -253,10 +254,39 @@ public class ProdutoController {
 	        }
 	    }
 	 
+	 @GetMapping("/")
+	 public String mostrarGraficoProdutos(
+	         @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+	         @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+	         Model model) throws Exception {
+
+	     // Definindo as datas padrão
+	     if (startDate == null) {
+	         startDate = LocalDate.now().minusWeeks(1); // Última semana como padrão
+	     }
+	     if (endDate == null) {
+	         endDate = LocalDate.now(); // Data atual como padrão
+	     }
+
+	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
+
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
+
+	     // Adiciona as datas ao modelo
+	     model.addAttribute("produtosDTO", produtosJson);
+	     model.addAttribute("startDate", startDate);
+	     model.addAttribute("endDate", endDate);
+
+	     return "produto/grafico_produtos";
+	 }
+	 
+	 
+	 
 	 @GetMapping("produtos/graficos")
 	 public String mostrarGraficoProdutos(Model model) throws Exception {
 	     LocalDate startDate = LocalDate.of(2024, 10, 18);
-	     LocalDate endDate = LocalDate.of(2024, 10, 26);
+	     LocalDate endDate = LocalDate.of(2024, 10, 29);
 
 	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
 	     

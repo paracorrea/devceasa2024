@@ -10,7 +10,16 @@
 	<link th:href="@{/css/myStyle.css}" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
+  <script>
+        window.onload = function() {
+            fetch('/produtos/graficos1')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Aqui você pode manipular os dados recebidos
+                })
+                .catch(error => console.error('Erro:', error));
+        }
+    </script>
 <body>
 
 	<div id="navmenu" th:insert="~{navbar :: menu-principal}"> </div>
