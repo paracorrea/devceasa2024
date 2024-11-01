@@ -53,13 +53,15 @@
                         <ul >
                             <li th:each="item : ${nota.itens}" th:text="
                              ${item.propriedade.produto.nome} + ' - ' +
+                             ${item.propriedade.codigo} + ' - ' +
                              ${item.propriedade.variedade} + ' - ' +
                              ${item.propriedade.subvariedade} + ' - ' +
                              ${item.propriedade.classificacao} + ' - Quantidade:' +
                              ${item.quantidade} + ' - ' +
                              ${item.embalagem.tipoEmbalagem} + ' de ' +
                              ${item.embalagem.peso} + ' ' +
-                             ${item.embalagem.unidadeMedida}"></li>
+                             ${item.embalagem.unidadeMedida}">
+                             </li>
                         </ul>
                     </td>
                     <td>

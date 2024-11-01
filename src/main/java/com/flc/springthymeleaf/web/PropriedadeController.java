@@ -110,7 +110,7 @@ public class PropriedadeController {
     	propriedadeService.update(propriedade);
         attr.addFlashAttribute("success", "Propriedade editada com sucesso");
        
-        return "redirect:/propriedades/cadastrar";
+        return "redirect:/propriedades/listar";
     }
 
     @PostMapping("/propriedades/excluir")

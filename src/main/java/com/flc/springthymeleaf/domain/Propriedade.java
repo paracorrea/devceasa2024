@@ -87,6 +87,8 @@ public class Propriedade implements Serializable {
     @JsonManagedReference
     private List<ItemDeNota> itens;
     
+    @Column(name = "codigo_anterior", length = 10, unique = false)
+    private String codigoAnterior;
        
     public Propriedade() { 
     }
@@ -202,6 +204,16 @@ public class Propriedade implements Serializable {
 	public void setItensDeNota(List<ItemDeNota> itensDeNota) {
 		this.itens = itensDeNota;
 	}
+
+	public String getCodigoAnterior() {
+		return codigoAnterior;
+	}
+
+	public void setCodigoAnterior(String codigoAnterior) {
+		this.codigoAnterior = codigoAnterior;
+	}
+	
+	
 
 	
 }

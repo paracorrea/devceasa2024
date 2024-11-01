@@ -68,6 +68,18 @@
 						</div>
 					</div>
 					</div>
+					
+					<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="codigo">Código Anterior</label> <input type="text"
+							class="form-control" id="codigoAnterior" placeholder="codigoAnterior"
+							autofocus="autofocus" th:field="*{codigoAnterior}" required
+							th:classappend="${#fields.hasErrors('codigoAnterior')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{codigoAnterior}"></span>
+						</div>
+					</div>
+					</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">

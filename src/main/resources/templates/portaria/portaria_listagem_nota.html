@@ -54,6 +54,8 @@
                         <ul >
                             <li th:each="item : ${nota.itens}" th:text="
                              ${item.propriedade.produto.nome} + ' - ' +
+                             ${item.propriedade.codigo} + ' - ' +
+                             ${item.propriedade.codigoAnterior} + ' - ' +
                              ${item.propriedade.variedade} + ' - ' +
                              ${item.propriedade.subvariedade} + ' - ' +
                              ${item.propriedade.classificacao} + ' - Quantidade:' +
