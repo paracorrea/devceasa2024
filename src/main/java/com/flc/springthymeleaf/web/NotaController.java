@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -221,6 +222,31 @@ public class NotaController {
         return "nota/nota_listagem";
     }
 
+    @GetMapping("/notas/listarcomfiltro")
+    public String listarNotasEntreDataseCodigo (
+    		 @RequestParam(value = "page", defaultValue = "0") int page,
+    	        @RequestParam(value = "dataInicio", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicio,
+    	        @RequestParam(value = "dataFim", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFim,
+    	        @RequestParam(value = "codigoPropriedade", required = false) String codigoPropriedade,
+    	        Model model) {
+
+
+    	    // Verifica se há filtros aplicados
+    	    
+    	    if (dataInicio != null || dataFim != null || codigoPropriedade != null) {
+    	        Page<Nota>notas = notaService.buscarNotasFiltradas(dataInicio, dataFim, codigoPropriedade, PageRequest.of(page, 50));
+    	        model.addAttribute("notas", notas);
+        	    return "nota/nota_listagem";
+        	    
+        	    
+    	    } else {
+    	    	Page<Nota> notas = notaService.findAll(PageRequest.of(page, 50));
+    	    	  model.addAttribute("notas", notas);
+    	    	    return "nota/nota_listagem";
+    	    }
+
+    	  
+    }
     @GetMapping("/notas/editar/{id}")
     public String editarNota(@PathVariable("id") Integer id, Model model) {
         Optional<Nota> notaOpt = notaService.findById(id);

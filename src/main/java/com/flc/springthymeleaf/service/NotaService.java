@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,11 @@ public class NotaService {
 	public List<Nota> findNotasByDataAndNoControlePortaria(LocalDate dataDaSessao) {
 		// TODO Auto-generated method stub
 		return notaRepository.findNotasByDataAndNoControlePortaria(dataDaSessao);
+	}
+
+	public Page<Nota> buscarNotasFiltradas(LocalDate dataInicio, LocalDate dataFim, String codigoPropriedade, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return notaRepository.findByDataNotaBetweenAndCodigo(dataInicio, dataFim, codigoPropriedade, pageable);
 	}
 	
 }

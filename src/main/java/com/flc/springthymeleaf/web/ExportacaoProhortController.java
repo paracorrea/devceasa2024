@@ -23,8 +23,7 @@ public class ExportacaoProhortController {
     @Autowired
     private ExportacaoProhortService exportacaoProhortService;
 
-    
-   
+    // localhost:5001/exportacao/prohort?ano=2024&mes=10
     
     @GetMapping("/prohort")
     public void exportarProhort(
@@ -35,7 +34,6 @@ public class ExportacaoProhortController {
         List<Object[]> resultados = exportacaoProhortService.gerarArquivoProhort(ano, mes);
         
         
-
         if (!resultados.isEmpty()) {
             System.out.println("A lista possui " + resultados.size() + " linhas");
         }
@@ -55,7 +53,7 @@ public class ExportacaoProhortController {
                 BigDecimal precoMedio = (BigDecimal) linha[3];
 
                 // Monta a linha de dados para o arquivo
-                String linhaTxt = nomeProduto + ";" + codigoMunicipio + ";" + pesoTotal + ";" + precoMedio;
+                String linhaTxt = "343"+";"+ano+";"+mes+";"+nomeProduto + ";" + codigoMunicipio+";"+"365" + ";" + pesoTotal + ";" + precoMedio;
                 writer.println(linhaTxt); // Escreve no arquivo
             }
             writer.flush();
