@@ -29,7 +29,7 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 	 List<Object[]> findTop5ProdutosByPesoBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 	 
-	 @Query(value = "SELECT prop.codigo AS codigoPropriedade, m.codigo AS codigoMunicipio, SUM(i.quantidade * e.peso) AS total_peso, AVG(c.preco_medio) AS precoMedio " +
+	 @Query(value = "SELECT prop.codigo AS codigoPropriedade, m.codigo AS codigoMunicipio, SUM(i.quantidade * e.peso) AS total_peso, AVG(c.valor_comum) AS valorComum " +
              "FROM item_de_nota i " +
              "JOIN propriedade prop ON i.propriedade_id = prop.id " +
              "JOIN nota n ON i.nota_id = n.id " +
@@ -40,4 +40,27 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
              "GROUP BY prop.codigo, m.codigo",
              nativeQuery = true)
 	 List<Object[]> findDadosParaProhort(@Param("ano") int ano, @Param("mes") int mes);
+	 
+	 
+	 @Query(value = "SELECT sub.nome AS subgrupo, SUM(i.quantidade * e.peso) AS total_peso " +
+             "FROM item_de_nota i " +
+             "JOIN propriedade prop ON i.propriedade_id = prop.id " +
+             "JOIN produto prod ON prop.produto_id = prod.id " +
+             "JOIN subgrupo sub ON prod.subgrupo_id = sub.id " +
+             "JOIN embalagem e ON i.embalagem_id = e.id " +
+             "JOIN nota n ON i.nota_id = n.id " +
+             "WHERE n.data BETWEEN :startDate AND :endDate " +
+             "GROUP BY sub.nome " +
+             "ORDER BY total_peso DESC " +
+             "LIMIT 6", nativeQuery = true)
+	 List<Object[]> findTop5SubgruposByPesoBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+	 @Query(value = "SELECT SUM(i.quantidade * e.peso) AS volumeTotal " +
+             "FROM item_de_nota i " +
+             "JOIN nota n ON i.nota_id = n.id " +
+             "JOIN embalagem e ON i.embalagem_id = e.id " +
+             "WHERE n.data BETWEEN :startDate AND :endDate", nativeQuery = true)
+Double findVolumeTotalEntreDatas(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+
 }

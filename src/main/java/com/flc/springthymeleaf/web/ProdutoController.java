@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flc.springthymeleaf.DTO.ProdutoPesoDTO;
+import com.flc.springthymeleaf.DTO.SubgrupoPesoDTO;
 import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Subgrupo;
 import com.flc.springthymeleaf.service.ItemDeNotaService;
@@ -256,29 +257,39 @@ public class ProdutoController {
 	 
 	 @GetMapping("/")
 	 public String mostrarGraficoProdutos(
-	         @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+			 @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 	         @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
 	         Model model) throws Exception {
 
-	     // Definindo as datas padrão
+	     // Define as datas padrão caso nenhuma data seja fornecida
 	     if (startDate == null) {
-	         startDate = LocalDate.now().minusWeeks(1); // Última semana como padrão
+	         startDate = LocalDate.now().minusWeeks(1);
 	     }
 	     if (endDate == null) {
-	         endDate = LocalDate.now(); // Data atual como padrão
+	         endDate = LocalDate.now();
 	     }
 
+	     // Obtém dados do primeiro gráfico (produtos)
 	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
 
+	     // Obtém dados do segundo gráfico (subgrupos)
+	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getTop5SubgruposByPeso(startDate, endDate);
+
+	     Double volumeTotal = itemDeNotaService.findVolumeTotalEntreDatas(startDate, endDate);
+	     
+	     // Converte os dados em JSON
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
+	     String subgrupoJson = objectMapper.writeValueAsString(subgrupoDTO);
 
-	     // Adiciona as datas ao modelo
+	     // Adiciona os dados e datas ao modelo
 	     model.addAttribute("produtosDTO", produtosJson);
+	     model.addAttribute("subgrupoDTO", subgrupoJson);
 	     model.addAttribute("startDate", startDate);
 	     model.addAttribute("endDate", endDate);
+	     model.addAttribute("volumeTotal", volumeTotal);
 
-	     return "produto/grafico_produtos";
+	     return "graficos/grafico_combinado";  // Nome do template Thymeleaf
 	 }
 	 
 	 @GetMapping("produtos/graficos1")
@@ -296,10 +307,13 @@ public class ProdutoController {
 	     }
 
 	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
+	    
 
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
 
+	    
+	     
 	     // Adiciona as datas ao modelo
 	     model.addAttribute("produtosDTO", produtosJson);
 	     model.addAttribute("startDate", startDate);
@@ -308,6 +322,67 @@ public class ProdutoController {
 	     return "produto/grafico_produtos";
 	 }
 	 
-	
+	 
+	 
+	 @GetMapping("produtos/graficos2")
+	 public String mostrarGraficosubgruopos(
+	         @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+	         @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+	         Model model) throws Exception {
+
+	     // Definindo as datas padrão
+	     if (startDate == null) {
+	         startDate = LocalDate.now().minusWeeks(1); // Última semana como padrão
+	     }
+	     if (endDate == null) {
+	         endDate = LocalDate.now(); // Data atual como padrão
+	     }
+
+	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getAllSubgruposByPeso(startDate, endDate);
+
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     String produtosJson = objectMapper.writeValueAsString(subgrupoDTO);
+
+	     // Adiciona as datas ao modelo
+	     model.addAttribute("subgrupoDTO", produtosJson);
+	     model.addAttribute("startDate", startDate);
+	     model.addAttribute("endDate", endDate);
+
+	     return "subgrupo/subgrupo_grafico";
+	 }
+	 
+	 @GetMapping("/produtos/grafico3")
+	 public String mostrarGraficosCombinados(
+	         @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+	         @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+	         Model model) throws Exception {
+
+	     // Define as datas padrão caso nenhuma data seja fornecida
+	     if (startDate == null) {
+	         startDate = LocalDate.now().minusWeeks(1);
+	     }
+	     if (endDate == null) {
+	         endDate = LocalDate.now();
+	     }
+
+	     // Obtém dados do primeiro gráfico (produtos)
+	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
+
+	     // Obtém dados do segundo gráfico (subgrupos)
+	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getTop5SubgruposByPeso(startDate, endDate);
+
+	     // Converte os dados em JSON
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
+	     String subgrupoJson = objectMapper.writeValueAsString(subgrupoDTO);
+
+	     // Adiciona os dados e datas ao modelo
+	     model.addAttribute("produtosDTO", produtosJson);
+	     model.addAttribute("subgrupoDTO", subgrupoJson);
+	     model.addAttribute("startDate", startDate);
+	     model.addAttribute("endDate", endDate);
+
+	     return "graficos/grafico_combinado";  // Nome do template Thymeleaf
+	 }
 }
 	
