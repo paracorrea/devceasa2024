@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gráfico de Quantidade por data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -54,7 +54,7 @@
             <button type="submit" class="btn btn-primary btn-sm">Atualizar Gráficos</button>
         </form>
          <p><strong>dados extraídos das notas fiscais entre as datas de : </strong> [[${#temporals.format(startDate, 'dd-MM-yyyy')}]] até [[${#temporals.format(endDate,'dd-MM-yyyy')}]]</p>
-    	 <p><strong>Volume Total Comercializado:</strong> [[${volumeTotal}]] Kilos</p>
+         <p><strong>Volume Total Comercializado:</strong> [[${volumeTotal}]] Kilos</p>
     </div>
 
     <div class="container">
@@ -65,6 +65,9 @@
                 <div class="chart">
                     <canvas id="myPolarAreaChart"></canvas>
                 </div>
+                <div id="subgrupoPercentual">
+                    <!-- Percentuais serão preenchidos pelo JavaScript -->
+                </div>
             </div>
 
             <!-- Gráfico de Rosca dos Produtos -->
@@ -72,6 +75,9 @@
                 <h4 class="text-center">Top 5 - Volume por Produtos</h4>
                 <div class="chart">
                     <canvas id="myDoughnutChart"></canvas>
+                </div>
+                <div id="produtoPercentual">
+                    <!-- Percentuais serão preenchidos pelo JavaScript -->
                 </div>
             </div>
         </div>
@@ -91,7 +97,7 @@
                 labels: subgrupoLabels,
                 datasets: [{
                     data: subgrupoValues,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#0000FF'],
+                    backgroundColor: ['#40E0D0', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#0000FF'],
                 }]
             },
             options: {
@@ -100,30 +106,24 @@
                     datalabels: {
                         color: '#000000',
                         font: { size: 10, weight: 'bold' },
-                      
                         padding: function(context) {
-                            // Itens de índice 0 a 3 com padding centralizado; ocultar rótulos dos demais
                             return context.dataIndex < 4 ? { top: 5, bottom: 5 } : { top: 1 };
                         },
-                        
                         formatter: function(value, context) {
-                            // Mostra valores apenas nos primeiros 4 itens
-                            return context.dataIndex < 4	 ? value.toLocaleString('pt-BR') + ' Kilos' : "";
+                            return context.dataIndex < 4 ? value.toLocaleString('pt-BR') + ' Kilos' : "";
                         }
                     }
-                
-            },
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        // Tooltip mostra todos os valores independentemente
-                        const dataset = data.datasets[tooltipItem.datasetIndex];
-                        const value = dataset.data[tooltipItem.index];
-                        return value.toLocaleString('pt-BR') + ' Kilos';
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            const dataset = data.datasets[tooltipItem.datasetIndex];
+                            const value = dataset.data[tooltipItem.index];
+                            return value.toLocaleString('pt-BR') + ' Kilos';
+                        }
                     }
                 }
-            }
-        },
+            },
             plugins: [ChartDataLabels]
         });
 
@@ -133,15 +133,19 @@
         var produtoLabels = parsedProdutoData.map(item => item.produto);
         var produtoValues = parsedProdutoData.map(item => item.totalPeso);
 
+        var totalOutros = parsedProdutoData.reduce((total, item, index) => {
+            return index >= 5 ? total + item.totalPeso : total;
+        }, 0);
+        
         var doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
         var myDoughnutChart = new Chart(doughnutCtx, {
-            type: 'bar',
+            type: 'pie',
             data: {
-                labels: produtoLabels,
+                labels: produtoLabels.slice(0, 5).concat("Outros"),
                 datasets: [{
-					label: 'Volume por Produto',
-                    data: produtoValues,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57', '#FF6384'],
+                    label: 'Volume por Produto (Outros: ' + totalOutros.toLocaleString('pt-BR') + ' Kilos)',
+                    data: produtoValues.slice(0, 5).concat(totalOutros),
+                    backgroundColor: ['#40E0D0', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#FF8000'],
                 }]
             },
             options: {
@@ -158,6 +162,29 @@
             },
             plugins: [ChartDataLabels]
         });
+
+        // Total de volume para cálculo de percentuais
+        var volumeTotal = /*[[${volumeTotal}]]*/ '[[${volumeTotal}]]';
+
+        // Calcular e exibir percentuais para Subgrupos
+        var subgrupoPercentualHTML = "<h5>Percentuais de Subgrupos</h5><ul>";
+        subgrupoValues.forEach((value, index) => {
+            var percent = ((value / volumeTotal) * 100).toFixed(1);
+            subgrupoPercentualHTML += `<li>${subgrupoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos)</li>`;
+        });
+        subgrupoPercentualHTML += "</ul>";
+        document.getElementById('subgrupoPercentual').innerHTML = subgrupoPercentualHTML;
+
+        // Calcular e exibir percentuais para Produtos
+        var produtoPercentualHTML = "<h5>Percentuais de Produtos</h5><ul>";
+        produtoValues.slice(0, 5).forEach((value, index) => {
+            var percent = ((value / volumeTotal) * 100).toFixed(1);
+            produtoPercentualHTML += `<li>${produtoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos)</li>`;
+        });
+        var outrosPercent = ((totalOutros / volumeTotal) * 100).toFixed(1);
+        produtoPercentualHTML += `<li>Outros: ${outrosPercent}% (${totalOutros.toLocaleString('pt-BR')} Kilos)</li>`;
+        produtoPercentualHTML += "</ul>";
+        document.getElementById('produtoPercentual').innerHTML = produtoPercentualHTML;
     </script>
 </body>
 </html>

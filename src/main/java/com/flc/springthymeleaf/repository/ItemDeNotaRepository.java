@@ -23,8 +23,7 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
               "JOIN nota n ON i.nota_id = n.id " +
               "WHERE n.data BETWEEN :startDate AND :endDate " +
               "GROUP BY prod.nome " +
-              "ORDER BY total_peso DESC " +
-              "LIMIT 5", nativeQuery = true)
+              "ORDER BY total_peso DESC ", nativeQuery = true)
 	
 	 List<Object[]> findTop5ProdutosByPesoBetweenDates(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 

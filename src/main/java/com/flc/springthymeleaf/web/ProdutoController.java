@@ -270,7 +270,7 @@ public class ProdutoController {
 	     }
 
 	     // Obtém dados do primeiro gráfico (produtos)
-	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
+	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosComOutros(startDate, endDate);
 
 	     // Obtém dados do segundo gráfico (subgrupos)
 	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getTop5SubgruposByPeso(startDate, endDate);

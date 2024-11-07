@@ -66,4 +66,28 @@ public class ItemDeNotaService {
 		return itemDeNotaRepository.findVolumeTotalEntreDatas(startDate, endDate);
 		
 	}
+	
+	public List<ProdutoPesoDTO> getTop5ProdutosComOutros(LocalDate startDate, LocalDate endDate) {
+	    List<Object[]> produtos = itemDeNotaRepository.findTop5ProdutosByPesoBetweenDates(startDate, endDate);
+	    
+	    List<ProdutoPesoDTO> top5Produtos = new ArrayList<>();
+	    double pesoOutros = 0.0;
+	    
+	    for (int i = 0; i < produtos.size(); i++) {
+	        String nomeProduto = (String) produtos.get(i)[0];
+	        double peso = ((Number) produtos.get(i)[1]).doubleValue();
+	        
+	        if (i < 5) {
+	            top5Produtos.add(new ProdutoPesoDTO(nomeProduto, peso));
+	        } else {
+	            pesoOutros += peso;
+	        }
+	    }
+	    
+	    if (pesoOutros > 0) {
+	        top5Produtos.add(new ProdutoPesoDTO("Outros", pesoOutros));
+	    }
+	    
+	    return top5Produtos;
+	}
 }
