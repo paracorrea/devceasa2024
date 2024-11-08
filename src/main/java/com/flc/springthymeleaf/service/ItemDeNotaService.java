@@ -77,7 +77,7 @@ public class ItemDeNotaService {
 	        String nomeProduto = (String) produtos.get(i)[0];
 	        double peso = ((Number) produtos.get(i)[1]).doubleValue();
 	        
-	        if (i < 5) {
+	        if (i < 6) {
 	            top5Produtos.add(new ProdutoPesoDTO(nomeProduto, peso));
 	        } else {
 	            pesoOutros += peso;

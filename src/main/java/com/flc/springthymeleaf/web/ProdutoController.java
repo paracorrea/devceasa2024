@@ -1,8 +1,10 @@
 package com.flc.springthymeleaf.web;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -276,7 +278,8 @@ public class ProdutoController {
 	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getTop5SubgruposByPeso(startDate, endDate);
 
 	     Double volumeTotal = itemDeNotaService.findVolumeTotalEntreDatas(startDate, endDate);
-	     
+	     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+	     String volumeTotalFormatado = nf.format(volumeTotal);
 	     // Converte os dados em JSON
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
@@ -287,7 +290,7 @@ public class ProdutoController {
 	     model.addAttribute("subgrupoDTO", subgrupoJson);
 	     model.addAttribute("startDate", startDate);
 	     model.addAttribute("endDate", endDate);
-	     model.addAttribute("volumeTotal", volumeTotal);
+	     model.addAttribute("volumeTotal", volumeTotalFormatado);
 
 	     return "graficos/grafico_combinado";  // Nome do template Thymeleaf
 	 }

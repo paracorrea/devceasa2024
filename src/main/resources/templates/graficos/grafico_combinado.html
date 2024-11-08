@@ -19,6 +19,11 @@
             padding: 10px;
         }
 
+		.volumePercentual {
+			font-size: 14px;
+            color: #006400;
+			text-align: center;
+		}
         .filtro {
             text-align: center;
             padding: 10px;
@@ -54,29 +59,29 @@
             <button type="submit" class="btn btn-primary btn-sm">Atualizar Gráficos</button>
         </form>
          <p><strong>dados extraídos das notas fiscais entre as datas de : </strong> [[${#temporals.format(startDate, 'dd-MM-yyyy')}]] até [[${#temporals.format(endDate,'dd-MM-yyyy')}]]</p>
-         <p><strong>Volume Total Comercializado:</strong> [[${volumeTotal}]] Kilos</p>
+         <p><strong>Volume Total Comercializado:</strong> [[${(volumeTotal)}]] Kilos</p>
     </div>
 
     <div class="container">
         <div class="row">
             <!-- Gráfico Polar Area dos Subgrupos -->
             <div class="col-md-6 chart-container">
-                <h4 class="text-center">TOP 5 - Volume por Grupo</h4>
+                <h4 class="text-center"> Volume por Subgrupo</h4>
                 <div class="chart">
                     <canvas id="myPolarAreaChart"></canvas>
                 </div>
-                <div id="subgrupoPercentual">
+                <div id="subgrupoPercentual" class = "volumePercentual">
                     <!-- Percentuais serão preenchidos pelo JavaScript -->
                 </div>
             </div>
 
             <!-- Gráfico de Rosca dos Produtos -->
             <div class="col-md-6 chart-container">
-                <h4 class="text-center">Top 5 - Volume por Produtos</h4>
+                <h4 class="text-center"> Volume por Produtos</h4>
                 <div class="chart">
                     <canvas id="myDoughnutChart"></canvas>
                 </div>
-                <div id="produtoPercentual">
+                <div id="produtoPercentual" class = "volumePercentual">
                     <!-- Percentuais serão preenchidos pelo JavaScript -->
                 </div>
             </div>
@@ -134,25 +139,25 @@
         var produtoValues = parsedProdutoData.map(item => item.totalPeso);
 
         var totalOutros = parsedProdutoData.reduce((total, item, index) => {
-            return index >= 5 ? total + item.totalPeso : total;
+            return index >= 6 ? total + item.totalPeso : total;
         }, 0);
         
         var doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
         var myDoughnutChart = new Chart(doughnutCtx, {
             type: 'pie',
             data: {
-                labels: produtoLabels.slice(0, 5).concat("Outros"),
+                labels: produtoLabels.slice(0, 6).concat("Outros"),
                 datasets: [{
                     label: 'Volume por Produto (Outros: ' + totalOutros.toLocaleString('pt-BR') + ' Kilos)',
-                    data: produtoValues.slice(0, 5).concat(totalOutros),
-                    backgroundColor: ['#40E0D0', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#FF8000'],
+                    data: produtoValues.slice(0, 6).concat(totalOutros),
+                    backgroundColor: ['#8B0000', '#006400', '#8B008B', '#4B0082', '#8B4513','#2F4F4F','#000080'],
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     datalabels: {
-                        color: '#000000',
+                        color: '#ffffff',
                         font: { size: 12, weight: 'bold' },
                         formatter: function(value) {
                             return value.toLocaleString('pt-BR') + ' Kilos';
@@ -167,22 +172,22 @@
         var volumeTotal = /*[[${volumeTotal}]]*/ '[[${volumeTotal}]]';
 
         // Calcular e exibir percentuais para Subgrupos
-        var subgrupoPercentualHTML = "<h5>Percentuais de Subgrupos</h5><ul>";
+        var subgrupoPercentualHTML = "<h6>Percentuais de Subgrupos</h5><ul>";
         subgrupoValues.forEach((value, index) => {
             var percent = ((value / volumeTotal) * 100).toFixed(1);
-            subgrupoPercentualHTML += `<li>${subgrupoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos)</li>`;
+            subgrupoPercentualHTML += `${subgrupoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos ) - `;
         });
         subgrupoPercentualHTML += "</ul>";
         document.getElementById('subgrupoPercentual').innerHTML = subgrupoPercentualHTML;
 
         // Calcular e exibir percentuais para Produtos
-        var produtoPercentualHTML = "<h5>Percentuais de Produtos</h5><ul>";
-        produtoValues.slice(0, 5).forEach((value, index) => {
+        var produtoPercentualHTML = "<h6>Percentuais de Produtos</h5><ul>";
+        produtoValues.slice(0, 6).forEach((value, index) => {
             var percent = ((value / volumeTotal) * 100).toFixed(1);
-            produtoPercentualHTML += `<li>${produtoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos)</li>`;
+            produtoPercentualHTML += `${produtoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos ) - `;
         });
         var outrosPercent = ((totalOutros / volumeTotal) * 100).toFixed(1);
-        produtoPercentualHTML += `<li>Outros: ${outrosPercent}% (${totalOutros.toLocaleString('pt-BR')} Kilos)</li>`;
+        produtoPercentualHTML += `Outros: ${outrosPercent}% (${totalOutros.toLocaleString('pt-BR')} Kilos)`;
         produtoPercentualHTML += "</ul>";
         document.getElementById('produtoPercentual').innerHTML = produtoPercentualHTML;
     </script>
