@@ -35,7 +35,7 @@ public class UserController {
 
 	        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	        if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
-	            model.addAttribute("error", "Senha atual incorreta.");
+	            model.addAttribute("fail", "Senha atual incorreta.");
 	            return "usuario/alterar-senha";
 	        }
 
