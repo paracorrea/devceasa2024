@@ -57,6 +57,8 @@
                     </a>
                     <ul class="dropdown-menu">
                          <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/relatorio-mensal}">Média Mensal Valor Comum </a></li>
+                          <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/graficos1}">Gráfico Produto Peso</a></li>
+                    	
                     </ul>
                 </li>
                 
@@ -85,10 +87,11 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/portarias/listar}">Controle de Portaria</a></li>
                   		 <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/notas/listar}">Listar todas as notas</a></li>
-                  		  <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/graficos1}">Gráfico Produto Peso</a></li>
+                  		 
+                  		<!-- 
                   		  <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/graficos2}">Gráfico Subgrupos Peso</a></li>
                   		   <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/grafico3}">Gráfico Combinado Peso</a></li>
-                  		  
+                  		-->
                     </ul>
                 </li>
                 

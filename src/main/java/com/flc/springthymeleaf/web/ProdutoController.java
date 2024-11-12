@@ -311,7 +311,9 @@ public class ProdutoController {
 
 	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
 	    
-
+	     Double volumeTotal = itemDeNotaService.findVolumeTotalEntreDatas(startDate, endDate);
+	     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+	     String volumeTotalFormatado = nf.format(volumeTotal);
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);
 
@@ -321,6 +323,7 @@ public class ProdutoController {
 	     model.addAttribute("produtosDTO", produtosJson);
 	     model.addAttribute("startDate", startDate);
 	     model.addAttribute("endDate", endDate);
+	     model.addAttribute("volumeTotal", volumeTotalFormatado);
 
 	     return "produto/grafico_produtos";
 	 }
