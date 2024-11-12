@@ -84,8 +84,8 @@
                         </ul>
                     </td>
                     <td>
-                        <a th:href="@{/notas/editar/{id}(id=${nota.id})}" class="btn btn-warning btn-sm">Editar</a>
-                        <form th:action="@{/notas/excluir/{id}(id=${nota.id})}" method="post" class="d-inline">
+                        <a th:href="@{/notas/editar/{id}(id=${nota.id})}" sec:authorize="hasRole('ROLE_MANAGER')" class="btn btn-warning btn-sm">Editar</a>
+                        <form th:action="@{/notas/excluir/{id}(id=${nota.id})}"  sec:authorize="hasRole('ROLE_ADMIN')" method="post" class="d-inline">
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta nota?');">Excluir</button>
                         </form>
                     </td>

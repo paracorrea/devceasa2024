@@ -31,9 +31,9 @@
                         <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/grupos/cadastrar}">Novo grupo</a></li>
                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/subgrupos/cadastrar}">Novo subgrupo</a></li>
                         <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/produtos/cadastrar}">Novo produto</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/propriedades/cadastrar}">Nova propriedade</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/embalagens/listar}">Nova embalagem</a></li>
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/embalagens/pesquisar}">Associar embalagens</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/propriedades/cadastrar}">Nova propriedade</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/embalagens/listar}">Nova embalagem</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/embalagens/pesquisar}">Associar embalagens</a></li>
                        
                        
                        
@@ -65,8 +65,8 @@
                         Cotação
                     </a>
                     <ul class="dropdown-menu">
-                    	<li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/feiras/cadastrar}">Controle de feiras</a></li>	
-                        <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/pesquisar}">Cotação</a></li>
+                    	<li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/feiras/cadastrar}">Controle de feiras</a></li>	
+                        <li><a class="dropdown-item" sec:authorize="hasRole('MANAGER')" th:href="@{/cotacoes/pesquisar}">Cotação</a></li>
                         <li><a class="dropdown-item" th:href="@{/cotacoes/por-data}">Consultar</a></li>
                     </ul>
                 </li>

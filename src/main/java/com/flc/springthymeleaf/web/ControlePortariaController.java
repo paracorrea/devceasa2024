@@ -156,7 +156,7 @@ public class ControlePortariaController {
         if (sessaoExistente.isPresent()) {
             // Caso já exista uma portaria com essa data, retorna uma mensagem de erro
             attr.addFlashAttribute("error", "Já existe uma sessão para a data selecionada.");
-            return "redirect:/portarias/controle-portaria/portarias/listar";
+            return "redirect:/portarias/controle-portaria/listar";
         }
 
         // Define o total inicial de notas e peso da nova sessão
