@@ -1,471 +1,630 @@
-2024-11-12 09:14:21 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 09:14:21 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 19644 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 09:14:21 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 09:14:21 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-12 09:14:21 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-12 09:14:22 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 09:14:22 - Finished Spring Data repository scanning in 95 ms. Found 16 JPA repository interfaces.
-2024-11-12 09:14:23 - Tomcat initialized with port 5001 (http)
-2024-11-12 09:14:23 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 09:14:23 - Starting service [Tomcat]
-2024-11-12 09:14:23 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 09:14:23 - Initializing Spring embedded WebApplicationContext
-2024-11-12 09:14:23 - Root WebApplicationContext: initialization completed in 1870 ms
-2024-11-12 09:14:24 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 09:14:24 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 09:14:24 - HHH000026: Second-level cache disabled
-2024-11-12 09:14:24 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 09:14:24 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 09:14:24 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 09:14:25 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 09:14:25 - HikariPool-1 - Starting...
-2024-11-12 09:14:25 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@76a59dfa
-2024-11-12 09:14:25 - HikariPool-1 - Start completed.
-2024-11-12 09:14:26 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 09:14:26 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 09:14:27 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 09:14:27 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 09:14:28 - LiveReload server is running on port 35729
-2024-11-12 09:14:28 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 09:14:28 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 09:14:28 - Started SpringThymeleafApplication in 7.635 seconds (process running for 8.216)
-2024-11-12 09:14:54 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 09:14:54 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 09:14:54 - Completed initialization in 3 ms
-2024-11-12 10:36:12 - Warning: The following properties were not quoted:
-2024-11-12 10:36:12 - Cotação faltante: LARANJA - BAIA - BAIANINHA
-2024-11-12 10:36:12 - Cotação faltante: MELAO - REI - 
-2024-11-12 10:36:12 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 10:36:12 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 10:36:12 - Cotação faltante: TOMATE - CAQUI - 
-2024-11-12 10:36:12 - Cotação faltante: CAJU -  - 
-2024-11-12 10:36:12 - Cotação faltante: PIMENTA - CUMARI - 
-2024-11-12 10:36:12 - Cotação faltante: UVA - RUBI - 
-2024-11-12 10:36:12 - Cotação faltante: ALHO - ARGENTINO - 
-2024-11-12 10:36:12 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 10:36:12 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 10:36:12 - Cotação faltante: CEBOLA - AMARELA  - PARANA
-2024-11-12 10:36:12 - Cotação faltante: CEBOLA - AMARELA  - RIO GRANDE DO SUL
-2024-11-12 10:36:12 - Cotação faltante: COCO SECO -  - 
-2024-11-12 10:36:12 - Cotação faltante: LIMAO - LIMA DA PÉRSIA - 
-2024-11-12 10:36:12 - Cotação faltante: UVA - PRETA - IZABEL BORDO
-2024-11-12 10:36:12 - Cotação faltante: REPOLHO - VERDE - 
-2024-11-12 10:36:12 - Cotação faltante: TANGERINA - CRAVO - 
-2024-11-12 10:36:12 - Cotação faltante: TOMATE - CEREJA - 
-2024-11-12 10:36:12 - Cotação faltante: UVA - NIAGARA - 
-2024-11-12 10:36:12 - Cotação faltante: UVA - BRASIL - 
-2024-11-12 10:36:12 - Cotação faltante: UVA - THOMPSON - 
-2024-11-12 10:36:12 - Cotação faltante: RABANETE -  - 
-2024-11-12 10:37:22 - Recebido propriedadeId em cotacoes/cadastrar: 622
-2024-11-12 10:37:22 - Propriedade selecionada: ABACATE ABA 
-2024-11-12 10:37:33 - Warning: The following properties were not quoted:
-2024-11-12 10:37:33 - Cotação faltante: LARANJA - BAIA - BAIANINHA
-2024-11-12 10:37:33 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 10:37:33 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 10:37:33 - Cotação faltante: TOMATE - CAQUI - 
-2024-11-12 10:37:33 - Cotação faltante: CAJU -  - 
-2024-11-12 10:37:33 - Cotação faltante: COGUMELO - SHIMEJI - 
-2024-11-12 10:37:33 - Cotação faltante: COGUMELO - SHITAKE - 
-2024-11-12 10:37:33 - Cotação faltante: MANGA - TOMMY - 
-2024-11-12 10:37:33 - Cotação faltante: PIMENTA - CUMARI - 
-2024-11-12 10:37:33 - Cotação faltante: UVA - RUBI - 
-2024-11-12 10:37:33 - Cotação faltante: ALHO - ARGENTINO - 
-2024-11-12 10:37:33 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 10:37:33 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 10:37:33 - Cotação faltante: CEBOLA - AMARELA  - PAULISTA
-2024-11-12 10:37:33 - Cotação faltante: CEBOLA - AMARELA  - GOIANA
-2024-11-12 10:37:33 - Cotação faltante: CEBOLA - AMARELA  - PARANA
-2024-11-12 10:37:33 - Cotação faltante: CEBOLA - AMARELA  - RIO GRANDE DO SUL
-2024-11-12 10:37:33 - Cotação faltante: COCO SECO -  - 
-2024-11-12 10:37:33 - Cotação faltante: UVA - PRETA - IZABEL BORDO
-2024-11-12 10:37:33 - Cotação faltante: REPOLHO - VERDE - 
-2024-11-12 10:37:33 - Cotação faltante: TANGERINA - CRAVO - 
-2024-11-12 10:37:33 - Cotação faltante: TOMATE - CEREJA - 
-2024-11-12 10:37:33 - Cotação faltante: UVA - NIAGARA - 
-2024-11-12 10:37:33 - Cotação faltante: UVA - BRASIL - 
-2024-11-12 10:37:33 - Cotação faltante: UVA - THOMPSON - 
-2024-11-12 10:37:33 - Cotação faltante: RABANETE -  - 
-2024-11-12 10:37:57 - Recebido propriedadeId em cotacoes/cadastrar: 496
-2024-11-12 10:37:57 - Último Valor Comum: 9.00
-2024-11-12 10:37:57 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@fde6cf4
-2024-11-12 10:37:57 - Última cotação - PrecoMinimo: 8.00
-2024-11-12 10:37:57 - Última cotação - PrecoMedio: 9.00
-2024-11-12 10:37:57 - Última cotação - PrecoMaximo: 10.00
-2024-11-12 10:37:57 - Última cotação - ValorComum: 9.00
-2024-11-12 10:37:57 - Última cotação - Valor1: 80.00
-2024-11-12 10:37:57 - Última cotação - Valor2: 90.00
-2024-11-12 10:37:57 - Última cotação - Valor3: 90.00
-2024-11-12 10:37:57 - Última cotação - Valor4: 100.00
-2024-11-12 10:37:57 - Última cotação - Valor5: null
-2024-11-12 10:37:57 - Última cotação - Valor6: null
-2024-11-12 10:37:57 - Última cotação - Valor7: null
-2024-11-12 10:37:57 - Última cotação - Valor8: null
-2024-11-12 10:37:57 - Última cotação - Valor9: null
-2024-11-12 10:37:57 - Última cotação - Valor10: null
-2024-11-12 10:37:57 - Propriedade selecionada: AMENDOIM AMN A COM CASCA
-2024-11-12 10:43:43 - Recebido propriedadeId em cotacoes/cadastrar: 496
-2024-11-12 10:43:43 - Último Valor Comum: 9.00
-2024-11-12 10:43:43 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@5316f069
-2024-11-12 10:43:43 - Última cotação - PrecoMinimo: 8.00
-2024-11-12 10:43:43 - Última cotação - PrecoMedio: 9.00
-2024-11-12 10:43:43 - Última cotação - PrecoMaximo: 10.00
-2024-11-12 10:43:43 - Última cotação - ValorComum: 9.00
-2024-11-12 10:43:43 - Última cotação - Valor1: 80.00
-2024-11-12 10:43:43 - Última cotação - Valor2: 90.00
-2024-11-12 10:43:43 - Última cotação - Valor3: 90.00
-2024-11-12 10:43:43 - Última cotação - Valor4: 100.00
-2024-11-12 10:43:43 - Última cotação - Valor5: null
-2024-11-12 10:43:43 - Última cotação - Valor6: null
-2024-11-12 10:43:43 - Última cotação - Valor7: null
-2024-11-12 10:43:43 - Última cotação - Valor8: null
-2024-11-12 10:43:43 - Última cotação - Valor9: null
-2024-11-12 10:43:43 - Última cotação - Valor10: null
-2024-11-12 10:43:43 - Propriedade selecionada: AMENDOIM AMN A COM CASCA
-2024-11-12 10:51:50 - Recebido propriedadeId em cotacoes/cadastrar: 638
-2024-11-12 10:51:50 - Propriedade selecionada: BATATA BATL INGLESA
-2024-11-12 10:52:51 - Recebido propriedadeId em cotacoes/cadastrar: 463
-2024-11-12 10:52:51 - Último Valor Comum: 10.00
-2024-11-12 10:52:51 - Última cotação: com.flc.springthymeleaf.domain.Cotacao@77aa9447
-2024-11-12 10:52:51 - Última cotação - PrecoMinimo: 9.33
-2024-11-12 10:52:51 - Última cotação - PrecoMedio: 10.08
-2024-11-12 10:52:51 - Última cotação - PrecoMaximo: 11.00
-2024-11-12 10:52:51 - Última cotação - ValorComum: 10.00
-2024-11-12 10:52:51 - Última cotação - Valor1: 140.00
-2024-11-12 10:52:51 - Última cotação - Valor2: 150.00
-2024-11-12 10:52:51 - Última cotação - Valor3: 150.00
-2024-11-12 10:52:51 - Última cotação - Valor4: 165.00
-2024-11-12 10:52:51 - Última cotação - Valor5: null
-2024-11-12 10:52:51 - Última cotação - Valor6: null
-2024-11-12 10:52:51 - Última cotação - Valor7: null
-2024-11-12 10:52:51 - Última cotação - Valor8: null
-2024-11-12 10:52:51 - Última cotação - Valor9: null
-2024-11-12 10:52:51 - Última cotação - Valor10: null
-2024-11-12 10:52:51 - Propriedade selecionada: LARANJA LAI BAIA
-2024-11-12 12:23:33 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-12 12:23:33 - Stopping ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:23:33 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 12:23:33 - HikariPool-1 - Shutdown initiated...
-2024-11-12 12:23:33 - HikariPool-1 - Shutdown completed.
-2024-11-12 12:23:33 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 19644 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 12:23:33 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 12:23:33 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 12:23:33 - Finished Spring Data repository scanning in 51 ms. Found 16 JPA repository interfaces.
-2024-11-12 12:23:33 - Tomcat initialized with port 5001 (http)
-2024-11-12 12:23:33 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:23:33 - Starting service [Tomcat]
-2024-11-12 12:23:33 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 12:23:33 - Initializing Spring embedded WebApplicationContext
-2024-11-12 12:23:33 - Root WebApplicationContext: initialization completed in 594 ms
-2024-11-12 12:23:33 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 12:23:33 - HHH000026: Second-level cache disabled
-2024-11-12 12:23:33 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 12:23:33 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 12:23:33 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 12:23:34 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 12:23:34 - HikariPool-2 - Starting...
-2024-11-12 12:23:34 - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@200dc3fb
-2024-11-12 12:23:34 - HikariPool-2 - Start completed.
-2024-11-12 12:23:34 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 12:23:35 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 12:23:35 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 12:23:35 - LiveReload server is running on port 35729
-2024-11-12 12:23:35 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:23:35 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 12:23:35 - Started SpringThymeleafApplication in 2.461 seconds (process running for 11355.085)
-2024-11-12 12:23:35 - Condition evaluation unchanged
-2024-11-12 12:23:56 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 12:23:56 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 12:23:56 - Completed initialization in 2 ms
-2024-11-12 12:26:46 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-12 12:26:46 - Stopping ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:26:46 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 12:26:46 - HikariPool-2 - Shutdown initiated...
-2024-11-12 12:26:46 - HikariPool-2 - Shutdown completed.
-2024-11-12 12:26:46 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 19644 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 12:26:46 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 12:26:46 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 12:26:46 - Finished Spring Data repository scanning in 44 ms. Found 16 JPA repository interfaces.
-2024-11-12 12:26:46 - Tomcat initialized with port 5001 (http)
-2024-11-12 12:26:46 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:26:46 - Starting service [Tomcat]
-2024-11-12 12:26:46 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 12:26:47 - Initializing Spring embedded WebApplicationContext
-2024-11-12 12:26:47 - Root WebApplicationContext: initialization completed in 398 ms
-2024-11-12 12:26:47 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 12:26:47 - HHH000026: Second-level cache disabled
-2024-11-12 12:26:47 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 12:26:47 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 12:26:47 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 12:26:47 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 12:26:47 - HikariPool-3 - Starting...
-2024-11-12 12:26:47 - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@259febb3
-2024-11-12 12:26:47 - HikariPool-3 - Start completed.
-2024-11-12 12:26:47 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 12:26:47 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 12:26:47 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 12:26:48 - LiveReload server is running on port 35729
-2024-11-12 12:26:48 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 12:26:48 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 12:26:48 - Started SpringThymeleafApplication in 1.641 seconds (process running for 11547.617)
-2024-11-12 12:26:48 - Condition evaluation unchanged
-2024-11-12 12:28:04 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 12:28:04 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 12:28:04 - Completed initialization in 2 ms
-2024-11-12 12:31:53 - Warning: The following properties were not quoted:
-2024-11-12 12:31:53 - Cotação faltante: LARANJA - BAIA - BAIANINHA
-2024-11-12 12:31:53 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 12:31:53 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 12:31:53 - Cotação faltante: TOMATE - CAQUI - 
-2024-11-12 12:31:53 - Cotação faltante: CAJU -  - 
-2024-11-12 12:31:53 - Cotação faltante: COGUMELO - SHIMEJI - 
-2024-11-12 12:31:53 - Cotação faltante: COGUMELO - SHITAKE - 
-2024-11-12 12:31:53 - Cotação faltante: PIMENTA - CUMARI - 
-2024-11-12 12:31:53 - Cotação faltante: UVA - RUBI - 
-2024-11-12 12:31:53 - Cotação faltante: ALHO - ARGENTINO - 
-2024-11-12 12:31:53 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 12:31:53 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 12:31:53 - Cotação faltante: CEBOLA - AMARELA  - PAULISTA
-2024-11-12 12:31:53 - Cotação faltante: CEBOLA - AMARELA  - GOIANA
-2024-11-12 12:31:53 - Cotação faltante: CEBOLA - AMARELA  - PARANA
-2024-11-12 12:31:53 - Cotação faltante: CEBOLA - AMARELA  - RIO GRANDE DO SUL
-2024-11-12 12:31:53 - Cotação faltante: COCO SECO -  - 
-2024-11-12 12:31:53 - Cotação faltante: UVA - PRETA - IZABEL BORDO
-2024-11-12 12:31:53 - Cotação faltante: REPOLHO - VERDE - 
-2024-11-12 12:31:53 - Cotação faltante: TANGERINA - CRAVO - 
-2024-11-12 12:31:53 - Cotação faltante: TOMATE - CEREJA - 
-2024-11-12 12:31:53 - Cotação faltante: UVA - NIAGARA - 
-2024-11-12 12:31:53 - Cotação faltante: UVA - BRASIL - 
-2024-11-12 12:31:53 - Cotação faltante: UVA - THOMPSON - 
-2024-11-12 12:31:53 - Cotação faltante: RABANETE -  - 
-2024-11-12 14:00:29 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 14:00:29 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 12128 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 14:00:29 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 14:00:29 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-12 14:00:29 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-12 14:00:30 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 14:00:30 - Finished Spring Data repository scanning in 90 ms. Found 16 JPA repository interfaces.
-2024-11-12 14:00:31 - Tomcat initialized with port 5001 (http)
-2024-11-12 14:00:31 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:00:31 - Starting service [Tomcat]
-2024-11-12 14:00:31 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 14:00:31 - Initializing Spring embedded WebApplicationContext
-2024-11-12 14:00:31 - Root WebApplicationContext: initialization completed in 1815 ms
-2024-11-12 14:00:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 14:00:31 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 14:00:31 - HHH000026: Second-level cache disabled
-2024-11-12 14:00:32 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 14:00:32 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 14:00:32 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 14:00:33 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 14:00:33 - HikariPool-1 - Starting...
-2024-11-12 14:00:33 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3d25527a
-2024-11-12 14:00:33 - HikariPool-1 - Start completed.
-2024-11-12 14:00:34 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:00:34 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 14:00:35 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 14:00:35 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 14:00:36 - LiveReload server is running on port 35729
-2024-11-12 14:00:36 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:00:36 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 14:00:36 - Started SpringThymeleafApplication in 7.206 seconds (process running for 7.784)
-2024-11-12 14:00:48 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 14:00:48 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 14:00:48 - Completed initialization in 1 ms
-2024-11-12 14:02:19 - Warning: The following properties were not quoted:
-2024-11-12 14:02:19 - Cotação faltante: LARANJA - BAIA - BAIANINHA
-2024-11-12 14:02:19 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 14:02:19 - Cotação faltante: TANGERINA - POKAN - 
-2024-11-12 14:02:19 - Cotação faltante: TOMATE - CAQUI - 
-2024-11-12 14:02:19 - Cotação faltante: CAJU -  - 
-2024-11-12 14:02:19 - Cotação faltante: COGUMELO - SHIMEJI - 
-2024-11-12 14:02:19 - Cotação faltante: COGUMELO - SHITAKE - 
-2024-11-12 14:02:19 - Cotação faltante: PIMENTA - CUMARI - 
-2024-11-12 14:02:19 - Cotação faltante: UVA - RUBI - 
-2024-11-12 14:02:19 - Cotação faltante: ALHO - ARGENTINO - 
-2024-11-12 14:02:19 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 14:02:19 - Cotação faltante: ALHO - CHILENO - 
-2024-11-12 14:02:19 - Cotação faltante: CEBOLA - AMARELA  - PAULISTA
-2024-11-12 14:02:19 - Cotação faltante: CEBOLA - AMARELA  - GOIANA
-2024-11-12 14:02:19 - Cotação faltante: CEBOLA - AMARELA  - PARANA
-2024-11-12 14:02:19 - Cotação faltante: CEBOLA - AMARELA  - RIO GRANDE DO SUL
-2024-11-12 14:02:19 - Cotação faltante: COCO SECO -  - 
-2024-11-12 14:02:19 - Cotação faltante: UVA - PRETA - IZABEL BORDO
-2024-11-12 14:02:19 - Cotação faltante: REPOLHO - VERDE - 
-2024-11-12 14:02:19 - Cotação faltante: TANGERINA - CRAVO - 
-2024-11-12 14:02:19 - Cotação faltante: TOMATE - CEREJA - 
-2024-11-12 14:02:19 - Cotação faltante: UVA - NIAGARA - 
-2024-11-12 14:02:19 - Cotação faltante: UVA - BRASIL - 
-2024-11-12 14:02:19 - Cotação faltante: UVA - THOMPSON - 
-2024-11-12 14:02:19 - Cotação faltante: RABANETE -  - 
-2024-11-12 14:08:50 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 14:08:50 - Starting SpringThymeleafApplicationTests using Java 21.0.4 with PID 5044 (started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 14:08:50 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 14:08:51 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 14:08:52 - Finished Spring Data repository scanning in 96 ms. Found 16 JPA repository interfaces.
-2024-11-12 14:08:52 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 14:08:52 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 14:08:52 - HHH000026: Second-level cache disabled
-2024-11-12 14:08:53 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 14:08:53 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 14:08:53 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 14:08:54 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 14:08:54 - HikariPool-1 - Starting...
-2024-11-12 14:08:54 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48cbb4c5
-2024-11-12 14:08:54 - HikariPool-1 - Start completed.
-2024-11-12 14:08:55 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:08:55 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 14:08:56 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 14:08:56 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 14:08:57 - Started SpringThymeleafApplicationTests in 6.934 seconds (process running for 7.987)
-2024-11-12 14:08:58 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:08:58 - HikariPool-1 - Shutdown initiated...
-2024-11-12 14:08:58 - HikariPool-1 - Shutdown completed.
-2024-11-12 14:29:28 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 14:29:28 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 14324 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 14:29:28 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 14:29:28 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-12 14:29:28 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-12 14:29:29 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 14:29:29 - Finished Spring Data repository scanning in 89 ms. Found 16 JPA repository interfaces.
-2024-11-12 14:29:30 - Tomcat initialized with port 5001 (http)
-2024-11-12 14:29:30 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:29:30 - Starting service [Tomcat]
-2024-11-12 14:29:30 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 14:29:30 - Initializing Spring embedded WebApplicationContext
-2024-11-12 14:29:30 - Root WebApplicationContext: initialization completed in 1785 ms
-2024-11-12 14:29:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 14:29:30 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 14:29:30 - HHH000026: Second-level cache disabled
-2024-11-12 14:29:30 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 14:29:30 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 14:29:30 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 14:29:32 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 14:29:32 - HikariPool-1 - Starting...
-2024-11-12 14:29:32 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5677c521
-2024-11-12 14:29:32 - HikariPool-1 - Start completed.
-2024-11-12 14:29:32 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:29:33 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 14:29:33 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 14:29:33 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 14:29:34 - LiveReload server is running on port 35729
-2024-11-12 14:29:34 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:29:34 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 14:29:34 - Started SpringThymeleafApplication in 7.212 seconds (process running for 7.778)
-2024-11-12 14:35:21 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 14:35:21 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 14:35:21 - Completed initialization in 1 ms
-2024-11-12 14:41:47 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-12 14:41:47 - Stopping ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:41:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:41:47 - HikariPool-1 - Shutdown initiated...
-2024-11-12 14:41:47 - HikariPool-1 - Shutdown completed.
-2024-11-12 14:41:47 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 14324 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 14:41:47 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 14:41:47 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 14:41:47 - Finished Spring Data repository scanning in 48 ms. Found 16 JPA repository interfaces.
-2024-11-12 14:41:48 - Tomcat initialized with port 5001 (http)
-2024-11-12 14:41:48 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:41:48 - Starting service [Tomcat]
-2024-11-12 14:41:48 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 14:41:48 - Initializing Spring embedded WebApplicationContext
-2024-11-12 14:41:48 - Root WebApplicationContext: initialization completed in 456 ms
-2024-11-12 14:41:48 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 14:41:48 - HHH000026: Second-level cache disabled
-2024-11-12 14:41:48 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 14:41:48 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 14:41:48 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 14:41:48 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 14:41:48 - HikariPool-2 - Starting...
-2024-11-12 14:41:48 - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3373e28d
-2024-11-12 14:41:48 - HikariPool-2 - Start completed.
-2024-11-12 14:41:48 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 14:41:49 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 14:41:49 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 14:41:49 - LiveReload server is running on port 35729
-2024-11-12 14:41:49 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 14:41:49 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 14:41:49 - Started SpringThymeleafApplication in 1.912 seconds (process running for 742.366)
-2024-11-12 14:41:49 - Condition evaluation unchanged
-2024-11-12 14:43:46 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 14:43:46 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 14:43:46 - Completed initialization in 3 ms
-2024-11-12 15:20:40 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 15:20:40 - Starting SpringThymeleafApplicationTests using Java 21.0.4 with PID 21172 (started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 15:20:40 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 15:20:41 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 15:20:41 - Finished Spring Data repository scanning in 118 ms. Found 16 JPA repository interfaces.
-2024-11-12 15:20:42 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 15:20:42 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 15:20:42 - HHH000026: Second-level cache disabled
-2024-11-12 15:20:42 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 15:20:42 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 15:20:42 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 15:20:44 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 15:20:44 - HikariPool-1 - Starting...
-2024-11-12 15:20:44 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7da40bf4
-2024-11-12 15:20:44 - HikariPool-1 - Start completed.
-2024-11-12 15:20:44 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 15:20:45 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 15:20:46 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 15:20:46 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 15:20:47 - Started SpringThymeleafApplicationTests in 7.52 seconds (process running for 8.621)
-2024-11-12 15:20:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 15:20:47 - HikariPool-1 - Shutdown initiated...
-2024-11-12 15:20:47 - HikariPool-1 - Shutdown completed.
-2024-11-12 17:34:47 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 17:34:47 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 16672 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 17:34:47 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 17:34:47 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-12 17:34:47 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-12 17:34:48 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 17:34:48 - Finished Spring Data repository scanning in 98 ms. Found 16 JPA repository interfaces.
-2024-11-12 17:34:49 - Tomcat initialized with port 5001 (http)
-2024-11-12 17:34:49 - Initializing ProtocolHandler ["http-nio-5001"]
-2024-11-12 17:34:49 - Starting service [Tomcat]
-2024-11-12 17:34:49 - Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-12 17:34:49 - Initializing Spring embedded WebApplicationContext
-2024-11-12 17:34:50 - Root WebApplicationContext: initialization completed in 2209 ms
-2024-11-12 17:34:50 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 17:34:50 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 17:34:50 - HHH000026: Second-level cache disabled
-2024-11-12 17:34:50 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 17:34:50 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 17:34:50 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 17:34:52 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 17:34:52 - HikariPool-1 - Starting...
-2024-11-12 17:34:52 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5677c521
-2024-11-12 17:34:52 - HikariPool-1 - Start completed.
-2024-11-12 17:34:52 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 17:34:53 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 17:34:53 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 17:34:54 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 17:34:55 - LiveReload server is running on port 35729
-2024-11-12 17:34:55 - Starting ProtocolHandler ["http-nio-5001"]
-2024-11-12 17:34:55 - Tomcat started on port 5001 (http) with context path '/'
-2024-11-12 17:34:55 - Started SpringThymeleafApplication in 8.666 seconds (process running for 9.32)
-2024-11-12 17:35:01 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-12 17:35:01 - Initializing Servlet 'dispatcherServlet'
-2024-11-12 17:35:01 - Completed initialization in 3 ms
-2024-11-12 18:40:46 - HV000001: Hibernate Validator 8.0.1.Final
-2024-11-12 18:40:46 - Starting SpringThymeleafApplicationTests using Java 21.0.4 with PID 15976 (started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
-2024-11-12 18:40:46 - No active profile set, falling back to 1 default profile: "default"
-2024-11-12 18:40:47 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-12 18:40:47 - Finished Spring Data repository scanning in 101 ms. Found 16 JPA repository interfaces.
-2024-11-12 18:40:48 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-12 18:40:48 - HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-12 18:40:48 - HHH000026: Second-level cache disabled
-2024-11-12 18:40:48 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-12 18:40:48 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
-2024-11-12 18:40:48 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-11-12 18:40:50 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-12 18:40:50 - HikariPool-1 - Starting...
-2024-11-12 18:40:50 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48cbb4c5
-2024-11-12 18:40:50 - HikariPool-1 - Start completed.
-2024-11-12 18:40:50 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 18:40:51 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-12 18:40:51 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
-2024-11-12 18:40:51 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
-2024-11-12 18:40:53 - Started SpringThymeleafApplicationTests in 6.893 seconds (process running for 7.949)
-2024-11-12 18:40:53 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-12 18:40:53 - HikariPool-1 - Shutdown initiated...
-2024-11-12 18:40:53 - HikariPool-1 - Shutdown completed.
+2024-11-14 07:17:48 - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-14 07:17:48 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 19140 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-11-14 07:17:48 - No active profile set, falling back to 1 default profile: "default"
+2024-11-14 07:17:49 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-14 07:17:49 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-14 07:17:49 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-14 07:17:50 - Finished Spring Data repository scanning in 99 ms. Found 16 JPA repository interfaces.
+2024-11-14 07:17:50 - Tomcat initialized with port 5001 (http)
+2024-11-14 07:17:50 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:17:50 - Starting service [Tomcat]
+2024-11-14 07:17:50 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-11-14 07:17:51 - Initializing Spring embedded WebApplicationContext
+2024-11-14 07:17:51 - Root WebApplicationContext: initialization completed in 1985 ms
+2024-11-14 07:17:51 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-14 07:17:51 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-14 07:17:51 - HHH000026: Second-level cache disabled
+2024-11-14 07:17:51 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-14 07:17:51 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-11-14 07:17:51 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-14 07:17:53 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-14 07:17:53 - HikariPool-1 - Starting...
+2024-11-14 07:17:53 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23b2239a
+2024-11-14 07:17:53 - HikariPool-1 - Start completed.
+2024-11-14 07:17:53 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-14 07:17:54 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-14 07:17:55 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-11-14 07:17:55 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-11-14 07:17:56 - LiveReload server is running on port 35729
+2024-11-14 07:17:56 - Starting ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:17:56 - Tomcat started on port 5001 (http) with context path '/'
+2024-11-14 07:17:56 - Started SpringThymeleafApplication in 8.023 seconds (process running for 8.617)
+2024-11-14 07:18:05 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-14 07:18:05 - Initializing Servlet 'dispatcherServlet'
+2024-11-14 07:18:05 - Completed initialization in 1 ms
+2024-11-14 07:18:19 - [THYMELEAF][http-nio-5001-exec-7] Exception processing template "graficos/grafico_cotacao_produto": An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:181)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "result.classificacao" (template: "graficos/grafico_cotacao_produto" - line 13, col 9)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	... 101 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "result.classificacao" (template: "graficos/grafico_cotacao_produto" - line 13, col 9)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:292)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	... 103 common frames omitted
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'classificacao' cannot be found on object of type 'java.util.HashMap' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:229)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:112)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorValueRef.getValue(PropertyOrFieldReference.java:417)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:97)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:114)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:338)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265)
+	... 125 common frames omitted
+2024-11-14 07:18:19 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'classificacao' cannot be found on object of type 'java.util.HashMap' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:229)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:112)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorValueRef.getValue(PropertyOrFieldReference.java:417)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:97)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:114)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:338)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:181)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-14 07:18:39 - [THYMELEAF][http-nio-5001-exec-8] Exception processing template "graficos/grafico_cotacao_produto": An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:181)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "result.classificacao" (template: "graficos/grafico_cotacao_produto" - line 13, col 9)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	... 101 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "result.classificacao" (template: "graficos/grafico_cotacao_produto" - line 13, col 9)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:292)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	... 103 common frames omitted
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'classificacao' cannot be found on object of type 'java.util.HashMap' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:229)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:112)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorValueRef.getValue(PropertyOrFieldReference.java:417)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:97)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:114)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:338)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265)
+	... 125 common frames omitted
+2024-11-14 07:18:39 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/graficos/grafico_cotacao_produto.html]")] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'classificacao' cannot be found on object of type 'java.util.HashMap' - maybe not public or not valid?
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:229)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:112)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorValueRef.getValue(PropertyOrFieldReference.java:417)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:97)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:114)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:338)
+	at org.thymeleaf.spring6.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96)
+	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124)
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109)
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297)
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402)
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:181)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-11-14 07:19:12 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-11-14 07:19:12 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:19:12 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-14 07:19:12 - HikariPool-1 - Shutdown initiated...
+2024-11-14 07:19:12 - HikariPool-1 - Shutdown completed.
+2024-11-14 07:19:12 - Starting SpringThymeleafApplication using Java 21.0.4 with PID 19140 (C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024\target\classes started by fernando.correa in C:\Users\fernando.correa\Documents\GitHub\workspace2023\ceasadev_2024)
+2024-11-14 07:19:12 - No active profile set, falling back to 1 default profile: "default"
+2024-11-14 07:19:12 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-14 07:19:12 - Finished Spring Data repository scanning in 46 ms. Found 16 JPA repository interfaces.
+2024-11-14 07:19:12 - Tomcat initialized with port 5001 (http)
+2024-11-14 07:19:12 - Initializing ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:19:12 - Starting service [Tomcat]
+2024-11-14 07:19:12 - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-11-14 07:19:12 - Initializing Spring embedded WebApplicationContext
+2024-11-14 07:19:12 - Root WebApplicationContext: initialization completed in 480 ms
+2024-11-14 07:19:13 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-14 07:19:13 - HHH000026: Second-level cache disabled
+2024-11-14 07:19:13 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-14 07:19:13 - HHH90000021: Encountered deprecated setting [hibernate.temp.use_jdbc_metadata_defaults], use [hibernate.boot.allow_jdbc_metadata_access] instead
+2024-11-14 07:19:13 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-14 07:19:13 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-14 07:19:13 - HikariPool-2 - Starting...
+2024-11-14 07:19:13 - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@7c823003
+2024-11-14 07:19:13 - HikariPool-2 - Start completed.
+2024-11-14 07:19:13 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-14 07:19:14 - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2024-11-14 07:19:14 - Global AuthenticationManager configured with UserDetailsService bean with name userDetaisManager
+2024-11-14 07:19:14 - LiveReload server is running on port 35729
+2024-11-14 07:19:14 - Starting ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:19:14 - Tomcat started on port 5001 (http) with context path '/'
+2024-11-14 07:19:14 - Started SpringThymeleafApplication in 1.993 seconds (process running for 86.883)
+2024-11-14 07:19:14 - Condition evaluation unchanged
+2024-11-14 07:19:14 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-14 07:19:14 - Initializing Servlet 'dispatcherServlet'
+2024-11-14 07:19:14 - Completed initialization in 2 ms
+2024-11-14 07:20:05 - Recebido propriedadeId em cotacoes/cadastrar: 663
+2024-11-14 07:20:05 - Propriedade selecionada: LARANJA LARL LIMA
+2024-11-14 07:25:49 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-11-14 07:25:49 - Stopping ProtocolHandler ["http-nio-5001"]
+2024-11-14 07:25:49 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-14 07:25:49 - HikariPool-2 - Shutdown initiated...
+2024-11-14 07:25:49 - HikariPool-2 - Shutdown completed.

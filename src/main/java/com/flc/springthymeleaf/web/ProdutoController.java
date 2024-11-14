@@ -325,7 +325,7 @@ public class ProdutoController {
 	     model.addAttribute("endDate", endDate);
 	     model.addAttribute("volumeTotal", volumeTotalFormatado);
 
-	     return "produto/grafico_produtos";
+	     return "graficos/grafico_produto_peso";
 	 }
 	 
 	 

@@ -41,6 +41,12 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 
 		List<Cotacao> findByPropriedadeId(Integer propriedadeId);
 
+		@Query("SELECT c FROM Cotacao c WHERE c.propriedade.id = :propriedadeId AND c.dataCotacao BETWEEN :startDate AND :endDate")
+		List<Cotacao> findByCodigoPropriedadeAndDateRange(Integer propriedadeId, LocalDate startDate,
+				LocalDate endDate);
+
+	
+
 		
 
 }

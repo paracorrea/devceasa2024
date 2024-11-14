@@ -88,108 +88,83 @@
         </div>
     </div>
 
-    <script th:inline="javascript">
-        // Configuração do Gráfico Polar Area
-        var subgrupoData = /*[[${subgrupoDTO}]]*/ '[[${subgrupoDTO}]]';
-        var parsedSubgrupoData = JSON.parse(subgrupoData);
-        var subgrupoLabels = parsedSubgrupoData.map(item => item.subgrupo);
-        var subgrupoValues = parsedSubgrupoData.map(item => item.totalPeso);
+ <script th:inline="javascript">
+    // Configuração do Gráfico Polar Area
+    var subgrupoData = /*[[${subgrupoDTO}]]*/ '[[${subgrupoDTO}]]';
+    var parsedSubgrupoData = JSON.parse(subgrupoData);
+    var subgrupoLabels = parsedSubgrupoData.map(item => item.subgrupo);
+    var subgrupoValues = parsedSubgrupoData.map(item => item.totalPeso);
 
-        var polarCtx = document.getElementById('myPolarAreaChart').getContext('2d');
-        var myPolarAreaChart = new Chart(polarCtx, {
-            type: 'doughnut',
-            data: {
-                labels: subgrupoLabels,
-                datasets: [{
-                    data: subgrupoValues,
-                    backgroundColor: ['#40E0D0', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#0000FF'],
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    datalabels: {
-                        color: '#000000',
-                        font: { size: 10, weight: 'bold' },
-                        padding: function(context) {
-                            return context.dataIndex < 4 ? { top: 5, bottom: 5 } : { top: 1 };
-                        },
-                        formatter: function(value, context) {
-                            return context.dataIndex < 4 ? value.toLocaleString('pt-BR') + ' Kilos' : "";
-                        }
-                    }
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function(tooltipItem, data) {
-                            const dataset = data.datasets[tooltipItem.datasetIndex];
-                            const value = dataset.data[tooltipItem.index];
-                            return value.toLocaleString('pt-BR') + ' Kilos';
+    var polarCtx = document.getElementById('myPolarAreaChart').getContext('2d');
+    var myPolarAreaChart = new Chart(polarCtx, {
+        type: 'doughnut',
+        data: {
+            labels: subgrupoLabels,
+            datasets: [{
+                data: subgrupoValues,
+                backgroundColor: ['#40E0D0', '#36A2EB', '#FFCE56', '#FF5733', '#33FF57','#0000FF'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    color: '#000000',
+                    font: { size: 10, weight: 'bold' },
+                    formatter: function(value, context) {
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        var percent = ((value / total) * 100).toFixed(1);
+                        
+                        // Exibir texto apenas para fatias acima de 5% do total
+                        if (percent >= 5) {
+                            return percent + '%\n(' + value.toLocaleString('pt-BR') + ' Kilos)';
+                        } else {
+                            return '';  // Não exibir texto para fatias menores
                         }
                     }
                 }
-            },
-            plugins: [ChartDataLabels]
-        });
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
 
-        // Configuração do Gráfico de Rosca
-        var produtoData = /*[[${produtosDTO}]]*/ '[[${produtosDTO}]]';
-        var parsedProdutoData = JSON.parse(produtoData);
-        var produtoLabels = parsedProdutoData.map(item => item.produto);
-        var produtoValues = parsedProdutoData.map(item => item.totalPeso);
+    // Configuração do Gráfico de Rosca
+    var produtoData = /*[[${produtosDTO}]]*/ '[[${produtosDTO}]]';
+    var parsedProdutoData = JSON.parse(produtoData);
+    var produtoLabels = parsedProdutoData.map(item => item.produto);
+    var produtoValues = parsedProdutoData.map(item => item.totalPeso);
 
-        var totalOutros = parsedProdutoData.reduce((total, item, index) => {
-            return index >= 6 ? total + item.totalPeso : total;
-        }, 0);
-        
-        var doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
-        var myDoughnutChart = new Chart(doughnutCtx, {
-            type: 'pie',
-            data: {
-                labels: produtoLabels.slice(0, 6).concat("Outros"),
-                datasets: [{
-                    label: 'Volume por Produto (Outros: ' + totalOutros.toLocaleString('pt-BR') + ' Kilos)',
-                    data: produtoValues.slice(0, 6).concat(totalOutros),
-                    backgroundColor: ['#8B0000', '#006400', '#8B008B', '#4B0082', '#8B4513','#2F4F4F','#000080'],
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    datalabels: {
-                        color: '#ffffff',
-                        font: { size: 12, weight: 'bold' },
-                        formatter: function(value) {
-                            return value.toLocaleString('pt-BR') + ' Kilos';
-                        }
+    var totalOutros = parsedProdutoData.reduce((total, item, index) => {
+        return index >= 6 ? total + item.totalPeso : total;
+    }, 0);
+    
+    var doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
+    var myDoughnutChart = new Chart(doughnutCtx, {
+        type: 'pie',
+        data: {
+            labels: produtoLabels.slice(0, 6).concat("Outros"),
+            datasets: [{
+                data: produtoValues.slice(0, 6).concat(totalOutros),
+                backgroundColor: ['#8B0000', '#006400', '#8B008B', '#4B0082', '#8B4513','#2F4F4F','#000080'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    color: '#ffffff',
+                    font: { size: 12, weight: 'bold' },
+                    formatter: function(value, context) {
+                        var total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        var percent = ((value / total) * 100).toFixed(1);
+                        return percent + '%\n(' + value.toLocaleString('pt-BR') + ' Kilos)';
                     }
                 }
-            },
-            plugins: [ChartDataLabels]
-        });
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+</script>
 
-        // Total de volume para cálculo de percentuais
-        var volumeTotal = /*[[${volumeTotal}]]*/ '[[${volumeTotal}]]';
-
-        // Calcular e exibir percentuais para Subgrupos
-        var subgrupoPercentualHTML = "<h6>Percentuais de Subgrupos</h5><ul>";
-        subgrupoValues.forEach((value, index) => {
-            var percent = ((value / volumeTotal) * 100).toFixed(1);
-            subgrupoPercentualHTML += `${subgrupoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos ) - `;
-        });
-        subgrupoPercentualHTML += "</ul>";
-        document.getElementById('subgrupoPercentual').innerHTML = subgrupoPercentualHTML;
-
-        // Calcular e exibir percentuais para Produtos
-        var produtoPercentualHTML = "<h6>Percentuais de Produtos</h5><ul>";
-        produtoValues.slice(0, 6).forEach((value, index) => {
-            var percent = ((value / volumeTotal) * 100).toFixed(1);
-            produtoPercentualHTML += `${produtoLabels[index]}: ${percent}% (${value.toLocaleString('pt-BR')} Kilos ) - `;
-        });
-        var outrosPercent = ((totalOutros / volumeTotal) * 100).toFixed(1);
-        produtoPercentualHTML += `Outros: ${outrosPercent}% (${totalOutros.toLocaleString('pt-BR')} Kilos)`;
-        produtoPercentualHTML += "</ul>";
-        document.getElementById('produtoPercentual').innerHTML = produtoPercentualHTML;
-    </script>
 </body>
 </html>
