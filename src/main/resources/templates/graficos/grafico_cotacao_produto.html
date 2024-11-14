@@ -1,20 +1,113 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Gráfico de Variação de Preço</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+   
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
+<style>
+    /* Estilo moderno para ambas as caixas de seleção */
+    #propriedadeId, #periodo {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        color: #333;
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        appearance: none;
+    }
+
+    /* Ícone de seta moderna para as caixas de seleção */
+    #propriedadeId::after, #periodo::after {
+        content: '\25BC'; /* Seta para baixo */
+        position: absolute;
+        right: 12px;
+        top: 14px;
+        color: #aaa;
+        pointer-events: none;
+    }
+    
+    /* Estilo para o botão */
+    #gerarGraficoButton {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #gerarGraficoButton:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    #gerarGraficoButton:hover:not(:disabled) {
+        background-color: #0056b3;
+    }
+</style>
+
 <body>
 
+<div id="navmenu" th:insert="~{navbar :: menu-principal}"></div>
+
 <div class="container">
-    <h4 th:text="${result.nomeProduto}">Nome do Produto</h4>
-    <h5 th:text="${result.variedade} + ' ' + ${result.subVariedade} + ' ' + ${result.classificacao}">Variedade</h5>
+    <!-- Seleção de propriedade com cotações nos últimos 90 dias -->
    
-    <div class="chart-container">
+   <div class="form-group">
+    <form id="formSelecionarPropriedade" method="GET" action="/graficos/produto_preco_dados">
+        <label for="propriedadeId"  class="form-label small">Selecione um Produto:</label>
+        <select name="propriedadeId" id="propriedadeId" class="form-control">
+            <option value="" disabled selected>Escolha um produto</option>
+            <!-- Populando com propriedades cotadas nos últimos 90 dias -->
+            <th:block th:each="propriedade : ${propriedadesCotadas}">
+                <option th:value="${propriedade.id}" 
+                	th:text=
+                			"${propriedade.produto.nome} + ' - ' + ${propriedade.codigo} + ' - ' + ${propriedade.variedade}
+                			+ ' ' + ${propriedade.subvariedade} + ' ' + ${propriedade.classificacao} + '-' + ${propriedade.produto.subgrupo.nome}"></option>
+            </th:block>
+        </select>
+	
+	
+	
+        <label for="periodo" class="form-label small">Período:</label>
+        <select id="periodo" name="periodo" class="form-control">
+            <option value="30">Últimos 30 dias</option>
+            <option value="90">Últimos 3 meses</option>
+            <option value="180">Últimos 6 meses</option>
+            <option value="365">Último ano</option>
+        </select>
+
+       <button type="submit" class="btn btn-primary" id="gerarGraficoButton" disabled>Gerar Gráfico</button>
+    </form>
+</div>
+
+	<div class = "apresentaGrafico">
+   		 <h5 th:text="${result.nomeProduto}">Nome do Produto</h5>
+   		 <h6 th:text="${result.variedade} + ' ' + ${result.subVariedade} + ' ' + ${result.classificacao} ">Variedade</h6>
+     </div>
+   	 <div class="chart-container">
         <canvas id="precoVariacaoChart"></canvas>
     </div>
+  
+    
+    
+    
 </div>
 
 <script th:inline="javascript">
@@ -74,6 +167,16 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const selectPropriedade = document.getElementById("propriedadeId");
+        const gerarGraficoButton = document.getElementById("gerarGraficoButton");
+
+        selectPropriedade.addEventListener("change", function() {
+            gerarGraficoButton.disabled = !selectPropriedade.value;
+        });
+    });
+</script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

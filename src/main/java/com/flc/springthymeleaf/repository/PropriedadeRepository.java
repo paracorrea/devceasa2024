@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,4 +40,9 @@ public interface PropriedadeRepository extends JpaRepository<Propriedade, Intege
 	 
 	 @Query("SELECT p FROM Propriedade p JOIN p.embalagens e WHERE e.id = :id")
 	 List<Propriedade> findPropriedadesByEmbalagemId(@Param("id") Integer id);
+
+	 @Query("SELECT p FROM Propriedade p JOIN p.cotacoes c WHERE c.dataCotacao BETWEEN :startDate AND :endDate ORDER BY p.produto.nome, p.codigo, p.variedade, p.subvariedade, p.classificacao")
+	 List<Propriedade> findPropriedadesComCotacaoNoPeriodo(@Param("startDate") LocalDate startDate,
+	                                                       @Param("endDate") LocalDate endDate);
+	
 }

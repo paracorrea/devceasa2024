@@ -16,6 +16,7 @@ import com.flc.springthymeleaf.service.PropriedadeService;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,45 +29,53 @@ public class GraficoController {
 	@Autowired
 	private PropriedadeService propriedadeService;
     
-    @GetMapping("/graficos/produto_pesquisar")
-    public String startGraficoProdutoPorCotacao(Model model) {
-    	
-    	return "graficos/pesquisar_produtos";
-    }
-    
-    @GetMapping("/graficos/produtos_preco")
-    public String getGraficoVariacaoPreco(
-            @RequestParam("propriedadeId")Integer propriedadeID,  
-            @RequestParam(defaultValue = "90") int periodo, Model model, Cotacao cotacao, RedirectAttributes attr ) {
+	@GetMapping("/graficos/produto_pesquisar")
+	public String startGraficoProdutoPorCotacao(Model model) {
+	    LocalDate endDate = LocalDate.now();
+	    LocalDate startDate = endDate.minusDays(90);
+	    
+	    // Carrega e ordena as propriedades cotadas nos últimos 90 dias
+	    List<Propriedade> propriedadesCotadas = propriedadeService.findPropriedadesComCotacaoNoPeriodo(startDate, endDate);
+	    model.addAttribute("propriedadesCotadas", propriedadesCotadas);
 
-        LocalDate endDate = LocalDate.now();
-        LocalDate startDate = endDate.minus(periodo, ChronoUnit.DAYS);
+	    // Define a primeira propriedade como padrão, se a lista não estiver vazia
+	    if (!propriedadesCotadas.isEmpty()) {
+	        Propriedade propriedadePadrao = propriedadesCotadas.get(0);
+	        Map<String, Object> result = cotacaoService.getMediaSemanalPorProduto(propriedadePadrao.getId(), startDate, endDate);
+	        model.addAttribute("result", result);
+	        model.addAttribute("nomeProduto", propriedadePadrao.getProduto().getNome());
+	    }
 
-        System.out.println("Data de início: " + startDate);
-        System.out.println("Data de término: " + endDate);
-        
-        // obter o código e jogar em codigoPropriedade
-        Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeID);
-        
-        if (propriedadeOpt.isPresent()) {
-	                   	
-        	Propriedade propriedade = propriedadeOpt.get();
-        	String nomeProduto = propriedade.getProduto().getNome();
-        	System.out.println("Codigo da Propriedade: "+ propriedade.getCodigo());
-        	System.out.println("Nome do Produto " +nomeProduto);
-        	
-        	 Map<String, Object> result = cotacaoService.getMediaSemanalPorProduto(propriedadeID, startDate, endDate);
-        	 
-        	 
-        	 System.out.println(result);
-        	 model.addAttribute("result", result);
-        }	
-        	else { attr.addFlashAttribute("fail", "Não localizado ou não escolhido um produto");
-        		return null;
-        	}
-		return "graficos/grafico_cotacao_produto";
-        
-        		
-       
-    }
+	    return "graficos/grafico_cotacao_produto";
+	}
+
+	@GetMapping("/graficos/produto_preco_dados")
+	public String getGraficoVariacaoPreco(
+	        @RequestParam("propriedadeId") Integer propriedadeId,
+	        @RequestParam(defaultValue = "90") int periodo,
+	        Model model, RedirectAttributes attr) {
+
+	    LocalDate endDate = LocalDate.now();
+	    LocalDate startDate = endDate.minusDays(periodo);
+
+	    // Reutiliza a lista de propriedades
+	    List<Propriedade> propriedadesCotadas = propriedadeService.findPropriedadesComCotacaoNoPeriodo(startDate, endDate);
+	    model.addAttribute("propriedadesCotadas", propriedadesCotadas);
+
+	    // Verifica se a propriedade selecionada existe e carrega o gráfico
+	    Optional<Propriedade> propriedadeOpt = propriedadeService.findById(propriedadeId);
+	    if (propriedadeOpt.isPresent()) {
+	        Propriedade propriedade = propriedadeOpt.get();
+	        String nomeProduto = propriedade.getProduto().getNome();
+
+	        Map<String, Object> result = cotacaoService.getMediaSemanalPorProduto(propriedadeId, startDate, endDate);
+	        model.addAttribute("result", result);
+	        model.addAttribute("nomeProduto", nomeProduto);
+	    } else {
+	        attr.addFlashAttribute("fail", "Propriedade não encontrada ou não selecionada.");
+	        return "redirect:/graficos/produto_pesquisar";
+	    }
+
+	    return "graficos/grafico_cotacao_produto";
+	}
 }

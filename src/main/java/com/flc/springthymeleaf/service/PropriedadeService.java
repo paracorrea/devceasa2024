@@ -1,5 +1,6 @@
 package com.flc.springthymeleaf.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,5 +105,9 @@ public class PropriedadeService {
 		    }
 		    public List<Propriedade> findPropriedadesByEmbalagemId(Integer id) {
 		        return propRepo.findPropriedadesByEmbalagemId(id);
+		    }
+		    
+		    public List<Propriedade> findPropriedadesComCotacaoNoPeriodo(LocalDate startDate, LocalDate endDate) {
+		        return propRepo.findPropriedadesComCotacaoNoPeriodo(startDate, endDate);
 		    }
 }

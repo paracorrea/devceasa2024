@@ -1,24 +1,33 @@
 package com.flc.springthymeleaf.web;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +38,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.flc.springthymeleaf.DTO.ProdutoCotadoDTO;
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Feira;
 import com.flc.springthymeleaf.domain.Propriedade;
@@ -36,16 +47,28 @@ import com.flc.springthymeleaf.service.CotacaoService;
 import com.flc.springthymeleaf.service.FeiraService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 import com.flc.springthymeleaf.web.validator.CotacaoValidator;
+import com.itextpdf.forms.xfdf.XfdfException;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.colors.DeviceGray;
+import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.styledxmlparser.jsoup.nodes.Element;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
@@ -534,5 +557,107 @@ public class CotacaoController {
         Optional<Feira> ultimaFeiraAberta = feiraService.obterUltimaFeiraAberta();
         return ultimaFeiraAberta.map(Feira::getDataFeira).orElse(LocalDate.now());
     }
-   
+    
+    @GetMapping("/cotacoes/relatorio-cotacoes")
+    public ResponseEntity<InputStreamResource> gerarRelatorioCotacoes() {
+    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(baos);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            Document document = new Document(pdfDoc, PageSize.A4.rotate());
+            LocalDate endDate = LocalDate.now();
+            LocalDate startDate = endDate.minusDays(60);
+            // Adicionar logo
+            String logoPath = new ClassPathResource("static/image/logo1.png").getFile().getAbsolutePath();
+            Image logo = new Image(ImageDataFactory.create(logoPath)).scaleToFit(80, 40);
+            document.add(logo);
+
+            // Cabeçalho do relatório
+            Paragraph titulo = new Paragraph("Relatório de Cotações de Produtos")
+                    .setFontSize(18)
+                    .setBold()
+                    .setTextAlignment(TextAlignment.CENTER);
+            document.add(titulo);
+
+            Paragraph periodo = new Paragraph("Período: "  + startDate.format(dateFormatter) + " a " + endDate.format(dateFormatter))
+                    .setFontSize(12)
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setMarginBottom(20);
+            document.add(periodo);
+
+            // Obter dados do serviço
+            Map<String, Map<LocalDate, Double>> mediaSemanalPorProduto = cotacaoService.getMediaSemanalPorProduto(startDate, endDate);
+
+            // Tabela de cotações
+            List<LocalDate> semanas = new ArrayList<>(mediaSemanalPorProduto.values().iterator().next().keySet());
+            semanas.sort(LocalDate::compareTo); // Organizar semanas em ordem cronológica
+
+            float[] columnWidths = new float[semanas.size() + 1];
+            columnWidths[0] = 200f; // Largura para a coluna de produtos
+            Arrays.fill(columnWidths, 1, columnWidths.length, 80f); // Largura das colunas de semanas
+
+            Table table = new Table(columnWidths);
+            DeviceRgb headerColor = new DeviceRgb(35, 107, 54); // Cor verde para o cabeçalho
+            DeviceRgb alternateRowColor = new DeviceRgb(173, 216, 230); // Cor alternada azul-claro para linhas
+
+            // Cabeçalho da Tabela
+            Cell headerCell = new Cell().add(new Paragraph("Produto").setFontSize(10).setBold().setFontColor(ColorConstants.WHITE));
+            headerCell.setBackgroundColor(headerColor);
+            table.addHeaderCell(headerCell);
+
+            for (LocalDate semana : semanas) {
+                Cell weekHeader = new Cell().add(new Paragraph(semana.format(dateFormatter)).setFontSize(10).setBold().setFontColor(ColorConstants.WHITE));
+                weekHeader.setBackgroundColor(headerColor);
+                table.addHeaderCell(weekHeader);
+            }
+
+            // Adicionar produtos e médias à tabela
+            int rowIndex = 0;
+            for (Map.Entry<String, Map<LocalDate, Double>> entry : mediaSemanalPorProduto.entrySet()) {
+                String produto = entry.getKey();
+                Map<LocalDate, Double> mediasSemanais = entry.getValue();
+
+                DeviceRgb rowColor = (rowIndex++ % 2 == 0) ? (DeviceRgb) ColorConstants.WHITE : alternateRowColor;
+
+                // Linha do produto
+                Cell productCell = new Cell().add(new Paragraph(produto).setFontSize(9)).setBackgroundColor(rowColor);
+                table.addCell(productCell);
+
+                // Colunas de médias semanais
+                for (LocalDate semana : semanas) {
+                    Double media = mediasSemanais.getOrDefault(semana, 0.0);
+                    Cell mediaCell = new Cell().add(new Paragraph(String.format("%.2f", media)).setFontSize(8)).setBackgroundColor(rowColor);
+                    table.addCell(mediaCell);
+                }
+            }
+
+            // Rodapé
+            Paragraph fonte = new Paragraph("Fonte: CEASA/Campinas - Sistema DEVCEASA")
+                    .setFontSize(6)
+                    .setTextAlignment(TextAlignment.LEFT)
+                    .setMarginTop(10);
+            
+            document.add(table);
+            document.add(fonte);
+            document.close();
+
+            // Configurar resposta HTTP
+            ByteArrayInputStream pdfStream = new ByteArrayInputStream(baos.toByteArray());
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=relatorio-cotacoes.pdf");
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(new InputStreamResource(pdfStream));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    
 }
+

@@ -57,7 +57,10 @@
                     </a>
                     <ul class="dropdown-menu">
                          <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/relatorio-mensal}">Média Mensal Valor Comum </a></li>
+                          <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/cotacoes/relatorio-cotacoes}">Relatório Bimestral de Cotações</a></li>
                           <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/produtos/graficos1}">Gráfico Produto Peso</a></li>
+                          <li><a class="dropdown-item" sec:authorize="hasRole('EMPLOYEE')" th:href="@{/graficos/produto_pesquisar}">Gráfico Produto Cotação</a></li>
+                          
                     	
                     </ul>
                 </li>

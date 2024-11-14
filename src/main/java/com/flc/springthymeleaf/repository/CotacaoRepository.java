@@ -44,6 +44,16 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 		@Query("SELECT c FROM Cotacao c WHERE c.propriedade.id = :propriedadeId AND c.dataCotacao BETWEEN :startDate AND :endDate")
 		List<Cotacao> findByCodigoPropriedadeAndDateRange(Integer propriedadeId, LocalDate startDate,
 				LocalDate endDate);
+		
+		
+		@Query("SELECT p.codigo, pr.nome, p.variedade, p.subvariedade, p.classificacao, FUNCTION('DATE_TRUNC', 'week', c.dataCotacao) AS semana, AVG(c.valorComum) " +
+			       "FROM Cotacao c " +
+			       "JOIN c.propriedade p " +
+			       "JOIN p.produto pr " +
+			       "WHERE c.dataCotacao BETWEEN :startDate AND :endDate " +
+			       "GROUP BY p.codigo, pr.nome, p.variedade, p.subvariedade, p.classificacao, FUNCTION('DATE_TRUNC', 'week', c.dataCotacao) " +
+			       "ORDER BY semana")
+			List<Object[]> findMediaSemanalPorProduto(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 	
 

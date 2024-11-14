@@ -1,11 +1,13 @@
 package com.flc.springthymeleaf.service;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -26,20 +28,20 @@ import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
 public class CotacaoService {
 
 	@Autowired
-	private CotacaoRepository cotacaoRepo;
+	private CotacaoRepository cotacaoRepository;
 	
 	
 	
 	
 
 	public Cotacao insert(Cotacao obj) {
-		return cotacaoRepo.save(obj);
+		return cotacaoRepository.save(obj);
 	}
 
 	@EntityGraph(attributePaths = "propriedade")
 	public Cotacao findById(Integer id) {
 
-		Optional<Cotacao> obj = cotacaoRepo.findById(id);
+		Optional<Cotacao> obj = cotacaoRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objecto não encontrado id: " + id + ", tipo: " + Cotacao.class.getName()));
 
@@ -47,38 +49,38 @@ public class CotacaoService {
 
 	@Transactional(readOnly = true)
 	public List<Cotacao> findAll() {
-		List<Cotacao> lista = cotacaoRepo.findAll();
+		List<Cotacao> lista = cotacaoRepository.findAll();
 		return lista;
 	}
 
 	public Cotacao update(Cotacao obj) {
 
 		findById(obj.getId());
-		return cotacaoRepo.save(obj);
+		return cotacaoRepository.save(obj);
 	}
 
 	public void delete(Integer id) {
 
 		findById(id);
 
-		cotacaoRepo.deleteById(id);
+		cotacaoRepository.deleteById(id);
 
 	}
 
 	public boolean existeCotacaoComMesmaDataECategoria(Cotacao cotacao) {
 
-		return cotacaoRepo.existsByPropriedadeAndDataCotacao(cotacao.getPropriedade().getId(),
+		return cotacaoRepository.existsByPropriedadeAndDataCotacao(cotacao.getPropriedade().getId(),
 				cotacao.getDataCotacao());
 	}
 
 	public List<Cotacao> getCotationsByDate(LocalDate selectedDate) {
 
-		return cotacaoRepo.findByDataCotacao(selectedDate);
+		return cotacaoRepository.findByDataCotacao(selectedDate);
 
 	}
 
 		public Cotacao buscarCotacaoAnterior1(Integer propriedadeId, LocalDate dataCotacao) {
-		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepo
+		Optional<Cotacao> cotacaoAnteriorOptional = cotacaoRepository
 				.findTopByPropriedadeIdAndDataCotacaoLessThanEqualOrderByDataCotacaoDesc(propriedadeId, dataCotacao);
 
 		return cotacaoAnteriorOptional.orElse(null);
@@ -86,7 +88,7 @@ public class CotacaoService {
 
 		
 		public List<Cotacao> findByPropriedadeIdAndDataCotacaoBetween(Integer propriedadeId, LocalDate dataInicio, LocalDate dataFim) {
-		        return cotacaoRepo.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
+		        return cotacaoRepository.findByPropriedadeIdAndDataCotacaoBetween(propriedadeId, dataInicio, dataFim);
 		}
 
 		
@@ -96,7 +98,7 @@ public class CotacaoService {
 															LocalDate startDate,
 															LocalDate endDate) {
 			
-		        List<Cotacao> cotacoes = cotacaoRepo.findByCodigoPropriedadeAndDateRange(propriedadeId, startDate, endDate);
+		        List<Cotacao> cotacoes = cotacaoRepository.findByCodigoPropriedadeAndDateRange(propriedadeId, startDate, endDate);
 		        
 		        // Group by week
 		        WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -172,6 +174,33 @@ private List<Double> calcularTendencia(List<String> datas, List<Double> mediasSe
     }
 
     return tendencia;
+}
+
+public Map<String, Map<LocalDate, Double>> getMediaSemanalPorProduto(LocalDate startDate, LocalDate endDate) {
+    List<Object[]> resultados = cotacaoRepository.findMediaSemanalPorProduto(startDate, endDate);
+    Map<String, Map<LocalDate, Double>> mediaSemanalPorProduto = new LinkedHashMap<>();
+
+    for (Object[] row : resultados) {
+        String codigoPropriedade = (String) row[0];
+        String produtoNome = (String) row[1];
+        String variedade = (String) row[2];
+        String subvariedade = (String) row[3];
+        String classificacao = (String) row[4];
+        LocalDate semana = (LocalDate) row[5]; // Agora `semana` é diretamente um LocalDate
+        Double media = (Double) row[6];
+
+        // Constrói a chave com todos os detalhes
+        String descricaoProduto = String.format("%s - %s %s %s %s", 
+            codigoPropriedade, produtoNome, variedade != null ? variedade : "", 
+            subvariedade != null ? subvariedade : "", classificacao != null ? classificacao : "");
+
+        mediaSemanalPorProduto
+            .computeIfAbsent(descricaoProduto, k -> new LinkedHashMap<>())
+            .put(semana, media);
+    }
+
+
+    return mediaSemanalPorProduto;
 }
 }
 
