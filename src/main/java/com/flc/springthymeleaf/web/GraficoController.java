@@ -71,6 +71,7 @@ public class GraficoController {
 	        Map<String, Object> result = cotacaoService.getMediaSemanalPorProduto(propriedadeId, startDate, endDate);
 	        model.addAttribute("result", result);
 	        model.addAttribute("nomeProduto", nomeProduto);
+	        model.addAttribute("periodo",periodo);
 	    } else {
 	        attr.addFlashAttribute("fail", "Propriedade não encontrada ou não selecionada.");
 	        return "redirect:/graficos/produto_pesquisar";

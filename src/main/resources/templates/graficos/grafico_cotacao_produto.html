@@ -98,8 +98,10 @@
 </div>
 
 	<div class = "apresentaGrafico">
-   		 <h5 th:text="${result.nomeProduto}">Nome do Produto</h5>
-   		 <h6 th:text="${result.variedade} + ' ' + ${result.subVariedade} + ' ' + ${result.classificacao} ">Variedade</h6>
+   		 <span  th:text="${result.nomeProduto}">Nome do Produto</span>
+   		 <span th:text="${result.variedade} + ' ' + ${result.subVariedade} + ' ' + ${result.classificacao} ">Variedade</span>
+   		 <span th:text="'Período: ' + (${periodo} != null ? ${periodo} : 90) + ' dias '"></span>
+
      </div>
    	 <div class="chart-container">
         <canvas id="precoVariacaoChart"></canvas>
