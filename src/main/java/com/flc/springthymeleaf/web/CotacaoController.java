@@ -3,6 +3,7 @@ package com.flc.springthymeleaf.web;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -558,7 +559,8 @@ public class CotacaoController {
         return ultimaFeiraAberta.map(Feira::getDataFeira).orElse(LocalDate.now());
     }
     
-    @GetMapping("/cotacoes/relatorio-cotacoes")
+    @SuppressWarnings("resource")
+	@GetMapping("/cotacoes/relatorio-cotacoes")
     public ResponseEntity<InputStreamResource> gerarRelatorioCotacoes() {
     	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {
@@ -569,9 +571,14 @@ public class CotacaoController {
             LocalDate endDate = LocalDate.now();
             LocalDate startDate = endDate.minusDays(60);
             // Adicionar logo
-            String logoPath = new ClassPathResource("static/image/logo1.png").getFile().getAbsolutePath();
-            Image logo = new Image(ImageDataFactory.create(logoPath)).scaleToFit(80, 40);
-            document.add(logo);
+
+            try (InputStream logoStream = new ClassPathResource("static/image/logo1.png").getInputStream()) {
+            		Image logo = new Image(ImageDataFactory.create(logoStream.readAllBytes())).scaleToFit(80, 40);
+            		document.add(logo);
+            } catch (IOException e) {
+            		e.printStackTrace();
+            			throw new RuntimeException("Erro ao carregar o logo", e);
+            }
 
             // Cabeçalho do relatório
             Paragraph titulo = new Paragraph("Relatório de Cotações de Produtos")

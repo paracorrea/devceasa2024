@@ -1,7 +1,6 @@
 package com.flc.springthymeleaf.service;
 
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
@@ -14,7 +13,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
@@ -31,9 +29,6 @@ public class CotacaoService {
 	private CotacaoRepository cotacaoRepository;
 	
 	
-	
-	
-
 	public Cotacao insert(Cotacao obj) {
 		return cotacaoRepository.save(obj);
 	}
