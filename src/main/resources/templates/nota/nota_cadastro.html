@@ -65,11 +65,14 @@
                     <div class="form-group">
                         <label for="municipioCodigo">Município</label>
                         <div class="input-group">
-                              <input type="text" id="municipioCodigo" class="form-control" placeholder="Digite o código do município" required>
-       						 <input type="text" id="municipioNome" class="form-control" placeholder="Nome do município" readonly>
-                           <input type="hidden" id="municipioId" name="municipio.id">
-                            <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
-                        </div>
+  							  <!-- Input para código do município -->
+   							 <input id="municipioCodigo" type="text" class="form-control" placeholder="Digite o código do município">
+    						<!-- Campo escondido para armazenar o ID -->
+   							 <input type="hidden" id="municipioId" name="municipio.id">
+   							 <!-- Campo para exibir o nome do município -->
+   							 <input id="municipioNome" type="text" class="form-control" readonly placeholder="Nome do município">
+  						  <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
+					</div>
                     </div>
                 </div>
             </div>

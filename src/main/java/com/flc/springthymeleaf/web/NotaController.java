@@ -161,7 +161,11 @@ public class NotaController {
         // Log para depuração
         System.out.println("Iniciando o salvamento da nota");
 
-        
+        if (nota.getMunicipio() == null || nota.getMunicipio().getId() == null) {
+            result.rejectValue("municipio", "error.nota", "Município não selecionado.");
+            attr.addFlashAttribute("fail", "Por favor, selecione um município válido.");
+            return "nota/nota_cadastro";
+        }
         
         if (result.hasErrors()) {
             // Log para depuração
