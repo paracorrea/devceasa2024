@@ -10,7 +10,7 @@ function searchMunicipio() {
             resultsBody.innerHTML = '';
             data.forEach(municipio => {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${municipio.nome}</td><td>${municipio.uf}</td><td>${municipio.codigo}</td><td><button type="button" class="btn btn-primary" onclick="selectMunicipio(${municipio.id}, '${municipio.nome}', '${municipio.codigo}')">Selecionar</button></td>`;
+                row.innerHTML = `<td>${municipio.nome}</td><td>${municipio.uf}</td><td>${municipio.codigo}</td><td><button type="button" class="btn btn-primary" onclick="selectMunicipio(${municipio.id}, '${municipio.nome}', '${municipio.codigo}')"></button></td>`;
                 resultsBody.appendChild(row);
             });
         })
@@ -26,13 +26,12 @@ function closeModal() {
 }
 
 function selectMunicipio(id, nome, codigo) {
-    const municipioSelect = document.getElementById('municipio');
-    municipioSelect.innerHTML = ''; // Limpar opções anteriores
-    const option = document.createElement('option');
-    option.value = id; // Usando o ID em vez do código IBGE
-    option.text = `${codigo} - ${nome}`;
-    option.selected = true;
+	document.getElementById('municipioId').value = id; // Preenche o ID
+	document.getElementById('municipioCodigo').value = codigo;
+	
+	// Atualiza o campo de nome do município
+	 document.getElementById('municipioNome').value = nome;
 
-    municipioSelect.appendChild(option);
+
     closeModal();
 }
