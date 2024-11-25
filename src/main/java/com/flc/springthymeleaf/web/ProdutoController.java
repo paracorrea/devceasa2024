@@ -278,6 +278,11 @@ public class ProdutoController {
 	     List<SubgrupoPesoDTO> subgrupoDTO = itemDeNotaService.getTop5SubgruposByPeso(startDate, endDate);
 
 	     Double volumeTotal = itemDeNotaService.findVolumeTotalEntreDatas(startDate, endDate);
+	   
+	     if (volumeTotal == null) {
+	         volumeTotal = 0.0;
+	     }
+	   
 	     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
 	     String volumeTotalFormatado = nf.format(volumeTotal);
 	     // Converte os dados em JSON
