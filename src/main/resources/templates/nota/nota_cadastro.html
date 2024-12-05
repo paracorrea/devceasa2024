@@ -71,6 +71,8 @@
    							 <input type="hidden" id="municipioId" name="municipio.id">
    							 <!-- Campo para exibir o nome do município -->
    							 <input id="municipioNome" type="text" class="form-control" readonly placeholder="Nome do município">
+   							 
+   							 <input id="municipioUF" type="text" class="form-control" readonly placeholder="Estado do município">
   						  <button type="button" onclick="openMunicipioModal()">Buscar Município</button>
 					</div>
                     </div>
@@ -86,17 +88,21 @@
                         <div id="propertyResult-0" class="property-result" readonly></div>
                         <input type="hidden" id="propriedadeId-0" name="itens[0].propriedade.id">
                     </div>
+                  
+                    
                     <div class="col-md-2 form-group-inline" style="margin-left: 100px;">
+   						 <label for="embalagem-0">Embalagem:</label>
+  						  <select id="embalagem-0" name="itens[0].embalagem.id" class="form-control form-control-small" required>
+    					    <option value="" disabled selected>Selecione</option>
+    					    <option th:each="embalagem : ${embalagens}" th:value="${embalagem.id}" th:text="${embalagem.codigo} + ' - ' + ${embalagem.tipoEmbalagem} + ' (' + ${embalagem.peso} + 'kg)'"></option>
+ 						  </select>
+					</div>
+					
+					  <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
                         <label for="quantidade-0">Quantidade: </label>
                         <input type="number" id="quantidade-0" name="itens[0].quantidade" class="form-control form-control-small" step="any" required>
                     </div>
-                    <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
-    <label for="embalagem-0">Embalagem:</label>
-    <select id="embalagem-0" name="itens[0].embalagem.id" class="form-control form-control-small" required>
-        <option value="" disabled selected>Selecione</option>
-        <option th:each="embalagem : ${embalagens}" th:value="${embalagem.id}" th:text="${embalagem.codigo} + ' - ' + ${embalagem.tipoEmbalagem} + ' (' + ${embalagem.peso} + 'kg)'"></option>
-    </select>
-</div>
+                    
                     <div class="col-md-1 d-flex align-items-center" >
                         <button type="button" class="btn btn-danger btn-sm remove-item" style="margin-left: 20px;">x</button>
                     </div>

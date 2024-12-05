@@ -22,15 +22,19 @@ document.getElementById('municipioCodigo')?.addEventListener('input', function (
                 const municipio = data[0]; // Supondo que o backend retorna um array
                 document.getElementById('municipioId').value = municipio.id;
                 document.getElementById('municipioNome').value = municipio.nome;
+				document.getElementById('municipioUF').value = municipio.uf;
+				
             } else {
                 // Caso não encontre o município
                 document.getElementById('municipioId').value = '';
                 document.getElementById('municipioNome').value = 'Município não encontrado';
+				document.getElementById('municipioUF').value = 'Estado não localizado';
             }
         })
         .catch(error => {
             console.error('Erro ao buscar município:', error);
             document.getElementById('municipioId').value = '';
             document.getElementById('municipioNome').value = 'Erro ao buscar';
+			
         });
 });

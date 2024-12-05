@@ -62,4 +62,72 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 Double findVolumeTotalEntreDatas(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
+	 @Query(value = """
+			    SELECT DISTINCT 
+			        prop.codigo AS codigoPropriedade, 
+			        m.codigo AS codigoMunicipio, 
+			        SUM(i.quantidade * e.peso) AS total_peso, 
+			        0 AS valorComum 
+			    FROM 
+			        item_de_nota i
+			    JOIN 
+			        propriedade prop ON i.propriedade_id = prop.id
+			    JOIN 
+			        nota n ON i.nota_id = n.id
+			    JOIN 
+			        municipio m ON n.municipio_id = m.id
+			    LEFT JOIN 
+			        cotacao c ON prop.id = c.propriedade_id 
+			    JOIN 
+			        embalagem e ON i.embalagem_id = e.id
+			    WHERE 
+			        EXTRACT(YEAR FROM n.data) = :ano 
+			        AND EXTRACT(MONTH FROM n.data) = :mes 
+			        AND c.id IS NULL
+			    GROUP BY 
+			        prop.codigo, m.codigo
+			""", nativeQuery = true)
+			List<Object[]> findProdutosSemCotacao(@Param("ano") int ano, @Param("mes") int mes);
+
+
+			@Query(value = """
+				    SELECT 
+				        AVG(c.valor_comum) AS mediaValorComum, 
+				        SUM(i.quantidade * e.peso) AS totalVolume
+				    FROM 
+				        cotacao c
+				    JOIN 
+				        propriedade prop ON c.propriedade_id = prop.id
+				    JOIN 
+				        item_de_nota i ON prop.id = i.propriedade_id
+				    JOIN 
+				        embalagem e ON i.embalagem_id = e.id
+				    WHERE 
+				        prop.codigo_anterior = :codigoAntecessor 
+				        AND EXTRACT(YEAR FROM c.data_cotacao) = :ano 
+				        AND EXTRACT(MONTH FROM c.data_cotacao) = :mes
+				""", nativeQuery = true)
+				Object[] findMediaPonderadaPorAntecessor(@Param("codigoAntecessor") String codigoAntecessor, @Param("ano") int ano, @Param("mes") int mes);
+				
+			@Query(value = """
+				    SELECT 
+				        AVG(c.valor_comum) AS mediaValorComum, 
+				        SUM(i.quantidade * e.peso) AS totalVolume
+				    FROM 
+				        cotacao c
+				    JOIN 
+				        propriedade prop ON c.propriedade_id = prop.id
+				    LEFT JOIN 
+				        item_de_nota i ON i.propriedade_id = prop.id
+				    LEFT JOIN 
+				        embalagem e ON i.embalagem_id = e.id
+				    WHERE 
+				        prop.codigo LIKE CONCAT(:codigoBase, '%') 
+				        AND EXTRACT(YEAR FROM c.data_cotacao) = :ano
+				        AND EXTRACT(MONTH FROM c.data_cotacao) = :mes
+				""", nativeQuery = true)
+				Object[] findCotaçõesRelacionadas(@Param("codigoBase") String codigoBase, @Param("ano") int ano, @Param("mes") int mes);
+
+
+
 }
