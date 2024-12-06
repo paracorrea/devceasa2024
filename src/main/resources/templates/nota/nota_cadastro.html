@@ -193,17 +193,19 @@
                             <div id="propertyResult-${itemIndex}" class="property-result" readonly></div>
                             <input type="hidden" id="propriedadeId-${itemIndex}" name="itens[${itemIndex}].propriedade.id">
                         </div>
+                        
                         <div class="col-md-2 form-group-inline" style="margin-left: 100px;">
+                        	<label for="embalagem-${itemIndex}">Embalagem:</label>
+                        		<select id="embalagem-${itemIndex}" name="itens[${itemIndex}].embalagem.id" class="form-control form-control-small" required>
+                        	    	<option value="" disabled selected>Selecione</option>
+                            		${$('#embalagem-0').html()} <!-- Replicando o conteúdo de embalagem -->
+                        		</select>
+                    	</div>
+                        <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
                             <label for="quantidade-${itemIndex}">Quantidade:</label>
                             <input type="number" id="quantidade-${itemIndex}" name="itens[${itemIndex}].quantidade" class="form-control form-control-small" step="any" required>
                         </div>
-                        <div class="col-md-3 form-group-inline" style="margin-left: 100px;">
-                            <label for="embalagem-${itemIndex}">Embalagem:</label>
-                            <select id="embalagem-${itemIndex}" name="itens[${itemIndex}].embalagem.id" class="form-control form-control-small" required>
-                                <option value="" disabled selected>Selecione</option>
-                                ${$('#embalagem-0').html()} <!-- Replicando o conteúdo de embalagem -->
-                            </select>
-                        </div>
+                      
                         <div class="col-md-1 d-flex align-items-center" style="margin-left: 20px;">
                             <button type="button" class="btn btn-danger btn-sm remove-item">x</button>
                         </div>
