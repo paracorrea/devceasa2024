@@ -154,7 +154,10 @@
 				th:classappend="${status}" th:checked="${status == 1} ? ${true}">
 			<label class="form-check-label" for="status">COTADO</label> <br></br>
 
-		
+			<input class="form-check-input" type="checkbox" placeholder="referencialValor"
+				value="1" id="referencialValor" checked th:field="*{referencialValor}"
+				th:classappend="${referencialValor}" th:checked="${referencialValor == 1} ? ${true}">
+			<label class="form-check-label" for="referencialValor">VALOR DE REFERÊNCIA</label> <br></br>
 
 		</div>
 		<input type="hidden" id="id" th:field="*{id}" />

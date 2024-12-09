@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -89,60 +90,59 @@ public class CotacaoService {
 		
 		// Chart of produto and modal price in cotacao. Called from GraficoController in "/graficos/produtos_preco"
 		public Map<String, Object> getMediaSemanalPorProduto(
-															Integer propriedadeId,
-															LocalDate startDate,
-															LocalDate endDate) {
-			
-		        List<Cotacao> cotacoes = cotacaoRepository.findByCodigoPropriedadeAndDateRange(propriedadeId, startDate, endDate);
-		        
-		        // Group by week
-		        WeekFields weekFields = WeekFields.of(Locale.getDefault());
-		        Map<Object, List<Cotacao>> cotacoesPorSemana = cotacoes.stream()
-		                .collect(Collectors.groupingBy(c -> c.getDataCotacao().get(weekFields.weekOfWeekBasedYear())));
+		        Integer propriedadeId,
+		        LocalDate startDate,
+		        LocalDate endDate) {
 
-		        // Calcular a média semanal
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		        List<String> datas = new ArrayList<>();
-		        List<Double> mediasSemanais = new ArrayList<>();
-		        for (Entry<Object, List<Cotacao>> entry : cotacoesPorSemana.entrySet()) {
-		        	
-		        	double media = entry.getValue().stream()
-		        		    .mapToDouble(cotacao -> cotacao.getValorComum().doubleValue())
-		        		    .average()
-		        		    .orElse(0.0);
-		        			mediasSemanais.add(media);
+		    List<Cotacao> cotacoes = cotacaoRepository.findByCodigoPropriedadeAndDateRange(propriedadeId, startDate, endDate);
 
-		            // Adicionar uma data representativa da semana para o eixo X
-		            LocalDate dataRepresentativa = entry.getValue().get(0).getDataCotacao();
-		            String formattedDate = ((dataRepresentativa).format(formatter));
-		            
-		            
-		            datas.add(formattedDate);
-		        }
+		    // Agrupamento por semanas, ordenado por data
+		    Map<LocalDate, List<Cotacao>> cotacoesPorSemana = cotacoes.stream()
+		            .collect(Collectors.groupingBy(
+		                    c -> c.getDataCotacao().with(WeekFields.of(Locale.getDefault()).dayOfWeek(), 1),
+		                    TreeMap::new, // TreeMap para ordenar as semanas automaticamente
+		                    Collectors.toList()
+		            ));
 
-		        // Obter o nome do produto
-		        String nomeProduto = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getProduto().getNome();
-		        String variedade = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getVariedade();
-		        String subVariedade = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getSubvariedade();
-		        String classificacao = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getClassificacao();
+		    // Calcular a média semanal
+		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		    List<String> datas = new ArrayList<>();
+		    List<Double> mediasSemanais = new ArrayList<>();
 
-		        // Montar o resultado
-		        Map<String, Object> result = new HashMap<>();
-		        
-		        List<Double> tendencia = calcularTendencia(datas, mediasSemanais);
-		        
-		        result.put("variedade", variedade);
-		        result.put("subVariedade", subVariedade);
-		        result.put("classificacao", classificacao);
-		        result.put("nomeProduto", nomeProduto);
-		        result.put("datas", datas);
-		        result.put("mediasSemanais", mediasSemanais);
-		        result.put("tendencia", tendencia); // Adicione a série da linha de tendênci
-		        
-		        
-		        return result;
+		    for (Entry<LocalDate, List<Cotacao>> entry : cotacoesPorSemana.entrySet()) {
+		        double media = entry.getValue().stream()
+		                .mapToDouble(cotacao -> cotacao.getValorComum().doubleValue())
+		                .average()
+		                .orElse(0.0);
+		        mediasSemanais.add(media);
+
+		        // Adicionar a data representativa da semana para o eixo X
+		        String formattedDate = entry.getKey().format(formatter);
+		        datas.add(formattedDate);
 		    }
-	
+
+		    // Obter o nome do produto
+		    String nomeProduto = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getProduto().getNome();
+		    String variedade = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getVariedade();
+		    String subVariedade = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getSubvariedade();
+		    String classificacao = cotacoes.isEmpty() ? "" : cotacoes.get(0).getPropriedade().getClassificacao();
+
+		    // Calcular tendência
+		    List<Double> tendencia = calcularTendencia(datas, mediasSemanais);
+
+		    // Montar o resultado
+		    Map<String, Object> result = new HashMap<>();
+		    result.put("variedade", variedade);
+		    result.put("subVariedade", subVariedade);
+		    result.put("classificacao", classificacao);
+		    result.put("nomeProduto", nomeProduto);
+		    result.put("datas", datas);
+		    result.put("mediasSemanais", mediasSemanais);
+		    result.put("tendencia", tendencia); // Adiciona a série da linha de tendência
+
+		    return result;
+		}
+
 
 private List<Double> calcularTendencia(List<String> datas, List<Double> mediasSemanais) {
     int n = mediasSemanais.size();

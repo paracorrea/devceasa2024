@@ -44,6 +44,7 @@
                         <th>Peso</th>
                         <th>Unidade</th>
                         <th>Cotação</th>
+                        <th>Referencial</th>
                         <th>Editar/Excluir</th>
                     </tr>
                 </thead>
@@ -59,6 +60,7 @@
                         <td th:text="${prop.peso}"></td>
                         <td th:text="${prop.unidade}"></td>
                         <td th:text="${prop.status} ? 'Sim' : 'Não'"></td>
+                        <td th:text="${prop.referencialValor} ? 'Sim' : 'Não'"></td>
                         <td colspan="2">
                             <a class="btn btn-primary" sec:authorize="hasRole('MANAGER')"
                                 th:href="@{/propriedades/editar/{id} (id=${prop.id}) }" role="button">

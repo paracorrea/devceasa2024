@@ -89,12 +89,16 @@ public class Propriedade implements Serializable {
     
     @Column(name = "codigo_anterior", length = 10, unique = false)
     private String codigoAnterior;
+    
+    @Column(name = "referencial_valor")
+    private Boolean referencialValor = false;
+    
        
     public Propriedade() { 
     }
 
     public Propriedade(Integer id, String codigo, String variedade, String subvariedade, String classificacao, String unidade,
-                       BigDecimal peso, Boolean status, Produto produto) {
+                       BigDecimal peso, Boolean status, Produto produto, Boolean referencialValor) {
         this.id = id;
         this.codigo = codigo;
         this.variedade = variedade;
@@ -105,6 +109,7 @@ public class Propriedade implements Serializable {
         
         this.status = status;
         this.produto = produto;
+        this.referencialValor = referencialValor;
     }
     
     // Getters and Setters
@@ -211,6 +216,14 @@ public class Propriedade implements Serializable {
 
 	public void setCodigoAnterior(String codigoAnterior) {
 		this.codigoAnterior = codigoAnterior;
+	}
+
+	public Boolean getReferencialValor() {
+		return referencialValor;
+	}
+
+	public void setReferencialValor(Boolean referencialValor) {
+		this.referencialValor = referencialValor;
 	}
 	
 	
