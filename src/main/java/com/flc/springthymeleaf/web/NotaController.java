@@ -212,9 +212,17 @@ public class NotaController {
         }
 
         // Salvar a nota
+        LocalDate dataDigitada = nota.getData();
         
         LocalDate dataDigitacao = findDataSessaoEmDigitacao();
-        nota.setData(dataDigitacao);
+        
+        
+        if (dataDigitada == dataDigitacao || dataDigitada == null) {
+        	nota.setData(dataDigitacao);;
+        } else {
+        	nota.setData(dataDigitada);
+        }
+        
         notaService.save(nota);
         attr.addFlashAttribute("success", "Nota salva com sucesso!");
         return "redirect:/notas/cadastrar";
