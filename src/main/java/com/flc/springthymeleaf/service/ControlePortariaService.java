@@ -21,7 +21,7 @@ public class ControlePortariaService {
     @Autowired
     private ControlePortariaRepository controlePortariaRepository;
     
-    private NotaRepository notaRepository;
+   
 
     public List<ControlePortaria> findAll() {
         return controlePortariaRepository.findAll(Sort.by(Sort.Direction.DESC, "dataDaSessao"));

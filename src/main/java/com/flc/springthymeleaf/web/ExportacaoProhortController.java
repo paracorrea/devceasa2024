@@ -19,6 +19,7 @@ import java.text.DecimalFormat;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class ExportacaoProhortController {
@@ -28,6 +29,8 @@ public class ExportacaoProhortController {
 
     // localhost:5001/exportacao/exportar?ano=2024&mes=10
     
+    private static final Logger LOGGER = Logger.getLogger(ExportacaoProhortController.class.getName());
+    
     
     @GetMapping("/exportacao/abertura")
     public String aberturaProhort(Model model) {
@@ -35,56 +38,7 @@ public class ExportacaoProhortController {
     	return "prohort/prohort_form_datas";
     }
     
-    @GetMapping("/exportacao/exportar21")
-    public void exportarProhort(
-            @RequestParam(value = "ano") int ano,
-            @RequestParam(value = "mes") int mes,
-            HttpServletResponse response) {
-
-        List<Object[]> resultados = exportacaoProhortService.gerarArquivoProhort(ano, mes);
-       
-        if (ano < 2024) {
-	         ano = 01;
-	     }
-	     if (mes < 01 && mes > 12) {
-	         mes = 01;
-	     }
-        
-        if (!resultados.isEmpty()) {
-            System.out.println("A lista possui " + resultados.size() + " linhas");
-        }
-        
-        resultados.sort(Comparator.comparing((Object[] linha) -> (String) linha[1])
-                .thenComparing(linha -> (String) linha[0]));
-
-        // Configuração do cabeçalho de resposta para download do arquivo
-        response.setContentType("text/plain");
-        response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort.txt\"");
-        try (PrintWriter writer = response.getWriter()) {
-        	DecimalFormat pesoFormatter = new DecimalFormat("0"); // Formata peso sem separadores de milhares // Formata peso sem decimais
-            DecimalFormat precoFormatter = new DecimalFormat("#,##0.00");  // Formata preço com duas casas decimais
-
-            for (Object[] linha : resultados) {
-                String nomeProduto = (String) linha[0];
-                String codigoMunicipio = (String) linha[1];
-                Double pesoTotal = (Double) linha[2];
-                BigDecimal precoMedio = (BigDecimal) linha[3];
-
-                // Formata os valores
-                String pesoTotalFormatado = pesoFormatter.format(pesoTotal);
-                String precoMedioFormatado = precoFormatter.format(precoMedio);
-
-                // Monta a linha de dados para o arquivo
-                String linhaTxt = "343" + ";" + ano + ";" + mes + ";" + nomeProduto + ";" + 
-                                  codigoMunicipio + ";" + "365" + ";" + pesoTotalFormatado + ";" + precoMedioFormatado;
-                writer.println(linhaTxt); // Escreve no arquivo
-            }
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
+	
     @GetMapping("/exportacao/exportar")
     public void exportarProhort1(
             @RequestParam(value = "ano") int ano,
@@ -96,18 +50,33 @@ public class ExportacaoProhortController {
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort.txt\"");
         try (PrintWriter writer = response.getWriter()) {
-            DecimalFormat pesoFormatter = new DecimalFormat("0");
-            DecimalFormat precoFormatter = new DecimalFormat("#,##0.00");
+            DecimalFormat pesoFormatter = new DecimalFormat();
+            DecimalFormat precoFormatter = new DecimalFormat();
 
             for (Object[] linha : resultados) {
                 String nomeProduto = (String) linha[0];
                 String codigoMunicipio = (String) linha[1];
+                
                 Double pesoTotal = (Double) linha[2];
+                
+                System.out.println("Peso total" + pesoTotal);
+                
                 BigDecimal precoMedio = (BigDecimal) linha[3];
 
-                String pesoTotalFormatado = pesoFormatter.format(pesoTotal);
+                long pesoTotalFormatado = Math.round(pesoTotal);
+                
+                System.out.println("Peso total" + pesoTotalFormatado);
                String precoMedioFormatado = precoFormatter.format(precoMedio);
-
+               
+               LOGGER.info("Peso Total: {}, Preço Médio: {}"+ pesoTotal + " " + precoMedio);
+               
+               LOGGER.info("Produto com cotação: {}" + linha[0]);
+               LOGGER.info("Produto com cotação: {}" + linha[1]);
+               LOGGER.info("Produto com cotação: {}" + linha[2]);
+               LOGGER.info("Produto com cotação: {}" + linha[3]);
+               
+               
+              
                 String linhaTxt = "343" + ";" + ano + ";" + mes + ";" + nomeProduto + ";" + 
                                   codigoMunicipio + ";" + "365" + ";" + pesoTotalFormatado + ";" + precoMedioFormatado;
                 writer.println(linhaTxt);
@@ -118,5 +87,48 @@ public class ExportacaoProhortController {
         }
     }
     
+    
+    @GetMapping("/exportacao/teste-dia")
+    public void exportarProhortPorDia(
+            @RequestParam(value = "ano") int ano,
+            @RequestParam(value = "mes") int mes,
+            @RequestParam(value = "dia") int dia,
+            HttpServletResponse response) {
+
+        // Chame o serviço ajustado para receber os dados do dia
+        List<Object[]> resultados = exportacaoProhortService.gerarArquivoProhortPorDia(ano, mes, dia);
+
+        response.setContentType("text/plain");
+        response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort_dia_" + ano + "_" + mes + "_" + dia + ".txt\"");
+
+        try (PrintWriter writer = response.getWriter()) {
+            DecimalFormat pesoFormatter = new DecimalFormat("#.##");
+            DecimalFormat precoFormatter = new DecimalFormat("#.##");
+
+            for (Object[] linha : resultados) {
+                String nomeProduto = (String) linha[0];
+                String codigoMunicipio = (String) linha[1];
+                Double pesoTotal = (Double) linha[2];
+                BigDecimal precoMedio = (BigDecimal) linha[3];
+
+                // Formatação
+                String pesoTotalFormatado = pesoFormatter.format(pesoTotal);
+                String precoMedioFormatado = precoFormatter.format(precoMedio);
+
+                // Logging para depuração
+                //LOGGER.info("Produto: {}, Município: {}, Peso Total: {}, Preço Médio: {}",
+                 //       nomeProduto, codigoMunicipio, pesoTotal, precoMedio);
+
+                // Gerar linha do arquivo TXT
+                String linhaTxt = "343" + ";" + ano + ";" + mes + ";" + nomeProduto + ";" +
+                        codigoMunicipio + ";" + "365" + ";" + pesoTotalFormatado + ";" + precoMedioFormatado;
+                writer.println(linhaTxt);
+            }
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

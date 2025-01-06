@@ -52,47 +52,82 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 	 Double findVolumeTotalEntreDatas(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 	 
-	 
-	 @Query(value = "SELECT prop.codigo AS codigoPropriedade, m.codigo AS codigoMunicipio, SUM(i.quantidade * e.peso) AS total_peso, AVG(c.valor_comum) AS valorComum " +
-             "FROM item_de_nota i " +
-             "JOIN propriedade prop ON i.propriedade_id = prop.id " +
-             "JOIN nota n ON i.nota_id = n.id " +
-             "JOIN municipio m ON n.municipio_id = m.id " +
-             "JOIN cotacao c ON prop.id = c.propriedade_id " +
-             "JOIN embalagem e ON i.embalagem_id = e.id " +
-             "WHERE EXTRACT(YEAR FROM n.data) = :ano AND EXTRACT(MONTH FROM n.data) = :mes " +
-             "GROUP BY prop.codigo, m.codigo",
-             nativeQuery = true)
-	 List<Object[]> findDadosParaProhort(@Param("ano") int ano, @Param("mes") int mes);
-
 	 @Query(value = """
-			    SELECT DISTINCT 
-			        prop.codigo AS codigoPropriedade, 
-			        m.codigo AS codigoMunicipio, 
-			        SUM(i.quantidade * e.peso) AS total_peso, 
-			        0 AS valorComum 
+			    SELECT 
+			        prop.codigo AS codigoPropriedade,
+			        m.codigo AS codigoMunicipio,
+			        subquery.peso_total AS total_peso,
+			        AVG(c.valor_comum) AS valorComum
 			    FROM 
-			        item_de_nota i
+			        (
+			            SELECT 
+			                i.propriedade_id,
+			                n.municipio_id,
+			                SUM(i.quantidade * e.peso) AS peso_total
+			            FROM 
+			                item_de_nota i
+			            JOIN 
+			                embalagem e ON i.embalagem_id = e.id
+			            JOIN 
+			                nota n ON i.nota_id = n.id
+			            WHERE 
+			                EXTRACT(YEAR FROM n.data) = :ano 
+			                AND EXTRACT(MONTH FROM n.data) = :mes
+			            GROUP BY 
+			                i.propriedade_id, n.municipio_id
+			        ) AS subquery
 			    JOIN 
-			        propriedade prop ON i.propriedade_id = prop.id
+			        propriedade prop ON subquery.propriedade_id = prop.id
 			    JOIN 
-			        nota n ON i.nota_id = n.id
+			        municipio m ON subquery.municipio_id = m.id
 			    JOIN 
-			        municipio m ON n.municipio_id = m.id
-			    LEFT JOIN 
-			        cotacao c ON prop.id = c.propriedade_id 
-			    JOIN 
-			        embalagem e ON i.embalagem_id = e.id
-			    WHERE 
-			        EXTRACT(YEAR FROM n.data) = :ano 
-			        AND EXTRACT(MONTH FROM n.data) = :mes 
-			        AND c.id IS NULL
+			        cotacao c ON prop.id = c.propriedade_id
 			    GROUP BY 
-			        prop.codigo, m.codigo
+			        prop.codigo, m.codigo, subquery.peso_total
+			""", nativeQuery = true)
+			List<Object[]> findDadosParaProhort(@Param("ano") int ano, @Param("mes") int mes);
+
+
+	 
+	 @Query(value = """
+			    SELECT 
+			        prop.codigo AS codigoPropriedade,
+			        m.codigo AS codigoMunicipio,
+			        subquery.peso_total AS total_peso,
+			        0 AS valorComum
+			    FROM 
+			        (
+			            SELECT 
+			                i.propriedade_id,
+			                n.municipio_id,
+			                SUM(i.quantidade * e.peso) AS peso_total
+			            FROM 
+			                item_de_nota i
+			            JOIN 
+			                embalagem e ON i.embalagem_id = e.id
+			            JOIN 
+			                nota n ON i.nota_id = n.id
+			            WHERE 
+			                EXTRACT(YEAR FROM n.data) = :ano 
+			                AND EXTRACT(MONTH FROM n.data) = :mes
+			            GROUP BY 
+			                i.propriedade_id, n.municipio_id
+			        ) AS subquery
+			    JOIN 
+			        propriedade prop ON subquery.propriedade_id = prop.id
+			    JOIN 
+			        municipio m ON subquery.municipio_id = m.id
+			    LEFT JOIN 
+			        cotacao c ON prop.id = c.propriedade_id
+			    WHERE 
+			        c.id IS NULL
+			    GROUP BY 
+			        prop.codigo, m.codigo, subquery.peso_total
 			""", nativeQuery = true)
 			List<Object[]> findProdutosSemCotacao(@Param("ano") int ano, @Param("mes") int mes);
 
-
+	 
+	
 			
 			@Query(value = """
 				    SELECT 
@@ -109,7 +144,38 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 				        AND EXTRACT(MONTH FROM c.data_cotacao) = :mes
 				""", nativeQuery = true)
 				Object[] findCotaçõesRelacionadasReferenciais(@Param("codigoBase") String codigoBase, @Param("ano") int ano, @Param("mes") int mes);
-			
+
+
+
+
+			@Query(value = """
+				    SELECT 
+				        prop.codigo AS codigoPropriedade,
+				        m.codigo AS codigoMunicipio,
+				        SUM(i.quantidade * e.peso) AS total_peso,
+				        AVG(c.valor_comum) AS valorComum
+				    FROM 
+				        item_de_nota i
+				    JOIN 
+				        propriedade prop ON i.propriedade_id = prop.id
+				    JOIN 
+				        nota n ON i.nota_id = n.id
+				    JOIN 
+				        municipio m ON n.municipio_id = m.id
+				    JOIN 
+				        cotacao c ON prop.id = c.propriedade_id
+				    JOIN 
+				        embalagem e ON i.embalagem_id = e.id
+				    WHERE 
+				        EXTRACT(YEAR FROM n.data) = :ano 
+				        AND EXTRACT(MONTH FROM n.data) = :mes
+				        AND EXTRACT(DAY FROM n.data) = :dia
+				    GROUP BY 
+				        prop.codigo, m.codigo
+				""", nativeQuery = true)
+				List<Object[]> findDadosParaProhortPorDia(@Param("ano") int ano, @Param("mes") int mes, @Param("dia") int dia);
+
+	
 
 
 

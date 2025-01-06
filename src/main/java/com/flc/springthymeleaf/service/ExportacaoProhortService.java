@@ -4,14 +4,21 @@ package com.flc.springthymeleaf.service;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.stereotype.Service;
 import com.flc.springthymeleaf.repository.ItemDeNotaRepository;
+import com.flc.springthymeleaf.web.CotacaoController;
 
 @Service
 public class ExportacaoProhortService {
 
     private final ItemDeNotaRepository itemDeNotaRepository;
 
+    
+    private static final Logger LOGGER = Logger.getLogger(ExportacaoProhortService.class.getName());
+    
+    
     public ExportacaoProhortService(ItemDeNotaRepository itemDeNotaRepository) {
         this.itemDeNotaRepository = itemDeNotaRepository;
     }
@@ -22,13 +29,15 @@ public class ExportacaoProhortService {
 
          }
 
+    
+    
     public List<Object[]> gerarArquivoProhort(int ano, int mes) {
         // Busca os produtos com cotações
         List<Object[]> produtosComCotacao = itemDeNotaRepository.findDadosParaProhort(ano, mes);
-
+        LOGGER.info("Produtos com Cotação: {}"+ produtosComCotacao);
         // Busca os produtos sem cotações
         List<Object[]> produtosSemCotacao = itemDeNotaRepository.findProdutosSemCotacao(ano, mes);
-
+        LOGGER.info("Produtos sem Cotação: {}"+ produtosSemCotacao);
         for (Object[] produto : produtosSemCotacao) {
             String codigoPropriedade = (String) produto[0];
             BigDecimal precoMedio = BigDecimal.ZERO;
@@ -48,7 +57,7 @@ public class ExportacaoProhortService {
 
             // Atualiza o preço médio no produto sem cotação
             produto[3] = precoMedio;
-           
+            LOGGER.info("Produto atualizado sem cotação: {}"+ Arrays.toString(produto));
         }
 
         // Combina produtos com e sem cotação
@@ -56,6 +65,12 @@ public class ExportacaoProhortService {
         return produtosComCotacao;
     }
 
+	public List<Object[]> gerarArquivoProhortPorDia(int ano, int mes, int dia) {
+		// TODO Auto-generated method stub
+		 return itemDeNotaRepository.findDadosParaProhortPorDia(ano, mes, dia);
+	}
+
+   
 
     
 }
