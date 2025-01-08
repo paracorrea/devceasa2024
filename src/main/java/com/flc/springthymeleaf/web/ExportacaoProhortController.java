@@ -90,44 +90,51 @@ public class ExportacaoProhortController {
     
     @GetMapping("/exportacao/teste-dia")
     public void exportarProhortPorDia(
-            @RequestParam(value = "ano") int ano,
-            @RequestParam(value = "mes") int mes,
-            @RequestParam(value = "dia") int dia,
-            HttpServletResponse response) {
+    		 @RequestParam(value = "ano") int ano,
+             @RequestParam(value = "mes") int mes,
+             @RequestParam(value = "dia") int dia,
+             HttpServletResponse response) {
 
-        // Chame o serviço ajustado para receber os dados do dia
-        List<Object[]> resultados = exportacaoProhortService.gerarArquivoProhortPorDia(ano, mes, dia);
+         List<Object[]> resultados = exportacaoProhortService.gerarArquivoProhortPorDia(ano, mes, dia);
 
-        response.setContentType("text/plain");
-        response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort_dia_" + ano + "_" + mes + "_" + dia + ".txt\"");
+         response.setContentType("text/plain");
+         response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort.txt\"");
+         try (PrintWriter writer = response.getWriter()) {
+             DecimalFormat pesoFormatter = new DecimalFormat();
+             DecimalFormat precoFormatter = new DecimalFormat();
 
-        try (PrintWriter writer = response.getWriter()) {
-            DecimalFormat pesoFormatter = new DecimalFormat("#.##");
-            DecimalFormat precoFormatter = new DecimalFormat("#.##");
+             for (Object[] linha : resultados) {
+                 String nomeProduto = (String) linha[0];
+                 String codigoMunicipio = (String) linha[1];
+                 
+                 Double pesoTotal = (Double) linha[2];
+                 
+                 System.out.println("Peso total" + pesoTotal);
+                 
+                 BigDecimal precoMedio = (BigDecimal) linha[3];
 
-            for (Object[] linha : resultados) {
-                String nomeProduto = (String) linha[0];
-                String codigoMunicipio = (String) linha[1];
-                Double pesoTotal = (Double) linha[2];
-                BigDecimal precoMedio = (BigDecimal) linha[3];
-
-                // Formatação
-                String pesoTotalFormatado = pesoFormatter.format(pesoTotal);
+                 long pesoTotalFormatado = Math.round(pesoTotal);
+                 
+                 System.out.println("Peso total" + pesoTotalFormatado);
                 String precoMedioFormatado = precoFormatter.format(precoMedio);
-
-                // Logging para depuração
-                //LOGGER.info("Produto: {}, Município: {}, Peso Total: {}, Preço Médio: {}",
-                 //       nomeProduto, codigoMunicipio, pesoTotal, precoMedio);
-
-                // Gerar linha do arquivo TXT
-                String linhaTxt = "343" + ";" + ano + ";" + mes + ";" + nomeProduto + ";" +
-                        codigoMunicipio + ";" + "365" + ";" + pesoTotalFormatado + ";" + precoMedioFormatado;
-                writer.println(linhaTxt);
-            }
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                
+                LOGGER.info("Peso Total: {}, Preço Médio: {}"+ pesoTotal + " " + precoMedio);
+                
+                LOGGER.info("Produto com cotação: {}" + linha[0]);
+                LOGGER.info("Produto com cotação: {}" + linha[1]);
+                LOGGER.info("Produto com cotação: {}" + linha[2]);
+                LOGGER.info("Produto com cotação: {}" + linha[3]);
+                
+                
+               
+                 String linhaTxt = "343" + ";" + ano + ";" + mes + ";" + dia + ";" + nomeProduto + ";" + 
+                                   codigoMunicipio + ";" + "365" + ";" + pesoTotalFormatado + ";" + precoMedioFormatado;
+                 writer.println(linhaTxt);
+             }
+             writer.flush();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
 
 }

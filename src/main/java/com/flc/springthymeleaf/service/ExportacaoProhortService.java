@@ -67,7 +67,36 @@ public class ExportacaoProhortService {
 
 	public List<Object[]> gerarArquivoProhortPorDia(int ano, int mes, int dia) {
 		// TODO Auto-generated method stub
-		 return itemDeNotaRepository.findDadosParaProhortPorDia(ano, mes, dia);
+		  List<Object[]> produtosComCotacao = itemDeNotaRepository.findDadosParaProhortPorDia(ano, mes, dia);
+	        LOGGER.info("Produtos com Cotação: {}"+ produtosComCotacao);
+	        // Busca os produtos sem cotações
+	        List<Object[]> produtosSemCotacao = itemDeNotaRepository.findProdutosSemCotacao(ano, mes);
+	        LOGGER.info("Produtos sem Cotação: {}"+ produtosSemCotacao);
+	        for (Object[] produto : produtosSemCotacao) {
+	            String codigoPropriedade = (String) produto[0];
+	            BigDecimal precoMedio = BigDecimal.ZERO;
+
+	            // Busca a média dos valores relacionados
+	            Object[] cotaçõesRelacionadas = itemDeNotaRepository.findCotaçõesRelacionadasReferenciais(codigoPropriedade, ano, mes);
+
+	            if (cotaçõesRelacionadas != null && cotaçõesRelacionadas.length == 1) {
+	                BigDecimal mediaValorComum = cotaçõesRelacionadas[0] != null 
+	                    ? new BigDecimal(cotaçõesRelacionadas[0].toString()) 
+	                    : BigDecimal.ZERO;
+
+	                if (mediaValorComum.compareTo(BigDecimal.ZERO) > 0) {
+	                    precoMedio = mediaValorComum; // Apenas atribuímos o valor médio diretamente
+	                }
+	            }
+
+	            // Atualiza o preço médio no produto sem cotação
+	            produto[3] = precoMedio;
+	            LOGGER.info("Produto atualizado sem cotação: {}"+ Arrays.toString(produto));
+	        }
+
+	        // Combina produtos com e sem cotação
+	        produtosComCotacao.addAll(produtosSemCotacao);
+	        return produtosComCotacao;
 	}
 
    
