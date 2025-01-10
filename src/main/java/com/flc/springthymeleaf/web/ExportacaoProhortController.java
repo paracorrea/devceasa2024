@@ -51,8 +51,8 @@ public class ExportacaoProhortController {
         response.setHeader("Content-Disposition", "attachment; filename=\"exportacao_prohort.txt\"");
         try (PrintWriter writer = response.getWriter()) {
             DecimalFormat pesoFormatter = new DecimalFormat();
-            DecimalFormat precoFormatter = new DecimalFormat();
-
+            DecimalFormat precoFormatter = new DecimalFormat("0.00");
+            
             for (Object[] linha : resultados) {
                 String nomeProduto = (String) linha[0];
                 String codigoMunicipio = (String) linha[1];
