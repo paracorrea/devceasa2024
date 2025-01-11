@@ -2,13 +2,11 @@ package com.flc.springthymeleaf.service;
 
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 import com.flc.springthymeleaf.repository.ItemDeNotaRepository;
-import com.flc.springthymeleaf.web.CotacaoController;
+
 
 @Service
 public class ExportacaoProhortService {
@@ -16,7 +14,7 @@ public class ExportacaoProhortService {
     private final ItemDeNotaRepository itemDeNotaRepository;
 
     
-    private static final Logger LOGGER = Logger.getLogger(ExportacaoProhortService.class.getName());
+   // private static final Logger LOGGER = Logger.getLogger(ExportacaoProhortService.class.getName());
     
     
     public ExportacaoProhortService(ItemDeNotaRepository itemDeNotaRepository) {
@@ -34,10 +32,30 @@ public class ExportacaoProhortService {
     public List<Object[]> gerarArquivoProhort(int ano, int mes) {
         // Busca os produtos com cotações
         List<Object[]> produtosComCotacao = itemDeNotaRepository.findDadosParaProhort(ano, mes);
-        LOGGER.info("Produtos com Cotação: {}"+ produtosComCotacao);
+        
+        // Log dos produtos sem cotacao - tirar comentários para debug   
+//        for (Object[] linha : produtosComCotacao) {
+//            StringBuilder sb = new StringBuilder();
+//            for (Object valor : linha) {
+//                sb.append(valor).append(" | ");
+//            }
+//            LOGGER.info("Produtos com Cotacao: {}"+ sb.toString());
+//        }
+        
+               
         // Busca os produtos sem cotações
-        List<Object[]> produtosSemCotacao = itemDeNotaRepository.findProdutosSemCotacao(ano, mes);
-        LOGGER.info("Produtos sem Cotação: {}"+ produtosSemCotacao);
+         List<Object[]> produtosSemCotacao = itemDeNotaRepository.findProdutosSemCotacao(ano, mes);
+              
+        // Log dos produtos sem cotacao - tirar comentários para debug
+//        for (Object[] linha : produtosSemCotacao) {
+//            StringBuilder sb = new StringBuilder();
+//            for (Object valor : linha) {
+//                sb.append(valor).append(" | ");
+//            }
+//            LOGGER.info("Sem Cotacao: {}"+ sb.toString());
+//        }
+//        
+        
         for (Object[] produto : produtosSemCotacao) {
             String codigoPropriedade = (String) produto[0];
             BigDecimal precoMedio = BigDecimal.ZERO;
@@ -57,7 +75,7 @@ public class ExportacaoProhortService {
 
             // Atualiza o preço médio no produto sem cotação
             produto[3] = precoMedio;
-            LOGGER.info("Produto atualizado sem cotação: {}"+ Arrays.toString(produto));
+            //LOGGER.info("Produto atualizado sem cotação: 1{}"+ Arrays.toString(produto));
         }
 
         // Combina produtos com e sem cotação
@@ -65,13 +83,15 @@ public class ExportacaoProhortService {
         return produtosComCotacao;
     }
 
+    
+    //Método ainda não implementado
 	public List<Object[]> gerarArquivoProhortPorDia(int ano, int mes, int dia) {
 		// TODO Auto-generated method stub
 		  List<Object[]> produtosComCotacao = itemDeNotaRepository.findDadosParaProhortPorDia(ano, mes, dia);
-	        LOGGER.info("Produtos com Cotação: {}"+ produtosComCotacao);
+	        
 	        // Busca os produtos sem cotações
 	        List<Object[]> produtosSemCotacao = itemDeNotaRepository.findProdutosSemCotacao(ano, mes);
-	        LOGGER.info("Produtos sem Cotação: {}"+ produtosSemCotacao);
+	       
 	        for (Object[] produto : produtosSemCotacao) {
 	            String codigoPropriedade = (String) produto[0];
 	            BigDecimal precoMedio = BigDecimal.ZERO;
@@ -91,7 +111,7 @@ public class ExportacaoProhortService {
 
 	            // Atualiza o preço médio no produto sem cotação
 	            produto[3] = precoMedio;
-	            LOGGER.info("Produto atualizado sem cotação: {}"+ Arrays.toString(produto));
+	            
 	        }
 
 	        // Combina produtos com e sem cotação
@@ -100,8 +120,6 @@ public class ExportacaoProhortService {
 	}
 
    
-
-    
 }
 
 	
