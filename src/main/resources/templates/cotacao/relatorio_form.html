@@ -12,6 +12,9 @@
     <div th:replace="~{navbar :: menu-principal}"></div>
     
     <h2>Gerar Relatório de Cotações</h2>
+    
+    <!-- Este endpoint se encontra em RelatorioMensalController -->
+    
     <form action="/cotacoes/gerar-relatorio" method="post" enctype="multipart/form-data">
         <label for="file">Escolha o arquivo CSV:</label>
         <input type="file" id="file" name="file" accept=".csv" required>

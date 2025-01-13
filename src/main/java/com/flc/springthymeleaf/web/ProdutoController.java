@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flc.springthymeleaf.DTO.ProdutoPesoDTO;
 import com.flc.springthymeleaf.DTO.SubgrupoPesoDTO;
@@ -282,8 +280,10 @@ public class ProdutoController {
 	     if (volumeTotal == null) {
 	         volumeTotal = 0.0;
 	     }
+	     
+	     
 	   
-	     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+	     NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt", "BR"));
 	     String volumeTotalFormatado = nf.format(volumeTotal);
 	     // Converte os dados em JSON
 	     ObjectMapper objectMapper = new ObjectMapper();
@@ -317,7 +317,7 @@ public class ProdutoController {
 	     List<ProdutoPesoDTO> produtosDTO = itemDeNotaService.getTop5ProdutosByPeso(startDate, endDate);
 	    
 	     Double volumeTotal = itemDeNotaService.findVolumeTotalEntreDatas(startDate, endDate);
-	     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+	     NumberFormat nf = NumberFormat.getNumberInstance(Locale.of("pt", "BR"));
 	     String volumeTotalFormatado = nf.format(volumeTotal);
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     String produtosJson = objectMapper.writeValueAsString(produtosDTO);

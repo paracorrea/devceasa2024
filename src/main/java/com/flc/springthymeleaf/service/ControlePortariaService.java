@@ -3,16 +3,13 @@ package com.flc.springthymeleaf.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.flc.springthymeleaf.domain.ControlePortaria;
-import com.flc.springthymeleaf.domain.Nota;
 import com.flc.springthymeleaf.enums.StatusSessao;
 import com.flc.springthymeleaf.repository.ControlePortariaRepository;
-import com.flc.springthymeleaf.repository.NotaRepository;
+
 
 
 @Service

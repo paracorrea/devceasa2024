@@ -1,15 +1,10 @@
 package com.flc.springthymeleaf.domain;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-
 import com.flc.springthymeleaf.enums.StatusSessao;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

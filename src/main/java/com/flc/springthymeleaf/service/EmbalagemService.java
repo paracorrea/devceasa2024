@@ -1,16 +1,11 @@
 package com.flc.springthymeleaf.service;
 
 
-
-
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import com.flc.springthymeleaf.domain.Embalagem;
 import com.flc.springthymeleaf.repository.EmbalagemRepository;
 

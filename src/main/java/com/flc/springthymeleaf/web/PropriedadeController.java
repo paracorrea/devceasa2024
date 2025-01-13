@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.flc.springthymeleaf.domain.Produto;
 import com.flc.springthymeleaf.domain.Propriedade;
-import com.flc.springthymeleaf.service.EmbalagemService;
+
 import com.flc.springthymeleaf.service.ProdutoService;
 import com.flc.springthymeleaf.service.PropriedadeService;
 import com.flc.springthymeleaf.web.validator.PropriedadeValidator;
@@ -42,8 +42,7 @@ public class PropriedadeController {
     @Autowired
     private ProdutoService produtoService;
 
-    @Autowired
-    private EmbalagemService embalagemService;
+   
     
     @Value("${unidades}")
     private List<String> unidades;
