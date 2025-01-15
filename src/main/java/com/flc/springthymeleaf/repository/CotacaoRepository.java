@@ -55,6 +55,11 @@ public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
 			       "ORDER BY semana")
 			List<Object[]> findMediaSemanalPorProduto(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+		// Relatório indice	
+		Optional<Cotacao> findTopByPropriedadeIdAndDataCotacao(Integer propriedadeId, LocalDate data);
+
+			
+		
 	
 
 		

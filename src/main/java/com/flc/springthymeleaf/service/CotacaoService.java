@@ -1,8 +1,13 @@
 package com.flc.springthymeleaf.service;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
@@ -253,5 +258,91 @@ private BigDecimal calcularMediaDeCotacoes(List<Cotacao> cotacoes) {
 	}
 	return soma.divide(new BigDecimal(cotacoes.size()), RoundingMode.HALF_UP);
 }
+
+
+
+// indices - deve-ser ser criado a pasta c:\txt no computador local
+public void gerarRelatorioTxtPorData(LocalDate data, String caminhoArquivo) {
+    
+	// Caminho fixo para o arquivo com os IDs
+	// Arquivo fonteDeDados.txt deve conter uma lista de id de propriedade
+    String caminhoIds = "C:\\txt\\FonteDeDados.txt";
+
+    // Lê os IDs das propriedades
+    List<Integer> idsPropriedades = lerListaDeIndices(caminhoIds);
+
+    try (PrintWriter writer = new PrintWriter(new File(caminhoArquivo))) {
+        // Escreve o cabeçalho do relatório
+       
+
+        for (Integer propriedadeId : idsPropriedades) {
+            // Busca a cotação por propriedade e data
+            Cotacao cotacao = cotacaoRepository.findTopByPropriedadeIdAndDataCotacao(propriedadeId, data)
+                    .orElse(null);
+
+            if (cotacao != null) {
+                writer.printf(
+                    "%d;%.2f;%.2f%n",
+                    propriedadeId,
+                    cotacao.getPrecoMedio().doubleValue(),
+                    cotacao.getValorComum().doubleValue()
+                );
+            } else {
+                // Se não houver cotação, insira zeros
+                writer.printf("%d;0.00;0.00%n", propriedadeId);
+            }
+        }
+
+        System.out.println("Relatório gerado com sucesso: " + caminhoArquivo);
+    } catch (IOException e) {
+        throw new RuntimeException("Erro ao gerar relatório TXT", e);
+    }
+}
+// recebe nome do arquivo lê arquivo com indice
+private List<Integer> lerListaDeIndices(String caminhoArquivo) {
+   
+	List<Integer> idsPropriedades = new ArrayList<>();
+
+    try {
+        // Lê o arquivo usando a codificação UTF-8
+        List<String> linhas = Files.readAllLines(Paths.get(caminhoArquivo), java.nio.charset.StandardCharsets.UTF_8);
+        for (String linha : linhas) {
+            if (!linha.trim().isEmpty()) { // Ignora linhas vazias
+                idsPropriedades.add(Integer.parseInt(linha.trim()));
+            }
+        }
+        System.out.println("Lista de índices lida com sucesso do arquivo: " + caminhoArquivo);
+    } catch (IOException e) {
+        System.err.println("Erro ao ler o arquivo: " + caminhoArquivo);
+        e.printStackTrace();
+    }
+
+    return idsPropriedades;
+}
+
+public void testarLeituraArquivo() {
+    String caminhoArquivo = "C:\\txt\\fonteDeDados.txt";
+
+    try {
+        // Força a leitura com UTF-8
+        List<String> linhas = Files.readAllLines(Paths.get(caminhoArquivo), java.nio.charset.StandardCharsets.UTF_8);
+
+        // Converte as linhas para inteiros e imprime
+        List<Integer> idsPropriedades = linhas.stream()
+                .filter(linha -> !linha.trim().isEmpty()) // Ignora linhas vazias
+                .map(linha -> Integer.parseInt(linha.trim())) // Converte para Integer
+                .toList();
+
+        System.out.println("IDs lidos com sucesso: " + idsPropriedades);
+    } catch (IOException e) {
+        System.err.println("Erro ao ler o arquivo: " + caminhoArquivo);
+        e.printStackTrace();
+    } catch (NumberFormatException e) {
+        System.err.println("Erro ao converter uma linha para número. Verifique o conteúdo do arquivo.");
+        e.printStackTrace();
+    }
+}
+
+
 }
 

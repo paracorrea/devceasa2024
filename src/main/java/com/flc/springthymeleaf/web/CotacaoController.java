@@ -833,9 +833,32 @@ public class CotacaoController {
         document.add(table);
         document.add(fonte);
         document.close();
+    }   // fecha o conjunto de métodos do relatório que vai para o Sindicato
+    
+    
+    //Endpoind para gerar valores referência para o indice
+   // http://localhost:5001/cotacoes/gerar-relatorio-indice-txt?data=2025-01-13
+    
+    
+    @GetMapping("/cotacoes/gerar-relatorio-indice-txt")
+    public ResponseEntity<String> gerarRelatorioTxt(
+            @RequestParam String data) {
+
+        LocalDate dataFormatada = LocalDate.parse(data);
+        String caminhoArquivo = "C:\\txt\\relatorio_indice.txt";
+
+        // Gera o relatório chamando o service
+        cotacaoService.gerarRelatorioTxtPorData(dataFormatada, caminhoArquivo);
+
+        return ResponseEntity.ok("Relatório gerado com sucesso: " + caminhoArquivo);
     }
     
-    // fecha o conjunto de métodos do relatório que vai para o Sindicato
-    
+    @GetMapping("/testar-leitura")
+    public ResponseEntity<String> testarLeitura() {
+        cotacaoService.testarLeituraArquivo();
+        return ResponseEntity.ok("Teste de leitura executado. Verifique os logs.");
+    }
 }
+    
+    
 
