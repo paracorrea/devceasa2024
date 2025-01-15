@@ -28,9 +28,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.flc.springthymeleaf.DTO.RelatorioMensalDto;
 import com.flc.springthymeleaf.domain.Cotacao;
+import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.repository.CotacaoRepository;
 import com.flc.springthymeleaf.repository.PropriedadeRepository;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 @Transactional(readOnly = false)
@@ -262,7 +265,7 @@ private BigDecimal calcularMediaDeCotacoes(List<Cotacao> cotacoes) {
 
 
 // indices - deve-ser ser criado a pasta c:\txt no computador local
-public void gerarRelatorioTxtPorData(LocalDate data, String caminhoArquivo) {
+public void gerarRelatorioTxtPorData(LocalDate data, HttpServletResponse response) throws IOException {
     
 	// Caminho fixo para o arquivo com os IDs
 	// Arquivo fonteDeDados.txt deve conter uma lista de id de propriedade
@@ -270,8 +273,10 @@ public void gerarRelatorioTxtPorData(LocalDate data, String caminhoArquivo) {
 
     // Lê os IDs das propriedades
     List<Integer> idsPropriedades = lerListaDeIndices(caminhoIds);
+    
+    
 
-    try (PrintWriter writer = new PrintWriter(new File(caminhoArquivo))) {
+    try (PrintWriter writer = response.getWriter()) {
         // Escreve o cabeçalho do relatório
        
 
@@ -280,20 +285,34 @@ public void gerarRelatorioTxtPorData(LocalDate data, String caminhoArquivo) {
             Cotacao cotacao = cotacaoRepository.findTopByPropriedadeIdAndDataCotacao(propriedadeId, data)
                     .orElse(null);
 
-            if (cotacao != null) {
-                writer.printf(
-                    "%d;%.2f;%.2f%n",
-                    propriedadeId,
-                    cotacao.getPrecoMedio().doubleValue(),
-                    cotacao.getValorComum().doubleValue()
-                );
-            } else {
-                // Se não houver cotação, insira zeros
-                writer.printf("%d;0.00;0.00%n", propriedadeId);
+            Optional<Propriedade> propriedadeOptional = propriedadeRepository.findById(propriedadeId);
+            
+            if (propriedadeOptional.isPresent()) {
+            	
+            	Propriedade propriedade = propriedadeOptional.get();
+            	           	
+            	if (cotacao != null) {
+                    writer.printf(
+                        "%s;%d;%.2f;%.2f%n",
+                        
+                        propriedade.getCodigo(),
+                        propriedadeId,
+                        cotacao.getPrecoMedio().doubleValue(),
+                        cotacao.getValorComum().doubleValue()
+                    );
+                } else {
+                    // Se não houver cotação, insira zeros
+                	
+                    writer.printf("%s;%d;0.00;0.00%n", propriedade.getCodigo(), propriedadeId);
+                }
             }
-        }
+            	
+            }
+            
+            
+            
 
-        System.out.println("Relatório gerado com sucesso: " + caminhoArquivo);
+        System.out.println("Relatório gerado com sucesso: " + response);
     } catch (IOException e) {
         throw new RuntimeException("Erro ao gerar relatório TXT", e);
     }

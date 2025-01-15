@@ -841,17 +841,21 @@ public class CotacaoController {
     
     
     @GetMapping("/cotacoes/gerar-relatorio-indice-txt")
-    public ResponseEntity<String> gerarRelatorioTxt(
-            @RequestParam String data) {
+    public void gerarRelatorioTxt(
+            @RequestParam String data,
+            HttpServletResponse response) {
 
-        LocalDate dataFormatada = LocalDate.parse(data);
-        String caminhoArquivo = "C:\\txt\\relatorio_indice.txt";
+        response.setContentType("text/plain");
+        response.setHeader("Content-Disposition", "attachment; filename=\"relatorio_indice.txt\"");
 
-        // Gera o relatório chamando o service
-        cotacaoService.gerarRelatorioTxtPorData(dataFormatada, caminhoArquivo);
 
-        return ResponseEntity.ok("Relatório gerado com sucesso: " + caminhoArquivo);
+        try {
+            cotacaoService.gerarRelatorioTxtPorData(LocalDate.parse(data), response);
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao gerar o relatório para download", e);
+        }
     }
+
     
     @GetMapping("/testar-leitura")
     public ResponseEntity<String> testarLeitura() {
