@@ -1,7 +1,5 @@
 package com.flc.springthymeleaf.service;
 
-
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -25,14 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.flc.springthymeleaf.DTO.RelatorioMensalDto;
 import com.flc.springthymeleaf.domain.Cotacao;
 import com.flc.springthymeleaf.domain.Propriedade;
 import com.flc.springthymeleaf.repository.CotacaoRepository;
 import com.flc.springthymeleaf.repository.PropriedadeRepository;
 import com.flc.springthymeleaf.service.exceptions.ObjectNotFoundException;
-
 import jakarta.servlet.http.HttpServletResponse;
 
 @Service
