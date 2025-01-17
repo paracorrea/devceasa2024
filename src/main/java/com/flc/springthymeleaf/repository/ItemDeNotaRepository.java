@@ -82,6 +82,8 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 			        municipio m ON subquery.municipio_id = m.id
 			    JOIN 
 			        cotacao c ON prop.id = c.propriedade_id
+			        AND EXTRACT(YEAR FROM c.data_cotacao) = :ano 
+	 				AND EXTRACT(MONTH FROM c.data_cotacao) = :mes
 			    GROUP BY 
 			        prop.codigo, m.codigo, subquery.peso_total
 			""", nativeQuery = true)
@@ -119,6 +121,8 @@ public interface ItemDeNotaRepository extends JpaRepository<ItemDeNota, Integer>
 			        municipio m ON subquery.municipio_id = m.id
 			    LEFT JOIN 
 			        cotacao c ON prop.id = c.propriedade_id
+			        AND EXTRACT(YEAR FROM c.data_cotacao) = :ano 
+	 				AND EXTRACT(MONTH FROM c.data_cotacao) = :mes
 			    WHERE 
 			        c.id IS NULL
 			    GROUP BY 

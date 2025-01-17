@@ -308,7 +308,7 @@ public class ProdutoController {
 
 	     // Definindo as datas padrão
 	     if (startDate == null) {
-	         startDate = LocalDate.now().minusWeeks(1); // Última semana como padrão
+	         startDate = LocalDate.now().minusWeeks(6); // Última semana como padrão
 	     }
 	     if (endDate == null) {
 	         endDate = LocalDate.now(); // Data atual como padrão
